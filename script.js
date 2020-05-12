@@ -16,7 +16,7 @@ function fetchData(){
 
     .then((e)=>e.json())
     .then((e)=> {
-        console.log(e);
+        //console.log(e);
         init(e);
     });
 
@@ -30,21 +30,24 @@ function init(data) {
     //-----bartenders-----//
     //console.log(data.bartenders)
     data.bartenders.forEach(bartendersUnit);
+    //data.taps.forEach(tapsUnit);
+    console.log(data.taps)
+    data.taps.forEach(tapsUnit);
  
 }
 
 //-----------------------------------TIME--------------------------------------//
 function setUpTime(localTime) {
-    console.log(localTime)
+    //console.log(localTime)
 }
 
 //-----------------------------------BARTENDERS--------------------------------------//
 
 function bartendersUnit(oneBartender){
-    console.log(oneBartender)
-    console.log(oneBartender.name)
-    console.log(oneBartender.status)
-    console.log(oneBartender.statusDetail)
+    //console.log(oneBartender)
+    //console.log(oneBartender.name)
+    //console.log(oneBartender.status)
+    //console.log(oneBartender.statusDetail)
     //-----get template and clone-----//
     const templateBartenders = document.querySelector("#bartendersTemplate").content;
     const bartendersArea = document.querySelector("#bartendersUnit");
@@ -58,7 +61,24 @@ function bartendersUnit(oneBartender){
     cloneBartender.querySelector("p.statusDetail").textContent = oneBartender.statusDetail;
     //-----append-----//
     bartendersArea.appendChild(cloneBartender)
-     
-    
-    
+
+}
+
+//-----------------------------------TAPS UNIT--------------------------------------//
+
+function tapsUnit(showTap) {
+    console.log(showTap)
+    console.log(showTap.beer)
+    //-----get template and clone-----//
+    const templateTaps = document.querySelector("#tapsTemplate").content;
+    const tapsArea = document.querySelector("#tapsUnit");
+    const cloneTaps = templateTaps.cloneNode(true);
+    //-----elements in template-----//
+    cloneTaps.querySelector("p.beer").textContent = showTap.beer;
+    cloneTaps.querySelector("p.id").textContent = showTap.id;
+    cloneTaps.querySelector("p.inUse").textContent = showTap.inUse;
+    cloneTaps.querySelector("p.level").textContent = showTap.level;
+    //-----append-----//
+    tapsArea.appendChild(cloneTaps)
+
 }
