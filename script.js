@@ -27,6 +27,9 @@ function init(data) {
     //-----TIME-----//
     //console.log(data.timestamp)
     setUpTime(data.timestamp);
+    //-----QUEUE-----//
+    //console.log(data.queue)
+    data.queue.forEach(queueUnit);
     //-----BARTENDERS-----//
     //console.log(data.bartenders)
     data.bartenders.forEach(bartendersUnit);
@@ -38,7 +41,7 @@ function init(data) {
     //console.log(data.serving)
     data.serving.forEach(servingUnit);
     //-----STORAGE-----//
-    console.log(data.storage)
+    //console.log(data.storage)
     let storageSort = data.storage;
     //sort by left in stock:
     //console.log(storageSort)
@@ -52,6 +55,21 @@ function init(data) {
 //-----------------------------------TIME--------------------------------------//
 function setUpTime(localTime) {
     //console.log(localTime)
+}
+
+//-----------------------------------QUEUE--------------------------------------//
+function queueUnit(showQueue) {
+    //console.log(showQueue)
+    //-----get template and clone-----//
+    const templateQueue = document.querySelector("#queueTemplate").content;
+    const queueArea = document.querySelector("#queueUnit");
+    const cloneQueue = templateQueue.cloneNode(true);
+    //-----elements in template-----//
+    cloneQueue.querySelector("p.id").textContent = `order number: ${showQueue.id}`;
+    cloneQueue.querySelector("p.order").textContent = `order details: ${showQueue.order}`;
+    cloneQueue.querySelector("p.startTime").textContent = showQueue.startTime;
+    //-----append-----//
+    queueArea.appendChild(cloneQueue);
 }
 
 //-----------------------------------BARTENDERS--------------------------------------//
