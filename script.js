@@ -24,19 +24,28 @@ function fetchData(){
 
 function init(data) {
     console.log(data);
-    //-----find current time-----//
+    //-----TIME-----//
     //console.log(data.timestamp)
     setUpTime(data.timestamp);
-    //-----bartenders-----//
+    //-----BARTENDERS-----//
     //console.log(data.bartenders)
     data.bartenders.forEach(bartendersUnit);
-    //-----taps-----//
+    //-----TAPS-----//
     //data.taps.forEach(tapsUnit);
     //console.log(data.taps)
     data.taps.forEach(tapsUnit);
-    //-----serving-----//
-    console.log(data.serving)
+    //-----SERVING-----//
+    //console.log(data.serving)
     data.serving.forEach(servingUnit);
+    //-----STORAGE-----//
+    console.log(data.storage)
+    let storageSort = data.storage;
+    //sort by left in stock:
+    //console.log(storageSort)
+    //console.log(storageSort.sort())
+    storageSort.sort((a, b) => (a.amount > b.amount) ? 1 : -1);
+    //show each:
+    data.storage.forEach(storageUnit);
  
 }
 
@@ -89,7 +98,7 @@ function tapsUnit(showTap) {
 
 //-----------------------------------BARTENDERS--------------------------------------//
 function servingUnit(servingNext){
-    console.log(servingNext)
+    //console.log(servingNext)
     //-----get template and clone-----//
     const templateServing = document.querySelector("#servingTemplate").content;
     const servingArea = document.querySelector("#servingUnit");
@@ -100,4 +109,21 @@ function servingUnit(servingNext){
     cloneServing.querySelector("p.startTime").textContent = servingNext.startTime;
     //-----append-----//
     servingArea.appendChild(cloneServing);
+}
+
+//-----------------------------------STORAGE--------------------------------------//
+function storageUnit(showStock){
+    //console.log(showStock)
+    //console.log(showStock.amount)
+    //let topSellers = showStock.amount;
+    //console.log(topSellers)
+    //-----get template and clone-----//
+    const templateStorage = document.querySelector("#storageTemplate").content;
+    const storageArea = document.querySelector("#storageUnit");
+    const cloneStorage = templateStorage.cloneNode(true);
+    //-----elements in template-----//
+    cloneStorage.querySelector("p.name").textContent = showStock.name;
+    cloneStorage.querySelector("p.amount").textContent = `(left in stock) ${showStock.amount}`;
+    //-----append-----//
+    storageArea.appendChild(cloneStorage);
 }
