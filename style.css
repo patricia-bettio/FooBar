@@ -13,3 +13,11 @@
     text-align: center;
     border: 1px solid;
 }
+
+#servingUnit {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    width: 500px;
+    text-align: center;
+    border: 1px solid;
+}
