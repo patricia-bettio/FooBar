@@ -30,9 +30,13 @@ function init(data) {
     //-----bartenders-----//
     //console.log(data.bartenders)
     data.bartenders.forEach(bartendersUnit);
+    //-----taps-----//
     //data.taps.forEach(tapsUnit);
-    console.log(data.taps)
+    //console.log(data.taps)
     data.taps.forEach(tapsUnit);
+    //-----serving-----//
+    console.log(data.serving)
+    data.serving.forEach(servingUnit);
  
 }
 
@@ -67,8 +71,8 @@ function bartendersUnit(oneBartender){
 //-----------------------------------TAPS UNIT--------------------------------------//
 
 function tapsUnit(showTap) {
-    console.log(showTap)
-    console.log(showTap.beer)
+    //console.log(showTap)
+    //console.log(showTap.beer)
     //-----get template and clone-----//
     const templateTaps = document.querySelector("#tapsTemplate").content;
     const tapsArea = document.querySelector("#tapsUnit");
@@ -81,4 +85,19 @@ function tapsUnit(showTap) {
     //-----append-----//
     tapsArea.appendChild(cloneTaps)
 
+}
+
+//-----------------------------------BARTENDERS--------------------------------------//
+function servingUnit(servingNext){
+    console.log(servingNext)
+    //-----get template and clone-----//
+    const templateServing = document.querySelector("#servingTemplate").content;
+    const servingArea = document.querySelector("#servingUnit");
+    const cloneServing = templateServing.cloneNode(true);
+    //-----elements in template-----//
+    cloneServing.querySelector("p.id").textContent = servingNext.id;
+    cloneServing.querySelector("p.order").textContent = servingNext.order;
+    cloneServing.querySelector("p.startTime").textContent = servingNext.startTime;
+    //-----append-----//
+    servingArea.appendChild(cloneServing);
 }
