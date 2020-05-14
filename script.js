@@ -29,16 +29,21 @@ function fetchData(){
     })
 
     .then((e)=>e.json())
-    .then((data)=> {
-        //console.log(e);
+    .then((e)=> {
+        console.log(e);
+    
         
-        init(data);
-        //setInterval(fetchData, 2000);
-        //console.log(data)
+        init(e);
+         //setInterval(init, 2000);
+        
+       
+        
+     /* console.log(data)
+        data = "";
+        console.log(data) */
         
     });
     
-
 }
 
 
@@ -51,8 +56,10 @@ function init(data) {
     document.querySelector(".localTime").textContent = dateFormatter(data.timestamp);
 
     //-----QUEUE-----//
+   
+    queueUnit(data.queue);
+    //data.queue = []  
     //console.log(data.queue)
-    data.queue.forEach(queueUnit);
 
     //-----BARTENDERS-----//
     //console.log(data.bartenders)
@@ -62,11 +69,12 @@ function init(data) {
     //-----TAPS-----//
     //data.taps.forEach(tapsUnit);
     //console.log(data.taps)
-    data.taps.forEach(tapsUnit);
-
+    //data.taps.forEach(tapsUnit);
+    tapsUnit(data.taps);
     //-----SERVING-----//
     //console.log(data.serving)
-    data.serving.forEach(servingUnit);
+    //data.serving.forEach(servingUnit);
+    servingUnit(data.serving);
 
     //-----STORAGE-----//
     //console.log(data.storage)
@@ -76,7 +84,11 @@ function init(data) {
     //console.log(storageSort.sort())
     storageSort.sort((a, b) => (a.amount > b.amount) ? 1 : -1);
     //show each:
-    data.storage.forEach(storageUnit);
+    //data.storage.forEach(storageUnit);
+    storageUnit(data.storage);
+
+ 
+ 
  
 }
 
@@ -85,52 +97,72 @@ function init(data) {
 //-----------------------------------QUEUE--------------------------------------//
 function queueUnit(showQueue) {
     //console.log(showQueue)
-    //-----get template and clone-----//
-    const templateQueue = document.querySelector("#queueTemplate").content;
-    const queueArea = document.querySelector("#queueUnit");
-    const cloneQueue = templateQueue.cloneNode(true);
-    //-----elements in template-----//
-    cloneQueue.querySelector("p.id").textContent = `order number: ${showQueue.id}`;
-    cloneQueue.querySelector("p.order").textContent = `order details: ${showQueue.order}`;
-    //-----adjust time-----//
-    //import function that converts time:
-    //console.log(dateFormatter(showQueue.startTime))
-    // return the newTimeFormatted!
-    cloneQueue.querySelector("p.startTime").textContent = dateFormatter(showQueue.startTime);
-    //-----append-----//
-    queueArea.appendChild(cloneQueue);
+    //document.querySelector("#queueUnit").content = "";
+    showQueue.forEach((showQueue)=>{
+
+   //-----get template and clone-----//
+   const templateQueue = document.querySelector("#queueTemplate").content;
+   const queueArea = document.querySelector("#queueUnit");
+   //showQueue.textcontent = "";
+   const cloneQueue = templateQueue.cloneNode(true);
+   //-----elements in template-----//
+   cloneQueue.querySelector("p.id").textContent = `order number: ${showQueue.id}`;
+   cloneQueue.querySelector("p.order").textContent = `order details: ${showQueue.order}`;
+   //-----adjust time-----//
+   //import function that converts time:
+   //console.log(dateFormatter(showQueue.startTime))
+   // return the newTimeFormatted!
+   cloneQueue.querySelector("p.startTime").textContent = dateFormatter(showQueue.startTime);
+   //-----append-----//
+   queueArea.appendChild(cloneQueue);
+   //showQueue = [] 
+   console.log(showQueue)
+
+
+    })
+ 
     
 }
 
 //-----------------------------------BARTENDERS--------------------------------------//
 function bartendersUnit(oneBartender){
     console.log(oneBartender)
+    //clear the list
+    //document.querySelector("#bartendersUnit").content = "";
 
     oneBartender.forEach((oneBartender)=>{
+        
     //console.log(oneBartender.status)
     //console.log(oneBartender.statusDetail)
     //-----get template and clone-----//
-    const templateBartenders = document.querySelector("#bartendersTemplate").content;
+    let templateBartenders = document.querySelector("#bartendersTemplate").content;
+    //document.querySelector("#bartendersTemplate").textcontent = ""
     const bartendersArea = document.querySelector("#bartendersUnit");
 
     const cloneBartender = templateBartenders.cloneNode(true);
     //-----elements in template-----//
+  
     cloneBartender.querySelector("p.name").textContent = oneBartender.name;
     cloneBartender.querySelector("p.status").textContent = oneBartender.status;
     cloneBartender.querySelector("p.servingCustomer").textContent = oneBartender.servingCustomer;
     cloneBartender.querySelector("p.usingTap").textContent = oneBartender.usingTap;
     cloneBartender.querySelector("p.statusDetail").textContent = oneBartender.statusDetail;
+    
     //-----append-----//
     bartendersArea.appendChild(cloneBartender)
+    //console.log(`one bartender = ${oneBartender}`)
     })
-
-
+    //document.querySelector("#bartendersTemplate").textcontent = ""
+    //oneBartender = []
+    //console.log(`one bartender = ${oneBartender}`)
+    
 }
 
 //-----------------------------------TAPS UNIT--------------------------------------//
 function tapsUnit(showTap) {
     //console.log(showTap)
     //console.log(showTap.beer)
+    showTap.forEach((showTap)=>{
     //-----get template and clone-----//
     const templateTaps = document.querySelector("#tapsTemplate").content;
     const tapsArea = document.querySelector("#tapsUnit");
@@ -142,12 +174,14 @@ function tapsUnit(showTap) {
     cloneTaps.querySelector("p.level").textContent = showTap.level;
     //-----append-----//
     tapsArea.appendChild(cloneTaps)
+    })
 
 }
 
 //-----------------------------------BARTENDERS--------------------------------------//
 function servingUnit(servingNext){
     //console.log(servingNext)
+    servingNext.forEach((servingNext)=>{
     //-----get template and clone-----//
     const templateServing = document.querySelector("#servingTemplate").content;
     const servingArea = document.querySelector("#servingUnit");
@@ -159,7 +193,7 @@ function servingUnit(servingNext){
     cloneServing.querySelector("p.startTime").textContent = dateFormatter(servingNext.startTime);;
     //-----append-----//
     servingArea.appendChild(cloneServing);
-
+    })
 }
 
 //-----------------------------------STORAGE--------------------------------------//
@@ -168,6 +202,8 @@ function storageUnit(showStock){
     //console.log(showStock.amount)
     //let topSellers = showStock.amount;
     //console.log(topSellers)
+
+    showStock.forEach((showStock)=>{
     //-----get template and clone-----//
     const templateStorage = document.querySelector("#storageTemplate").content;
     const storageArea = document.querySelector("#storageUnit");
@@ -177,5 +213,6 @@ function storageUnit(showStock){
     cloneStorage.querySelector("p.amount").textContent = `(left in stock) ${showStock.amount}`;
     //-----append-----//
     storageArea.appendChild(cloneStorage);
+    })
 
 }
