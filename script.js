@@ -1,9 +1,15 @@
 "use strict"
 
+//-----------------------------------IMPORT--------------------------------------//
+//-----formatted time-----//
+import dateFormatter from "./modules/extra";
+
+//-----------------------------------INITIALIZE--------------------------------------//
 document.addEventListener("DOMContentLoaded", start);
 
 function start(){
     fetchData();
+    //setTimeout(fetchData, 5000);
 }
 
 const url = "https://beer-waffle.herokuapp.com/";
@@ -17,8 +23,12 @@ function fetchData(){
     .then((e)=>e.json())
     .then((e)=> {
         //console.log(e);
+        
         init(e);
+        //setTimeout(fetchData, 5000);
+        
     });
+    
 
 }
 
@@ -26,20 +36,28 @@ function init(data) {
     console.log(data);
     //-----TIME-----//
     //console.log(data.timestamp)
-    setUpTime(data.timestamp);
+    //import and fire formatting function:
+    //console.log(dateFormatter(data.timestamp))
+    document.querySelector(".localTime").textContent = dateFormatter(data.timestamp);
+
     //-----QUEUE-----//
     //console.log(data.queue)
     data.queue.forEach(queueUnit);
+
     //-----BARTENDERS-----//
     //console.log(data.bartenders)
     data.bartenders.forEach(bartendersUnit);
+    //bartendersUnit(data);
+
     //-----TAPS-----//
     //data.taps.forEach(tapsUnit);
     //console.log(data.taps)
     data.taps.forEach(tapsUnit);
+
     //-----SERVING-----//
     //console.log(data.serving)
     data.serving.forEach(servingUnit);
+
     //-----STORAGE-----//
     //console.log(data.storage)
     let storageSort = data.storage;
@@ -53,9 +71,6 @@ function init(data) {
 }
 
 //-----------------------------------TIME--------------------------------------//
-function setUpTime(localTime) {
-    //console.log(localTime)
-}
 
 //-----------------------------------QUEUE--------------------------------------//
 function queueUnit(showQueue) {
@@ -67,15 +82,18 @@ function queueUnit(showQueue) {
     //-----elements in template-----//
     cloneQueue.querySelector("p.id").textContent = `order number: ${showQueue.id}`;
     cloneQueue.querySelector("p.order").textContent = `order details: ${showQueue.order}`;
-    cloneQueue.querySelector("p.startTime").textContent = showQueue.startTime;
+    //-----adjust time-----//
+    //import function that converts time:
+    //console.log(dateFormatter(showQueue.startTime))
+    // return the newTimeFormatted!
+    cloneQueue.querySelector("p.startTime").textContent = dateFormatter(showQueue.startTime);
     //-----append-----//
     queueArea.appendChild(cloneQueue);
+    
 }
 
 //-----------------------------------BARTENDERS--------------------------------------//
-
 function bartendersUnit(oneBartender){
-    //console.log(oneBartender)
     //console.log(oneBartender.name)
     //console.log(oneBartender.status)
     //console.log(oneBartender.statusDetail)
@@ -96,7 +114,6 @@ function bartendersUnit(oneBartender){
 }
 
 //-----------------------------------TAPS UNIT--------------------------------------//
-
 function tapsUnit(showTap) {
     //console.log(showTap)
     //console.log(showTap.beer)
@@ -124,9 +141,11 @@ function servingUnit(servingNext){
     //-----elements in template-----//
     cloneServing.querySelector("p.id").textContent = servingNext.id;
     cloneServing.querySelector("p.order").textContent = servingNext.order;
-    cloneServing.querySelector("p.startTime").textContent = servingNext.startTime;
+    //import dateformatter to convert time:
+    cloneServing.querySelector("p.startTime").textContent = dateFormatter(servingNext.startTime);;
     //-----append-----//
     servingArea.appendChild(cloneServing);
+
 }
 
 //-----------------------------------STORAGE--------------------------------------//
@@ -144,4 +163,5 @@ function storageUnit(showStock){
     cloneStorage.querySelector("p.amount").textContent = `(left in stock) ${showStock.amount}`;
     //-----append-----//
     storageArea.appendChild(cloneStorage);
+
 }
