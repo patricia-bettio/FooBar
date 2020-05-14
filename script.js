@@ -7,30 +7,40 @@ import dateFormatter from "./modules/extra";
 //-----------------------------------INITIALIZE--------------------------------------//
 document.addEventListener("DOMContentLoaded", start);
 
+
 function start(){
+
+//before- call straight fetchData:
+fetchData();
+
+//ingi solution:
+/* setInterval(() => {
     fetchData();
-    //setTimeout(fetchData, 5000);
-}
+}, 2000); */
+
+};
 
 const url = "https://beer-waffle.herokuapp.com/";
 
 function fetchData(){
-
+    
     fetch (url, {
         method: "get",
     })
 
     .then((e)=>e.json())
-    .then((e)=> {
+    .then((data)=> {
         //console.log(e);
         
-        init(e);
-        //setTimeout(fetchData, 5000);
+        init(data);
+        //setInterval(fetchData, 2000);
+        //console.log(data)
         
     });
     
 
 }
+
 
 function init(data) {
     console.log(data);
@@ -46,8 +56,8 @@ function init(data) {
 
     //-----BARTENDERS-----//
     //console.log(data.bartenders)
-    data.bartenders.forEach(bartendersUnit);
-    //bartendersUnit(data);
+    //data.bartenders.forEach(bartendersUnit);
+    bartendersUnit(data.bartenders);
 
     //-----TAPS-----//
     //data.taps.forEach(tapsUnit);
@@ -94,7 +104,9 @@ function queueUnit(showQueue) {
 
 //-----------------------------------BARTENDERS--------------------------------------//
 function bartendersUnit(oneBartender){
-    //console.log(oneBartender.name)
+    console.log(oneBartender)
+
+    oneBartender.forEach((oneBartender)=>{
     //console.log(oneBartender.status)
     //console.log(oneBartender.statusDetail)
     //-----get template and clone-----//
@@ -110,6 +122,8 @@ function bartendersUnit(oneBartender){
     cloneBartender.querySelector("p.statusDetail").textContent = oneBartender.statusDetail;
     //-----append-----//
     bartendersArea.appendChild(cloneBartender)
+    })
+
 
 }
 
