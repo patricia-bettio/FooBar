@@ -20,5 +20,9 @@
   "homepage": "https://github.com/pbettio/dashboard#readme",
   "devDependencies": {
     "parcel-bundler": "^1.12.4"
+  },
+  "dependencies": {
+    "moment": "^2.25.3",
+    "timers.js": "^1.1.10"
   }
 }
