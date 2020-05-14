@@ -10,11 +10,6 @@ document.addEventListener("DOMContentLoaded", start);
 function start() {
   //before- call straight fetchData:
   fetchData();
-
-  //ingi solution:
-  /* setInterval(() => {
-    fetchData();
-}, 2000); */
 }
 
 const url = "https://beer-waffle.herokuapp.com/";
