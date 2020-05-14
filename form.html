@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1 class="title">FooBar</h1>
+    <h2 class="step">Step 3: Pay, Don't run away!</h2>
+
+    <section class="formSection">
+      <form>
+        <label for="acceptedCards">
+          Accepted Cards
+        </label>
+
+        <label for="cardName">
+          Cardholder's Name
+        </label>
+        <input type="text" name="cardName" placeholder="John Smith" required />
+        <p>Oops! You forgot to tell us your name</p>
+
+        <label for="cardNumber">
+          Card Number
+        </label>
+        <input
+          name="cardNumber"
+          type="text"
+          maxlength="19"
+          class="cc-number-input"
+          placeholder="xxxx xxxx xxxx xxxx"
+        />
+        <p>Oops! You forgot to write out your card number</p>
+
+        <label for="expiryDate">
+          Expiry Date
+        </label>
+        <input
+          name="expiryDate"
+          type="text"
+          maxlength="5"
+          class="cc-expiry-input"
+        />
+        <p>
+          Let us know when your card expires
+        </p>
+        <label for="ccv">
+          CCV
+        </label>
+        <input name="ccv" type="text" maxlength="3" class="cc-cvc-input" />
+        <p>
+          CVC number is missing
+        </p>
+
+        <input type="submit" value="Pay Now" class="formSubmit" />
+      </form>
+    </section>
+
+    <script src="form.js"></script>
+  </body>
+</html>
