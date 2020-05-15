@@ -8,13 +8,9 @@ import {urlApi, dateFormatter} from "./modules/extra";
 document.addEventListener("DOMContentLoaded", start);
 
 function start() {
-  //before- call straight fetchData:
+
   fetchData();
 
-  //ingi solution:
-  /* setInterval(() => {
-    fetchData();
-}, 2000); */
 }
 
 
@@ -25,11 +21,10 @@ function fetchData() {
   })
     .then((e) => e.json())
     .then((data) => {
-      //console.log(e);
-
-      init(data);
-      //setInterval(fetchData, 2000);
-      //console.log(data)
+    //console.log(data);
+    init(data);
+    setInterval(fetchDataInterval, 2000);
+    //console.log(data)
     });
 }
 
@@ -43,7 +38,7 @@ function init(data) {
 
   //-----QUEUE-----//
   //console.log(data.queue)
-  queueUnit(data.queue)
+  //queueUnit(data.queue)
 
   //-----BARTENDERS-----//
   //console.log(data.bartenders)
@@ -70,10 +65,31 @@ function init(data) {
   //data.storage.forEach(storageUnit);
 }
 
+function fetchDataInterval(){
+  fetch(urlApi, {
+    method: "get",
+  })
+    .then((e) => e.json())
+    .then((data) => {
+      console.log(data) 
+      updateInit(data);
+      
+    });
+}
+
+
+function updateInit(data){ 
+  console.log(data)
+  //document.querySelector("#bartendersUnit").innerHTML = "";
+  //let testing = data.bartenders;
+  //console.log(typeof)
+  bartendersUnit(data.bartenders)
+}
+
 //-----------------------------------TIME--------------------------------------//
 
 //-----------------------------------QUEUE--------------------------------------//
-function queueUnit(showQueue) {
+/* function queueUnit(showQueue) {
   //console.log(showQueue)
     showQueue.forEach((showQueue)=>{
   //-----get template and clone-----//
@@ -97,34 +113,38 @@ function queueUnit(showQueue) {
 
     })
 
-}
+} */
 
 //-----------------------------------BARTENDERS--------------------------------------//
 function bartendersUnit(oneBartender) {
   console.log(oneBartender);
+  
+    //document.querySelector("#bartendersUnit").innerHTML = "";
+    //oneBartender =  [];
+    oneBartender.forEach((oneBartender) => {
 
-  oneBartender.forEach((oneBartender) => {
+    // console.log(typeof oneBartender)
     //console.log(oneBartender.status)
     //console.log(oneBartender.statusDetail)
     //-----get template and clone-----//
-    const templateBartenders = document.querySelector("#bartendersTemplate")
-      .content;
+    const templateBartenders = document.querySelector("#bartendersTemplate").content;
     const bartendersArea = document.querySelector("#bartendersUnit");
 
     const cloneBartender = templateBartenders.cloneNode(true);
     //-----elements in template-----//
     cloneBartender.querySelector("p.name").textContent = oneBartender.name;
     cloneBartender.querySelector("p.status").textContent = oneBartender.status;
-    cloneBartender.querySelector("p.servingCustomer").textContent =
-      oneBartender.servingCustomer;
-    cloneBartender.querySelector("p.usingTap").textContent =
-      oneBartender.usingTap;
-    cloneBartender.querySelector("p.statusDetail").textContent =
-      oneBartender.statusDetail;
+    cloneBartender.querySelector("p.servingCustomer").textContent = oneBartender.servingCustomer;
+    cloneBartender.querySelector("p.usingTap").textContent = oneBartender.usingTap;
+    cloneBartender.querySelector("p.statusDetail").textContent = oneBartender.statusDetail;
+    
     //-----append-----//
     bartendersArea.appendChild(cloneBartender);
+    
   });
+  
 }
+
 
 //-----------------------------------TAPS UNIT--------------------------------------//
 /* function tapsUnit(showTap) {
