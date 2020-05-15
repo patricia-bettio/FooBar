@@ -4,38 +4,13 @@ function init() {
   setUpForm();
 }
 
-// FORM
+// PAYMENT FORM
 function setUpForm() {
   const body = document.querySelector("body");
   window.form = form;
   window.elements = elements;
   const form = document.querySelector("form");
   const elements = form.elements;
-
-  form.setAttribute("novalidate", true);
-
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-
-    const formElements = form.querySelectorAll("input");
-    formElements.forEach((el) => {
-      el.classList.remove("invalid");
-    });
-
-    if (form.checkValidity()) {
-      body.classList.add("noForm");
-      body.classList.add(
-        "loadingGif"
-      ) /* &&
-        location.assign("http://localhost:1234/app.html") */;
-    } else {
-      formElements.forEach((el) => {
-        if (!el.checkValidity()) {
-          el.classList.add("invalid");
-        }
-      });
-    }
-  });
 
   // ------ code copied from https://codepen.io/murani/pen/KyVbrp --------
   let ccNumberInput = document.querySelector(".cc-number-input"),
@@ -47,9 +22,6 @@ function setUpForm() {
     ccExpiryPattern = /^\d{0,4}$/g,
     ccExpirySeparator = "/",
     ccExpiryInputOldValue,
-    ccExpiryInputOldCursor,
-    ccCVCInput = document.querySelector(".cc-cvc-input"),
-    ccCVCPattern = /^\d{0,3}$/g,
     mask = (value, limit, separator) => {
       var output = [];
       for (let i = 0; i < value.length; i++) {
@@ -95,33 +67,8 @@ function setUpForm() {
       }
 
       el.setSelectionRange(newCursorPosition, newCursorPosition);
-
-      highlightCC(el.value);
     },
-    highlightCC = (ccValue) => {
-      let ccCardType = "",
-        ccCardTypePatterns = {
-          amex: /^3/,
-          visa: /^4/,
-          mastercard: /^5/,
-          disc: /^6/,
-
-          genric: /(^1|^2|^7|^8|^9|^0)/,
-        };
-
-      for (const cardType in ccCardTypePatterns) {
-        if (ccCardTypePatterns[cardType].test(ccValue)) {
-          ccCardType = cardType;
-          break;
-        }
-      }
-
-      let activeCC = document.querySelector(".cc-types__img--active"),
-        newActiveCC = document.querySelector(`.cc-types__img--${ccCardType}`);
-
-      if (activeCC) activeCC.classList.remove("cc-types__img--active");
-      if (newActiveCC) newActiveCC.classList.add("cc-types__img--active");
-    },
+    // expiry date
     ccExpiryInputKeyDownHandler = (e) => {
       let el = e.target;
       ccExpiryInputOldValue = el.value;
@@ -140,10 +87,36 @@ function setUpForm() {
       }
     };
 
+  // card number
   ccNumberInput.addEventListener("keydown", ccNumberInputKeyDownHandler);
   ccNumberInput.addEventListener("input", ccNumberInputInputHandler);
 
   ccExpiryInput.addEventListener("keydown", ccExpiryInputKeyDownHandler);
   ccExpiryInput.addEventListener("input", ccExpiryInputInputHandler);
   // code copied from https://codepen.io/murani/pen/KyVbrp
+
+  form.setAttribute("novalidate", true);
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const formElements = form.querySelectorAll("input");
+    formElements.forEach((el) => {
+      el.classList.remove("invalid");
+    });
+
+    if (form.checkValidity()) {
+      body.classList.add("noForm");
+      body.classList.add(
+        "loadingGif"
+      ); /* &&
+        location.assign("http://localhost:1234/app.html") */
+    } else {
+      formElements.forEach((el) => {
+        if (!el.checkValidity()) {
+          el.classList.add("invalid");
+        }
+      });
+    }
+  });
 }

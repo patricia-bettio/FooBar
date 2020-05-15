@@ -8,13 +8,24 @@
   </head>
   <body>
     <h1 class="title">FooBar</h1>
+    <h2 class="subtitle">Step 1: Order your beers</h2>
+
+    <a href="/review.html"><button class="next">Next</button></a>
 
     <template>
       <article id="beerList">
+        <img class="logo" src="" alt="beerLogo" />
         <h2 class="name">Name</h2>
         <h2 class="category">Category</h2>
         <p class="alcohol">ABV</p>
-        <img class="logo" src="" alt="beerLogo" />
+
+        <div id="dropwdown">
+          <p class="aroma"></p>
+          <p class="appreance"></p>
+          <p class="flavor"></p>
+          <p class="mouthfeel"></p>
+          <p class="overallImpression"></p>
+        </div>
         <!-- <img class="glass" src="" alt="beerGlass" /> -->
       </article>
     </template>
