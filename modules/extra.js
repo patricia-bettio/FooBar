@@ -1,4 +1,6 @@
 //-----------------------------------convert all times--------------------------------------//
+
+export const urlApi = "https://beer-waffle.herokuapp.com/"; 
 export default function dateFormatter(timestamp){    
 //console.log(timestamp);
 let date = new Date(timestamp);
