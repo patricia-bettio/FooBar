@@ -10,7 +10,6 @@ document.addEventListener("DOMContentLoaded", init);
 function init() {
   fetchData();
 }
-
 function fetchData() {
   fetch(urlApi, {
     method: "get",
@@ -18,14 +17,16 @@ function fetchData() {
     .then((e) => e.json())
     .then((data) => {
       showData(data);
-      setInterval(fetchDataInterval, 2000);
+      setInterval(fetchDataInterval, 1000);
     });
 }
-
 function showData(data) {
   bartendersUnit(data.bartenders);
+  storageUnit(data.storage);
+  queueUnit(data.queue);
+  tapsUnit(data.taps);
+  servingUnit(data.serving);
 }
-
 function fetchDataInterval() {
   fetch(urlApi, {
     method: "get",
@@ -35,24 +36,72 @@ function fetchDataInterval() {
       updateData(data);
     });
 }
-
 function updateData(data) {
   updatedBartendersUnit(data.bartenders);
+  updatedStorageUnit(data.storage);
+  updatedQueueUnit(data.queue);
+  updatedTapsUnit(data.taps);
+  updatedServingUnit(data.serving);
 }
+
+//---------------------------------NEXT IN LINE--------------------------------------//
+function queueUnit(queue) {
+  console.log(queue);
+  const templateQueue = document.querySelector("#queueTemplate").content;
+  const queueArea = document.querySelector("#queueUnit");
+
+  queueArea.innerHTML = "";
+  queue.forEach((inQueue) => {
+    const storageQueue = templateQueue.cloneNode(true);
+
+    //-----append-----//
+    queueArea.appendChild(storageQueue);
+  });
+  updatedQueueUnit(queue);
+}
+
+function updatedQueueUnit(queue) {
+  document.querySelectorAll("#queueUnit article").forEach((inQueue, index) => {
+    inQueue.querySelector("p.id").textContent = queue[index].id;
+    inQueue.querySelector("p.startTime").textContent = queue[index].startTime;
+    inQueue.querySelector("p.order").textContent = queue[index].order;
+  });
+}
+
+/* function queueUnit(queue) {
+  console.log(queue);
+  const templateQueue = document.querySelector("#queueTemplate").content;
+  const queueArea = document.querySelector("#queueUnit");
+  const storageQueue = templateQueue.cloneNode(true);
+
+  queueArea.innerHTML = "";
+
+  storageQueue.querySelector("article").dataset.name = inQueue.id;
+  queueArea.appendChild(storageQueue);
+
+  updatedQueueUnit(queue);
+}
+
+function updatedQueueUnit(queue) {
+  queue.forEach((inQueue) => {
+    const queueArticle = document.querySelector(
+      `#queueUnit article[data-name="${inQueue.id}"]`
+    );
+    queueArticle.querySelector("p.order").textContent = inQueue.order;
+    queueArticle.querySelector("p.startTime").textContent = inQueue.startTime;
+  });
+} */
 
 //-----------------------------------BARTENDERS--------------------------------------//
 function bartendersUnit(bartenders) {
   console.log(bartenders);
-
   const templateBartenders = document.querySelector("#bartendersTemplate")
     .content;
   const bartendersArea = document.querySelector("#bartendersUnit");
 
   bartendersArea.innerHTML = "";
   bartenders.forEach((oneBartender) => {
-    /* console.log(oneBartender); */
     const cloneBartender = templateBartenders.cloneNode(true);
-
     cloneBartender.querySelector("p.name").textContent = oneBartender.name;
 
     //-----append-----//
@@ -76,55 +125,80 @@ function updatedBartendersUnit(bartenders) {
     });
 }
 
-//-----------------------------------TAPS UNIT--------------------------------------//
-/* function tapsUnit(showTap) {
-  //console.log(showTap)
-  //console.log(showTap.beer)
-  //-----get template and clone-----//
-  const templateTaps = document.querySelector("#tapsTemplate").content;
-  const tapsArea = document.querySelector("#tapsUnit");
-  const cloneTaps = templateTaps.cloneNode(true);
-  //-----elements in template-----//
-  cloneTaps.querySelector("p.beer").textContent = showTap.beer;
-  cloneTaps.querySelector("p.id").textContent = showTap.id;
-  cloneTaps.querySelector("p.inUse").textContent = showTap.inUse;
-  cloneTaps.querySelector("p.level").textContent = showTap.level;
-  //-----append-----//
-  tapsArea.appendChild(cloneTaps);
-} */
-
-//-----------------------------------BARTENDERS--------------------------------------//
-/* function servingUnit(servingNext) {
-  //console.log(servingNext)
-  //-----get template and clone-----//
-  const templateServing = document.querySelector("#servingTemplate").content;
-  const servingArea = document.querySelector("#servingUnit");
-  const cloneServing = templateServing.cloneNode(true);
-  //-----elements in template-----//
-  cloneServing.querySelector("p.id").textContent = servingNext.id;
-  cloneServing.querySelector("p.order").textContent = servingNext.order;
-  //import dateformatter to convert time:
-  //cloneServing.querySelector("p.startTime").textContent = dateFormatter(servingNext.startTime);
-  //-----append-----//
-  servingArea.appendChild(cloneServing);
-} */
-
 //-----------------------------------STORAGE--------------------------------------//
-/* function storageUnit(showStock) {
-  //console.log(showStock)
-  //console.log(showStock.amount)
-  //let topSellers = showStock.amount;
-  //console.log(topSellers)
-  //-----get template and clone-----//
+function storageUnit(storage) {
+  console.log(storage);
   const templateStorage = document.querySelector("#storageTemplate").content;
   const storageArea = document.querySelector("#storageUnit");
-  const cloneStorage = templateStorage.cloneNode(true);
-  //-----elements in template-----//
-  cloneStorage.querySelector("p.name").textContent = showStock.name;
-  cloneStorage.querySelector(
-    "p.amount"
-  ).textContent = `(left in stock) ${showStock.amount}`;
-  //-----append-----//
-  storageArea.appendChild(cloneStorage);
+
+  storageArea.innerHTML = "";
+  storage.forEach((oneKeg) => {
+    const cloneStorage = templateStorage.cloneNode(true);
+
+    cloneStorage.querySelector("p.name").textContent = oneKeg.name;
+
+    //-----append-----//
+    storageArea.appendChild(cloneStorage);
+  });
+  updatedStorageUnit(storage);
 }
- */
+
+function updatedStorageUnit(storage) {
+  document.querySelectorAll("#storageUnit article").forEach((oneKeg, index) => {
+    /* oneKeg.querySelector("p.name").textContent = storage[index].name; */
+    oneKeg.querySelector("p.amount").textContent = storage[index].amount;
+    //sort by most to least popular
+    /* storage.sort((a, b) => (a.amount > b.amount ? 1 : -1)); */
+  });
+}
+
+//-----------------------------------TAPS UNIT--------------------------------------//
+function tapsUnit(taps) {
+  console.log(taps);
+  const templateTaps = document.querySelector("#tapsTemplate").content;
+  const tapsArea = document.querySelector("#tapsUnit");
+
+  tapsArea.innerHTML = "";
+  taps.forEach((oneTap) => {
+    const cloneTaps = templateTaps.cloneNode(true);
+
+    tapsArea.appendChild(cloneTaps);
+  });
+  updatedTapsUnit(taps);
+}
+
+function updatedTapsUnit(taps) {
+  document.querySelectorAll("#tapsUnit article").forEach((oneTap, index) => {
+    oneTap.querySelector("p.id").textContent = taps[index].id;
+    oneTap.querySelector("p.beer").textContent = taps[index].beer;
+    oneTap.querySelector("p.inUse").textContent = taps[index].inUse;
+    oneTap.querySelector("p.level").textContent = taps[index].level;
+  });
+}
+
+//---------------------------------SERVING NEXT--------------------------------------//
+function servingUnit(serving) {
+  console.log(serving);
+
+  const templateServing = document.querySelector("#servingTemplate").content;
+  const servingArea = document.querySelector("#servingUnit");
+
+  servingArea.innerHTML = "";
+  serving.forEach((oneCustomer) => {
+    const cloneServing = templateServing.cloneNode(true);
+
+    servingArea.appendChild(cloneServing);
+  });
+  updatedServingUnit(serving);
+}
+
+function updatedServingUnit(serving) {
+  document
+    .querySelectorAll("#servingUnit article")
+    .forEach((oneCustomer, index) => {
+      oneCustomer.querySelector("p.id").textContent = serving[index].id;
+      oneCustomer.querySelector("p.order").textContent = serving[index].order;
+      oneCustomer.querySelector("p.startTime").textContent =
+        serving[index].startTime;
+    });
+}
