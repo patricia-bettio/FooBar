@@ -21,7 +21,13 @@
         <label for="cardName">
           Cardholder's Name
         </label>
-        <input type="text" name="cardName" placeholder="John Smith" required />
+        <input
+          type="text"
+          name="cardName"
+          placeholder="John Smith"
+          autocomplete="name"
+          required
+        />
         <p>Oops! You forgot to tell us your name</p>
 
         <label for="cardNumber">
@@ -32,6 +38,8 @@
           type="text"
           maxlength="19"
           class="cc-number-input"
+          inputmode="numeric"
+          autocomplete="cc-number"
           placeholder="xxxx xxxx xxxx xxxx"
         />
         <p>Oops! You forgot to write out your card number</p>
