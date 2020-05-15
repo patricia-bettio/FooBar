@@ -48,7 +48,7 @@ function bartendersUnit(bartenders) {
     .content;
   const bartendersArea = document.querySelector("#bartendersUnit");
 
-  document.querySelector("#bartendersUnit").innerHTML = "";
+  bartendersArea.innerHTML = "";
   bartenders.forEach((oneBartender) => {
     /* console.log(oneBartender); */
     const cloneBartender = templateBartenders.cloneNode(true);
