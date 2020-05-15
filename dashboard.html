@@ -1,86 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dashboard</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    
-<main>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main>
+      <h1 class="localTime">Local time</h1>
 
-<h1 class="localTime">Local time</h1>
+      <div>
+        <h1>Queue</h1>
+        <section id="queueUnit">
+          <template id="queueTemplate">
+            <article>
+              <p class="id"></p>
+              <p class="order"></p>
+              <p class="startTime"></p>
+            </article>
+          </template>
+        </section>
+      </div>
 
+      <section id="bartendersUnit"></section>
 
-<div>
-<h1>Queue</h1>
-<section id="queueUnit">
-<template id="queueTemplate">
-<article>
-    <p class="id"></p>
-    <p class="order"></p>
-    <p class="startTime"></p>
-</article>
-</template>
-</section>
-</div>
-
-<h1>Bartenders</h1>
-<section id="bartendersUnit">
-<template id="bartendersTemplate">
-    <article>
-    <p class="name">Bartender name</p>
-    <p class="status">on or off</p>
-    <p class="servingCustomer">order number</p>
-    <p class="usingTap">tap number</p>
-    <p class="statusDetail">status detail</p>
-</article>
-</template>
-</section>
-
-<div>
-<h1>Taps</h1>
-<section id="tapsUnit">
-<template id="tapsTemplate">
-    <article>
-    <p class="id"></p>
-    <p class="beer"></p>
-    <p class="inUse"></p>
-    <p class="level"></p>
-    </article>
-</template>
-</section>
-</div>
-
-<div>
-    <h1>Serving Next</h1>
-    <section id="servingUnit">
-    <template id="servingTemplate">
+      <h1>Bartenders</h1>
+      <template id="bartendersTemplate">
         <article>
-        <p class="id"></p>
-        <p class="order"></p>
-        <p class="startTime"></p>
+          <p class="name">Bartender name</p>
+          <p class="status">on or off</p>
+          <p class="servingCustomer">order number</p>
+          <p class="usingTap">tap number</p>
+          <p class="statusDetail">status detail</p>
         </article>
-    </template>
-    </section>
-</div>
+      </template>
 
-<div>
-    <h1>Most Wanted!</h1>
-    <section id="storageUnit">
-    <template id="storageTemplate">
-        <article>
-        <p class="name"></p>
-        <p class="amount"></p>
-        </article>
-    </template>
-    </section>
-</div>
+      <div>
+        <h1>Taps</h1>
+        <section id="tapsUnit">
+          <template id="tapsTemplate">
+            <article>
+              <p class="id"></p>
+              <p class="beer"></p>
+              <p class="inUse"></p>
+              <p class="level"></p>
+            </article>
+          </template>
+        </section>
+      </div>
 
+      <div>
+        <h1>Serving Next</h1>
+        <section id="servingUnit">
+          <template id="servingTemplate">
+            <article>
+              <p class="id"></p>
+              <p class="order"></p>
+              <p class="startTime"></p>
+            </article>
+          </template>
+        </section>
+      </div>
 
-</main>
+      <div>
+        <h1>Most Wanted!</h1>
+        <section id="storageUnit">
+          <template id="storageTemplate">
+            <article>
+              <p class="name"></p>
+              <p class="amount"></p>
+            </article>
+          </template>
+        </section>
+      </div>
+    </main>
 
-<script src="script.js"></script>
-</body>
+    <script src="script.js"></script>
+  </body>
 </html>

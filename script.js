@@ -37,7 +37,7 @@ function fetchDataInterval() {
 }
 
 function updateData(data) {
-  bartendersUnit(data.bartenders);
+  updatedBartendersUnit(data.bartenders);
 }
 
 //-----------------------------------BARTENDERS--------------------------------------//
@@ -54,17 +54,26 @@ function bartendersUnit(bartenders) {
     const cloneBartender = templateBartenders.cloneNode(true);
 
     cloneBartender.querySelector("p.name").textContent = oneBartender.name;
-    cloneBartender.querySelector("p.status").textContent = oneBartender.status;
-    cloneBartender.querySelector("p.servingCustomer").textContent =
-      oneBartender.servingCustomer;
-    cloneBartender.querySelector("p.usingTap").textContent =
-      oneBartender.usingTap;
-    cloneBartender.querySelector("p.statusDetail").textContent =
-      oneBartender.statusDetail;
 
     //-----append-----//
     bartendersArea.appendChild(cloneBartender);
   });
+  updatedBartendersUnit(bartenders);
+}
+
+function updatedBartendersUnit(bartenders) {
+  document
+    .querySelectorAll("#bartendersUnit article")
+    .forEach((oneBartender, index) => {
+      oneBartender.querySelector("p.status").textContent =
+        bartenders[index].status;
+      oneBartender.querySelector("p.servingCustomer").textContent =
+        bartenders[index].servingCustomer;
+      oneBartender.querySelector("p.usingTap").textContent =
+        bartenders[index].usingTap;
+      oneBartender.querySelector("p.statusDetail").textContent =
+        bartenders[index].statusDetail;
+    });
 }
 
 //-----------------------------------TAPS UNIT--------------------------------------//
