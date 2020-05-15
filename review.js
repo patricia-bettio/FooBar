@@ -32,27 +32,8 @@ function displayBeer(beer) {
 
   beerClone.querySelector("h2.name").textContent = `${beer.name}`;
   beerClone.querySelector("h2.category").textContent = `${beer.category}`;
-  beerClone.querySelector("p.alcohol").textContent = `ABV: ${beer.alc} %`;
   beerClone.querySelector("img.logo").src = `images/${beer.label}`;
   console.log(`images/${beer.label}`);
-
-  beerList.addEventListener("click", (e) => {
-    beer.forEach(dropDown);
-
-    function dropDown(description) {
-      beerClone.querySelector("p.aroma").textContent = `${description.aroma}`;
-      beerClone.querySelector(
-        "p.appearance"
-      ).textContent = `${description.appearance}`;
-      beerClone.querySelector("p.flavor").textContent = `${description.flavor}`;
-      beerClone.querySelector(
-        "p.mouthfeel"
-      ).textContent = `${description.mouthfeel}`;
-      beerClone.querySelector(
-        "p.overallImpression"
-      ).textContent = `${description.overallImpression}`;
-    }
-  });
 
   beerList.appendChild(beerClone);
 }

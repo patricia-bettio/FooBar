@@ -33,16 +33,17 @@
 @media screen and (max-width: 1500px) {
   /*---------- BEER LIST ----------*/
   article#beerList {
-    border: 1px solid grey;
     padding: 30px;
     border-radius: 15px;
     box-shadow: 3px 3px 5px 6px #ccc;
   }
-  #beerList h2 {
+  #beerList h2,
+  #reviewOrderList h2 {
     font-family: var(--beer-font);
     display: inline-flex;
   }
-  #beerList h2:last-of-type {
+  #beerList h2:last-of-type,
+  #reviewOrderList h2:last-of-type {
     color: var(--category-color);
   }
   #beerList p {
@@ -65,30 +66,39 @@
     border-bottom: 1px solid grey;
   }
 
+  /*----------- REVIEW ------------*/
+  button.next {
+    float: right;
+  }
+  article#reviewOrderList {
+    padding: 30px;
+  }
+
   /*------------ FORM ------------*/
   .formSection {
     display: block;
+    font-family: var(--subtitle-font);
   }
   h2.subtitle {
     display: flex;
     justify-content: center;
-    font-family: var(--subtitle-font);
+  }
+  label {
+    margin: 5px 0 10px 0;
   }
   input {
     display: block;
     font-family: var(--form-font);
-  }
-  input {
     font-size: 1rem;
     width: 14em;
+  }
+  input + p {
+    display: none;
   }
   .invalid {
     font-size: 1rem;
     width: 14em;
     padding: 8px;
-  }
-  input + p {
-    display: none;
   }
   input.invalid + p {
     display: block;
@@ -98,6 +108,7 @@
     background-color: inherit;
     border: 2px solid red;
     padding: 7px;
+    font-family: "Times New Roman", sans-serif;
     width: 226px;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
@@ -119,18 +130,18 @@
     padding: 8px;
   }
   .cc-expiry-input {
-    display: inline-block;
+    display: inline-flex;
     margin-right: 5%;
     width: calc(55% - 40px);
   }
   .cc-cvc-input {
-    display: inline-block;
+    display: inline-flex;
     width: calc(37.8% - 40px);
   }
   .formSubmit {
     font-size: 1rem;
     padding: 15px 30px;
-    background-color: beige;
+    border: solid 1px olive;
     letter-spacing: 1px;
     font-family: var(--form-font);
     text-transform: uppercase;
@@ -140,8 +151,7 @@
   }
   .formSubmit:hover {
     color: black;
-    border: solid 1px #000;
-    background-color: inherit;
+    background-color: olive;
   }
   .loadingGif {
     background-image: url(gifs/beer3.gif);
