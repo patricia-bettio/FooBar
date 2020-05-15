@@ -2,18 +2,14 @@
 
 //-----------------------------------IMPORT--------------------------------------//
 //-----formatted time-----//
-import {urlApi, dateFormatter} from "./modules/extra";
+import { urlApi, dateFormatter } from "./modules/extra";
 
 //-----------------------------------INITIALIZE--------------------------------------//
-document.addEventListener("DOMContentLoaded", start);
+document.addEventListener("DOMContentLoaded", init);
 
-function start() {
-
+function init() {
   fetchData();
-
 }
-
-
 
 function fetchData() {
   fetch(urlApi, {
@@ -21,130 +17,55 @@ function fetchData() {
   })
     .then((e) => e.json())
     .then((data) => {
-    //console.log(data);
-    init(data);
-    setInterval(fetchDataInterval, 2000);
-    //console.log(data)
+      showData(data);
+      setInterval(fetchDataInterval, 2000);
     });
 }
 
-function init(data) {
-  console.log(data);
-  //-----TIME-----//
-  //console.log(data.timestamp)
-  //import and fire formatting function:
-  //console.log(dateFormatter(data.timestamp))
-  //document.querySelector(".localTime").textContent = dateFormatter(data.timestamp);
-
-  //-----QUEUE-----//
-  //console.log(data.queue)
-  //queueUnit(data.queue)
-
-  //-----BARTENDERS-----//
-  //console.log(data.bartenders)
-  //data.bartenders.forEach(bartendersUnit);
+function showData(data) {
   bartendersUnit(data.bartenders);
-
-  //-----TAPS-----//
-  //data.taps.forEach(tapsUnit);
-  //console.log(data.taps)
-  //data.taps.forEach(tapsUnit);
-
-  //-----SERVING-----//
-  //console.log(data.serving)
-  //data.serving.forEach(servingUnit);
-
-  //-----STORAGE-----//
-  //console.log(data.storage)
-  //let storageSort = data.storage;
-  //sort by left in stock:
-  //console.log(storageSort)
-  //console.log(storageSort.sort())
-  //storageSort.sort((a, b) => (a.amount > b.amount ? 1 : -1));
-  //show each:
-  //data.storage.forEach(storageUnit);
 }
 
-function fetchDataInterval(){
+function fetchDataInterval() {
   fetch(urlApi, {
     method: "get",
   })
     .then((e) => e.json())
     .then((data) => {
-      console.log(data) 
-      updateInit(data);
-      
+      updateData(data);
     });
 }
 
-
-function updateInit(data){ 
-  console.log(data)
-  //document.querySelector("#bartendersUnit").innerHTML = "";
-  //let testing = data.bartenders;
-  //console.log(typeof)
-  bartendersUnit(data.bartenders)
+function updateData(data) {
+  bartendersUnit(data.bartenders);
 }
-
-//-----------------------------------TIME--------------------------------------//
-
-//-----------------------------------QUEUE--------------------------------------//
-/* function queueUnit(showQueue) {
-  //console.log(showQueue)
-    showQueue.forEach((showQueue)=>{
-  //-----get template and clone-----//
-  const templateQueue = document.querySelector("#queueTemplate").content;
-  const queueArea = document.querySelector("#queueUnit");
-  const cloneQueue = templateQueue.cloneNode(true);
-  //-----elements in template-----//
-  cloneQueue.querySelector(
-    "p.id"
-  ).textContent = `order number: ${showQueue.id}`;
-  cloneQueue.querySelector(
-    "p.order"
-  ).textContent = `order details: ${showQueue.order}`;
-  //-----adjust time-----//
-  //import function that converts time:
-  //console.log(dateFormatter(showQueue.startTime))
-  // return the newTimeFormatted!
-  //cloneQueue.querySelector("p.startTime").textContent = dateFormatter(showQueue.startTime);
-  //-----append-----//
-  queueArea.appendChild(cloneQueue);
-
-    })
-
-} */
 
 //-----------------------------------BARTENDERS--------------------------------------//
-function bartendersUnit(oneBartender) {
-  console.log(oneBartender);
-  
-    //document.querySelector("#bartendersUnit").innerHTML = "";
-    //oneBartender =  [];
-    oneBartender.forEach((oneBartender) => {
+function bartendersUnit(bartenders) {
+  console.log(bartenders);
 
-    // console.log(typeof oneBartender)
-    //console.log(oneBartender.status)
-    //console.log(oneBartender.statusDetail)
-    //-----get template and clone-----//
-    const templateBartenders = document.querySelector("#bartendersTemplate").content;
-    const bartendersArea = document.querySelector("#bartendersUnit");
+  const templateBartenders = document.querySelector("#bartendersTemplate")
+    .content;
+  const bartendersArea = document.querySelector("#bartendersUnit");
 
+  document.querySelector("#bartendersUnit").innerHTML = "";
+  bartenders.forEach((oneBartender) => {
+    /* console.log(oneBartender); */
     const cloneBartender = templateBartenders.cloneNode(true);
-    //-----elements in template-----//
+
     cloneBartender.querySelector("p.name").textContent = oneBartender.name;
     cloneBartender.querySelector("p.status").textContent = oneBartender.status;
-    cloneBartender.querySelector("p.servingCustomer").textContent = oneBartender.servingCustomer;
-    cloneBartender.querySelector("p.usingTap").textContent = oneBartender.usingTap;
-    cloneBartender.querySelector("p.statusDetail").textContent = oneBartender.statusDetail;
-    
+    cloneBartender.querySelector("p.servingCustomer").textContent =
+      oneBartender.servingCustomer;
+    cloneBartender.querySelector("p.usingTap").textContent =
+      oneBartender.usingTap;
+    cloneBartender.querySelector("p.statusDetail").textContent =
+      oneBartender.statusDetail;
+
     //-----append-----//
     bartendersArea.appendChild(cloneBartender);
-    
   });
-  
 }
-
 
 //-----------------------------------TAPS UNIT--------------------------------------//
 /* function tapsUnit(showTap) {
