@@ -15,8 +15,9 @@ function fetchData() {
     .then((e) => {
       fetchBeers(e);
       //fetchDetails(e);
+      
     });
-  console.log(btn);
+  
 }
 
 function fetchBeers(beers) {
@@ -24,63 +25,39 @@ function fetchBeers(beers) {
 
   beers.forEach(displayBeer);
   /* showDetails(); */
+
+
 }
 
+
 function displayBeer(beer) {
-  console.log(beer);
+  //console.log(beer);
 
   const beerTemplate = document.querySelector("template").content;
-  const beerList = document.querySelector("body");
+  const beerList = document.querySelector("#beerArea");
   const beerClone = beerTemplate.cloneNode(true);
-  const btn = document.querySelector(".showMore");
-  const dropDown = document.querySelector(".dropdown");
-
+  
+  //const dropDownArea = document.querySelector(".dropdown");
+  
   beerClone.querySelector("h2.name").textContent = `${beer.name}`;
   beerClone.querySelector("h2.category").textContent = `${beer.category}`;
   beerClone.querySelector("p.alcohol").textContent = `ABV: ${beer.alc} %`;
   console.log(`images/${beer.label}`);
-
-  /* beerClone.querySelector(
-    ".aroma"
-  ).textContent = `Aroma: ${beer.description.aroma}`;
-  beerClone.querySelector(
-    ".appearance"
-  ).textContent = `Appearance: ${beer.description.appearance}`;
-  beerClone.querySelector(
-    ".flavor"
-  ).textContent = `Flavor: ${beer.description.flavor}`;
-  beerClone.querySelector(
-    ".mouthfeel"
-  ).textContent = `Mouthfeel: ${beer.description.mouthfeel}`;
-  beerClone.querySelector(
-    ".overallImpression"
-  ).textContent = `Overall Impression: ${beer.description.overallImpression}`; */
-
-  // dropdown details
-  beerClone.querySelector(".showMore").addEventListener("click", () => {
-    dropDown.classList.remove("hide");
-
-    beerClone.querySelector(
-      ".aroma"
-    ).textContent = `Aroma: ${beer.description.aroma}`;
-    beerClone.querySelector(
-      ".appearance"
-    ).textContent = `Appearance: ${beer.description.appearance}`;
-    beerClone.querySelector(
-      ".flavor"
-    ).textContent = `Flavor: ${beer.description.flavor}`;
-    beerClone.querySelector(
-      ".mouthfeel"
-    ).textContent = `Mouthfeel: ${beer.description.mouthfeel}`;
-    beerClone.querySelector(
-      ".overallImpression"
-    ).textContent = `Overall Impression: ${beer.description.overallImpression}`;
-  });
+  //hidden deatails in template:
+  beerClone.querySelector(".aroma").textContent = `Aroma: ${beer.description.aroma}`;
+  beerClone.querySelector(".appearance").textContent = `Appearance: ${beer.description.appearance}`;
+  beerClone.querySelector(".flavor").textContent = `Flavor: ${beer.description.flavor}`;
+  beerClone.querySelector(".mouthfeel").textContent = `Mouthfeel: ${beer.description.mouthfeel}`;
+  beerClone.querySelector(".overallImpression").textContent = `Overall Impression: ${beer.description.overallImpression}`;
+  //SHOW DETAILS
+  //console.log(beerClone.querySelector(".showMore"))
+  //console.log(beerClone.querySelector(".dropdown"))
+  let selectedBeer= beerClone.querySelector(".dropdown")
+  selectedBeer.classList.add("hide");
+  beerClone.querySelector(".showMore").addEventListener("click", (e)=>{
+  selectedBeer.classList.toggle("hide") 
+  })
 
   beerList.appendChild(beerClone);
 }
 
-/* function showDetails() {
-  document.querySelector(".dropdown").classList.remove("hide");
-}
- */
