@@ -11,16 +11,21 @@
     <h2 class="subtitle">Step 1: Order your beers</h2>
 
     <a href="/review.html"><button class="next">Next</button></a>
+
+  
 <section id="beerArea"></section>
+
     <template>
+      
       <article id="beerList">
         <img class="logo" src="" alt="beerLogo" />
         <h2 class="name">Name</h2>
         <h2 class="category">Category</h2>
         <p class="alcohol">ABV</p>
-        <!-- <img class="glass" src="" alt="beerGlass" /> -->
-
-        <button class="showMore">Show More</button>
+       
+   
+        
+        <img class="showMore" src="svg/belgium_glass.svg">Show More
         <div class="dropdown">
           <p class="aroma"></p>
           <p class="appearance"></p>
@@ -28,9 +33,18 @@
           <p class="mouthfeel"></p>
           <p class="overallImpression"></p>
         </div>
-      </article>
-    </template>
 
+        <div id="input_div">
+          <input type="text" size="25" value="1" class="counter">
+          <input type="button" value="-" id="minus">
+          <input type="button" value="+" id="plus">
+      </div>
+      </article>
+  
+    </template>
+    
+
+    <div class="testPNG"></div>
     <script src="app.js"></script>
   </body>
 </html>
