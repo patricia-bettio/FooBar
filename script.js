@@ -135,7 +135,7 @@ function storageUnit(storage) {
   storage.forEach((oneKeg) => {
     const cloneStorage = templateStorage.cloneNode(true);
 
-    cloneStorage.querySelector("p.name").textContent = oneKeg.name;
+    /* cloneStorage.querySelector("p.name").textContent = oneKeg.name; */
 
     //-----append-----//
     storageArea.appendChild(cloneStorage);
@@ -145,12 +145,35 @@ function storageUnit(storage) {
 
 function updatedStorageUnit(storage) {
   document.querySelectorAll("#storageUnit article").forEach((oneKeg, index) => {
-    /* oneKeg.querySelector("p.name").textContent = storage[index].name; */
+    oneKeg.querySelector("p.name").textContent = storage[index].name;
     oneKeg.querySelector("p.amount").textContent = storage[index].amount;
     //sort by most to least popular
     /* storage.sort((a, b) => (a.amount > b.amount ? 1 : -1)); */
   });
 }
+
+/* function storageUnit(storage) {
+  console.log(storage);
+  const templateStorage = document.querySelector("#storageTemplate").content;
+  const storageArea = document.querySelector("#storageUnit");
+  const cloneStorage = templateStorage.cloneNode(true);
+
+  cloneStorage.innerHTML = "";
+
+  cloneStorage.querySelector("p.name").dataset.name = oneKeg.id;
+  storageArea.appendChild(cloneStorage);
+
+  updatedStorageUnit(storage);
+}
+
+function updatedStorageUnit(storage) {
+  storage.forEach((oneKeg) => {
+    const storageArticle = document.querySelector(
+      `#storageUnit article[data-name="${oneKeg.id}"]`
+    );
+    storageArticle.querySelector("p.amount").textContent = oneKeg.amount;
+  });
+} */
 
 //-----------------------------------TAPS UNIT--------------------------------------//
 function tapsUnit(taps) {
@@ -202,3 +225,39 @@ function updatedServingUnit(serving) {
         serving[index].startTime;
     });
 }
+
+// ------------timer---------- //
+/* const timeSpan = document.getElementById("timer");
+const mins = 60;
+const now = new Date().getTime();
+const deadline = mins * 60 * 1000 + now;
+
+setInterval(() => {
+  let currentTime = new Date().getTime();
+  let distance = deadline - currentTime;
+  let hours = Math.floor((distance % (1000 * 60 * 3600)) / (1000 * 3600));
+  let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  timeSpan.innerHTML =
+    "Time until closing: " + hours + ":" + minutes + ":" + seconds;
+}, 50); */
+
+const timeSpan = document.getElementById("timer");
+const mins = 60;
+const now = Date.now();
+let date = new Date();
+// Set deadline hours, minutes, seconds, milliseconds
+date.setHours(22, 0, 0, 0);
+let deadline = date.getTime();
+
+setInterval(() => {
+  let currentTime = new Date().getTime();
+  let distance = deadline - currentTime;
+  let hours = Math.floor((distance % (1000 * 60 * 3600)) / (1000 * 3600));
+  let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  timeSpan.innerHTML =
+    "Time until closing: " + hours + ":" + minutes + ":" + seconds;
+}, 50);
