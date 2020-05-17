@@ -4,6 +4,8 @@ import { urlDetails } from "./modules/extra";
 
 document.addEventListener("DOMContentLoaded", init);
 
+let allBeers = [];
+
 function init() {
   fetchData();
 }
@@ -14,21 +16,27 @@ function fetchData() {
   })
     .then((e) => e.json())
     .then((e) => {
+    
       fetchBeers(e);
       //fetchDetails(e);
+      setFilters(e);
+            
     });
 }
 
 function fetchBeers(beers) {
   console.log(beers);
-
+  //make global:
+  allBeers = beers;
+  console.log(allBeers)
+  //show on template:
   beers.forEach(displayBeer);
-  beers.forEach(addToCart);
+ 
+
 }
 
 function displayBeer(beer) {
-  //console.log(beer);
-
+  //console.log(beer)
   const beerTemplate = document.querySelector("template").content;
   const beerList = document.querySelector("#beerArea");
   const beerClone = beerTemplate.cloneNode(true);
@@ -46,36 +54,43 @@ function displayBeer(beer) {
   //document.querySelector(".testPNG").style.backgroundImage = `images/${beer.label}`
 
   //hidden details in template:
-  beerClone.querySelector(
-    ".aroma"
-  ).textContent = `Aroma: ${beer.description.aroma}`;
-  beerClone.querySelector(
-    ".appearance"
-  ).textContent = `Appearance: ${beer.description.appearance}`;
-  beerClone.querySelector(
-    ".flavor"
-  ).textContent = `Flavor: ${beer.description.flavor}`;
-  beerClone.querySelector(
-    ".mouthfeel"
-  ).textContent = `Mouthfeel: ${beer.description.mouthfeel}`;
-  beerClone.querySelector(
-    ".overallImpression"
-  ).textContent = `Overall Impression: ${beer.description.overallImpression}`;
+  beerClone.querySelector(".aroma").textContent = `Aroma: ${beer.description.aroma}`;
+  beerClone.querySelector(".appearance").textContent = `Appearance: ${beer.description.appearance}`;
+  beerClone.querySelector(".flavor").textContent = `Flavor: ${beer.description.flavor}`;
+  beerClone.querySelector(".mouthfeel").textContent = `Mouthfeel: ${beer.description.mouthfeel}`;
+  beerClone.querySelector(".overallImpression").textContent = `Overall Impression: ${beer.description.overallImpression}`;
   //grab by category
-  const formatCategory = beer.category.toLowerCase().split(" ")[0];
-  beerClone.querySelector(
-    ".showMore"
-  ).src = `svg/glasses/${formatCategory}_glass.svg`;
+  //const formatCategory = beer.category.toLowerCase().split(" ")[0];
+  //beerClone.querySelector(".showMore").src = `svg/glasses/${formatCategory}_glass.svg`;
   //SHOW DETAILS
   let selectedBeer = beerClone.querySelector(".dropdown");
   selectedBeer.classList.add("hide");
   beerClone.querySelector(".showMore").addEventListener("click", (e) => {
-    selectedBeer.classList.toggle("hide");
+  selectedBeer.classList.toggle("hide");
   });
 
   beerList.appendChild(beerClone);
+
 }
 
 function addToCart(addBeer) {
   console.log(addBeer);
 }
+
+function setFilters(allBeers){
+console.log(allBeers)
+// filters
+document.querySelector("[data-filter='IPA']").addEventListener("click", filterIPA)
+}
+
+function filterIPA(){
+  console.log(allBeers)
+  //console.log(allBeers.length)
+  let ipaBeers =  allBeers.filter(function(IPA) {
+  return IPA.category == "IPA";
+  });
+  console.log(ipaBeers)
+  displayBeer(ipaBeers)
+
+}
+
