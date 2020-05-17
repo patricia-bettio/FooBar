@@ -29,6 +29,47 @@
   border: 1px solid;
 }
 
+
+/*APP PAGE*/
+
+  /*dropdown*/
+  .hide {
+    display: none;
+  }
+
+  /*logo*/
+
+  .logo{
+    height: 100px;
+    width: 100px;
+  }
+  /*button*/
+  .showMoreButton {
+    display: grid;
+    float: right;
+  }
+  .showMore{
+    
+    background-repeat: no-repeat;
+    height: 100px;
+    
+  }
+
+  .rotate {
+    transform: rotate(180deg);
+  }
+
+
+
+
+
+
+
+
+
+
+/*-----------------------------------------------------------RESPONSIVE---------------------------------------------------------------------------*/
+
 /*----------- tablet view -----------*/
 @media screen and (max-width: 1500px) {
   /*---------- BEER LIST ----------*/
@@ -65,18 +106,7 @@
     padding-bottom: 20px;
     border-bottom: 1px solid grey;
   }
-  /*dropdown*/
-  .hide {
-    display: none;
-  }
 
-  /*button*/
-
-  .showMore{
-    float: right;
-    background-repeat: no-repeat;
-    height: 100px;
-  }
   /*----------- REVIEW ------------*/
   button.next {
     float: right;
