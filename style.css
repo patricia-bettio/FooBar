@@ -59,7 +59,42 @@
     transform: rotate(180deg);
   }
 
+  /*filter and sort section*/
 
+  #filterAndSort{
+    display: inline-grid;
+    grid-auto-flow: column;
+    grid-gap: 1em;
+  }
+  /*filter*/
+  .filterOptions {
+    display: none;
+    list-style: none;
+ 
+  }
+
+  .filter{
+    padding: 10px;
+  }
+  .showFilters {
+    display: block;
+    
+  }
+  /*sort*/
+
+  .sortOptions {
+    display: none;
+    list-style: none;
+  }
+
+  .sortBy {
+    padding: 10px;
+  }
+
+  .showSorting {
+    display: block;
+    
+  }
 
 
 
