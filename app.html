@@ -22,7 +22,11 @@
       <button class="filter" data-action="filter" data-filter="Stout">Stout</button>
       <button class="filter" data-action="filter" data-filter="Belgian Specialty Ale">Belgian Specialty Ale</button>
       <button class="filter" data-action="filter" data-filter="California Common">California Common</button>
+    </div>
 
+    <div id="sorting">
+      <p class="filterTitle"><span>Sort by:</span></p>
+      <button class="sortBy" data-action="sort" data-sort-direction="asc" data-sort="alc">Alc</button>
     </div>
 
     <section id="beerArea"></section>
@@ -34,8 +38,9 @@
         <h2 class="category">Category</h2>
         <p class="alcohol">ABV</p>
 
-        <button class="showMore">ShowMore</button>
-        <img class="showMore" src="svg/glasses/belgium_glass.svg" />Show More
+        <div class="showMoreButton">ShowMore
+        <img class="showMore" src="" alt="glasssType"/>
+      </div>
         <div class="dropdown">
           <p class="aroma"></p>
           <p class="appearance"></p>
@@ -44,11 +49,14 @@
           <p class="overallImpression"></p>
         </div>
 
-        <div id="input_div">
-          <input type="text" size="25" value="1" class="counter" />
-          <input type="button" value="-" id="minus" />
-          <input type="button" value="+" id="plus" />
+        <div id="amount">
+          <form action="" method="">
+          <label for="quantity">Quantity:</label>
+          <input type="number" id="quantity" name="quantity" min="1" max="5">
+          </form>
         </div>
+
+     
       </article>
     </template>
 
