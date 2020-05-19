@@ -9,7 +9,6 @@ let alcNumber = [];
 
 function init() {
   fetchData();
-  
 }
 
 function fetchData() {
@@ -18,69 +17,74 @@ function fetchData() {
   })
     .then((e) => e.json())
     .then((e) => {
-    
       fetchBeers(e);
       //fetchDetails(e);
-      
-      addToCart()
 
-            
+      addToCart();
     });
-
 }
 
 function fetchBeers(beers) {
   //make global:
   allBeers = beers;
   //console.log(allBeers)
-  //set Filter:    
+  //set Filter:
   setFilters(beers);
 
   //show on template:
-  displayBeer(beers)
-  
-
+  displayBeer(beers);
 }
 
 function displayBeer(beers) {
-  console.log(beers)
+  console.log(beers);
   //clear
   document.querySelector("#beerArea").innerHTML = "";
   beers.forEach(displaySingleBeer);
- 
 }
 
-
-function displaySingleBeer(beer){
-  console.log(beer)
+function displaySingleBeer(beer) {
+  console.log(beer);
   const beerTemplate = document.querySelector("template").content;
   const beerList = document.querySelector("#beerArea");
   const beerClone = beerTemplate.cloneNode(true);
+
   //properties:
   beerClone.querySelector("h2.name").textContent = `${beer.name}`;
   beerClone.querySelector("h2.category").textContent = `${beer.category}`;
   beerClone.querySelector("p.alcohol").textContent = `ABV: ${beer.alc} %`;
   beerClone.querySelector(".logo").src = `images/${beer.label}`;
+
   //hidden details in template:
-  beerClone.querySelector(".aroma").textContent = `Aroma: ${beer.description.aroma}`;
-  beerClone.querySelector(".appearance").textContent = `Appearance: ${beer.description.appearance}`;
-  beerClone.querySelector(".flavor").textContent = `Flavor: ${beer.description.flavor}`;
-  beerClone.querySelector(".mouthfeel").textContent = `Mouthfeel: ${beer.description.mouthfeel}`;
-  beerClone.querySelector(".overallImpression").textContent = `Overall Impression: ${beer.description.overallImpression}`;
+  beerClone.querySelector(
+    ".aroma"
+  ).textContent = `Aroma: ${beer.description.aroma}`;
+  beerClone.querySelector(
+    ".appearance"
+  ).textContent = `Appearance: ${beer.description.appearance}`;
+  beerClone.querySelector(
+    ".flavor"
+  ).textContent = `Flavor: ${beer.description.flavor}`;
+  beerClone.querySelector(
+    ".mouthfeel"
+  ).textContent = `Mouthfeel: ${beer.description.mouthfeel}`;
+  beerClone.querySelector(
+    ".overallImpression"
+  ).textContent = `Overall Impression: ${beer.description.overallImpression}`;
+
   //grab by category
-  
-  //beerClone.querySelector(".logo").src = `images/${beer.label}`;
   const formatCategory = beer.category.toLowerCase().split(" ")[0];
-  let showMoreGlass = beerClone.querySelector(".showMore")
+  let showMoreGlass = beerClone.querySelector(".showMore");
   showMoreGlass.src = `svg/glasses/${formatCategory}_glass.svg`;
+
   //SHOW DETAILS
   let selectedBeer = beerClone.querySelector(".dropdown");
   selectedBeer.classList.add("hide");
   beerClone.querySelector(".showMore").addEventListener("click", (e) => {
-  //show deatils and turn glass onclick
-  selectedBeer.classList.toggle("hide");
-  showMoreGlass.classList.toggle("rotate");
+    //show deatils and turn glass onclick
+    selectedBeer.classList.toggle("hide");
+    showMoreGlass.classList.toggle("rotate");
   });
+
   //FORM
   const form = beerClone.querySelector("form");
   window.form = form;
@@ -91,158 +95,153 @@ function displaySingleBeer(beer){
   //console.log(elements.quantity.value)
   //console.log(form.checkValidity())
   form.addEventListener("submit", addToCart);
- 
+
   //append
   beerList.appendChild(beerClone);
-
-
-
-
 }
 
 //-------------------------------------- FORM--------------------------------------//
 function addToCart() {
   //console.log("added")
-
- 
 }
 
 //-------------------------------------- FILTER -------------------------------------//
-function setFilters(allBeers){
-  console.log(allBeers)
+function setFilters(allBeers) {
+  console.log(allBeers);
   //show filters:
-  document.querySelector(".filterButton").addEventListener("click", (e)=>{
+  document.querySelector(".filterButton").addEventListener("click", (e) => {
     document.querySelector(".filterOptions").classList.toggle("showFilters");
-  })
+  });
   //show sorting:
-  document.querySelector(".sortButton").addEventListener("click", (e)=>{
+  document.querySelector(".sortButton").addEventListener("click", (e) => {
     document.querySelector(".sortOptions").classList.toggle("showSorting");
-  })
+  });
   // filters event listeners:
-  document.querySelector("[data-filter='IPA']").addEventListener("click", filterIPA)
-  document.querySelector("[data-filter='Hefeweizen']").addEventListener("click", filterHefe);
-  document.querySelector("[data-filter='Oktoberfest']").addEventListener("click", filterOkt);
-  document.querySelector("[data-filter='European Lager']").addEventListener("click", filterEuro);
-  document.querySelector("[data-filter='Stout']").addEventListener("click", filterStout);
-  document.querySelector("[data-filter='Belgian Specialty Ale']").addEventListener("click", filterBelgian);
-  document.querySelector("[data-filter='California Common']").addEventListener("click", filterCalif);
-  document.querySelector("[data-sort='alc']").addEventListener("click", sortAlc);
-  document.querySelector(".resetFilter").addEventListener("click", resetFilter)
-
+  document
+    .querySelector("[data-filter='IPA']")
+    .addEventListener("click", filterIPA);
+  document
+    .querySelector("[data-filter='Hefeweizen']")
+    .addEventListener("click", filterHefe);
+  document
+    .querySelector("[data-filter='Oktoberfest']")
+    .addEventListener("click", filterOkt);
+  document
+    .querySelector("[data-filter='European Lager']")
+    .addEventListener("click", filterEuro);
+  document
+    .querySelector("[data-filter='Stout']")
+    .addEventListener("click", filterStout);
+  document
+    .querySelector("[data-filter='Belgian Specialty Ale']")
+    .addEventListener("click", filterBelgian);
+  document
+    .querySelector("[data-filter='California Common']")
+    .addEventListener("click", filterCalif);
+  document
+    .querySelector("[data-sort='alc']")
+    .addEventListener("click", sortAlc);
+  document.querySelector(".resetFilter").addEventListener("click", resetFilter);
 }
 
-function filterIPA(){
-  console.log(allBeers)
-  let ipaBeers =  allBeers.filter(function(IPA) {
-  return IPA.category == "IPA";
+function filterIPA() {
+  console.log(allBeers);
+  let ipaBeers = allBeers.filter(function (IPA) {
+    return IPA.category == "IPA";
   });
   //console.log(ipaBeers)
-  displayBeer(ipaBeers)
-
+  displayBeer(ipaBeers);
 }
 
-function filterHefe(){
-  console.log(allBeers)
-  let hefeBeers =  allBeers.filter(function(hefe) {
-  return hefe.category == "Hefeweizen";
+function filterHefe() {
+  console.log(allBeers);
+  let hefeBeers = allBeers.filter(function (hefe) {
+    return hefe.category == "Hefeweizen";
   });
-  displayBeer(hefeBeers)
-
+  displayBeer(hefeBeers);
 }
 
-function filterOkt(){
-  console.log(allBeers)
-  let oktBeers =  allBeers.filter(function(okt) {
-  return okt.category == "Oktoberfest";
+function filterOkt() {
+  console.log(allBeers);
+  let oktBeers = allBeers.filter(function (okt) {
+    return okt.category == "Oktoberfest";
   });
-  displayBeer(oktBeers)
-
+  displayBeer(oktBeers);
 }
 
-function filterEuro(){
-  console.log(allBeers)
-  let euroBeers =  allBeers.filter(function(euro) {
-  return euro.category == "European Lager";
+function filterEuro() {
+  console.log(allBeers);
+  let euroBeers = allBeers.filter(function (euro) {
+    return euro.category == "European Lager";
   });
-  displayBeer(euroBeers)
-
+  displayBeer(euroBeers);
 }
 
-function filterStout(){
-  console.log(allBeers)
-  let stoutBeers =  allBeers.filter(function(stout) {
-  return stout.category == "Stout";
+function filterStout() {
+  console.log(allBeers);
+  let stoutBeers = allBeers.filter(function (stout) {
+    return stout.category == "Stout";
   });
-  displayBeer(stoutBeers)
-
+  displayBeer(stoutBeers);
 }
 
-function filterBelgian(){
-  console.log(allBeers)
-  let belgianBeers =  allBeers.filter(function(belgian) {
-  return belgian.category == "Belgian Specialty Ale";
+function filterBelgian() {
+  console.log(allBeers);
+  let belgianBeers = allBeers.filter(function (belgian) {
+    return belgian.category == "Belgian Specialty Ale";
   });
-  displayBeer(belgianBeers)
-
+  displayBeer(belgianBeers);
 }
 
-function filterCalif(){
-  console.log(allBeers)
-  let califBeers =  allBeers.filter(function(calif) {
-  return calif.category == "California Common";
+function filterCalif() {
+  console.log(allBeers);
+  let califBeers = allBeers.filter(function (calif) {
+    return calif.category == "California Common";
   });
-  displayBeer(califBeers)
-
+  displayBeer(califBeers);
 }
 
-function resetFilter(){
-  console.log(allBeers)
-  displayBeer(allBeers)
-
+function resetFilter() {
+  console.log(allBeers);
+  displayBeer(allBeers);
 }
 
 //--------sorting-------------//
-function sortAlc(){
-console.log(allBeers)
-    if (event.target.dataset.sortDirection === "asc") {
-        event.target.dataset.sortDirection = "desc";
-        console.log("sort asc")
-        firstAsc(allBeers);
-    } else {
-        console.log("sort desc")
-        firstDesc(allBeers);
-        event.target.dataset.sortDirection = "asc";
-    }
-  
+function sortAlc() {
+  console.log(allBeers);
+  if (event.target.dataset.sortDirection === "asc") {
+    event.target.dataset.sortDirection = "desc";
+    console.log("sort asc");
+    firstAsc(allBeers);
+  } else {
+    console.log("sort desc");
+    firstDesc(allBeers);
+    event.target.dataset.sortDirection = "asc";
+  }
 }
-
 //condition - ascending
-function firstAsc(){
-  console.log(allBeers)
-  function compareAlc(a, b){
-    if(a.alc < b.alc) {
-    return -1;
-    } else if (a.alc > b.alc){
-    return 1;
+function firstAsc() {
+  console.log(allBeers);
+  function compareAlc(a, b) {
+    if (a.alc < b.alc) {
+      return -1;
+    } else if (a.alc > b.alc) {
+      return 1;
     }
-    }   
-    allBeers.sort(compareAlc)
-    displayBeer(allBeers)
-
- 
+  }
+  allBeers.sort(compareAlc);
+  displayBeer(allBeers);
 }
 //condition - descending
-function firstDesc(){
-
-  console.log(allBeers)
-  function compareAlc(a, b){
-  if(a.alc < b.alc) {
-  return 1;
-  } else if (a.alc > b.alc){
-  return -1;
+function firstDesc() {
+  console.log(allBeers);
+  function compareAlc(a, b) {
+    if (a.alc < b.alc) {
+      return 1;
+    } else if (a.alc > b.alc) {
+      return -1;
+    }
   }
-  }   
-  allBeers.sort(compareAlc)
-  displayBeer(allBeers)
+  allBeers.sort(compareAlc);
+  displayBeer(allBeers);
 }
-
