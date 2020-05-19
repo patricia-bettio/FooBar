@@ -14,33 +14,57 @@
 
     <!--------------------------------FILTERING and SORTING--------------------------------------------->
     <section id="filterAndSort">
-    <div id="filters">
-      <button class="filterButton">Filter by:</button>
-      <div class="filterOptions">
-        <li class="filter" data-action="filter" data-filter="IPA">IPA</li>
-        <li class="filter" data-action="filter" data-filter="Hefeweizen" >Hefeweizen</li>
-        <li class="filter" data-action="filter" data-filter="Oktoberfest">Oktoberfest</li>
-        <li class="filter" data-action="filter" data-filter="European Lager">European Lager</li>
-        <li class="filter" data-action="filter" data-filter="Stout">Stout</li>
-        <li class="filter" data-action="filter" data-filter="Belgian Specialty Ale">Belgian Specialty Ale</li>
-        <li class="filter" data-action="filter" data-filter="California Common">California Common</li>
+      <div id="filters">
+        <button class="filterButton">Filter by:</button>
+        <div class="filterOptions">
+          <li class="filter" data-action="filter" data-filter="IPA">IPA</li>
+          <li class="filter" data-action="filter" data-filter="Hefeweizen">
+            Hefeweizen
+          </li>
+          <li class="filter" data-action="filter" data-filter="Oktoberfest">
+            Oktoberfest
+          </li>
+          <li class="filter" data-action="filter" data-filter="European Lager">
+            European Lager
+          </li>
+          <li class="filter" data-action="filter" data-filter="Stout">Stout</li>
+          <li
+            class="filter"
+            data-action="filter"
+            data-filter="Belgian Specialty Ale"
+          >
+            Belgian Specialty Ale
+          </li>
+          <li
+            class="filter"
+            data-action="filter"
+            data-filter="California Common"
+          >
+            California Common
+          </li>
+        </div>
       </div>
-    </div>
 
-    <div id="sorting">
-      <button class="sortButton">Sort by:</button>
-      <div class="sortOptions">
-      <li class="sortBy" data-action="sort" data-sort-direction="asc" data-sort="alc">Alc</li>
-    </div>
-    </div>
+      <div id="sorting">
+        <button class="sortButton">Sort by:</button>
+        <div class="sortOptions">
+          <li
+            class="sortBy"
+            data-action="sort"
+            data-sort-direction="asc"
+            data-sort="alc"
+          >
+            Alc
+          </li>
+        </div>
+      </div>
 
-    <div id="reset">
-      <button class="resetFilter">Reset</button>
-    </div>
+      <div id="reset">
+        <button class="resetFilter">Reset</button>
+      </div>
+    </section>
 
-  </section>
-
-  <!------------------------------------------------------SHOW BEERS-------------------------------------------------->
+    <!------------------------------------------------------SHOW BEERS-------------------------------------------------->
     <section id="beerArea"></section>
 
     <template>
@@ -50,9 +74,10 @@
         <h2 class="category">Category</h2>
         <p class="alcohol">ABV</p>
 
-        <div class="showMoreButton">ShowMore
-        <img class="showMore" src="" alt="glasssType"/>
-      </div>
+        <div class="showMoreButton">
+          ShowMore
+          <img class="showMore" src="" alt="glassType" />
+        </div>
         <div class="dropdown">
           <p class="aroma"></p>
           <p class="appearance"></p>
@@ -63,12 +88,18 @@
 
         <div id="amount">
           <form action="" method="">
-          <label for="quantity">Quantity:</label>
-          <input type="number" id="quantity" name="quantity" min="1" max="5">
+            <label for="quantity">Quantity:</label>
+            <button class="minus">–</button>
+            <input
+              type="number"
+              id="quantity"
+              name="quantity"
+              min="1"
+              max="5"
+            />
+            <button class="plus">+</button>
           </form>
         </div>
-
-     
       </article>
     </template>
 

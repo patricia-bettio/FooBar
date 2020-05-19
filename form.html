@@ -41,6 +41,7 @@
           inputmode="numeric"
           autocomplete="cc-number"
           placeholder="xxxx xxxx xxxx xxxx"
+          required
         />
         <p>Oops! You forgot to write out your card number</p>
 
@@ -52,6 +53,7 @@
           type="text"
           maxlength="5"
           class="cc-expiry-input"
+          required
         />
         <p>
           Let us know when your card expires
@@ -59,7 +61,13 @@
         <label for="ccv">
           CVC
         </label>
-        <input name="ccv" type="text" maxlength="3" class="cc-cvc-input" />
+        <input
+          name="ccv"
+          type="text"
+          maxlength="3"
+          class="cc-cvc-input"
+          required
+        />
         <p>
           CVC number is missing
         </p>

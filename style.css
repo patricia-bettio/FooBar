@@ -29,79 +29,74 @@
   border: 1px solid;
 }
 
-
 /*APP PAGE*/
 
-  /*dropdown*/
-  .hide {
-    display: none;
-  }
+/*dropdown*/
+.hide {
+  display: none;
+}
 
-  /*logo*/
+/*logo*/
 
-  .logo{
-    height: 100px;
-    width: 100px;
-  }
-  /*button*/
-  .showMoreButton {
-    display: grid;
-    float: right;
-  }
-  .showMore{
-    
-    background-repeat: no-repeat;
-    height: 100px;
-    
-  }
+.logo {
+  height: 100px;
+  width: 100px;
+}
+/*button*/
+.showMoreButton {
+  display: grid;
+  float: right;
+}
+.showMore {
+  background-repeat: no-repeat;
+  height: 100px;
+}
 
-  .rotate {
-    transform: rotate(180deg);
-  }
+.rotate {
+  transform: rotate(180deg);
+}
 
-  /*filter and sort section*/
+/*filter and sort section*/
 
-  #filterAndSort{
-    display: inline-grid;
-    grid-auto-flow: column;
-    grid-gap: 1em;
-  }
-  /*filter*/
-  .filterOptions {
-    display: none;
-    list-style: none;
- 
-  }
+#filterAndSort {
+  display: inline-grid;
+  grid-auto-flow: column;
+  grid-gap: 1em;
+}
+/*filter*/
+.filterOptions {
+  display: none;
+  list-style: none;
+  cursor: pointer;
+}
+.filter:hover {
+  border-bottom: 2px solid rosybrown;
+}
 
-  .filter{
-    padding: 10px;
-  }
-  .showFilters {
-    display: block;
-    
-  }
-  /*sort*/
+.filter {
+  padding: 10px;
+}
+.showFilters {
+  display: block;
+}
+/*sort*/
 
-  .sortOptions {
-    display: none;
-    list-style: none;
-  }
+.sortOptions {
+  display: none;
+  list-style: none;
+}
 
-  .sortBy {
-    padding: 10px;
-  }
+.sortBy {
+  padding: 10px;
+  cursor: pointer;
+}
+.sortBy:hover {
+  border-bottom: 2px solid goldenrod;
+}
 
-  .showSorting {
-    display: block;
-    
-  }
-
-
-
-
-
-
-
+.showSorting {
+  display: block;
+}
 
 /*-----------------------------------------------------------RESPONSIVE---------------------------------------------------------------------------*/
 
@@ -141,6 +136,12 @@
     padding-bottom: 20px;
     border-bottom: 1px solid grey;
   }
+  .sortOptions li::before {
+    content: "↓";
+  }
+  .sortOptions li::after {
+    content: "↑";
+  }
 
   /*----------- REVIEW ------------*/
   button.next {
@@ -162,30 +163,34 @@
   label {
     margin: 5px 0 10px 0;
   }
-  input {
+  form input {
+    margin-bottom: 20px;
+    background-color: rgb(230, 228, 228);
+    border-radius: 5px solid inherit;
     display: block;
     font-family: var(--form-font);
-    font-size: 1rem;
-    width: 14em;
+    font-size: 14px;
+    width: 310px;
+    padding: 8px;
   }
   input + p {
     display: none;
   }
   .invalid {
-    font-size: 1rem;
-    width: 14em;
+    font-size: 14px;
+    width: 310px;
     padding: 8px;
   }
   input.invalid + p {
     display: block;
-    font-size: 0.7rem;
+    font-size: 14px;
     margin-top: -24px;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     background-color: inherit;
     border: 2px solid red;
-    padding: 7px;
+    padding: 6px;
     font-family: "Times New Roman", sans-serif;
-    width: 226px;
+    width: 310px;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
   }
@@ -199,35 +204,36 @@
     display: grid;
     padding: 60px;
   }
-  form input {
-    margin-bottom: 1.5rem;
-    background-color: white;
-    border-radius: 5px;
-    padding: 8px;
-  }
   .cc-expiry-input {
     display: inline-flex;
     margin-right: 5%;
+    width: calc(55% - 40px);
+  }
+  .cc-expiry-input.invalid + p {
     width: calc(55% - 40px);
   }
   .cc-cvc-input {
     display: inline-flex;
     width: calc(37.8% - 40px);
   }
+  .cc-cvc-input.invalid + p {
+    width: calc(37.8% - 40px);
+  }
   .formSubmit {
-    font-size: 1rem;
-    padding: 15px 30px;
+    font-size: 20px;
+    padding: 20px;
     border: solid 1px olive;
+    background-color: inherit;
     letter-spacing: 1px;
-    font-family: var(--form-font);
+    font-family: var(--subtitle-font);
     text-transform: uppercase;
     cursor: pointer;
     justify-self: center;
-    width: 15em;
+    width: 310px;
   }
   .formSubmit:hover {
     color: black;
-    background-color: olive;
+    background-color: white;
   }
   .loadingGif {
     background-image: url(gifs/beer3.gif);
@@ -239,31 +245,55 @@
   }
 }
 
-
 /*PLUS AND MINUS*/
 /*https://codepen.io/Tanya_Rybachuk/pen/jyxzEp*/
-span {cursor:pointer; }
-.number{
-  margin:100px;
+span {
+  cursor: pointer;
 }
-.minus, .plus{
-  width:20px;
-  height:20px;
-  background:#f2f2f2;
-  border-radius:4px;
-  padding:8px 5px 8px 5px;
-  border:1px solid #ddd;
+.number {
+  margin: 100px;
+}
+.minus,
+.plus {
+  width: 20px;
+  height: 20px;
+  background: #f2f2f2;
+  border-radius: 4px;
+  padding: 8px 5px 8px 5px;
+  border: 1px solid #ddd;
   display: inline-block;
   vertical-align: middle;
   text-align: center;
 }
-input{
-  height:34px;
+input#quantity {
+  height: 34px;
   width: 100px;
   text-align: center;
   font-size: 26px;
-  border:1px solid #ddd;
-  border-radius:4px;
+  border: 1px solid #ddd;
+  background-color: inherit;
+  border-radius: 4px;
   display: inline-block;
   vertical-align: middle;
-   }
+}
+/*------------increase/decrease buttons-------*/
+.minus,
+.plus {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  border: none;
+  background: orange;
+  font-size: 100%;
+  text-align: center;
+  font-weight: 500;
+  color: rgb(255, 255, 255);
+  box-shadow: 0 1.5px 4px rgba(0, 0, 0, 0.4), 0 2.5px 6px rgba(0, 0, 0, 0.2);
+}
+.plus:hover,
+.minus:hover {
+  background: inherit;
+  border: 1px solid orange;
+  color: orange;
+  cursor: pointer;
+}
