@@ -66,6 +66,11 @@ function updatedQueueUnit(queue) {
     inQueue.querySelector("p.startTime").textContent = queue[index].startTime;
     inQueue.querySelector("p.order").textContent = queue[index].order;
   });
+  showQueueData(queue);
+}
+
+function showQueueData(queue) {
+  /* console.log(queue); */
 }
 
 /* function queueUnit(queue) {
@@ -102,7 +107,15 @@ function bartendersUnit(bartenders) {
   bartendersArea.innerHTML = "";
   bartenders.forEach((oneBartender) => {
     const cloneBartender = templateBartenders.cloneNode(true);
+
     cloneBartender.querySelector("p.name").textContent = oneBartender.name;
+    if (oneBartender.name === "Jonas") {
+      cloneBartender.querySelector(".bartender").src = "images/jonas.jpeg";
+    } else if (oneBartender.name === "Peter") {
+      cloneBartender.querySelector(".bartender").src = "images/peter.jpg";
+    } else if (oneBartender.name === "Dannie") {
+      cloneBartender.querySelector(".bartender").src = "images/dannie.jpeg";
+    }
 
     //-----append-----//
     bartendersArea.appendChild(cloneBartender);
@@ -197,6 +210,13 @@ function updatedTapsUnit(taps) {
     oneTap.querySelector("p.inUse").textContent = taps[index].inUse;
     oneTap.querySelector("p.level").textContent = taps[index].level;
   });
+  showTapsData(taps);
+}
+
+function showTapsData(taps) {
+  /* if (taps.beer === "El Hefe") {
+    oneTap.querySelector("p.beer").classList.add(".elHefe");
+  } */
 }
 
 //---------------------------------SERVING NEXT--------------------------------------//
@@ -223,26 +243,31 @@ function updatedServingUnit(serving) {
       oneCustomer.querySelector("p.order").textContent = serving[index].order;
       oneCustomer.querySelector("p.startTime").textContent =
         serving[index].startTime;
+
+      if (oneCustomer.order === "El Hefe") {
+        cloneServing.querySelector(".servingNextBeer").src =
+          "images/elhefe_circle.png";
+      } /* else if (oneCustomer.order === "Peter") {
+          cloneServing.querySelector(".servingNextBeer").src = "images/peter.jpg";
+        } else if (oneCustomer.order === "Dannie") {
+          cloneServing.querySelector(".servingNextBeer").src = "images/dannie.jpeg";
+        } */
     });
 }
 
+/* function showServingData(serving) {
+  console.log(serving);
+
+    /* if (oneCustomer.name === "Jonas") {
+      cloneBartender.querySelector(".bartender").src = "images/jonas.jpeg";
+    } else if (oneBartender.name === "Peter") {
+      cloneBartender.querySelector(".bartender").src = "images/peter.jpg";
+    } else if (oneBartender.name === "Dannie") {
+      cloneBartender.querySelector(".bartender").src = "images/dannie.jpeg";
+    } */
+/* } */
+
 // ------------timer---------- //
-/* const timeSpan = document.getElementById("timer");
-const mins = 60;
-const now = new Date().getTime();
-const deadline = mins * 60 * 1000 + now;
-
-setInterval(() => {
-  let currentTime = new Date().getTime();
-  let distance = deadline - currentTime;
-  let hours = Math.floor((distance % (1000 * 60 * 3600)) / (1000 * 3600));
-  let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  let seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-  timeSpan.innerHTML =
-    "Time until closing: " + hours + ":" + minutes + ":" + seconds;
-}, 50); */
-
 const timeSpan = document.getElementById("timer");
 const mins = 60;
 const now = Date.now();

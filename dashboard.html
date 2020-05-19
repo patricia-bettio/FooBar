@@ -8,69 +8,74 @@
   </head>
   <body>
     <main>
-      <h1 class="localTime">Local time</h1>
-      <span id="timer"></span>
+      <div id="dashboard">
+        <!--  <h1 class="localTime">Local time</h1> -->
+        <h1 class="title">FooBar</h1>
+        <span id="timer"></span>
 
-      <div>
-        <h1>Next in line</h1>
-        <template id="queueTemplate">
-          <article>
-            <p class="id"></p>
-            <p class="order"></p>
-            <p class="startTime"></p>
-          </article>
-        </template>
-        <section id="queueUnit"></section>
-      </div>
+        <div>
+          <h1>Next in line</h1>
+          <template id="queueTemplate">
+            <article>
+              <p class="id"></p>
+              <p class="order"></p>
+              <p class="startTime"></p>
+            </article>
+          </template>
+          <section id="queueUnit"></section>
+        </div>
 
-      <div>
-        <h1>Bartenders</h1>
-        <template id="bartendersTemplate">
-          <article>
-            <p class="name">Bartender name</p>
-            <p class="status">on or off</p>
-            <p class="servingCustomer">order number</p>
-            <p class="usingTap">tap number</p>
-            <p class="statusDetail">status detail</p>
-          </article>
-        </template>
-        <section id="bartendersUnit"></section>
-      </div>
+        <div>
+          <h1>Bartenders</h1>
+          <template id="bartendersTemplate">
+            <article>
+              <img src="" alt="bartenderImg" class="bartender" />
+              <p class="name"></p>
+              <p class="status"></p>
+              <p class="servingCustomer"></p>
+              <p class="usingTap"></p>
+              <p class="statusDetail"></p>
+            </article>
+          </template>
+          <section id="bartendersUnit"></section>
+        </div>
 
-      <div>
-        <h1>Taps</h1>
-        <template id="tapsTemplate">
-          <article>
-            <p class="id"></p>
-            <p class="beer"></p>
-            <p class="inUse"></p>
-            <p class="level"></p>
-          </article>
-        </template>
-        <section id="tapsUnit"></section>
-      </div>
+        <div>
+          <h1>Taps</h1>
+          <template id="tapsTemplate">
+            <article>
+              <p class="id"></p>
+              <p class="beer"></p>
+              <p class="inUse"></p>
+              <p class="level"></p>
+            </article>
+          </template>
+          <section id="tapsUnit"></section>
+        </div>
 
-      <div>
-        <h1>Serving Next</h1>
-        <template id="servingTemplate">
-          <article>
-            <p class="id"></p>
-            <p class="order"></p>
-            <p class="startTime"></p>
-          </article>
-        </template>
-        <section id="servingUnit"></section>
-      </div>
+        <div>
+          <h1>Serving Next</h1>
+          <template id="servingTemplate">
+            <article>
+              <p class="id"></p>
+              <img src="" alt="servingNextBeer" class="servingNextBeer" />
+              <p class="order"></p>
+              <p class="startTime"></p>
+            </article>
+          </template>
+          <section id="servingUnit"></section>
+        </div>
 
-      <div>
-        <h1>Most Wanted!</h1>
-        <template id="storageTemplate">
-          <article>
-            <p class="name"></p>
-            <p class="amount"></p>
-          </article>
-        </template>
-        <section id="storageUnit"></section>
+        <div>
+          <h1>Most Wanted!</h1>
+          <template id="storageTemplate">
+            <article>
+              <p class="name"></p>
+              <p class="amount"></p>
+            </article>
+          </template>
+          <section id="storageUnit"></section>
+        </div>
       </div>
     </main>
 

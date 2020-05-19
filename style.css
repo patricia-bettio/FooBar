@@ -1,7 +1,20 @@
+@font-face {
+  font-family: "Lemon/Milk";
+  src: url("fonts/LemonMilklight.otf"), format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Pilsen Plakat";
+  src: url("fonts/PilsenPlakat.ttf"), format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
 :root {
   --form-font: "Monaco", sans-serif;
   --beer-font: "College Block";
-  --subtitle-font: "Lemon/Milk Light", sans-serif;
+  --subtitle-font: "Lemon/Milk";
   --category-color: mediumslateblue;
 }
 
@@ -297,4 +310,37 @@ input#quantity {
   border: 1px solid orange;
   color: orange;
   cursor: pointer;
+}
+
+/*----------- mobile view -----------*/
+@media screen and (max-width: 375px) {
+  #dashboard h1 {
+    font-family: var(--subtitle-font);
+    font-size: 20px;
+  }
+  #dashboard #timer {
+    display: flex;
+    justify-content: center;
+    font-family: var(--form-font);
+    font-size: 12px;
+  }
+  #dashboard article {
+    display: block;
+  }
+  #dashboard #servingUnit {
+    display: block;
+    width: 300px;
+    text-align: left;
+  }
+  #dashboard #bartendersUnit {
+    width: 360px;
+  }
+  #dashboard #tapsUnit {
+    width: 370px;
+  }
+  .bartender {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+  }
 }
