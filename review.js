@@ -1,14 +1,14 @@
 "use strict";
 document.addEventListener("DOMContentLoaded", init);
 
-const url = "https://beer-waffle.herokuapp.com/beertypes";
+import { urlDetails } from "./modules/extra";
 
 function init() {
   fetchData();
 }
 
 function fetchData() {
-  fetch(url, {
+  fetch(urlDetails + "/order", {
     method: "get",
   })
     .then((e) => e.json())

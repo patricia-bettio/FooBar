@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", init);
 
 let allBeers = [];
 let alcNumber = [];
+let orderQuantity = [];
 
 function init() {
   fetchData();
@@ -19,8 +20,6 @@ function fetchData() {
     .then((e) => {
       fetchBeers(e);
       //fetchDetails(e);
-
-      addToCart();
     });
 }
 
@@ -40,6 +39,8 @@ function displayBeer(beers) {
   //clear
   document.querySelector("#beerArea").innerHTML = "";
   beers.forEach(displaySingleBeer);
+  //form (quantity input) setup
+  beers.forEach(setUpForm);
 }
 
 function displaySingleBeer(beer) {
@@ -84,26 +85,49 @@ function displaySingleBeer(beer) {
     selectedBeer.classList.toggle("hide");
     showMoreGlass.classList.toggle("rotate");
   });
-
-  //FORM
-  const form = beerClone.querySelector("form");
-  window.form = form;
-  //console.log(form)
-  const elements = form.elements;
-  window.elements = elements;
-  //console.log(elements);
-  //console.log(elements.quantity.value)
-  //console.log(form.checkValidity())
-
-  form.addEventListener("submit", addToCart);
-
   //append
   beerList.appendChild(beerClone);
 }
 
+function setUpForm(quantity) {
+  console.log(quantity);
+
+  const form = document.querySelector("form");
+  window.form = form;
+  window.elements = elements;
+  const elements = form.elements;
+
+  form.addEventListener("click", (e) => {
+    let orderQuantity = form.elements.quantity.value;
+    /* console.log(orderQuantity); */
+
+    addToCart(orderQuantity);
+  });
+}
+
 //-------------------------------------- FORM--------------------------------------//
-function addToCart() {
-  //console.log("added")
+function addToCart(orderQuantity) {
+  console.log("Added to cart: ", orderQuantity, "beers");
+
+  const nextReviewBtn = document.querySelector(".nextReview");
+
+  /*---------------------POST--------------------*/
+  nextReviewBtn.addEventListener("click", (e) => {
+    function post() {
+      const data = [];
+      const postData = JSON.stringify(data);
+      fetch(urlApi + "/order", {
+        method: "post",
+        headers: {
+          "Content-Type": "application/json; charset=utf-8",
+        },
+        body: postData,
+      })
+        .then((res) => res.json())
+        .then((data) => console.log(data));
+    }
+    post();
+  });
 }
 
 //-------------------------------------- FILTER -------------------------------------//
