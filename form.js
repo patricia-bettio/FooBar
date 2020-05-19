@@ -12,6 +12,31 @@ function setUpForm() {
   const form = document.querySelector("form");
   const elements = form.elements;
 
+  form.setAttribute("novalidate", true);
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const formElements = form.querySelectorAll("input");
+    formElements.forEach((el) => {
+      el.classList.remove("invalid");
+    });
+
+    if (form.checkValidity()) {
+      body.classList.add("noForm");
+      body.classList.add(
+        "loadingGif"
+      ); /* &&
+        location.assign("http://localhost:1234/app.html") */
+    } else {
+      formElements.forEach((el) => {
+        if (!el.checkValidity()) {
+          el.classList.add("invalid");
+        }
+      });
+    }
+  });
+
   // ------ code copied from https://codepen.io/murani/pen/KyVbrp --------
   let ccNumberInput = document.querySelector(".cc-number-input"),
     ccNumberPattern = /^\d{0,16}$/g,
@@ -94,29 +119,4 @@ function setUpForm() {
   ccExpiryInput.addEventListener("keydown", ccExpiryInputKeyDownHandler);
   ccExpiryInput.addEventListener("input", ccExpiryInputInputHandler);
   // code copied from https://codepen.io/murani/pen/KyVbrp
-
-  form.setAttribute("novalidate", true);
-
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-
-    const formElements = form.querySelectorAll("input");
-    formElements.forEach((el) => {
-      el.classList.remove("invalid");
-    });
-
-    if (form.checkValidity()) {
-      body.classList.add("noForm");
-      body.classList.add(
-        "loadingGif"
-      ); /* &&
-        location.assign("http://localhost:1234/app.html") */
-    } else {
-      formElements.forEach((el) => {
-        if (!el.checkValidity()) {
-          el.classList.add("invalid");
-        }
-      });
-    }
-  });
 }

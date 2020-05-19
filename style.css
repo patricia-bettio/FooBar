@@ -163,30 +163,34 @@
   label {
     margin: 5px 0 10px 0;
   }
-  input {
+  form input {
+    margin-bottom: 20px;
+    background-color: lightgrey;
+    border-radius: 5px solid inherit;
     display: block;
     font-family: var(--form-font);
-    font-size: 1rem;
-    width: 14em;
+    font-size: 14px;
+    width: 310px;
+    padding: 8px;
   }
   input + p {
     display: none;
   }
   .invalid {
-    font-size: 1rem;
-    width: 14em;
+    font-size: 14px;
+    width: 310px;
     padding: 8px;
   }
   input.invalid + p {
     display: block;
-    font-size: 0.7rem;
+    font-size: 14px;
     margin-top: -24px;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     background-color: inherit;
     border: 2px solid red;
-    padding: 7px;
+    padding: 6px;
     font-family: "Times New Roman", sans-serif;
-    width: 226px;
+    width: 310px;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
   }
@@ -200,35 +204,36 @@
     display: grid;
     padding: 60px;
   }
-  form input {
-    margin-bottom: 1.5rem;
-    background-color: white;
-    border-radius: 5px;
-    padding: 8px;
-  }
   .cc-expiry-input {
     display: inline-flex;
     margin-right: 5%;
+    width: calc(55% - 40px);
+  }
+  .cc-expiry-input.invalid + p {
     width: calc(55% - 40px);
   }
   .cc-cvc-input {
     display: inline-flex;
     width: calc(37.8% - 40px);
   }
+  .cc-cvc-input.invalid + p {
+    width: calc(37.8% - 40px);
+  }
   .formSubmit {
-    font-size: 1rem;
-    padding: 15px 30px;
+    font-size: 20px;
+    padding: 35px;
     border: solid 1px olive;
+    background-color: inherit;
     letter-spacing: 1px;
-    font-family: var(--form-font);
+    font-family: var(--subtitle-font);
     text-transform: uppercase;
     cursor: pointer;
     justify-self: center;
-    width: 15em;
+    width: 310px;
   }
   .formSubmit:hover {
     color: black;
-    background-color: olive;
+    background-color: white;
   }
   .loadingGif {
     background-image: url(gifs/beer3.gif);

@@ -94,6 +94,7 @@ function displaySingleBeer(beer) {
   //console.log(elements);
   //console.log(elements.quantity.value)
   //console.log(form.checkValidity())
+
   form.addEventListener("submit", addToCart);
 
   //append
