@@ -144,7 +144,8 @@
   }
 
   /*----------- REVIEW ------------*/
-  button.next {
+  button.next,
+  button.nextReview {
     float: right;
   }
   article#reviewOrderList {
