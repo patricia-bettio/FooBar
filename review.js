@@ -1,14 +1,14 @@
 "use strict";
 document.addEventListener("DOMContentLoaded", init);
 
-import { urlDetails } from "./modules/extra";
+import { urlDetails, urlApi } from "./modules/extra";
 
 function init() {
   fetchData();
 }
 
 function fetchData() {
-  fetch(urlDetails + "/order", {
+  fetch(urlApi + "order", {
     method: "get",
   })
     .then((e) => e.json())

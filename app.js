@@ -169,17 +169,17 @@ function postOrder(orderQuantity) {
 
   /*---------------------POST--------------------*/
   nextReviewBtn.addEventListener("click", (e) => {
-    function post() {
-      const data = [];
-      const postData = JSON.stringify(data);
-      fetch(urlApi + "/order", {
+    function post(orderQuantity) {
+      //const data = [];
+      const postData = JSON.stringify(orderQuantity);
+      fetch(urlApi, {
         method: "post",
         headers: {
           "Content-Type": "application/json; charset=utf-8",
         },
         body: postData,
       })
-        .then((res) => res.json())
+        .then((res) => res.json(res))
         .then((data) => console.log(data));
     }
    post();
