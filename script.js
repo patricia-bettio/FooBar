@@ -244,14 +244,13 @@ function updatedServingUnit(serving) {
       oneCustomer.querySelector("p.startTime").textContent =
         serving[index].startTime;
 
-      if (oneCustomer.order === "El Hefe") {
+      if (oneCustomer.order.indexOf("El Hefe")) {
         cloneServing.querySelector(".servingNextBeer").src =
           "images/elhefe_circle.png";
-      } /* else if (oneCustomer.order === "Peter") {
-          cloneServing.querySelector(".servingNextBeer").src = "images/peter.jpg";
-        } else if (oneCustomer.order === "Dannie") {
-          cloneServing.querySelector(".servingNextBeer").src = "images/dannie.jpeg";
-        } */
+      } else if (oneCustomer.order === "Steampunk") {
+        cloneServing.querySelector(".servingNextBeer").src =
+          "images/steampunk_circle.png";
+      }
     });
 }
 

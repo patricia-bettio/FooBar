@@ -23,7 +23,6 @@
   grid-template-columns: repeat(3, 1fr);
   width: 400px;
   text-align: center;
-  border: 1px solid;
 }
 
 #tapsUnit {
@@ -31,7 +30,6 @@
   grid-template-columns: repeat(7, 1fr);
   width: 400px;
   text-align: center;
-  border: 1px solid;
 }
 
 #servingUnit {
@@ -39,7 +37,6 @@
   grid-template-columns: repeat(3, 1fr);
   width: 500px;
   text-align: center;
-  border: 1px solid;
 }
 
 /*APP PAGE*/
@@ -318,6 +315,9 @@ input#quantity {
     font-family: var(--subtitle-font);
     font-size: 20px;
   }
+  #dashboard p {
+    font-size: 18px;
+  }
   #dashboard #timer {
     display: flex;
     justify-content: center;
@@ -331,6 +331,9 @@ input#quantity {
     display: block;
     width: 300px;
     text-align: left;
+  }
+  #dashboard #servingUnit article {
+    border-bottom: 1px solid;
   }
   #dashboard #bartendersUnit {
     width: 360px;
