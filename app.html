@@ -68,14 +68,27 @@
     <section id="beerArea"></section>
 
     <template>
-      <div id="amount">
-        <form action="" method="">
+    
 
         <article id="beerList">
         <img class="logo" src="" alt="beerLogo" />
         <h2 class="name">Name</h2>
         <h2 class="category">Category</h2>
         <p class="alcohol">ABV</p>
+        
+          <form action="" method="">
+            <label for="quantity"></label>
+            <button class="minus">–</button>
+              <input 
+              type="number"
+              id="quantity"
+              name="quantity"
+              min="1"
+              max="5"
+              />
+            <button class="plus">+</button>
+          </form>
+        
 
         <div class="showMoreButton">
           Tap Me!
@@ -89,18 +102,7 @@
             <p class="overallImpression"></p>
           </div>
 
-          <label for="quantity"></label>
-            <button class="minus">–</button>
-              <input 
-              type="number"
-              id="quantity"
-              name="quantity"
-              min="1"
-              max="5"
-              />
-            <button class="plus">+</button>
-          </form>
-        </div>
+
 
       </article>
     </template>

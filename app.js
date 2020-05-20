@@ -10,6 +10,8 @@ let orderQuantity = [];
 
 function init() {
   fetchData();
+  
+ 
 }
 
 function fetchData() {
@@ -19,32 +21,39 @@ function fetchData() {
     .then((e) => e.json())
     .then((e) => {
       fetchBeers(e);
-      //fetchDetails(e);
+     
+      
+     
+      
     });
+    
 }
 
 function fetchBeers(beers) {
+ 
   //make global:
   allBeers = beers;
   //console.log(allBeers)
   //set Filter:
   setFilters(beers);
 
+
   //show on template:
   displayBeer(beers);
 }
 
 function displayBeer(beers) {
-  console.log(beers);
+  //console.log(beers);
   //clear
   document.querySelector("#beerArea").innerHTML = "";
   beers.forEach(displaySingleBeer);
+  setUpForm()
   //form (quantity input) setup
-  beers.forEach(setUpForm);
+  //beers.forEach(setUpForm);
 }
 
 function displaySingleBeer(beer) {
-  console.log(beer);
+  //console.log(beer);
   const beerTemplate = document.querySelector("template").content;
   const beerList = document.querySelector("#beerArea");
   const beerClone = beerTemplate.cloneNode(true);
@@ -87,24 +96,45 @@ function displaySingleBeer(beer) {
   });
   //append
   beerList.appendChild(beerClone);
+  
 }
 
-function setUpForm(quantity) {
-  console.log(quantity);
+function setUpForm() {
+    //select all forms:
+    const form = document.querySelectorAll("form");
+    window.form = form;
+    console.log(form)
+  console.log(form.elements)
 
-  const form = document.querySelector("form");
-  window.form = form;
-  window.elements = elements;
-  const elements = form.elements;
-
-  form.addEventListener("click", (e) => {
+   
+    //form.forEach(getSingleInput);
+/* 
+form.addEventListener("click", (e) => {
+  console.log(form)
     let orderQuantity = form.elements.quantity.value;
-    /* console.log(orderQuantity); */
+    console.log(orderQuantity);
 
-    addToCart(orderQuantity);
-  });
+    //addToCart(orderQuantity);
+  })  */
+
 }
 
+function getSingleInput(form){
+  console.log(form.value)
+
+
+
+
+/*   if (form.checkValidity()){
+    console.log("is valid")
+    //post 
+  } else {
+    console.log("its not valid")
+  } */
+
+  
+
+}
 //-------------------------------------- FORM--------------------------------------//
 function addToCart(orderQuantity) {
   console.log("Added to cart: ", orderQuantity, "beers");
@@ -132,7 +162,7 @@ function addToCart(orderQuantity) {
 
 //-------------------------------------- FILTER -------------------------------------//
 function setFilters(allBeers) {
-  console.log(allBeers);
+  //console.log(allBeers);
   //show filters:
   document.querySelector(".filterButton").addEventListener("click", (e) => {
     document.querySelector(".filterOptions").classList.toggle("showFilters");
