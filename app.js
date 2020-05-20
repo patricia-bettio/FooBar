@@ -172,7 +172,7 @@ function postOrder(orderQuantity) {
     function post(orderQuantity) {
       //const data = [];
       const postData = JSON.stringify(orderQuantity);
-      fetch(urlApi, {
+      fetch(urlApi + "order", {
         method: "post",
         headers: {
           "Content-Type": "application/json; charset=utf-8",
