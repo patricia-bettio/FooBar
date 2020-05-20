@@ -21,11 +21,11 @@ function fetchData() {
     });
 }
 function showData(data) {
-  bartendersUnit(data.bartenders);
-  storageUnit(data.storage);
   queueUnit(data.queue);
-  tapsUnit(data.taps);
-  servingUnit(data.serving);
+  bartendersUnit(data.bartenders);
+  //storageUnit(data.storage);
+  //tapsUnit(data.taps);
+  //servingUnit(data.serving);
 }
 function fetchDataInterval() {
   fetch(urlApi, {
@@ -37,51 +37,81 @@ function fetchDataInterval() {
     });
 }
 function updateData(data) {
-  updatedBartendersUnit(data.bartenders);
-  updatedStorageUnit(data.storage);
   updatedQueueUnit(data.queue);
-  updatedTapsUnit(data.taps);
-  updatedServingUnit(data.serving);
+  updatedBartendersUnit(data.bartenders);
+  //updatedStorageUnit(data.storage);
+  //updatedTapsUnit(data.taps);
+  //updatedServingUnit(data.serving);
 }
 
 //---------------------------------NEXT IN LINE--------------------------------------//
 function queueUnit(queue) {
-  console.log(queue);
-  const templateQueue = document.querySelector("#queueTemplate").content;
+  console.log({ queue });
+ const templateQueue = document.querySelector("#queueTemplate").content;
   const queueArea = document.querySelector("#queueUnit");
+ 
+
+console.log(queue.id)
 
   queueArea.innerHTML = "";
-  queue.forEach((inQueue) => {
-    const storageQueue = templateQueue.cloneNode(true);
-
-    storageQueue.querySelector("p.id").textContent = inQueue.id;
-    storageQueue.querySelector("p.startTime").textContent = inQueue.startTime;
-    storageQueue.querySelector("p.order").textContent = inQueue.order;
-
-    //-----append-----//
-    queueArea.appendChild(storageQueue);
+  
+  queue.forEach((queue) => {
+   
+    templateQueue.querySelector("article").dataset.name = queue.id;
+  
+    console.log(queue.id)
+    //templateQueue.querySelector("article").dataset.id = queue.id;
+    const cloneQueue = templateQueue.cloneNode(true);
+    console.log(cloneQueue.querySelector("article"))
+   
+    console.log(queue.id)
+    cloneQueue.querySelector("p.id").textContent = queue.id;
+    cloneQueue.querySelector("p.startTime").textContent = queue.startTime;
+    cloneQueue.querySelector("p.order").textContent = queue.order;
+    /*
+    cloneBartender.querySelector("p.id").textContent = oneQueue.id;
+    cloneBartender.querySelector("p.startTime").textContent = oneQueue.startTime;
+    cloneBartender.querySelector("p.order").textContent = oneQueue.order; */
+      //-----append-----//
+      
+    queueArea.appendChild(cloneQueue);
   });
-  updatedQueueUnit(queue);
+  updatedQueueUnit(queue); 
 }
 
 function updatedQueueUnit(queue) {
   console.log({ queue });
+ 
+  queue.forEach((queue)=>{
+   
+    
+   // console.log(document.querySelector(`#queueUnit article[data-id="${queue.id}"]`))
+    const datasetId = document.querySelector(`#queueUnit article[data-name="${queue.id}"]`);
+    console.log(datasetId)
 
-  queue.forEach((inQueue) => {
-    /* document.querySelectorAll("#queueUnit article").forEach((inQueue) => { */
-    console.log({ inQueue });
 
-    document.querySelector("p.id").textContent = inQueue.id;
-    document.querySelector("p.startTime").textContent = inQueue.startTime;
-    document.querySelector("p.order").textContent = inQueue.order;
+      //console.log(datasetId.querySelector("p.id"))
+      datasetId.querySelector("p.id").textContent = queue.id;
+      datasetId.querySelector("p.startTime").textContent = queue.startTime;
+      datasetId.querySelector("p.order").textContent = queue.order;
+      //console.log(datasetId.querySelector("p.order"))
+    
+
   });
+
+/*   document.querySelectorAll("#queueUnit article").forEach((oneQueue, index) => {
+  
+    console.log(queue[index].id);
+    oneQueue.querySelector("p.id").textContent = queue[index].id; 
+    oneQueue.querySelector("p.startTime").textContent = queue[index].startTime;
+    oneQueue.querySelector("p.order").textContent = queue[index].order;
+  }) */
 }
 
 //-----------------------------------BARTENDERS--------------------------------------//
 function bartendersUnit(bartenders) {
-  console.log(bartenders);
-  const templateBartenders = document.querySelector("#bartendersTemplate")
-    .content;
+  //console.log({ bartenders });
+  const templateBartenders = document.querySelector("#bartendersTemplate").content;
   const bartendersArea = document.querySelector("#bartendersUnit");
 
   bartendersArea.innerHTML = "";
@@ -104,17 +134,13 @@ function bartendersUnit(bartenders) {
 }
 
 function updatedBartendersUnit(bartenders) {
-  document
-    .querySelectorAll("#bartendersUnit article")
-    .forEach((oneBartender, index) => {
-      oneBartender.querySelector("p.status").textContent =
-        bartenders[index].status;
-      oneBartender.querySelector("p.servingCustomer").textContent =
-        bartenders[index].servingCustomer;
-      oneBartender.querySelector("p.usingTap").textContent =
-        bartenders[index].usingTap;
-      oneBartender.querySelector("p.statusDetail").textContent =
-        bartenders[index].statusDetail;
+  //console.log({ bartenders });
+  document.querySelectorAll("#bartendersUnit article").forEach((oneBartender, index) => {
+    
+      oneBartender.querySelector("p.status").textContent = bartenders[index].status;
+      oneBartender.querySelector("p.servingCustomer").textContent = bartenders[index].servingCustomer;
+      oneBartender.querySelector("p.usingTap").textContent = bartenders[index].usingTap;
+      oneBartender.querySelector("p.statusDetail").textContent = bartenders[index].statusDetail;
     });
 }
 
