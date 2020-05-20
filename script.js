@@ -61,16 +61,15 @@ function queueUnit(queue) {
 }
 
 function updatedQueueUnit(queue) {
-  document.querySelectorAll("#queueUnit article").forEach((inQueue, index) => {
-    inQueue.querySelector("p.id").textContent = queue[index].id;
-    inQueue.querySelector("p.startTime").textContent = queue[index].startTime;
-    inQueue.querySelector("p.order").textContent = queue[index].order;
+  queue.forEach((inQueue) => {
+    /* console.log({ inQueue });
+    console.log(queue); */
+    /* document.querySelectorAll("#queueUnit article").forEach((inQueue, index) => { */
+    document.querySelector("#queueUnit p.id").textContent = inQueue.id;
+    document.querySelector("#queueUnit p.startTime").textContent =
+      inQueue.startTime;
+    document.querySelector("#queueUnit p.order").textContent = inQueue.order;
   });
-  showQueueData(queue);
-}
-
-function showQueueData(queue) {
-  /* console.log(queue); */
 }
 
 /* function queueUnit(queue) {
@@ -236,15 +235,25 @@ function servingUnit(serving) {
 }
 
 function updatedServingUnit(serving) {
-  document
-    .querySelectorAll("#servingUnit article")
-    .forEach((oneCustomer, index) => {
-      oneCustomer.querySelector("p.id").textContent = serving[index].id;
-      oneCustomer.querySelector("p.order").textContent = serving[index].order;
-      oneCustomer.querySelector("p.startTime").textContent =
-        serving[index].startTime;
-    });
+  serving.forEach((oneCustomer) => {
+    /* console.log({ inQueue });
+    console.log(queue); */
+    /* document.querySelectorAll("#queueUnit article").forEach((inQueue, index) => { */
+    document.querySelector("#servingUnit p.id").textContent = oneCustomer.id;
+    document.querySelector("#servingUnit p.order").textContent =
+      oneCustomer.order;
+    document.querySelector("#servingUnit p.startTime").textContent =
+      oneCustomer.startTime;
+  });
 }
+
+/* function updatedServingUnit(serving) {
+  document.querySelectorAll("#servingUnit article").forEach((oneCustomer) => {
+    oneCustomer.querySelector("p.id").textContent = serving.id;
+    oneCustomer.querySelector("p.order").textContent = serving.order;
+    oneCustomer.querySelector("p.startTime").textContent = serving.startTime;
+  });
+} */
 
 // ------------timer---------- //
 const timeSpan = document.getElementById("timer");
