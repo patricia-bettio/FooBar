@@ -243,28 +243,8 @@ function updatedServingUnit(serving) {
       oneCustomer.querySelector("p.order").textContent = serving[index].order;
       oneCustomer.querySelector("p.startTime").textContent =
         serving[index].startTime;
-
-      if (oneCustomer.order.indexOf("El Hefe")) {
-        cloneServing.querySelector(".servingNextBeer").src =
-          "images/elhefe_circle.png";
-      } else if (oneCustomer.order === "Steampunk") {
-        cloneServing.querySelector(".servingNextBeer").src =
-          "images/steampunk_circle.png";
-      }
     });
 }
-
-/* function showServingData(serving) {
-  console.log(serving);
-
-    /* if (oneCustomer.name === "Jonas") {
-      cloneBartender.querySelector(".bartender").src = "images/jonas.jpeg";
-    } else if (oneBartender.name === "Peter") {
-      cloneBartender.querySelector(".bartender").src = "images/peter.jpg";
-    } else if (oneBartender.name === "Dannie") {
-      cloneBartender.querySelector(".bartender").src = "images/dannie.jpeg";
-    } */
-/* } */
 
 // ------------timer---------- //
 const timeSpan = document.getElementById("timer");
