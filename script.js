@@ -54,6 +54,10 @@ function queueUnit(queue) {
   queue.forEach((inQueue) => {
     const storageQueue = templateQueue.cloneNode(true);
 
+    storageQueue.querySelector("p.id").textContent = inQueue.id;
+    storageQueue.querySelector("p.startTime").textContent = inQueue.startTime;
+    storageQueue.querySelector("p.order").textContent = inQueue.order;
+
     //-----append-----//
     queueArea.appendChild(storageQueue);
   });
@@ -61,41 +65,17 @@ function queueUnit(queue) {
 }
 
 function updatedQueueUnit(queue) {
-  document.querySelectorAll("#queueUnit article").forEach((inQueue, index) => {
-    inQueue.querySelector("p.id").textContent = queue[index].id;
-    inQueue.querySelector("p.startTime").textContent = queue[index].startTime;
-    inQueue.querySelector("p.order").textContent = queue[index].order;
-  });
-  showQueueData(queue);
-}
+  console.log({ queue });
 
-function showQueueData(queue) {
-  /* console.log(queue); */
-}
-
-/* function queueUnit(queue) {
-  console.log(queue);
-  const templateQueue = document.querySelector("#queueTemplate").content;
-  const queueArea = document.querySelector("#queueUnit");
-  const storageQueue = templateQueue.cloneNode(true);
-
-  queueArea.innerHTML = "";
-
-  storageQueue.querySelector("article").dataset.name = inQueue.id;
-  queueArea.appendChild(storageQueue);
-
-  updatedQueueUnit(queue);
-}
-
-function updatedQueueUnit(queue) {
   queue.forEach((inQueue) => {
-    const queueArticle = document.querySelector(
-      `#queueUnit article[data-name="${inQueue.id}"]`
-    );
-    queueArticle.querySelector("p.order").textContent = inQueue.order;
-    queueArticle.querySelector("p.startTime").textContent = inQueue.startTime;
+    /* document.querySelectorAll("#queueUnit article").forEach((inQueue) => { */
+    console.log({ inQueue });
+
+    document.querySelector("p.id").textContent = inQueue.id;
+    document.querySelector("p.startTime").textContent = inQueue.startTime;
+    document.querySelector("p.order").textContent = inQueue.order;
   });
-} */
+}
 
 //-----------------------------------BARTENDERS--------------------------------------//
 function bartendersUnit(bartenders) {
@@ -165,29 +145,6 @@ function updatedStorageUnit(storage) {
   });
 }
 
-/* function storageUnit(storage) {
-  console.log(storage);
-  const templateStorage = document.querySelector("#storageTemplate").content;
-  const storageArea = document.querySelector("#storageUnit");
-  const cloneStorage = templateStorage.cloneNode(true);
-
-  cloneStorage.innerHTML = "";
-
-  cloneStorage.querySelector("p.name").dataset.name = oneKeg.id;
-  storageArea.appendChild(cloneStorage);
-
-  updatedStorageUnit(storage);
-}
-
-function updatedStorageUnit(storage) {
-  storage.forEach((oneKeg) => {
-    const storageArticle = document.querySelector(
-      `#storageUnit article[data-name="${oneKeg.id}"]`
-    );
-    storageArticle.querySelector("p.amount").textContent = oneKeg.amount;
-  });
-} */
-
 //-----------------------------------TAPS UNIT--------------------------------------//
 function tapsUnit(taps) {
   console.log(taps);
@@ -230,21 +187,35 @@ function servingUnit(serving) {
   serving.forEach((oneCustomer) => {
     const cloneServing = templateServing.cloneNode(true);
 
+    cloneServing.querySelector("p.id").textContent = oneCustomer.id;
+    cloneServing.querySelector("p.order").textContent = oneCustomer.order;
+    cloneServing.querySelector("p.startTime").textContent =
+      oneCustomer.startTime;
+
+    //--------append-------//
     servingArea.appendChild(cloneServing);
   });
   updatedServingUnit(serving);
 }
 
 function updatedServingUnit(serving) {
-  document
-    .querySelectorAll("#servingUnit article")
-    .forEach((oneCustomer, index) => {
-      oneCustomer.querySelector("p.id").textContent = serving[index].id;
-      oneCustomer.querySelector("p.order").textContent = serving[index].order;
-      oneCustomer.querySelector("p.startTime").textContent =
-        serving[index].startTime;
-    });
+  serving.forEach((oneCustomer) => {
+    /* console.log({ oneCustomer }); */
+
+    /* document.querySelectorAll("#servingUnit article").forEach((oneCustomer) => { */
+    document.querySelector("p.id").textContent = oneCustomer.id;
+    document.querySelector("p.order").textContent = oneCustomer.order;
+    document.querySelector("p.startTime").textContent = oneCustomer.startTime;
+  });
 }
+
+/* function updatedServingUnit(serving) {
+  document.querySelectorAll("#servingUnit article").forEach((oneCustomer) => {
+    oneCustomer.querySelector("p.id").textContent = serving.id;
+    oneCustomer.querySelector("p.order").textContent = serving.order;
+    oneCustomer.querySelector("p.startTime").textContent = serving.startTime;
+  });
+} */
 
 // ------------timer---------- //
 const timeSpan = document.getElementById("timer");
