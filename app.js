@@ -1,6 +1,6 @@
 "use strict";
 
-import { urlDetails } from "./modules/extra";
+import { urlDetails, urlApi } from "./modules/extra";
 
 document.addEventListener("DOMContentLoaded", init);
 
@@ -10,6 +10,8 @@ let orderQuantity = [];
 
 function init() {
   fetchData();
+  
+ 
 }
 
 function fetchData() {
@@ -19,32 +21,39 @@ function fetchData() {
     .then((e) => e.json())
     .then((e) => {
       fetchBeers(e);
-      //fetchDetails(e);
+     
+      
+     
+      
     });
+    
 }
 
 function fetchBeers(beers) {
+ 
   //make global:
   allBeers = beers;
   //console.log(allBeers)
   //set Filter:
   setFilters(beers);
 
+
   //show on template:
   displayBeer(beers);
 }
 
 function displayBeer(beers) {
-  console.log(beers);
+  //console.log(beers);
   //clear
   document.querySelector("#beerArea").innerHTML = "";
   beers.forEach(displaySingleBeer);
+  //setUpForm()
   //form (quantity input) setup
-  beers.forEach(setUpForm);
+  //beers.forEach(setUpForm);
 }
 
 function displaySingleBeer(beer) {
-  console.log(beer);
+  //console.log(beer);
   const beerTemplate = document.querySelector("template").content;
   const beerList = document.querySelector("#beerArea");
   const beerClone = beerTemplate.cloneNode(true);
@@ -54,6 +63,44 @@ function displaySingleBeer(beer) {
   beerClone.querySelector("h2.category").textContent = `${beer.category}`;
   beerClone.querySelector("p.alcohol").textContent = `ABV: ${beer.alc} %`;
   beerClone.querySelector(".logo").src = `images/${beer.label}`;
+
+
+  console.log(beerClone.querySelector("form"))
+  //quantity:
+  
+
+  //form
+  const form = beerClone.querySelector("form");
+  window.form = form;
+  const elements = form.elements;
+  window.elements = elements;
+  console.log(elements.quantity)
+  elements.quantity.addEventListener("keyup", e=>{
+    console.dir(e.target.value)
+  })
+
+  //beer name for form:
+  const name = beer.name;
+  console.log(name)
+  //amount
+  const amount = form.elements.quantity.value;
+  console.log(amount)
+
+  form.addEventListener("submit", e=>{
+    e.preventDefault();
+    //const formElements = document.querySelectorAll("input");
+    //console.log("submited")
+
+    if (form.checkValidity()){
+      console.log(name)
+      postOrder({
+        name: name,
+        amount: form.elements.quantity.value
+    
+      })
+    }
+  })
+  //setUpForm(form)
 
   //hidden details in template:
   beerClone.querySelector(
@@ -87,26 +134,35 @@ function displaySingleBeer(beer) {
   });
   //append
   beerList.appendChild(beerClone);
+  
 }
 
-function setUpForm(quantity) {
-  console.log(quantity);
+function setUpForm(form) {
 
-  const form = document.querySelector("form");
-  window.form = form;
-  window.elements = elements;
-  const elements = form.elements;
+  console.log(form)
 
-  form.addEventListener("click", (e) => {
-    let orderQuantity = form.elements.quantity.value;
-    /* console.log(orderQuantity); */
 
-    addToCart(orderQuantity);
-  });
+
 }
 
+function getSingleInput(form){
+  console.log(form.value)
+
+
+
+
+/*   if (form.checkValidity()){
+    console.log("is valid")
+    //post 
+  } else {
+    console.log("its not valid")
+  } */
+
+  
+
+}
 //-------------------------------------- FORM--------------------------------------//
-function addToCart(orderQuantity) {
+function postOrder(orderQuantity) {
   console.log("Added to cart: ", orderQuantity, "beers");
 
   const nextReviewBtn = document.querySelector(".nextReview");
@@ -126,13 +182,13 @@ function addToCart(orderQuantity) {
         .then((res) => res.json())
         .then((data) => console.log(data));
     }
-    post();
+   post();
   });
 }
 
 //-------------------------------------- FILTER -------------------------------------//
 function setFilters(allBeers) {
-  console.log(allBeers);
+  //console.log(allBeers);
   //show filters:
   document.querySelector(".filterButton").addEventListener("click", (e) => {
     document.querySelector(".filterOptions").classList.toggle("showFilters");
