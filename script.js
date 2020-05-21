@@ -5,6 +5,7 @@
 import { urlApi  } from "./modules/extra";
 import {dateFormatter} from "./modules/extra";
 
+
 //-----------------------------------GLOBAL--------------------------------------//
 /*Avatar*/
 let randomAvatar = ["/images/avatar/avatar1.png", "/images/avatar/avatar2.png", "/images/avatar/avatar3.png", "/images/avatar/avatar4.png", "/images/avatar/avatar5.png", "/images/avatar/avatar6.png"]
@@ -15,8 +16,16 @@ let sortStorage;
 document.addEventListener("DOMContentLoaded", init);
 
 function init() {
+
   fetchData();
+
+  setTimeToClose();
+ 
+
 }
+
+
+
 function fetchData() {
   fetch(urlApi, {
     method: "get",
@@ -28,6 +37,7 @@ function fetchData() {
     });
 }
 function showData(data) {
+  setCurrentTime(data.timestamp)
   queueUnit(data.queue);
   bartendersUnit(data.bartenders);
   storageUnit(data.storage.sort((a, b) => (a.amount > b.amount ? 1 : -1)))
@@ -44,6 +54,7 @@ function fetchDataInterval() {
     });
 }
 function updateData(data) {
+  setCurrentTime(data.timestamp)
   //updatedQueueUnit(data.queue);
   updatedBartendersUnit(data.bartenders);
   updatedStorageUnit(data.storage.sort((a, b) => (a.amount > b.amount ? 1 : -1)));
@@ -292,6 +303,11 @@ function updatedServingUnit(serving) {
 
 
 // ------------timer---------- //
+function setCurrentTime(localTime){
+  document.querySelector("#localTime").innerHTML = dateFormatter(localTime);
+}
+function setTimeToClose(){
+  
 const timeSpan = document.getElementById("timer");
 const mins = 60;
 const now = Date.now();
@@ -310,3 +326,5 @@ setInterval(() => {
   timeSpan.innerHTML =
     "Time until closing: " + hours + ":" + minutes + ":" + seconds;
 }, 50);
+
+}
