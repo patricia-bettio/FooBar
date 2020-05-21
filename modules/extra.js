@@ -2,7 +2,8 @@
 
 export const urlApi = "https://beer-waffles.herokuapp.com/";
 export const urlDetails = "https://beer-waffles.herokuapp.com/beertypes";
-export default function dateFormatter(timestamp) {
+
+export function dateFormatter(timestamp) {
   //console.log(timestamp);
   let date = new Date(timestamp);
   let hours = date.getHours();
@@ -12,6 +13,6 @@ export default function dateFormatter(timestamp) {
   let seconds = "0" + date.getSeconds();
   let newTimeFormatted =
     hours + ":" + minutes.substr(-2) + ":" + seconds.substr(-2);
-  //console.log(newTimeFormatted)
+  console.log(newTimeFormatted)
   return newTimeFormatted;
-}
+};

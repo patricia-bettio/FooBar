@@ -2,13 +2,15 @@
 
 //-----------------------------------IMPORT--------------------------------------//
 //-----formatted time-----//
-import { urlApi, dateFormatter } from "./modules/extra";
+import { urlApi  } from "./modules/extra";
+import {dateFormatter} from "./modules/extra";
 
 //-----------------------------------GLOBAL--------------------------------------//
 /*Avatar*/
 let randomAvatar = ["/images/avatar/avatar1.png", "/images/avatar/avatar2.png", "/images/avatar/avatar3.png", "/images/avatar/avatar4.png", "/images/avatar/avatar5.png", "/images/avatar/avatar6.png"]
 let topFive;
 let sortStorage;
+
 //-----------------------------------INITIALIZE--------------------------------------//
 document.addEventListener("DOMContentLoaded", init);
 
@@ -51,7 +53,7 @@ function updateData(data) {
 
 //---------------------------------NEXT IN LINE--------------------------------------//
 function queueUnit(queue) {
-  //console.log({ queue });
+  console.log({ queue });
   const templateQueue = document.querySelector("#queueTemplate").content;
   const queueArea = document.querySelector("#queueUnit");
  
@@ -68,8 +70,9 @@ function queueUnit(queue) {
    
     //console.log(queue.id)
     cloneQueue.querySelector("p.id").textContent = `Order # ${queue.id}`;
-    cloneQueue.querySelector("p.startTime").textContent = queue.startTime;
-    cloneQueue.querySelector("p.order").textContent = queue.order;
+    cloneQueue.querySelector("p.startTime").textContent = `Placed at: ${dateFormatter(queue.startTime)}`;
+    //cloneQueue.querySelector("p.order").textContent = queue.order;
+
     /*
     cloneBartender.querySelector("p.id").textContent = oneQueue.id;
     cloneBartender.querySelector("p.startTime").textContent = oneQueue.startTime;
@@ -215,8 +218,15 @@ function updatedTapsUnit(taps) {
   document.querySelectorAll("#tapsUnit article").forEach((oneTap, index) => {
     oneTap.querySelector("p.id").textContent = taps[index].id;
     oneTap.querySelector("p.beer").textContent = taps[index].beer;
-    oneTap.querySelector("p.inUse").textContent = taps[index].inUse;
+    //oneTap.querySelector("p.inUse").textContent = taps[index].inUse;
     oneTap.querySelector("p.level").textContent = taps[index].level;
+    //USE
+    if (taps[index].inUse === false){
+    oneTap.querySelector(".bulletUse").style.background = "red";
+    } else {
+    oneTap.querySelector(".bulletUse").style.background = "green";
+    }
+
   });
   showTapsData(taps);
 }
