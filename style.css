@@ -1,12 +1,24 @@
 @font-face {
   font-family: "Lemon/Milk";
-  src: url("fonts/LemonMilklight.otf"), format("truetype");
+  src: url("fonts/LEMONMILK-Regular.otf"), format("truetype");
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
-  font-family: "Pilsen Plakat";
-  src: url("fonts/PilsenPlakat.ttf"), format("truetype");
+  font-family: "Lemon/Milk light";
+  src: url("fonts/LEMONMILK-Light.otf"), format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Lemon/Milk bold";
+  src: url("fonts/LEMONMILK-Bold.otf"), format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "College Block";
+  src: url("fonts/CollegeBlock.otf"), format("truetype");
   font-weight: normal;
   font-style: normal;
 }
@@ -14,8 +26,8 @@
 :root {
   --form-font: "Monaco", sans-serif;
   --beer-font: "College Block";
-  --subtitle-font: "Lemon/Milk";
-  --category-color: mediumslateblue;
+  --subtitle-font: "Lemon/Milk light";
+  --category-color: #b79027;
 }
 
 #bartendersUnit {
@@ -95,7 +107,12 @@
   display: none;
   list-style: none;
 }
-
+.sortOptions li::before {
+  content: "↑";
+}
+.sortOptions li::after {
+  content: "↓";
+}
 .sortBy {
   padding: 10px;
   cursor: pointer;
@@ -103,7 +120,6 @@
 .sortBy:hover {
   border-bottom: 2px solid goldenrod;
 }
-
 .showSorting {
   display: block;
 }
@@ -145,12 +161,6 @@
     font-family: var(--subtitle-font);
     padding-bottom: 20px;
     border-bottom: 1px solid grey;
-  }
-  .sortOptions li::before {
-    content: "↓";
-  }
-  .sortOptions li::after {
-    content: "↑";
   }
 
   /*----------- REVIEW ------------*/
@@ -311,6 +321,153 @@ input#quantity {
 
 /*----------- mobile view -----------*/
 @media screen and (max-width: 375px) {
+  /*------- MOBILE BEER LIST -------*/
+  #beerList h2,
+  #reviewOrderList h2 {
+    display: inline-flex;
+    text-transform: uppercase;
+  }
+  h1.title {
+    font-size: 35px;
+  }
+  h2.subtitle {
+    font-size: 22px;
+    font-family: var(--subtitle-font);
+  }
+  img.logo {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+  }
+  .appForm {
+    display: inline-flex;
+  }
+  input#quantity {
+    height: 15px;
+    width: 35px;
+    font-size: 16px;
+    display: flex;
+    justify-self: flex-start;
+  }
+  .minus,
+  .plus {
+    height: 30px;
+    width: 30px;
+    font-size: 80%;
+  }
+  .appFormSubmit {
+    display: flex;
+    width: 50px;
+    height: 30px;
+    justify-self: flex-start;
+  }
+  .showMore {
+    position: relative;
+    bottom: 100px;
+  }
+
+  /*----------- MOBILE REVIEW ------------*/
+  button.next,
+  button.nextReview {
+    float: right;
+  }
+  article#reviewOrderList {
+    padding: 30px;
+  }
+
+  /*------------ MOBILE FORM ------------*/
+  .formSection {
+    display: block;
+    font-family: var(--subtitle-font);
+  }
+  h2.subtitle {
+    display: flex;
+    justify-content: center;
+  }
+  label {
+    margin: 5px 0 10px 0;
+  }
+  form input {
+    margin-bottom: 20px;
+    background-color: rgb(230, 228, 228);
+    border-radius: 5px solid inherit;
+    display: block;
+    font-family: var(--form-font);
+    font-size: 14px;
+    width: 310px;
+    padding: 8px;
+  }
+  input + p {
+    display: none;
+  }
+  .invalid {
+    font-size: 14px;
+    width: 310px;
+    padding: 8px;
+  }
+  input.invalid + p {
+    display: block;
+    font-size: 14px;
+    margin-top: -24px;
+    margin-bottom: 30px;
+    background-color: inherit;
+    border: 2px solid red;
+    padding: 6px;
+    font-family: "Times New Roman", sans-serif;
+    width: 310px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+  }
+  input:focus,
+  textarea:focus {
+    background-color: white;
+    color: black;
+  }
+  form {
+    justify-content: center;
+    display: grid;
+    padding: 60px;
+  }
+  .cc-expiry-input {
+    display: inline-flex;
+    margin-right: 5%;
+    width: calc(55% - 40px);
+  }
+  .cc-expiry-input.invalid + p {
+    width: calc(55% - 40px);
+  }
+  .cc-cvc-input {
+    display: inline-flex;
+    width: calc(37.8% - 40px);
+  }
+  .cc-cvc-input.invalid + p {
+    width: calc(37.8% - 40px);
+  }
+  .formSubmit {
+    font-size: 20px;
+    padding: 20px;
+    border: solid 1px olive;
+    background-color: inherit;
+    letter-spacing: 1px;
+    font-family: var(--subtitle-font);
+    text-transform: uppercase;
+    cursor: pointer;
+    justify-self: center;
+    width: 310px;
+  }
+  .formSubmit:hover {
+    color: black;
+    background-color: white;
+  }
+  .loadingGif {
+    background-image: url(gifs/beer3.gif);
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  .noForm {
+    visibility: hidden;
+  }
+  /*---------- MOBILE DASHBOARD ---------*/
   #dashboard h1 {
     font-family: var(--subtitle-font);
     font-size: 20px;

@@ -10,8 +10,6 @@ let orderQuantity = [];
 
 function init() {
   fetchData();
-  
- 
 }
 
 function fetchData() {
@@ -21,22 +19,15 @@ function fetchData() {
     .then((e) => e.json())
     .then((e) => {
       fetchBeers(e);
-     
-      
-     
-      
     });
-    
 }
 
 function fetchBeers(beers) {
- 
   //make global:
   allBeers = beers;
   //console.log(allBeers)
   //set Filter:
   setFilters(beers);
-
 
   //show on template:
   displayBeer(beers);
@@ -64,43 +55,33 @@ function displaySingleBeer(beer) {
   beerClone.querySelector("p.alcohol").textContent = `ABV: ${beer.alc} %`;
   beerClone.querySelector(".logo").src = `images/${beer.label}`;
 
-
-  console.log(beerClone.querySelector("form"))
-  //quantity:
-  
-
   //form
   const form = beerClone.querySelector("form");
   window.form = form;
   const elements = form.elements;
   window.elements = elements;
-  console.log(elements.quantity)
-  elements.quantity.addEventListener("keyup", e=>{
-    console.dir(e.target.value)
-  })
 
-  //beer name for form:
-  const name = beer.name;
-  console.log(name)
-  //amount
-  const amount = form.elements.quantity.value;
-  console.log(amount)
+  elements.quantity.addEventListener("keyup", (e) => {
+    console.dir(e.target.value);
+    //beer name
+    const name = beer.name;
+    console.log(name);
+    //amount
+    const amount = form.elements.quantity.value;
+    console.log(amount);
+  });
 
-  form.addEventListener("submit", e=>{
+  form.addEventListener("submit", (e) => {
     e.preventDefault();
-    //const formElements = document.querySelectorAll("input");
-    //console.log("submited")
 
-    if (form.checkValidity()){
-      console.log(name)
+    if (form.checkValidity()) {
+      console.log(name);
       postOrder({
-        name: name,
-        amount: form.elements.quantity.value
-    
-      })
+        name: beer.name,
+        amount: form.elements.quantity.value,
+      });
     }
-  })
-  //setUpForm(form)
+  });
 
   //hidden details in template:
   beerClone.querySelector(
@@ -134,43 +115,37 @@ function displaySingleBeer(beer) {
   });
   //append
   beerList.appendChild(beerClone);
-  
 }
 
 function setUpForm(form) {
-
-  console.log(form)
-
-
-
+  console.log(form);
 }
 
-function getSingleInput(form){
-  console.log(form.value)
+function getSingleInput(form) {
+  console.log(form.value);
 
-
-
-
-/*   if (form.checkValidity()){
+  /*   if (form.checkValidity()){
     console.log("is valid")
     //post 
   } else {
     console.log("its not valid")
   } */
-
-  
-
 }
-//-------------------------------------- FORM--------------------------------------//
+//--------------------------------- +/- BEERS FORM -----------------------------------//
 function postOrder(orderQuantity) {
-  console.log("Added to cart: ", orderQuantity, "beers");
+  console.log("Added to cart: ", orderQuantity);
 
   const nextReviewBtn = document.querySelector(".nextReview");
 
   /*---------------------POST--------------------*/
   nextReviewBtn.addEventListener("click", (e) => {
     function post(orderQuantity) {
-      //const data = [];
+      /* let orders = [
+        {
+          name: "El Hefe",
+          amount: "1",
+        },
+      ]; */
       const postData = JSON.stringify(orderQuantity);
       fetch(urlApi, {
         method: "post",
@@ -182,7 +157,7 @@ function postOrder(orderQuantity) {
         .then((res) => res.json(res))
         .then((data) => console.log(data));
     }
-   post();
+    post();
   });
 }
 
@@ -230,7 +205,6 @@ function filterIPA() {
   let ipaBeers = allBeers.filter(function (IPA) {
     return IPA.category == "IPA";
   });
-  //console.log(ipaBeers)
   displayBeer(ipaBeers);
 }
 

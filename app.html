@@ -36,7 +36,8 @@
             Belgian Specialty Ale
           </li>
           <li
-            cla ss="filter"
+            cla
+            ss="filter"
             data-action="filter"
             data-filter="California Common"
           >
@@ -64,51 +65,41 @@
       </div>
     </section>
 
-    <!------------------------------------------------------SHOW BEERS-------------------------------------------------->
+    <!------------------------------SHOW BEERS----------------------------->
     <section id="beerArea"></section>
 
     <template>
-    
-
-        <article id="beerList">
+      <article id="beerList">
         <img class="logo" src="" alt="beerLogo" />
         <h2 class="name">Name</h2>
         <h2 class="category">Category</h2>
-        <p class="alcohol">ABV</p>
-        
-          <form action="" method="">
-            
-            
-            <label for="quantity"></label>
-            <button class="minus">–</button>
-              <input 
-              type="number"
-              id="quantity"
-              name="quantity"
-              min="1"
-              max="5"
-              value="0"
-              />
-            <button class="plus">+</button>
-            <input type="submit" value="Add" class="formSubmit">
-            
-          </form>
-        
-
         <div class="showMoreButton">
           Tap Me!
           <img class="showMore" src="" alt="glassType" />
         </div>
-          <div class="dropdown">
-            <p class="aroma"></p>
-            <p class="appearance"></p>
-            <p class="flavor"></p>
-            <p class="mouthfeel"></p>             
-            <p class="overallImpression"></p>
-          </div>
+        <div class="dropdown">
+          <p class="aroma"></p>
+          <p class="appearance"></p>
+          <p class="flavor"></p>
+          <p class="mouthfeel"></p>
+          <p class="overallImpression"></p>
+        </div>
+        <p class="alcohol">ABV</p>
 
-
-
+        <form class="appForm" action="" method="">
+          <label for="quantity"></label>
+          <button class="minus">–</button>
+          <input
+            type="number"
+            id="quantity"
+            name="quantity"
+            min="1"
+            max="5"
+            value="0"
+          />
+          <button class="plus">+</button>
+          <input type="submit" value="Add" class="appFormSubmit" />
+        </form>
       </article>
     </template>
 
