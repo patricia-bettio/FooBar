@@ -4,6 +4,9 @@
 //-----formatted time-----//
 import { urlApi, dateFormatter } from "./modules/extra";
 
+//-----------------------------------GLOBAL--------------------------------------//
+/*Avatar*/
+let randomAvatar = ["/images/avatar/avatar1.png", "/images/avatar/avatar2.png", "/images/avatar/avatar3.png", "/images/avatar/avatar4.png", "/images/avatar/avatar5.png", "/images/avatar/avatar6.png"]
 //-----------------------------------INITIALIZE--------------------------------------//
 document.addEventListener("DOMContentLoaded", init);
 
@@ -46,13 +49,10 @@ function updateData(data) {
 
 //---------------------------------NEXT IN LINE--------------------------------------//
 function queueUnit(queue) {
-  //console.log({ queue });
- const templateQueue = document.querySelector("#queueTemplate").content;
+  console.log({ queue });
+  const templateQueue = document.querySelector("#queueTemplate").content;
   const queueArea = document.querySelector("#queueUnit");
  
-
-console.log(queue.id)
-
   queueArea.innerHTML = "";
   
   queue.forEach((queue) => {
@@ -73,6 +73,23 @@ console.log(queue.id)
     cloneBartender.querySelector("p.startTime").textContent = oneQueue.startTime;
     cloneBartender.querySelector("p.order").textContent = oneQueue.order; */
       //-----append-----//
+  
+
+      //AVATAR *random - will change every 5 sec
+      console.log(randomAvatar)
+      console.log(cloneQueue.querySelector(".avatar").src)
+      let numberImg = Math.floor(Math.random()*randomAvatar.length);
+      let displayedAvatar = randomAvatar[numberImg];
+      cloneQueue.querySelector(".avatar").src = displayedAvatar;
+      //IMAGES
+      const queueFormat = queue.order;
+      queueFormat.forEach((e)=>{
+      let image = new Image()
+      image.src =  `/images/circle_logo/${e.toLowerCase().split(" ")[0]}_circle.png`;
+      cloneQueue.querySelector(".queueLogo").appendChild(image);
+ 
+   })
+
       
     queueArea.appendChild(cloneQueue);
   });
@@ -204,7 +221,7 @@ function showTapsData(taps) {
 
 //---------------------------------SERVING NEXT--------------------------------------//
 function servingUnit(serving) {
-  console.log(serving);
+  //console.log(serving);
 
   const templateServing = document.querySelector("#servingTemplate").content;
   const servingArea = document.querySelector("#servingUnit");

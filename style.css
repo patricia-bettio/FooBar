@@ -125,7 +125,17 @@
 }
 
 /*DASHBOARD*/
+/*QUEUE*/
+.queueLogo img {
+  height: 60px;
+  width: auto;
+}
 
+.avatar {
+  height: 100px;
+  width: auto;
+}
+/*SERVING*/
 .servingBeerGlass img{
   height: 100px;
   width: auto;
