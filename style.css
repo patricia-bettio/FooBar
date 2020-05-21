@@ -132,12 +132,12 @@
 /*DASHBOARD*/
 /*QUEUE*/
 .queueLogo img {
-  height: 60px;
+  height: 100px;
   width: auto;
 }
 
 .avatar {
-  height: 100px;
+  height: 60px;
   width: auto;
 }
 /*SERVING*/
@@ -145,7 +145,13 @@
   height: 100px;
   width: auto;
 }
+/*TAPS*/
+.bulletUse{
 
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
 /*STORAGE*/
 
 .kegImage {
