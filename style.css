@@ -51,6 +51,11 @@
   text-align: center;
 }
 
+#storageUnit {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+}
+
 /*APP PAGE*/
 
 /*dropdown*/
@@ -141,6 +146,12 @@
   width: auto;
 }
 
+/*STORAGE*/
+
+.kegImage {
+  height: 100px;
+  width: auto;
+}
 /*-----------------------------------------------------------RESPONSIVE---------------------------------------------------------------------------*/
 
 /*----------- tablet view -----------*/
@@ -339,6 +350,7 @@ input#quantity {
 /*----------- mobile view -----------*/
 @media screen and (max-width: 420px) {
   /*------- MOBILE BEER LIST -------*/
+
   #beerList h2,
   #reviewOrderList h2 {
     display: inline-flex;
@@ -485,6 +497,11 @@ input#quantity {
     visibility: hidden;
   }
   /*---------- MOBILE DASHBOARD ---------*/
+  .headerDashboard {
+    height: auto;
+    width: 100%;
+  }
+
   #dashboard h1 {
     font-family: var(--subtitle-font);
     font-size: 20px;
@@ -519,5 +536,12 @@ input#quantity {
     width: 100px;
     height: 100px;
     border-radius: 50%;
+  }
+}
+
+/*hide mobile image for devices bigger than a tablet*/
+@media screen and (min-width: 700px) {
+  .headerDashboard{
+    display: none;
   }
 }

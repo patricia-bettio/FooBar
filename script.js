@@ -7,6 +7,8 @@ import { urlApi, dateFormatter } from "./modules/extra";
 //-----------------------------------GLOBAL--------------------------------------//
 /*Avatar*/
 let randomAvatar = ["/images/avatar/avatar1.png", "/images/avatar/avatar2.png", "/images/avatar/avatar3.png", "/images/avatar/avatar4.png", "/images/avatar/avatar5.png", "/images/avatar/avatar6.png"]
+let topFive;
+let sortStorage;
 //-----------------------------------INITIALIZE--------------------------------------//
 document.addEventListener("DOMContentLoaded", init);
 
@@ -26,7 +28,7 @@ function fetchData() {
 function showData(data) {
   queueUnit(data.queue);
   bartendersUnit(data.bartenders);
-  storageUnit(data.storage);
+  storageUnit(data.storage.sort((a, b) => (a.amount > b.amount ? 1 : -1)))
   tapsUnit(data.taps);
   servingUnit(data.serving);
 }
@@ -42,14 +44,14 @@ function fetchDataInterval() {
 function updateData(data) {
   //updatedQueueUnit(data.queue);
   updatedBartendersUnit(data.bartenders);
-  updatedStorageUnit(data.storage);
+  updatedStorageUnit(data.storage.sort((a, b) => (a.amount > b.amount ? 1 : -1)));
   updatedTapsUnit(data.taps);
   //updatedServingUnit(data.serving);
 }
 
 //---------------------------------NEXT IN LINE--------------------------------------//
 function queueUnit(queue) {
-  console.log({ queue });
+  //console.log({ queue });
   const templateQueue = document.querySelector("#queueTemplate").content;
   const queueArea = document.querySelector("#queueUnit");
  
@@ -76,8 +78,6 @@ function queueUnit(queue) {
   
 
       //AVATAR *random - will change every 5 sec
-      console.log(randomAvatar)
-      console.log(cloneQueue.querySelector(".avatar").src)
       let numberImg = Math.floor(Math.random()*randomAvatar.length);
       let displayedAvatar = randomAvatar[numberImg];
       cloneQueue.querySelector(".avatar").src = displayedAvatar;
@@ -163,16 +163,22 @@ function updatedBartendersUnit(bartenders) {
 
 //-----------------------------------STORAGE--------------------------------------//
 function storageUnit(storage) {
-  //console.log(storage);
+  //top5
+  //console.log(storage.slice(0,5))
+  //display
   const templateStorage = document.querySelector("#storageTemplate").content;
   const storageArea = document.querySelector("#storageUnit");
-
+  //clear
   storageArea.innerHTML = "";
+  //template
   storage.forEach((oneKeg) => {
     const cloneStorage = templateStorage.cloneNode(true);
-
-    /* cloneStorage.querySelector("p.name").textContent = oneKeg.name; */
-
+    //elements
+    cloneStorage.querySelector("p.name").textContent = oneKeg.name;
+    cloneStorage.querySelector("p.amount").textContent = oneKeg.amount;
+    //IMAGE
+    let kegFormat = oneKeg.name;
+    cloneStorage.querySelector(".kegImage").src =  `/svg/bottles/${kegFormat.toLowerCase().split(" ")[0]}_bottle.svg`;
     //-----append-----//
     storageArea.appendChild(cloneStorage);
   });
@@ -180,11 +186,13 @@ function storageUnit(storage) {
 }
 
 function updatedStorageUnit(storage) {
+  //display
   document.querySelectorAll("#storageUnit article").forEach((oneKeg, index) => {
     oneKeg.querySelector("p.name").textContent = storage[index].name;
     oneKeg.querySelector("p.amount").textContent = storage[index].amount;
-    //sort by most to least popular
-    /* storage.sort((a, b) => (a.amount > b.amount ? 1 : -1)); */
+    //IMAGE
+    let kegFormat = storage[index].name;
+    oneKeg.querySelector(".kegImage").src =  `/svg/bottles/${kegFormat.toLowerCase().split(" ")[0]}_bottle.svg`;
   });
 }
 
@@ -265,10 +273,7 @@ function updatedServingUnit(serving) {
 
     const orderFormat = oneCustomer.order;
     orderFormat.forEach((e)=>{
-    console.log(e)
     let image = new Image()
-    console.log(image)
-    console.log(image.src)
     image.src =  `/svg/logoGlasses/${e.toLowerCase().split(" ")[0]}_glass_logo.svg`;
   
  })
