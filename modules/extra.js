@@ -13,6 +13,7 @@ export function dateFormatter(timestamp) {
   let seconds = "0" + date.getSeconds();
   let newTimeFormatted =
     hours + ":" + minutes.substr(-2) + ":" + seconds.substr(-2);
-  console.log(newTimeFormatted)
+  //console.log(newTimeFormatted)
   return newTimeFormatted;
 };
+

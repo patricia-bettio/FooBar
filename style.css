@@ -130,7 +130,24 @@
 }
 
 /*DASHBOARD*/
+/*background*/
+#dashboard {
+
+/*   background-image: url("static/svg/foobar.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin: 0 200px;
+   */
+}
+.desktopBackground{
+  width: 100%;
+  height: 100%;
+}
 /*QUEUE*/
+#queueUnit {
+  display: flex;
+  background-color: white;
+}
 .queueLogo img {
   height: 100px;
   width: auto;
@@ -147,7 +164,6 @@
 }
 /*TAPS*/
 .bulletUse{
-
   width: 10px;
   height: 10px;
   border-radius: 50%;
@@ -503,11 +519,23 @@ input#quantity {
     visibility: hidden;
   }
   /*---------- MOBILE DASHBOARD ---------*/
+  .desktopBackground {
+    display: none;
+  }
   .headerDashboard {
     height: auto;
     width: 100%;
   }
 
+  .fooBarLogo {
+    height: 100px;
+    width: auto;
+    position: absolute;
+  }
+
+  #dashboard .title{
+   
+  }
   #dashboard h1 {
     font-family: var(--subtitle-font);
     font-size: 20px;
