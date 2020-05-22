@@ -2,30 +2,32 @@
 
 //-----------------------------------IMPORT--------------------------------------//
 //-----formatted time-----//
-import { urlApi  } from "./modules/extra";
-import {dateFormatter} from "./modules/extra";
-
+import { urlApi } from "./modules/extra";
+import { dateFormatter } from "./modules/extra";
 
 //-----------------------------------GLOBAL--------------------------------------//
 /*Avatar*/
-let randomAvatar = ["/images/avatar/avatar1.png", "/images/avatar/avatar2.png", "/images/avatar/avatar3.png", "/images/avatar/avatar4.png", "/images/avatar/avatar5.png", "/images/avatar/avatar6.png"]
+let randomAvatar = [
+  "/images/avatar/avatar1.png",
+  "/images/avatar/avatar2.png",
+  "/images/avatar/avatar3.png",
+  "/images/avatar/avatar4.png",
+  "/images/avatar/avatar5.png",
+  "/images/avatar/avatar6.png",
+];
 let topFive;
 let sortStorage;
-
 
 //-----------------------------------INITIALIZE--------------------------------------//
 document.addEventListener("DOMContentLoaded", init);
 
 function init() {
-
   fetchData();
 
+  /* displayDesktopScene(); */
+
   setTimeToClose();
- 
-
 }
-
-
 
 function fetchData() {
   fetch(urlApi, {
@@ -34,14 +36,14 @@ function fetchData() {
     .then((e) => e.json())
     .then((data) => {
       showData(data);
-        setInterval(fetchDataInterval, 4000);
+      setInterval(fetchDataInterval, 4000);
     });
 }
 function showData(data) {
-  setCurrentTime(data.timestamp)
+  setCurrentTime(data.timestamp);
   queueUnit(data.queue);
   bartendersUnit(data.bartenders);
-  storageUnit(data.storage.sort((a, b) => (a.amount > b.amount ? 1 : -1)))
+  storageUnit(data.storage.sort((a, b) => (a.amount > b.amount ? 1 : -1)));
   tapsUnit(data.taps);
   servingUnit(data.serving);
 }
@@ -55,10 +57,12 @@ function fetchDataInterval() {
     });
 }
 function updateData(data) {
-  setCurrentTime(data.timestamp)
+  setCurrentTime(data.timestamp);
   updatedQueueUnit(data.queue);
   updatedBartendersUnit(data.bartenders);
-  updatedStorageUnit(data.storage.sort((a, b) => (a.amount > b.amount ? 1 : -1)));
+  updatedStorageUnit(
+    data.storage.sort((a, b) => (a.amount > b.amount ? 1 : -1))
+  );
   updatedTapsUnit(data.taps);
   updatedServingUnit(data.serving);
 }
@@ -71,60 +75,55 @@ function queueUnit(queue) {
   //clear
   queueArea.innerHTML = "";
 
-  
-
   queue.forEach((queue) => {
-
     const cloneQueue = templateQueue.cloneNode(true);
 
     queueArea.appendChild(cloneQueue);
   });
-  updatedQueueUnit(queue); 
+  updatedQueueUnit(queue);
 }
 
 function updatedQueueUnit(queue) {
   //console.log({ queue });
 
-  
-  document.querySelectorAll("#queueUnit article").forEach((oneQueue, index)=>{
+  document.querySelectorAll("#queueUnit article").forEach((oneQueue, index) => {
     //oneQueue.querySelector(".queueLogo").innerHTML = "";
     //oneQueue.querySelector("p.id").innerHTML = "";
-    console.log(oneQueue.querySelector(".queueLogo"))
-    oneQueue.querySelector(".queueLogo").innerHTML = ""
-    oneQueue.querySelector("p.id").innerHTML = ""
-    oneQueue.querySelector("p.startTime").innerHTML = ""
-  
-    
-   
+    console.log(oneQueue.querySelector(".queueLogo"));
+    oneQueue.querySelector(".queueLogo").innerHTML = "";
+    oneQueue.querySelector("p.id").innerHTML = "";
+    oneQueue.querySelector("p.startTime").innerHTML = "";
+
     //elements
     oneQueue.querySelector("p.id").textContent = `order #${queue[index].id}`;
     //oneQueue.querySelector("p.order").textContent = queue[index].order;
-    oneQueue.querySelector("p.startTime").textContent = dateFormatter(queue[index].startTime);
+    oneQueue.querySelector("p.startTime").textContent = dateFormatter(
+      queue[index].startTime
+    );
 
-   /*     //AVATAR *random - will change every 5 sec
+    /*     //AVATAR *random - will change every 5 sec
        let numberImg = Math.floor(Math.random()*randomAvatar.length);
        let displayedAvatar = randomAvatar[numberImg];
        oneQueue.querySelector(".avatar").src = displayedAvatar; */
 
     //IMAGES
-  
-    const queueFormat = queue[index].order;
-      queueFormat.forEach((e)=>{
-        
-      let image = new Image()
-      image.src =  `/images/circle_logo/${e.toLowerCase().split(" ")[0]}_circle.png`;
-      oneQueue.querySelector(".queueLogo").appendChild(image);
- 
-   })
-    
-  })
 
+    const queueFormat = queue[index].order;
+    queueFormat.forEach((e) => {
+      let image = new Image();
+      image.src = `/images/circle_logo/${
+        e.toLowerCase().split(" ")[0]
+      }_circle.png`;
+      oneQueue.querySelector(".queueLogo").appendChild(image);
+    });
+  });
 }
 
 //-----------------------------------BARTENDERS--------------------------------------//
 function bartendersUnit(bartenders) {
   //console.log({ bartenders });
-  const templateBartenders = document.querySelector("#bartendersTemplate").content;
+  const templateBartenders = document.querySelector("#bartendersTemplate")
+    .content;
   const bartendersArea = document.querySelector("#bartendersUnit");
 
   bartendersArea.innerHTML = "";
@@ -148,12 +147,17 @@ function bartendersUnit(bartenders) {
 
 function updatedBartendersUnit(bartenders) {
   //console.log({ bartenders });
-  document.querySelectorAll("#bartendersUnit article").forEach((oneBartender, index) => {
-    
-      oneBartender.querySelector("p.status").textContent = bartenders[index].status;
-      oneBartender.querySelector("p.servingCustomer").textContent = bartenders[index].servingCustomer;
-      oneBartender.querySelector("p.usingTap").textContent = bartenders[index].usingTap;
-      oneBartender.querySelector("p.statusDetail").textContent = bartenders[index].statusDetail;
+  document
+    .querySelectorAll("#bartendersUnit article")
+    .forEach((oneBartender, index) => {
+      oneBartender.querySelector("p.status").textContent =
+        bartenders[index].status;
+      oneBartender.querySelector("p.servingCustomer").textContent =
+        bartenders[index].servingCustomer;
+      oneBartender.querySelector("p.usingTap").textContent =
+        bartenders[index].usingTap;
+      oneBartender.querySelector("p.statusDetail").textContent =
+        bartenders[index].statusDetail;
     });
 }
 
@@ -180,10 +184,14 @@ function updatedStorageUnit(storage) {
   //display
   document.querySelectorAll("#storageUnit article").forEach((oneKeg, index) => {
     oneKeg.querySelector("p.name").textContent = storage[index].name;
-    oneKeg.querySelector("p.amount").textContent = `kegs:${storage[index].amount}`;
+    oneKeg.querySelector(
+      "p.amount"
+    ).textContent = `kegs:${storage[index].amount}`;
     //IMAGE
     let kegFormat = storage[index].name;
-    oneKeg.querySelector(".kegImage").src =  `/svg/bottles/${kegFormat.toLowerCase().split(" ")[0]}_bottle.svg`;
+    oneKeg.querySelector(".kegImage").src = `/svg/bottles/${
+      kegFormat.toLowerCase().split(" ")[0]
+    }_bottle.svg`;
   });
 }
 
@@ -210,18 +218,17 @@ function updatedTapsUnit(taps) {
     oneTap.querySelector("p.level").textContent = taps[index].level;
     //IMAGE
     let tapFormat = taps[index].beer;
-    oneTap.querySelector(".tapImage").src =  `/svg/taps/${tapFormat.toLowerCase().split(" ")[0]}_tap.svg`;
+    oneTap.querySelector(".tapImage").src = `/svg/taps/${
+      tapFormat.toLowerCase().split(" ")[0]
+    }_tap.svg`;
     //USE
-    if (taps[index].inUse === false){
-    oneTap.querySelector(".bulletUse").style.background = "red";
+    if (taps[index].inUse === false) {
+      oneTap.querySelector(".bulletUse").style.background = "red";
     } else {
-    oneTap.querySelector(".bulletUse").style.background = "green";
+      oneTap.querySelector(".bulletUse").style.background = "green";
     }
-
-
   });
 }
-
 
 //---------------------------------SERVING NEXT--------------------------------------//
 function servingUnit(serving) {
@@ -239,48 +246,64 @@ function servingUnit(serving) {
 }
 
 function updatedServingUnit(serving) {
-
-  document.querySelectorAll("#servingUnit article").forEach((oneServing, index) => {
-    //clear images
-    oneServing.querySelector(".servingBeerGlass").innerHTML = "";
-    //elements
-    oneServing.querySelector("p.id").textContent = `order #${serving[index].id}`;
-    //build images
-    const orderFormat = serving[index].order;
-        orderFormat.forEach((e)=>{
-        let image = new Image()
-        image.src =  `/svg/logoGlasses/${e.toLowerCase().split(" ")[0]}_glass_logo.svg`;
+  document
+    .querySelectorAll("#servingUnit article")
+    .forEach((oneServing, index) => {
+      //clear images
+      oneServing.querySelector(".servingBeerGlass").innerHTML = "";
+      //elements
+      oneServing.querySelector(
+        "p.id"
+      ).textContent = `order #${serving[index].id}`;
+      //build images
+      const orderFormat = serving[index].order;
+      orderFormat.forEach((e) => {
+        let image = new Image();
+        image.src = `/svg/logoGlasses/${
+          e.toLowerCase().split(" ")[0]
+        }_glass_logo.svg`;
         oneServing.querySelector(".servingBeerGlass").appendChild(image);
-        })
-
-
-  })
+      });
+    });
 }
 
+// ----------------------- dashboard desktop query ---------------------- //
+/* function displayDesktopScene() {
+  // media query event handler
+  if (matchMedia) {
+    const desktop = window.matchMedia("(min-width: 1200px)");
+    desktop.addListener(widthChange);
+    widthChange(desktop);
+  }
+}
 
-// ------------timer---------- //
-function setCurrentTime(localTime){
+function widthChange(desktop) {
+  const fooBar = desktop.matches
+    ? document.body.classList.add("match-media-1-component-css")
+    : document.body.classList.remove("match-media-1-component-css");
+} */
+
+// ------------ timer ---------- //
+function setCurrentTime(localTime) {
   document.querySelector("#localTime").innerHTML = dateFormatter(localTime);
 }
-function setTimeToClose(){
-  
-const timeSpan = document.getElementById("timer");
-const mins = 60;
-const now = Date.now();
-let date = new Date();
-// Set deadline hours, minutes, seconds, milliseconds
-date.setHours(22, 0, 0, 0);
-let deadline = date.getTime();
+function setTimeToClose() {
+  const timeSpan = document.getElementById("timer");
+  const mins = 60;
+  const now = Date.now();
+  let date = new Date();
+  // Set deadline hours, minutes, seconds, milliseconds
+  date.setHours(22, 0, 0, 0);
+  let deadline = date.getTime();
 
-setInterval(() => {
-  let currentTime = new Date().getTime();
-  let distance = deadline - currentTime;
-  let hours = Math.floor((distance % (1000 * 60 * 3600)) / (1000 * 3600));
-  let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+  setInterval(() => {
+    let currentTime = new Date().getTime();
+    let distance = deadline - currentTime;
+    let hours = Math.floor((distance % (1000 * 60 * 3600)) / (1000 * 3600));
+    let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    let seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-  timeSpan.innerHTML =
-    "Time until closing: " + hours + ":" + minutes + ":" + seconds;
-}, 50);
-
+    timeSpan.innerHTML =
+      "Time until closing: " + hours + ":" + minutes + ":" + seconds;
+  }, 50);
 }
