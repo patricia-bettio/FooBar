@@ -262,8 +262,8 @@ function servingUnit(serving) {
   serving.forEach((oneCustomer) => {
     const cloneServing = templateServing.cloneNode(true);
 
-    cloneServing.querySelector("p.id").textContent = `Order # ${oneCustomer.id}`;
-    cloneServing.querySelector("p.order").textContent = oneCustomer.order;
+    cloneServing.querySelector("p.id").textContent = `Order #${oneCustomer.id}`;
+    //cloneServing.querySelector("p.order").textContent = oneCustomer.order;
  
     const orderFormat = oneCustomer.order;
       orderFormat.forEach((e)=>{
@@ -289,7 +289,7 @@ function updatedServingUnit(serving) {
 
     /* document.querySelectorAll("#servingUnit article").forEach((oneCustomer) => { */
     document.querySelector("p.id").textContent = `Order # ${oneCustomer.id}`;
-    document.querySelector("p.order").textContent = oneCustomer.order;
+    //document.querySelector("p.order").textContent = oneCustomer.order;
     //document.querySelector("p.startTime").textContent = oneCustomer.startTime;
 
     const orderFormat = oneCustomer.order;

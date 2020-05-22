@@ -292,7 +292,7 @@ li.sortBy {
   margin-right: 20px;
 }
 
-/*---------------------------- RESPONSIVE --------------------------*/
+/*---------------------------- DASHBOARD --------------------------*/
 
 /*DASHBOARD*/
 /*background*/
@@ -307,9 +307,16 @@ li.sortBy {
   height: 100%;
 }
 /*QUEUE*/
+#unitTitle{
+  font-family: var(--beer-font);
+}
 #queueUnit {
   display: flex;
   background-color: white;
+}
+
+#queueUnit p {
+  font-family: var(--subtitle-font);
 }
 .queueLogo img {
   height: 100px;
@@ -761,11 +768,12 @@ li.sortBy {
   /* #dashboard .title {
   } */
   #dashboard h1 {
-    font-family: var(--subtitle-font);
     font-size: 20px;
+    padding: 16px;
   }
   #dashboard p {
-    font-size: 18px;
+    font-size: 16px;
+    margin-top: 0;
   }
   #dashboard #timer {
     display: flex;
@@ -774,26 +782,69 @@ li.sortBy {
     font-size: 12px;
   }
   #dashboard article {
-    display: block;
+    text-align: center;
   }
-  #dashboard #servingUnit {
-    display: block;
-    width: 300px;
-    text-align: left;
-  }
-  #dashboard #servingUnit article {
-    border-bottom: 1px solid;
-  }
+
+  /*BARTENDER*/
   #dashboard #bartendersUnit {
-    width: 360px;
-  }
-  #dashboard #tapsUnit {
-    width: 370px;
+    width: 100%;
   }
   .bartender {
     width: 100px;
     height: 100px;
     border-radius: 50%;
+  }
+  /*TAPS*/
+  #dashboard #tapsUnit {
+    width: 370px;
+  }
+  /*QUEUE*/
+  #nextInLine, #bartenders, #servingNext, #mostWanted, #tapsDashboard {
+    border-radius: 15px;
+    box-shadow: 1px 1px 7px 2px #ccc;
+   
+  }
+  .avatar {
+    height: 40px;
+    justify-self: center;
+  }
+  .queueLogo{
+    display: grid;
+    justify-items: center;
+  }
+  .queueLogo img {
+    height: 65px;
+  }
+  /*SERVING*/
+  #servingUnit article {
+    display: inline-grid;
+    grid-template-columns: 50px 1fr;
+  }
+  .servingBeerGlass{
+    text-align-last: start;
+  }
+  #dashboard #servingUnit {
+    width: 300px;
+    text-align: left;
+  }
+
+  #servingUnit {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  #servingUnit .order {
+    display: none;
+  }
+  #dashboard #servingUnit article {
+    padding: 0.5em;
+  }
+
+  .servingBeerGlass img {
+    margin-right: 5px;
+  }
+  /*STORAGE*/
+  #storageUnit {
+    grid-template-columns: repeat(4, 1fr);
   }
 }
 
