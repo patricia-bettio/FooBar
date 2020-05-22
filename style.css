@@ -10,11 +10,17 @@
   font-weight: 100;
   font-style: normal;
 }
+@font-face {
+  font-family: "Lemon/Milk light";
+  src: url("fonts/LemonMilklight.otf"), format("truetype");
+  font-weight: 100;
+  font-style: normal;
+}
 
 :root {
   --form-font: "Monaco", sans-serif;
   --beer-font: "College Block";
-  --subtitle-font: "Lemon/Milk";
+  --subtitle-font: "Lemon/Milk light";
   --category-color: #b79027;
 }
 
@@ -69,7 +75,7 @@ h2.subtitle {
   display: flex;
   align-self: center;
   font-size: 18px;
-  font-family: "Lemon/Milk";
+  font-family: var(--subtitle-font);
   border-radius: 15px;
   margin: 50px 50px 25px 50px;
   padding-top: 20px;
@@ -221,7 +227,7 @@ input#quantity {
 .filterButton,
 .sortButton,
 .resetFilter {
-  font-family: "Lemon/Milk";
+  font-family: var(--subtitle-font);
   padding: 20px;
   border: 1px solid inherit;
 }
@@ -352,7 +358,7 @@ li.sortBy {
   #beerApp {
     background-image: url(static/images/beerHeader_final.png);
     background-repeat: no-repeat;
-    background-size: contain;
+    background-size: cover;
   }
   #beerList {
     border-radius: 15px;
@@ -378,7 +384,7 @@ li.sortBy {
     margin-left: 30px;
   }
   h2.subtitle {
-    font-size: 22px;
+    font-size: 34px;
     padding-top: 220px;
     padding-bottom: 30px;
   }
@@ -484,6 +490,7 @@ li.sortBy {
     justify-content: center;
     display: grid;
     padding: 60px;
+    background: white;
   }
   .cc-expiry-input {
     display: inline-flex;
@@ -567,7 +574,7 @@ li.sortBy {
     display: flex;
     align-self: center;
     font-size: 18px;
-    font-family: "Lemon/Milk";
+    font-family: var(--subtitle-font);
     border-radius: 15px;
     padding: 120px 0 10px 0;
   }
@@ -747,15 +754,6 @@ li.sortBy {
     background-size: contain;
     background-repeat: no-repeat;
   }
-  /* .headerDashboard {
-    height: auto;
-    width: 100%;
-  }
-  .fooBarLogo {
-    height: 100px;
-    width: auto;
-    position: absolute;
-  } */
 
   /* #dashboard .title {
   } */
@@ -770,7 +768,7 @@ li.sortBy {
   #dashboard #localTime {
     display: flex;
     justify-content: center;
-    font-family: "Lemon/Milk";
+    font-family: var(--subtitle-font);
     font-size: 16px;
     padding-bottom: 5px;
   }
