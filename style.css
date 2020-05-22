@@ -41,7 +41,7 @@
 
 /*----------- DESKTOP BEER LIST -----------*/
 #beerApp {
-  background-image: url(static/images/beerHeader.png);
+  background-image: url(static/images/beerHeader_final.png);
   background-repeat: no-repeat;
   background-size: contain;
 }
@@ -307,7 +307,7 @@ li.sortBy {
   height: 100%;
 }
 /*QUEUE*/
-#unitTitle{
+#unitTitle {
   font-family: var(--beer-font);
 }
 #queueUnit {
@@ -798,24 +798,27 @@ li.sortBy {
   #dashboard #tapsUnit {
     width: 100%;
   }
-  .tapImage{
+  .tapImage {
     height: fit-content;
     width: auto;
   }
-  .bulletUse{
+  .bulletUse {
     display: inline-block;
   }
   /*QUEUE*/
-  #nextInLine, #bartenders, #servingNext, #mostWanted, #tapsDashboard {
+  #nextInLine,
+  #bartenders,
+  #servingNext,
+  #mostWanted,
+  #tapsDashboard {
     border-radius: 15px;
     box-shadow: 1px 1px 7px 2px #ccc;
-   
   }
   .avatar {
     height: 40px;
     justify-self: center;
   }
-  .queueLogo{
+  .queueLogo {
     display: grid;
     justify-items: center;
   }
@@ -827,7 +830,7 @@ li.sortBy {
     display: inline-grid;
     grid-template-columns: 50px 1fr;
   }
-  .servingBeerGlass{
+  .servingBeerGlass {
     text-align-last: start;
   }
   #dashboard #servingUnit {
