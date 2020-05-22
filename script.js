@@ -70,8 +70,11 @@ function queueUnit(queue) {
   const queueArea = document.querySelector("#queueUnit");
   //clear
   queueArea.innerHTML = "";
+
+  
+
   queue.forEach((queue) => {
-   
+
     const cloneQueue = templateQueue.cloneNode(true);
 
     queueArea.appendChild(cloneQueue);
@@ -81,24 +84,33 @@ function queueUnit(queue) {
 
 function updatedQueueUnit(queue) {
   //console.log({ queue });
- 
+
+  
   document.querySelectorAll("#queueUnit article").forEach((oneQueue, index)=>{
-    //clear
-    oneQueue.querySelector(".avatar").src = "";
-    oneQueue.querySelector(".queueLogo").innerHTML = "";
+    //oneQueue.querySelector(".queueLogo").innerHTML = "";
+    //oneQueue.querySelector("p.id").innerHTML = "";
+    console.log(oneQueue.querySelector(".queueLogo"))
+    oneQueue.querySelector(".queueLogo").innerHTML = ""
+    oneQueue.querySelector("p.id").innerHTML = ""
+    oneQueue.querySelector("p.startTime").innerHTML = ""
+  
+    
+   
     //elements
     oneQueue.querySelector("p.id").textContent = `order #${queue[index].id}`;
-    oneQueue.querySelector("p.startTime").textContent = queue[index].startTime;
     //oneQueue.querySelector("p.order").textContent = queue[index].order;
-       //AVATAR *random - will change every 5 sec
+    oneQueue.querySelector("p.startTime").textContent = dateFormatter(queue[index].startTime);
+
+   /*     //AVATAR *random - will change every 5 sec
        let numberImg = Math.floor(Math.random()*randomAvatar.length);
        let displayedAvatar = randomAvatar[numberImg];
-       oneQueue.querySelector(".avatar").src = displayedAvatar;
-    oneQueue.querySelector("p.startTime").textContent = `Placed at: ${dateFormatter(queue[index].startTime)}`;
+       oneQueue.querySelector(".avatar").src = displayedAvatar; */
 
     //IMAGES
+  
     const queueFormat = queue[index].order;
       queueFormat.forEach((e)=>{
+        
       let image = new Image()
       image.src =  `/images/circle_logo/${e.toLowerCase().split(" ")[0]}_circle.png`;
       oneQueue.querySelector(".queueLogo").appendChild(image);
