@@ -33,7 +33,7 @@ function fetchData() {
     .then((e) => e.json())
     .then((data) => {
       showData(data);
-        setInterval(fetchDataInterval, 1000);
+        setInterval(fetchDataInterval, 4000);
     });
 }
 function showData(data) {
@@ -59,7 +59,7 @@ function updateData(data) {
   updatedBartendersUnit(data.bartenders);
   updatedStorageUnit(data.storage.sort((a, b) => (a.amount > b.amount ? 1 : -1)));
   updatedTapsUnit(data.taps);
-  //updatedServingUnit(data.serving);
+  updatedServingUnit(data.serving);
 }
 
 //---------------------------------NEXT IN LINE--------------------------------------//
@@ -238,66 +238,41 @@ function updatedTapsUnit(taps) {
 
 
   });
-  showTapsData(taps);
 }
 
-function showTapsData(taps) {
-  /* if (taps.beer === "El Hefe") {
-    oneTap.querySelector("p.beer").classList.add(".elHefe");
-  } */
-}
 
 //---------------------------------SERVING NEXT--------------------------------------//
 function servingUnit(serving) {
-  //console.log(serving);
-
+  //clone
   const templateServing = document.querySelector("#servingTemplate").content;
   const servingArea = document.querySelector("#servingUnit");
-
-
+  //clear
   servingArea.innerHTML = "";
-
-
   serving.forEach((oneCustomer) => {
     const cloneServing = templateServing.cloneNode(true);
-
-    cloneServing.querySelector("p.id").textContent = `Order #${oneCustomer.id}`;
-    //cloneServing.querySelector("p.order").textContent = oneCustomer.order;
- 
-    const orderFormat = oneCustomer.order;
-      orderFormat.forEach((e)=>{
-      //console.log(e)
-      let image = new Image()
-      //console.log(image)
-      //console.log(image.src)
-      image.src =  `/svg/logoGlasses/${e.toLowerCase().split(" ")[0]}_glass_logo.svg`;
-      cloneServing.querySelector(".servingBeerGlass").appendChild(image);
-
-   })
-
-
     //--------append-------//
     servingArea.appendChild(cloneServing);
   });
-  //updatedServingUnit(serving);
+  updatedServingUnit(serving);
 }
 
 function updatedServingUnit(serving) {
-  serving.forEach((oneCustomer) => {
-    /* console.log({ oneCustomer }); */
 
-    /* document.querySelectorAll("#servingUnit article").forEach((oneCustomer) => { */
-    document.querySelector("p.id").textContent = `Order # ${oneCustomer.id}`;
-    //document.querySelector("p.order").textContent = oneCustomer.order;
-    //document.querySelector("p.startTime").textContent = oneCustomer.startTime;
+  document.querySelectorAll("#servingUnit article").forEach((oneServing, index) => {
+    //clear images
+    oneServing.querySelector(".servingBeerGlass").innerHTML = "";
+    //elements
+    oneServing.querySelector("p.id").textContent = `order #${serving[index].id}`;
+    //build images
+    const orderFormat = serving[index].order;
+        orderFormat.forEach((e)=>{
+        let image = new Image()
+        image.src =  `/svg/logoGlasses/${e.toLowerCase().split(" ")[0]}_glass_logo.svg`;
+        oneServing.querySelector(".servingBeerGlass").appendChild(image);
+        })
 
-    const orderFormat = oneCustomer.order;
-    orderFormat.forEach((e)=>{
-    let image = new Image()
-    image.src =  `/svg/logoGlasses/${e.toLowerCase().split(" ")[0]}_glass_logo.svg`;
-  
- })
-  });
+
+  })
 }
 
 
