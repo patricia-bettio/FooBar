@@ -1,32 +1,20 @@
 @font-face {
-  font-family: "Lemon/Milk";
-  src: url("fonts/LEMONMILK-Regular.otf"), format("truetype");
-  font-weight: normal;
-  font-style: normal;
-}
-@font-face {
-  font-family: "Lemon/Milk light";
-  src: url("fonts/LEMONMILK-Light.otf"), format("truetype");
-  font-weight: normal;
-  font-style: normal;
-}
-@font-face {
-  font-family: "Lemon/Milk bold";
-  src: url("fonts/LEMONMILK-Bold.otf"), format("truetype");
-  font-weight: normal;
-  font-style: normal;
-}
-@font-face {
   font-family: "College Block";
   src: url("fonts/CollegeBlock.otf"), format("truetype");
   font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Lemon/Milk";
+  src: url("fonts/LemonMilk.otf"), format("truetype");
+  font-weight: 100;
   font-style: normal;
 }
 
 :root {
   --form-font: "Monaco", sans-serif;
   --beer-font: "College Block";
-  --subtitle-font: "Lemon/Milk light";
+  --subtitle-font: "Lemon/Milk";
   --category-color: #b79027;
 }
 
@@ -51,12 +39,152 @@
   text-align: center;
 }
 
-#storageUnit {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
+/*----------- DESKTOP BEER LIST -----------*/
+#beerApp {
+  background-image: url(static/images/beerHeader.png);
+  background-repeat: no-repeat;
+  background-size: contain;
 }
-
-/*APP PAGE*/
+#beerList {
+  display: grid;
+  grid-template-columns: 0.9fr 0.3fr 1fr 1fr;
+  grid-template-areas: "buttons logo beer glass";
+  background-color: white;
+  width: 100%;
+}
+#beerList h2,
+#reviewOrderList h2 {
+  grid-area: beer;
+  font-size: 14px;
+  display: inline-flex;
+  text-transform: uppercase;
+  font-family: var(--beer-font);
+}
+#beerList p,
+#reviewOrderList p {
+  font-size: 10px;
+}
+h1.title {
+  font-size: 35px;
+}
+h2.subtitle {
+  background-image: url(static/images/bubbles.png);
+  display: flex;
+  align-self: center;
+  font-size: 18px;
+  font-family: "Lemon/Milk";
+  border-radius: 15px;
+  margin: 50px 50px 25px 50px;
+  padding-top: 20px;
+}
+.filterButton,
+.sortButton,
+.resetFilter {
+  background: white;
+  border-radius: 5px;
+}
+#filters,
+#sorting {
+  background: white;
+}
+h2.name {
+  grid-area: beer;
+  display: flex;
+  align-self: flex-start;
+  margin-left: 10px;
+}
+h2.category {
+  grid-area: beer;
+  display: flex;
+  align-self: center;
+  margin-left: 10px;
+}
+p.alcohol {
+  grid-area: beer;
+  display: flex;
+  align-self: flex-end;
+  margin-left: 10px;
+}
+img.logo {
+  grid-area: logo;
+  display: flex;
+  align-self: center;
+  justify-self: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+.appForm {
+  display: flex;
+  align-self: center;
+  padding: 5px;
+  margin-top: 20px;
+}
+input#quantity {
+  grid-area: buttons;
+  height: 10px;
+  width: 5px;
+  font-size: 14px;
+  display: flex;
+  justify-self: flex-start;
+  border: inherit;
+}
+.appFormSubmit {
+  display: buttons;
+  display: flex;
+  width: 50px;
+  height: 30px;
+  align-self: center;
+}
+.minus,
+.plus {
+  grid-area: buttons;
+  height: 20px;
+  width: 20px;
+  font-size: 60%;
+  margin-top: 5px;
+}
+/*PLUS AND MINUS*/
+/*https://codepen.io/Tanya_Rybachuk/pen/jyxzEp*/
+span {
+  cursor: pointer;
+}
+.number {
+  margin: 100px;
+}
+input#quantity {
+  height: 34px;
+  width: 100px;
+  text-align: center;
+  font-size: 26px;
+  border: 1px solid #ddd;
+  background-color: inherit;
+  border-radius: 4px;
+  display: inline-block;
+  vertical-align: middle;
+}
+/*-------------- increase/decrease buttons ---------*/
+.minus,
+.plus {
+  grid-area: buttons;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  border: none;
+  background: orange;
+  font-size: 100%;
+  text-align: center;
+  font-weight: 500;
+  color: rgb(255, 255, 255);
+  box-shadow: 0 1.5px 4px rgba(0, 0, 0, 0.4), 0 2.5px 6px rgba(0, 0, 0, 0.2);
+}
+.plus:hover,
+.minus:hover {
+  background: inherit;
+  border: 1px solid orange;
+  color: orange;
+  cursor: pointer;
+}
 
 /*dropdown*/
 .hide {
@@ -64,7 +192,6 @@
 }
 
 /*logo*/
-
 .logo {
   height: 100px;
   width: 100px;
@@ -78,13 +205,11 @@
   background-repeat: no-repeat;
   height: 100px;
 }
-
 .rotate {
   transform: rotate(180deg);
 }
 
 /*filter and sort section*/
-
 #filterAndSort {
   display: inline-grid;
   grid-auto-flow: column;
@@ -96,18 +221,35 @@
   list-style: none;
   cursor: pointer;
 }
+.filterButton,
+.sortButton,
+.resetFilter {
+  font-family: "Lemon/Milk";
+  padding: 20px;
+  border: 1px solid inherit;
+}
 .filter:hover {
   border-bottom: 2px solid rosybrown;
 }
-
 .filter {
   padding: 10px;
 }
 .showFilters {
   display: block;
 }
-/*sort*/
 
+/*sort*/
+#filters,
+#sorting {
+  background: inherit;
+}
+li.filter,
+li.sortBy {
+  border-bottom: white 4px solid;
+  margin: 5px;
+  font-family: var(--form-font);
+  font-size: 14px;
+}
 .sortOptions {
   display: none;
   list-style: none;
@@ -128,6 +270,29 @@
 .showSorting {
   display: block;
 }
+.showMoreButton {
+  grid-area: glass;
+  border-radius: 50%;
+  height: 25px;
+  width: 25px;
+  background-color: #d4bd7f;
+  color: white;
+  display: flex;
+  justify-self: flex-end;
+  align-self: center;
+  margin-right: 5px;
+}
+.showMore {
+  grid-area: glass;
+  display: flex;
+  justify-self: flex-end;
+  align-self: flex-end;
+  width: 60px;
+  height: 65px;
+  margin-right: 20px;
+}
+
+/*---------------------------- RESPONSIVE --------------------------*/
 
 /*DASHBOARD*/
 /*background*/
@@ -169,48 +334,99 @@
   border-radius: 50%;
 }
 /*STORAGE*/
-
+#storageUnit {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+}
 .kegImage {
   height: 100px;
   width: auto;
 }
 /*-----------------------------------------------------------RESPONSIVE---------------------------------------------------------------------------*/
 
-/*----------- tablet view -----------*/
-@media screen and (max-width: 1500px) {
-  /*---------- BEER LIST ----------*/
-  article#beerList {
-    padding: 30px;
+/*------------ tablet view ----------*/
+@media screen and (max-width: 1200px) {
+  /*-------- TABLET BEER LIST ------*/
+  #beerApp {
+    background-image: url(static/images/beerHeader.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+  #beerList {
     border-radius: 15px;
-    box-shadow: 3px 3px 5px 6px #ccc;
+    box-shadow: 1px 1px 7px 2px #ccc;
   }
   #beerList h2,
   #reviewOrderList h2 {
     font-family: var(--beer-font);
-    display: inline-flex;
+    margin-left: 30px;
+    font-size: 20px;
   }
   #beerList h2:last-of-type,
   #reviewOrderList h2:last-of-type {
     color: var(--category-color);
+    margin-left: 30px;
+    font-size: 20px;
   }
-  #beerList p {
+  #beerList p,
+  #reviewOrderList p {
     font-family: var(--form-font);
-    font-size: 14px;
+    font-size: 15px;
     color: grey;
+    margin-left: 30px;
   }
   h1.title {
     color: darkgrey;
     display: flex;
     justify-content: center;
-    font-size: 40px;
     font-family: var(--form-font);
+    font-size: 50px;
+    padding-top: 20px;
   }
   h2.subtitle {
+    font-size: 22px;
+    padding-top: 60px;
+    padding-bottom: 80px;
+  }
+  .filterButton,
+  .sortButton,
+  .resetFilter {
+    font-size: 20px;
+  }
+  img.logo {
+    width: 80px;
+    height: 80px;
+  }
+  .appForm {
+    margin: 25px 0;
+  }
+  input#quantity {
+    height: 15px;
+    width: 10px;
+    font-size: 18px;
     display: flex;
-    justify-content: center;
-    font-family: var(--subtitle-font);
-    padding-bottom: 20px;
-    border-bottom: 1px solid grey;
+    align-self: center;
+    justify-self: flex-start;
+    margin: 5px 10px;
+  }
+  .minus,
+  .plus {
+    grid-area: buttons;
+    height: 30px;
+    width: 30px;
+    font-size: 60%;
+    margin-top: 5px;
+  }
+  .appFormSubmit {
+    display: none;
+  }
+  .showMoreButton {
+    margin-right: 15px;
+  }
+  .showMore {
+    width: 120px;
+    height: 85px;
+    margin-right: 20px;
   }
 
   /*----------- REVIEW ------------*/
@@ -316,105 +532,116 @@
   }
 }
 
-/*PLUS AND MINUS*/
-/*https://codepen.io/Tanya_Rybachuk/pen/jyxzEp*/
-span {
-  cursor: pointer;
-}
-.number {
-  margin: 100px;
-}
-.minus,
-.plus {
-  width: 20px;
-  height: 20px;
-  background: #f2f2f2;
-  border-radius: 4px;
-  padding: 8px 5px 8px 5px;
-  border: 1px solid #ddd;
-  display: inline-block;
-  vertical-align: middle;
-  text-align: center;
-}
-input#quantity {
-  height: 34px;
-  width: 100px;
-  text-align: center;
-  font-size: 26px;
-  border: 1px solid #ddd;
-  background-color: inherit;
-  border-radius: 4px;
-  display: inline-block;
-  vertical-align: middle;
-}
-/*------------increase/decrease buttons-------*/
-.minus,
-.plus {
-  height: 40px;
-  width: 40px;
-  border-radius: 50%;
-  border: none;
-  background: orange;
-  font-size: 100%;
-  text-align: center;
-  font-weight: 500;
-  color: rgb(255, 255, 255);
-  box-shadow: 0 1.5px 4px rgba(0, 0, 0, 0.4), 0 2.5px 6px rgba(0, 0, 0, 0.2);
-}
-.plus:hover,
-.minus:hover {
-  background: inherit;
-  border: 1px solid orange;
-  color: orange;
-  cursor: pointer;
-}
-
 /*----------- mobile view -----------*/
 @media screen and (max-width: 420px) {
   /*------- MOBILE BEER LIST -------*/
-
+  #beerApp {
+    background-image: url(static/images/beerHeader.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+  #beerList {
+    display: grid;
+    grid-template-columns: 0.9fr 0.3fr 1fr 1fr;
+    grid-template-areas: "buttons logo beer glass";
+    background-color: white;
+    width: 100%;
+  }
   #beerList h2,
   #reviewOrderList h2 {
+    grid-area: beer;
+    font-size: 18px;
     display: inline-flex;
     text-transform: uppercase;
+    margin-left: 20px;
+  }
+  #beerList h2:last-of-type,
+  #reviewOrderList h2:last-of-type {
+    font-size: 18px;
+    margin-left: 20px;
+  }
+  #beerList p,
+  #reviewOrderList p {
+    font-size: 12px;
+    margin-left: 20px;
   }
   h1.title {
     font-size: 35px;
+    padding: 0;
   }
   h2.subtitle {
-    font-size: 22px;
-    font-family: var(--subtitle-font);
+    background-image: url(static/images/bubbles.png);
+    display: flex;
+    align-self: center;
+    font-size: 18px;
+    font-family: "Lemon/Milk";
+    border-radius: 15px;
+    padding: 20px 0 10px 0;
+  }
+  .filterButton,
+  .sortButton,
+  .resetFilter {
+    font-size: 12px;
+    padding: 12px;
+  }
+  p.alcohol {
+    grid-area: beer;
+    display: flex;
+    align-self: flex-end;
+    margin-left: 10px;
   }
   img.logo {
-    width: 70px;
-    height: 70px;
+    grid-area: logo;
+    display: flex;
+    align-self: center;
+    justify-self: center;
+    width: 55px;
+    height: 55px;
     border-radius: 50%;
   }
   .appForm {
-    display: inline-flex;
+    display: flex;
+    align-self: center;
+    padding: 5px;
+    margin-top: 20px;
   }
   input#quantity {
-    height: 15px;
-    width: 35px;
-    font-size: 16px;
-    display: flex;
-    justify-self: flex-start;
+    font-size: 14px;
+    border: inherit;
+    display: inline-block;
+    vertical-align: middle;
   }
   .minus,
   .plus {
-    height: 30px;
-    width: 30px;
-    font-size: 80%;
+    grid-area: buttons;
+    height: 20px;
+    width: 20px;
+    display: flex;
+    align-self: center;
+    font-size: 60%;
   }
   .appFormSubmit {
+    display: none;
+  }
+  .showMoreButton {
+    grid-area: glass;
+    border-radius: 50%;
+    height: 25px;
+    width: 25px;
+    background-color: #d4bd7f;
+    color: white;
     display: flex;
-    width: 50px;
-    height: 30px;
-    justify-self: flex-start;
+    justify-self: flex-end;
+    align-self: center;
   }
   .showMore {
-    position: relative;
-    bottom: 100px;
+    grid-area: glass;
+    display: flex;
+    justify-self: flex-end;
+    align-self: flex-end;
+    width: 50px;
+    height: 70px;
+    margin-right: 5px;
   }
 
   /*----------- MOBILE REVIEW ------------*/

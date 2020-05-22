@@ -6,7 +6,7 @@
     <title>Beers</title>
     <link rel="stylesheet" href="style.css" />
   </head>
-  <body>
+  <body id="beerApp">
     <h1 class="title">FooBar</h1>
     <h2 class="subtitle">Step 1: Order your beers</h2>
 
@@ -15,7 +15,7 @@
     <!--------------------------------FILTERING and SORTING--------------------------------------------->
     <section id="filterAndSort">
       <div id="filters">
-        <button class="filterButton">Filter by:</button>
+        <button class="filterButton">Types of beer</button>
         <div class="filterOptions">
           <li class="filter" data-action="filter" data-filter="IPA">IPA</li>
           <li class="filter" data-action="filter" data-filter="Hefeweizen">
@@ -36,8 +36,7 @@
             Belgian Specialty Ale
           </li>
           <li
-            cla
-            ss="filter"
+            class="filter"
             data-action="filter"
             data-filter="California Common"
           >
@@ -47,7 +46,7 @@
       </div>
 
       <div id="sorting">
-        <button class="sortButton">Sort by:</button>
+        <button class="sortButton">Sort</button>
         <div class="sortOptions">
           <li
             class="sortBy"
@@ -73,10 +72,8 @@
         <img class="logo" src="" alt="beerLogo" />
         <h2 class="name">Name</h2>
         <h2 class="category">Category</h2>
-        <div class="showMoreButton">
-          Tap Me!
-          <img class="showMore" src="" alt="glassType" />
-        </div>
+        <img class="showMore" src="" alt="glassType" />
+        <button class="showMoreButton">↓</button>
         <div class="dropdown">
           <p class="aroma"></p>
           <p class="appearance"></p>
