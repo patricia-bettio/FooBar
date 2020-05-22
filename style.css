@@ -796,7 +796,14 @@ li.sortBy {
   }
   /*TAPS*/
   #dashboard #tapsUnit {
-    width: 370px;
+    width: 100%;
+  }
+  .tapImage{
+    height: fit-content;
+    width: auto;
+  }
+  .bulletUse{
+    display: inline-block;
   }
   /*QUEUE*/
   #nextInLine, #bartenders, #servingNext, #mostWanted, #tapsDashboard {
@@ -845,6 +852,11 @@ li.sortBy {
   /*STORAGE*/
   #storageUnit {
     grid-template-columns: repeat(4, 1fr);
+  }
+  #storageUnit article {
+    display: grid;
+    align-items: self-end;
+    justify-items: center;
   }
 }
 
