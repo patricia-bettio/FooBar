@@ -12,6 +12,7 @@ let randomAvatar = ["/images/avatar/avatar1.png", "/images/avatar/avatar2.png", 
 let topFive;
 let sortStorage;
 
+
 //-----------------------------------INITIALIZE--------------------------------------//
 document.addEventListener("DOMContentLoaded", init);
 
@@ -55,7 +56,7 @@ function fetchDataInterval() {
 }
 function updateData(data) {
   setCurrentTime(data.timestamp)
-  //updatedQueueUnit(data.queue);
+  updatedQueueUnit(data.queue);
   updatedBartendersUnit(data.bartenders);
   updatedStorageUnit(data.storage.sort((a, b) => (a.amount > b.amount ? 1 : -1)));
   updatedTapsUnit(data.taps);
@@ -64,79 +65,48 @@ function updateData(data) {
 
 //---------------------------------NEXT IN LINE--------------------------------------//
 function queueUnit(queue) {
-  console.log({ queue });
+  //clone
   const templateQueue = document.querySelector("#queueTemplate").content;
   const queueArea = document.querySelector("#queueUnit");
- 
+  //clear
   queueArea.innerHTML = "";
-  
   queue.forEach((queue) => {
    
-    templateQueue.querySelector("article").dataset.name = queue.id;
-  
-    //console.log(queue.id)
-    //templateQueue.querySelector("article").dataset.id = queue.id;
     const cloneQueue = templateQueue.cloneNode(true);
-    //console.log(cloneQueue.querySelector("article"))
-   
-    //console.log(queue.id)
-    cloneQueue.querySelector("p.id").textContent = `Order # ${queue.id}`;
-    cloneQueue.querySelector("p.startTime").textContent = `Placed at: ${dateFormatter(queue.startTime)}`;
-    //cloneQueue.querySelector("p.order").textContent = queue.order;
 
-    /*
-    cloneBartender.querySelector("p.id").textContent = oneQueue.id;
-    cloneBartender.querySelector("p.startTime").textContent = oneQueue.startTime;
-    cloneBartender.querySelector("p.order").textContent = oneQueue.order; */
-      //-----append-----//
-  
-
-      //AVATAR *random - will change every 5 sec
-      let numberImg = Math.floor(Math.random()*randomAvatar.length);
-      let displayedAvatar = randomAvatar[numberImg];
-      cloneQueue.querySelector(".avatar").src = displayedAvatar;
-      //IMAGES
-      const queueFormat = queue.order;
-      queueFormat.forEach((e)=>{
-      let image = new Image()
-      image.src =  `/images/circle_logo/${e.toLowerCase().split(" ")[0]}_circle.png`;
-      cloneQueue.querySelector(".queueLogo").appendChild(image);
- 
-   })
-
-      
     queueArea.appendChild(cloneQueue);
   });
-  //updatedQueueUnit(queue); 
+  updatedQueueUnit(queue); 
 }
 
 function updatedQueueUnit(queue) {
   //console.log({ queue });
  
-  queue.forEach((queue)=>{
-   
-    
-   // console.log(document.querySelector(`#queueUnit article[data-id="${queue.id}"]`))
-    const datasetId = document.querySelector(`#queueUnit article[data-name="${queue.id}"]`);
-    //console.log(datasetId)
-
-
-      //console.log(datasetId.querySelector("p.id"))
-      datasetId.querySelector("p.id").textContent = queue.id;
-      datasetId.querySelector("p.startTime").textContent = queue.startTime;
-      datasetId.querySelector("p.order").textContent = queue.order;
-      //console.log(datasetId.querySelector("p.order"))
-    
-
-  });
-
-/*   document.querySelectorAll("#queueUnit article").forEach((oneQueue, index) => {
-  
-    console.log(queue[index].id);
-    oneQueue.querySelector("p.id").textContent = queue[index].id; 
+  document.querySelectorAll("#queueUnit article").forEach((oneQueue, index)=>{
+    //clear
+    oneQueue.querySelector(".avatar").src = "";
+    oneQueue.querySelector(".queueLogo").innerHTML = "";
+    //elements
+    oneQueue.querySelector("p.id").textContent = `order #${queue[index].id}`;
     oneQueue.querySelector("p.startTime").textContent = queue[index].startTime;
-    oneQueue.querySelector("p.order").textContent = queue[index].order;
-  }) */
+    //oneQueue.querySelector("p.order").textContent = queue[index].order;
+       //AVATAR *random - will change every 5 sec
+       let numberImg = Math.floor(Math.random()*randomAvatar.length);
+       let displayedAvatar = randomAvatar[numberImg];
+       oneQueue.querySelector(".avatar").src = displayedAvatar;
+    oneQueue.querySelector("p.startTime").textContent = `Placed at: ${dateFormatter(queue[index].startTime)}`;
+
+    //IMAGES
+    const queueFormat = queue[index].order;
+      queueFormat.forEach((e)=>{
+      let image = new Image()
+      image.src =  `/images/circle_logo/${e.toLowerCase().split(" ")[0]}_circle.png`;
+      oneQueue.querySelector(".queueLogo").appendChild(image);
+ 
+   })
+    
+  })
+
 }
 
 //-----------------------------------BARTENDERS--------------------------------------//
