@@ -187,12 +187,7 @@ function storageUnit(storage) {
   //template
   storage.forEach((oneKeg) => {
     const cloneStorage = templateStorage.cloneNode(true);
-    //elements
-    cloneStorage.querySelector("p.name").textContent = oneKeg.name;
-    cloneStorage.querySelector("p.amount").textContent = oneKeg.amount;
-    //IMAGE
-    let kegFormat = oneKeg.name;
-    cloneStorage.querySelector(".kegImage").src =  `/svg/bottles/${kegFormat.toLowerCase().split(" ")[0]}_bottle.svg`;
+
     //-----append-----//
     storageArea.appendChild(cloneStorage);
   });
@@ -203,7 +198,7 @@ function updatedStorageUnit(storage) {
   //display
   document.querySelectorAll("#storageUnit article").forEach((oneKeg, index) => {
     oneKeg.querySelector("p.name").textContent = storage[index].name;
-    oneKeg.querySelector("p.amount").textContent = storage[index].amount;
+    oneKeg.querySelector("p.amount").textContent = `kegs:${storage[index].amount}`;
     //IMAGE
     let kegFormat = storage[index].name;
     oneKeg.querySelector(".kegImage").src =  `/svg/bottles/${kegFormat.toLowerCase().split(" ")[0]}_bottle.svg`;
@@ -228,15 +223,19 @@ function tapsUnit(taps) {
 function updatedTapsUnit(taps) {
   document.querySelectorAll("#tapsUnit article").forEach((oneTap, index) => {
     oneTap.querySelector("p.id").textContent = taps[index].id;
-    oneTap.querySelector("p.beer").textContent = taps[index].beer;
+    //oneTap.querySelector("p.beer").textContent = taps[index].beer;
     //oneTap.querySelector("p.inUse").textContent = taps[index].inUse;
     oneTap.querySelector("p.level").textContent = taps[index].level;
+    //IMAGE
+    let tapFormat = taps[index].beer;
+    oneTap.querySelector(".tapImage").src =  `/svg/taps/${tapFormat.toLowerCase().split(" ")[0]}_tap.svg`;
     //USE
     if (taps[index].inUse === false){
     oneTap.querySelector(".bulletUse").style.background = "red";
     } else {
     oneTap.querySelector(".bulletUse").style.background = "green";
     }
+
 
   });
   showTapsData(taps);
