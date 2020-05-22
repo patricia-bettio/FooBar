@@ -750,16 +750,14 @@ li.sortBy {
     display: none;
   }
   #dashboard {
-    background-image: url(static/images/beerHeader_final.png);
-    background-size: contain;
+    background-image: url(static/images/beerHeader_long.png);
+    background-size: cover;
     background-repeat: no-repeat;
   }
-
-  /* #dashboard .title {
-  } */
   #dashboard h1 {
-    font-size: 20px;
+    font-size: 18px;
     padding: 16px;
+    font-family: "Lemon/Milk";
   }
   #dashboard p {
     font-size: 16px;
