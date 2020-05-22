@@ -185,6 +185,7 @@ input#quantity {
   color: orange;
   cursor: pointer;
 }
+
 /*dropdown*/
 .hide {
   display: none;
@@ -292,6 +293,56 @@ li.sortBy {
 }
 
 /*---------------------------- RESPONSIVE --------------------------*/
+
+/*DASHBOARD*/
+/*background*/
+#dashboard {
+
+/*   background-image: url("static/svg/foobar.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin: 0 200px;
+   */
+}
+.desktopBackground{
+  width: 100%;
+  height: 100%;
+}
+/*QUEUE*/
+#queueUnit {
+  display: flex;
+  background-color: white;
+}
+.queueLogo img {
+  height: 100px;
+  width: auto;
+}
+
+.avatar {
+  height: 60px;
+  width: auto;
+}
+/*SERVING*/
+.servingBeerGlass img{
+  height: 100px;
+  width: auto;
+}
+/*TAPS*/
+.bulletUse{
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+/*STORAGE*/
+#storageUnit {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+}
+.kegImage {
+  height: 100px;
+  width: auto;
+}
+/*-----------------------------------------------------------RESPONSIVE---------------------------------------------------------------------------*/
 
 /*------------ tablet view ----------*/
 @media screen and (max-width: 1200px) {
@@ -482,7 +533,7 @@ li.sortBy {
 }
 
 /*----------- mobile view -----------*/
-@media screen and (max-width: 375px) {
+@media screen and (max-width: 420px) {
   /*------- MOBILE BEER LIST -------*/
   #beerApp {
     background-image: url(static/images/beerHeader.png);
@@ -695,6 +746,23 @@ li.sortBy {
     visibility: hidden;
   }
   /*---------- MOBILE DASHBOARD ---------*/
+  .desktopBackground {
+    display: none;
+  }
+  .headerDashboard {
+    height: auto;
+    width: 100%;
+  }
+
+  .fooBarLogo {
+    height: 100px;
+    width: auto;
+    position: absolute;
+  }
+
+  #dashboard .title{
+   
+  }
   #dashboard h1 {
     font-family: var(--subtitle-font);
     font-size: 20px;
@@ -729,5 +797,12 @@ li.sortBy {
     width: 100px;
     height: 100px;
     border-radius: 50%;
+  }
+}
+
+/*hide mobile image for devices bigger than a tablet*/
+@media screen and (min-width: 700px) {
+  .headerDashboard{
+    display: none;
   }
 }

@@ -9,8 +9,13 @@
   <body>
     <main>
       <div id="dashboard">
-        <!--  <h1 class="localTime">Local time</h1> -->
-        <h1 class="title">FooBar</h1>
+        <div class="beerHeaderDashboard">
+          <img src="static/images/beerHeader.png" class="headerDashboard" alt="">
+          <img src="" class="fooBarLogo" alt="">
+          <h1 class="title">Overview</h1>
+        </div>
+
+        <h1 id="localTime">Local time</h1>
         <span id="timer"></span>
 
         <div>
@@ -18,7 +23,9 @@
           <template id="queueTemplate">
             <article>
               <p class="id"></p>
+              <img class="avatar" src="" alt="">
               <p class="order"></p>
+              <div class="queueLogo"></div>
               <p class="startTime"></p>
             </article>
           </template>
@@ -47,6 +54,7 @@
               <p class="id"></p>
               <p class="beer"></p>
               <p class="inUse"></p>
+              <div class="bulletUse"></div>
               <p class="level"></p>
             </article>
           </template>
@@ -59,7 +67,7 @@
             <article>
               <p class="id"></p>
               <p class="order"></p>
-              <!-- <img src="" alt="servingNextBeer" class="servingNextBeer" /> -->
+              <div class="servingBeerGlass"></div>
               <p class="startTime"></p>
             </article>
           </template>
@@ -71,6 +79,7 @@
           <template id="storageTemplate">
             <article>
               <p class="name"></p>
+              <img class="kegImage" src="" alt="">
               <p class="amount"></p>
             </article>
           </template>
