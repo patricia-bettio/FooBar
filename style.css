@@ -64,11 +64,8 @@
 #reviewOrderList p {
   font-size: 10px;
 }
-h1.title {
-  font-size: 35px;
-}
 h2.subtitle {
-  background-image: url(static/images/bubbles.png);
+  /* background-image: url(static/images/bubbles.png); */
   display: flex;
   align-self: center;
   font-size: 18px;
@@ -353,7 +350,7 @@ li.sortBy {
 @media screen and (max-width: 1200px) {
   /*-------- TABLET BEER LIST ------*/
   #beerApp {
-    background-image: url(static/images/beerHeader.png);
+    background-image: url(static/images/beerHeader_final.png);
     background-repeat: no-repeat;
     background-size: contain;
   }
@@ -380,18 +377,10 @@ li.sortBy {
     color: grey;
     margin-left: 30px;
   }
-  h1.title {
-    color: darkgrey;
-    display: flex;
-    justify-content: center;
-    font-family: var(--form-font);
-    font-size: 50px;
-    padding-top: 20px;
-  }
   h2.subtitle {
     font-size: 22px;
-    padding-top: 60px;
-    padding-bottom: 80px;
+    padding-top: 220px;
+    padding-bottom: 30px;
   }
   .filterButton,
   .sortButton,
@@ -541,9 +530,12 @@ li.sortBy {
 @media screen and (max-width: 420px) {
   /*------- MOBILE BEER LIST -------*/
   #beerApp {
-    background-image: url(static/images/beerHeader.png);
+    background-image: url(static/images/beerHeader_final.png);
     background-repeat: no-repeat;
-    background-size: contain;
+    background-size: 400px;
+  }
+  #heroImg {
+    width: 100%;
   }
   #beerList {
     display: grid;
@@ -570,18 +562,14 @@ li.sortBy {
     font-size: 12px;
     margin-left: 20px;
   }
-  h1.title {
-    font-size: 35px;
-    padding: 0;
-  }
   h2.subtitle {
-    background-image: url(static/images/bubbles.png);
+    /* background-image: url(static/images/bubbles.png); */
     display: flex;
     align-self: center;
     font-size: 18px;
     font-family: "Lemon/Milk";
     border-radius: 15px;
-    padding: 20px 0 10px 0;
+    padding: 120px 0 10px 0;
   }
   .filterButton,
   .sortButton,
@@ -754,16 +742,20 @@ li.sortBy {
   .desktopBackground {
     display: none;
   }
-  .headerDashboard {
+  #dashboard {
+    background-image: url(static/images/beerHeader_final.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+  /* .headerDashboard {
     height: auto;
     width: 100%;
   }
-
   .fooBarLogo {
     height: 100px;
     width: auto;
     position: absolute;
-  }
+  } */
 
   /* #dashboard .title {
   } */
@@ -775,11 +767,19 @@ li.sortBy {
     font-size: 16px;
     margin-top: 0;
   }
+  #dashboard #localTime {
+    display: flex;
+    justify-content: center;
+    font-family: "Lemon/Milk";
+    font-size: 16px;
+    padding-bottom: 5px;
+  }
   #dashboard #timer {
     display: flex;
     justify-content: center;
     font-family: var(--form-font);
-    font-size: 12px;
+    font-size: 16px;
+    padding-bottom: 20px;
   }
   #dashboard article {
     text-align: center;
@@ -812,6 +812,7 @@ li.sortBy {
   #mostWanted,
   #tapsDashboard {
     border-radius: 15px;
+    background: white;
     box-shadow: 1px 1px 7px 2px #ccc;
   }
   .avatar {
