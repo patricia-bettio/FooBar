@@ -673,7 +673,6 @@ li.sortBy {
   #beerApp {
     background-image: url(static/images/beerHeader_final.png);
     background-repeat: no-repeat;
-    background-size: 400px;
   }
   #heroImg {
     width: 100%;
