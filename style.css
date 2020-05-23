@@ -616,6 +616,9 @@ li.sortBy {
     font-size: 12px;
     margin-left: 20px;
   }
+  #dashboard h2.subtitle {
+    margin-top: 120px;
+  }
   h2.subtitle {
     grid-area: subtitle;
     display: flex;
