@@ -341,47 +341,45 @@ li.sortBy {
 /*------------ desktop view ----------*/
 @media screen and (min-width: 1200px) {
   #dashboard {
-    background-image: url("static/svg/foobar_v2.svg");
-    background-size: contain;
+    background-image: url("static/svg/fooBar.svg");
+    background-size: 100%;
     background-repeat: no-repeat;
   }
   #dashboard main {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: 0.3fr 0.5fr 0.7fr 0.4fr;
+    grid-template-rows: 0.3fr 0.5fr 0.1fr 0.4fr;
     grid-template-areas:
-      "title . ."
-      "serving taps bartenders"
+      "serving taps time"
+      ". glasses bartenders"
       ". . ."
       "queue queue storage";
-  }
-  #dashboard .dashboardTitle {
-    grid-area: title;
-    font-family: "Monaco";
-    color: darkgrey;
-    display: flex;
-    align-self: flex-start;
-    font-size: 35px;
   }
   #dashboard .subtitle {
     display: none;
   }
   #dashboard #localTime {
-    grid-area: title;
+    grid-area: time;
     display: flex;
-    align-self: center;
+    align-self: flex-start;
+    justify-content: flex-end;
     font-family: var(--form-font);
-    color: black;
+    color: white;
     font-size: 25px;
+    margin-top: 30px;
   }
   #dashboard #timer {
-    grid-area: title;
+    grid-area: time;
     display: flex;
-    align-self: flex-end;
-    font-family: var(--subtitle-font);
+    align-self: flex-start;
+    justify-self: flex-end;
+    font-family: var(--form-font);
+    color: white;
   }
   #mostWanted {
     grid-area: storage;
+    padding: 20px;
+    background: inherit;
   }
   #mostWanted h1,
   #nextInLine h1 {
@@ -392,9 +390,16 @@ li.sortBy {
     grid-area: serving;
     display: flex;
     align-self: flex-end;
+    justify-content: flex-start;
+    margin-top: 100px;
+    border: 1px solid lightgray;
   }
   #servingNext h1 {
     display: none;
+  }
+  #servingNext p {
+    color: white;
+    font-family: var(--subtitle-font);
   }
   #servingNext img {
     width: 60px;
@@ -403,6 +408,10 @@ li.sortBy {
   }
   #tapsDashboard {
     grid-area: taps;
+    display: flex;
+    align-self: flex-start;
+    justify-self: flex-start;
+    margin-top: 20px;
   }
   #tapsDashboard article {
     width: 30px;
@@ -415,14 +424,18 @@ li.sortBy {
   #tapsDashboard h1 {
     display: none;
   }
+  #tapsDashboard p {
+    color: white;
+  }
   #bartenders {
     grid-area: bartenders;
     display: flex;
     align-self: flex-end;
+    display: inline-block;
   }
   #bartenders .bartender {
-    width: 80px;
-    height: 80px;
+    width: 90px;
+    height: 90px;
     border: 10px solid;
   }
   #bartenders p {
@@ -437,6 +450,10 @@ li.sortBy {
   }
   #nextInLine {
     grid-area: queue;
+    padding: 20px;
+  }
+  #queueUnit {
+    background: inherit;
   }
 }
 

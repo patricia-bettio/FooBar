@@ -285,7 +285,8 @@ function widthChange(desktop) {
 
 // ------------ timer ---------- //
 function setCurrentTime(localTime) {
-  document.querySelector("#localTime").innerHTML = dateFormatter(localTime);
+  document.querySelector("#localTime").innerHTML =
+    "Time: " + dateFormatter(localTime);
 }
 function setTimeToClose() {
   const timeSpan = document.getElementById("timer");
