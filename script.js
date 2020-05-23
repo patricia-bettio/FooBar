@@ -69,6 +69,7 @@ function updateData(data) {
 
 //---------------------------------NEXT IN LINE--------------------------------------//
 function queueUnit(queue) {
+  setQueueSize(queue);
   //clone
   const templateQueue = document.querySelector("#queueTemplate").content;
   const queueArea = document.querySelector("#queueUnit");
@@ -85,6 +86,7 @@ function queueUnit(queue) {
 
 function updatedQueueUnit(queue) {
   //console.log({ queue });
+  updatedQueueSize(queue);
 
   document.querySelectorAll("#queueUnit article").forEach((oneQueue, index) => {
     //oneQueue.querySelector(".queueLogo").innerHTML = "";
@@ -97,9 +99,8 @@ function updatedQueueUnit(queue) {
     //elements
     oneQueue.querySelector("p.id").textContent = `order #${queue[index].id}`;
     //oneQueue.querySelector("p.order").textContent = queue[index].order;
-    oneQueue.querySelector("p.startTime").textContent = dateFormatter(
-      queue[index].startTime
-    );
+    oneQueue.querySelector("p.startTime").textContent = dateFormatter(queue[index].startTime).slice(0,5);
+ 
 
     /*     //AVATAR *random - will change every 5 sec
        let numberImg = Math.floor(Math.random()*randomAvatar.length);
@@ -266,7 +267,15 @@ function updatedServingUnit(serving) {
       });
     });
 }
+//----------------------QUEUE SIZE --------------------------------------//
+function setQueueSize(queueSize){
+  document.querySelector(".queueCount span").textContent = queueSize.length;
+  updatedQueueSize(queueSize)
+}
 
+function updatedQueueSize(queueSize){
+  document.querySelector(".queueCount span").textContent = queueSize.length;
+}
 // ----------------------- dashboard desktop query ---------------------- //
 /* function displayDesktopScene() {
   // media query event handler
