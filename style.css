@@ -24,6 +24,10 @@
   --category-color: #b79027;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 #bartendersUnit {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -53,7 +57,7 @@
 }
 #beerList {
   display: grid;
-  grid-template-columns: 0.9fr 0.3fr 1fr 1fr;
+  grid-template-columns: 0.3fr 60px 1fr 0.3fr;
   grid-template-areas: "buttons logo beer glass";
   background-color: white;
   width: 100%;
@@ -199,6 +203,13 @@ input#quantity {
   display: none;
 }
 
+.dropdown {
+  border-radius: 15px;
+  box-shadow: 1px 1px 7px 2px #ccc;
+  background-color: white;
+    padding: 1em;
+}
+
 /*logo*/
 .logo {
   height: 100px;
@@ -214,7 +225,7 @@ input#quantity {
   height: 100px;
 }
 .rotate {
-  transform: rotate(180deg);
+  transform: rotate(-45deg);
 }
 
 /*filter and sort section*/
@@ -480,13 +491,13 @@ li.sortBy {
   #beerList h2,
   #reviewOrderList h2 {
     font-family: var(--beer-font);
-    margin-left: 30px;
+    /* margin-left: 30px; */
     font-size: 20px;
   }
   #beerList h2:last-of-type,
   #reviewOrderList h2:last-of-type {
     color: var(--category-color);
-    margin-left: 30px;
+    /* margin-left: 30px; */
     font-size: 20px;
   }
   #beerList p,
@@ -670,6 +681,10 @@ li.sortBy {
 /*----------- mobile view -----------*/
 @media screen and (max-width: 420px) {
   /*------- MOBILE BEER LIST -------*/
+
+
+  /*beer app*/
+
   #beerApp {
     background-image: url(static/images/beerHeader_final.png);
     background-repeat: no-repeat;
@@ -697,7 +712,7 @@ li.sortBy {
     height: 50px;
     margin-top: 140px;
   }
-  #beerList {
+  #beerAre #beerList {
     display: grid;
     grid-template-columns: 0.9fr 0.3fr 1fr 1fr;
     grid-template-areas: "buttons logo beer glass";
@@ -710,17 +725,20 @@ li.sortBy {
     font-size: 18px;
     display: inline-flex;
     text-transform: uppercase;
-    margin-left: 20px;
+    /* margin-left: 20px; */
   }
   #beerList h2:last-of-type,
   #reviewOrderList h2:last-of-type {
-    font-size: 18px;
-    margin-left: 20px;
+    grid-area: beer;
+    font-size: 16px;
+
+    /* margin-left: 20px; */
   }
   #beerList p,
   #reviewOrderList p {
+    grid-area: beer;
     font-size: 12px;
-    margin-left: 20px;
+    /* margin-left: 20px; */
   }
   #dashboard h2.subtitle {
     margin-top: 120px;
@@ -790,7 +808,7 @@ li.sortBy {
     display: flex;
     justify-self: flex-end;
     align-self: flex-end;
-    width: 50px;
+    width: 100%;
     height: 70px;
     margin-right: 5px;
   }
@@ -968,17 +986,36 @@ li.sortBy {
     border-radius: 15px;
     background: white;
     box-shadow: 1px 1px 7px 2px #ccc;
+    padding-bottom: 2em;
   }
   .avatar {
     height: 40px;
     justify-self: center;
   }
   .queueLogo {
-    display: grid;
-    justify-items: center;
+    text-align: justify;
+  }
+  #queueUnit .id {
+    align-self: flex-start;
+  }
+
+  #queueUnit .startTime {
+    align-self: flex-start;
   }
   .queueLogo img {
     height: 65px;
+    margin-right: 5px;
+  }
+  #queueUnit {
+    display: grid;
+    grid-row-gap: 1.5em;
+  }
+  #queueUnit article {
+    align-items: center;
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: 0px 55px 0px 1fr 50px;
+ 
   }
   /*SERVING*/
   #servingUnit article {
