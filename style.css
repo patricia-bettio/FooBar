@@ -225,7 +225,7 @@ input#quantity {
   height: 100px;
 }
 .rotate {
-  transform: rotate(180deg);
+  transform: rotate(-45deg);
 }
 
 /*filter and sort section*/
@@ -680,12 +680,8 @@ li.sortBy {
 
 /*----------- mobile view -----------*/
 @media screen and (max-width: 420px) {
-  /*------- MOBILE BEER LIST -------*/`
+  /*------- MOBILE BEER LIST -------*/
 
-  /*dropdown*/
-  .dropdown{
-    display: block;
-  }
 
   /*beer app*/
 
@@ -734,7 +730,7 @@ li.sortBy {
   #beerList h2:last-of-type,
   #reviewOrderList h2:last-of-type {
     grid-area: beer;
-    font-size: 18px;
+    font-size: 16px;
 
     /* margin-left: 20px; */
   }
