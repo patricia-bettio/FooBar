@@ -28,6 +28,12 @@ html {
   scroll-behavior: smooth;
 }
 
+p.price{
+  padding: 0;
+  margin: 0;
+  font-size: 16px;
+}
+
 #bartendersUnit {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -599,6 +605,12 @@ li.sortBy {
     margin-right: 20px;
   }
 
+  .price{
+    padding: 0;
+    margin: 0;
+    font-size: 16px;
+  }
+
   /*----------- REVIEW ------------*/
   button.next,
   button.nextReview {
@@ -709,6 +721,11 @@ li.sortBy {
 
   /*beer app*/
 
+  .price{
+    padding: 0;
+    margin: 0;
+    font-size: 16px;
+  }
   li.filter,
   li.sortBy {
     font-size: 16px;
@@ -776,6 +793,11 @@ li.sortBy {
 
     /* margin-left: 20px; */
   }
+  #beerList .price{
+    padding: 0;
+    margin: 0;
+    font-size: 16px;
+  }
   #beerList p,
   #reviewOrderList p {
     grid-area: beerAlc;
@@ -815,8 +837,9 @@ li.sortBy {
     border-radius: 50%;
   }
   .appForm {
-    display: flex;
+    display: block;
     align-self: center;
+    text-align: center;
     padding: 5px;
     margin-top: 20px;
   }
