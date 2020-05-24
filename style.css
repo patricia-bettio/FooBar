@@ -1,18 +1,18 @@
 @font-face {
   font-family: "College Block";
-  src: url("static/fonts/CollegeBlock.otf"), format("truetype");
+  src: url("fonts/CollegeBlock.otf");
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
   font-family: "Lemon/Milk";
-  src: url("static/fonts/LemonMilk.otf"), format("truetype");
+  src: url("fonts/LemonMilk.otf");
   font-weight: 100;
   font-style: normal;
 }
 @font-face {
   font-family: "Lemon/Milk light";
-  src: url("static/fonts/LemonMilklight.otf"), format("truetype");
+  src: url("fonts/LemonMilklight.otf");
   font-weight: 100;
   font-style: normal;
 }
