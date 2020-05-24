@@ -8,6 +8,8 @@ let allBeers = [];
 let alcNumber = [];
 let orderQuantity = [];
 
+let orders = []
+
 function init() {
   fetchData();
 }
@@ -141,13 +143,9 @@ function postOrder(orderQuantity) {
 
     function post(orderQuantity) {
      console.log("POST",orderQuantity)
-      /* let orders = [
-        {
-          name: "El Hefe",
-          amount: "1",
-        },
-      ]; */
-      const postData = JSON.stringify(orderQuantity);
+
+     orders.push(orderQuantity)
+      const postData = JSON.stringify(orders);
       console.log(postData)
       fetch("https://beer-waffles.herokuapp.com/order", {
         method: "post",
@@ -160,12 +158,19 @@ function postOrder(orderQuantity) {
     
         .then((res) => res.json())
         .then((data) => console.log(data));
+     
     }
     post(orderQuantity);
 
 }
 
-
+function showErrors(data){
+  console.log(data)
+  console.log(data.message)
+  let dataMessage = data.message;
+  console.log(data.contains("We are not serving: "))
+  
+}
 
 //-------------------------------------- FILTER -------------------------------------//
 function setFilters(allBeers) {
