@@ -475,27 +475,27 @@ li.sortBy {
 }
 
 /*-----------------------------------------------------------RESPONSIVE---------------------------------------------------------------------------*/
-@media screen and (max-width: 1200px) and (min-device-width: 768px){
+@media screen and (max-width: 1200px) and (min-device-width: 768px) {
   #beerApp {
     background-image: url(static/images/beerHeader_final.png);
     background-repeat: no-repeat;
     background-size: cover;
   }
-  .beerInfoName{
+  .beerInfoName {
     grid-area: beer;
   }
-  .showingMore{
+  .showingMore {
     display: grid;
     align-self: center;
   }
-  #beerList{
+  #beerList {
     grid-template-columns: 0.3fr 80px 1fr 0.5fr;
   }
-  #beerList p{
+  #beerList p {
     margin-left: 10px;
     margin-top: 5px;
   }
-  #beerList h2{
+  #beerList h2 {
     margin-bottom: 5px;
     margin-top: 1.5em;
   }
