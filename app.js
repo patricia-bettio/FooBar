@@ -38,9 +38,7 @@ function displayBeer(beers) {
   //clear
   document.querySelector("#beerArea").innerHTML = "";
   beers.forEach(displaySingleBeer);
-  //setUpForm()
-  //form (quantity input) setup
-  //beers.forEach(setUpForm);
+
 }
 
 function displaySingleBeer(beer) {
@@ -63,19 +61,32 @@ function displaySingleBeer(beer) {
 
   elements.quantity.addEventListener("keyup", (e) => {
     console.dir(e.target.value);
-    //beer name
-    const name = beer.name;
-    console.log(name);
-    //amount
-    const amount = form.elements.quantity.value;
-    console.log(amount);
+      //beer name
+      const name = beer.name;
+      console.log(name);
+      //amount
+      const amount = form.elements.quantity.value;
+      console.log(amount);
+
   });
+
 
    document.querySelector(".testPost").addEventListener("click", (e) => {
     e.preventDefault();
 
-    if (form.checkValidity()) {
-      console.log(name);
+    let validForm = true;
+
+    const amount = form.elements.quantity.value;
+
+    //add only amount > 0
+    if (amount === ""){
+      //console.log("zero")
+      validForm = false;
+    }
+    
+    //post
+    if (form.checkValidity() && validForm) {
+      console.log("form is valid");
       postOrder({
         name: beer.name,
         amount: form.elements.quantity.value,
@@ -121,29 +132,15 @@ function displaySingleBeer(beer) {
   beerList.appendChild(beerClone);
 }
 
-function setUpForm(form) {
-  console.log(form);
-}
 
-function getSingleInput(form) {
-  console.log(form.value);
-
-  /*   if (form.checkValidity()){
-    console.log("is valid")
-    //post 
-  } else {
-    console.log("its not valid")
-  } */
-}
 //--------------------------------- +/- BEERS FORM -----------------------------------//
 function postOrder(orderQuantity) {
   console.log("Added to cart: ", orderQuantity);
 
-  const nextReviewBtn = document.querySelector(".next");
+    /*---------------------POST--------------------*/
 
-  /*---------------------POST--------------------*/
-  nextReviewBtn.addEventListener("click", (e) => {
     function post(orderQuantity) {
+     console.log("POST",orderQuantity)
       /* let orders = [
         {
           name: "El Hefe",
@@ -151,19 +148,24 @@ function postOrder(orderQuantity) {
         },
       ]; */
       const postData = JSON.stringify(orderQuantity);
-      fetch(urlApi + "order", {
+      console.log(postData)
+      fetch("https://beer-waffles.herokuapp.com/order", {
         method: "post",
         headers: {
           "Content-Type": "application/json; charset=utf-8",
         },
-        body: postData,
+        
+      body: postData,
       })
-        .then((res) => res.json(res))
+    
+        .then((res) => res.json())
         .then((data) => console.log(data));
     }
-    post();
-  });
+    post(orderQuantity);
+
 }
+
+
 
 //-------------------------------------- FILTER -------------------------------------//
 function setFilters(allBeers) {
