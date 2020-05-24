@@ -70,7 +70,7 @@ function displaySingleBeer(beer) {
     const amount = form.elements.quantity.value;
     console.log(amount);
   });
-  
+
   form.addEventListener("submit", (e) => {
     e.preventDefault();
 
@@ -113,10 +113,10 @@ function displaySingleBeer(beer) {
     selectedBeer.classList.toggle("hide");
     showMoreGlass.classList.toggle("rotate");
   });
-  selectedBeer.addEventListener("click", (e)=>{
+  selectedBeer.addEventListener("click", (e) => {
     selectedBeer.classList.toggle("hide");
     showMoreGlass.classList.toggle("rotate");
-  })
+  });
   //append
   beerList.appendChild(beerClone);
 }
@@ -139,7 +139,7 @@ function getSingleInput(form) {
 function postOrder(orderQuantity) {
   console.log("Added to cart: ", orderQuantity);
 
-  const nextReviewBtn = document.querySelector(".nextReview");
+  const nextReviewBtn = document.querySelector(".next");
 
   /*---------------------POST--------------------*/
   nextReviewBtn.addEventListener("click", (e) => {
