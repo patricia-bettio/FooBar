@@ -55,33 +55,38 @@ function displaySingleBeer(beer) {
   beerClone.querySelector("p.alcohol").textContent = `ABV: ${beer.alc} %`;
   beerClone.querySelector(".logo").src = `images/${beer.label}`;
 
-  //form
-  const form = beerClone.querySelector("form");
-  window.form = form;
-  const elements = form.elements;
-  window.elements = elements;
+ //form
+ const form = beerClone.querySelector("form");
+ window.form = form;
+ const elements = form.elements;
+ window.elements = elements;
+ console.log(elements.quantity)
+ elements.quantity.addEventListener("keyup", e=>{
+   console.dir(e.target.value)
+ })
 
-  elements.quantity.addEventListener("keyup", (e) => {
-    console.dir(e.target.value);
-    //beer name
-    const name = beer.name;
-    console.log(name);
-    //amount
-    const amount = form.elements.quantity.value;
-    console.log(amount);
-  });
-  
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
+ //beer name for form:
+ const name = beer.name;
+ console.log(name)
+ //amount
+ const amount = form.elements.quantity.value;
+ console.log(amount)
 
-    if (form.checkValidity()) {
-      console.log(name);
-      postOrder({
-        name: beer.name,
-        amount: form.elements.quantity.value,
-      });
-    }
-  });
+ form.addEventListener("submit", e=>{
+   e.preventDefault();
+   //const formElements = document.querySelectorAll("input");
+   //console.log("submited")
+
+   if (form.checkValidity()){
+     console.log(name)
+     postOrder({
+       name: name,
+       amount: form.elements.quantity.value
+   
+     })
+   }
+ })
+ //setUpForm(form)
 
   //hidden details in template:
   beerClone.querySelector(
@@ -139,7 +144,7 @@ function getSingleInput(form) {
 function postOrder(orderQuantity) {
   console.log("Added to cart: ", orderQuantity);
 
-  const nextReviewBtn = document.querySelector(".nextReview");
+  const nextReviewBtn = document.querySelector(".nextOrder");
 
   /*---------------------POST--------------------*/
   nextReviewBtn.addEventListener("click", (e) => {

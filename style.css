@@ -142,7 +142,7 @@ input#quantity {
   border: inherit;
 }
 .appFormSubmit {
-  display: buttons;
+  grid-area: buttons;
   display: flex;
   width: 50px;
   height: 30px;
@@ -588,7 +588,7 @@ li.sortBy {
     display: none;
   }
   .appFormSubmit {
-    display: none;
+    display: block;
   }
   .showMoreButton {
     margin-right: 15px;
