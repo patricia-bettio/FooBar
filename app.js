@@ -71,7 +71,7 @@ function displaySingleBeer(beer) {
     console.log(amount);
   });
 
-  form.addEventListener("submit", (e) => {
+   document.querySelector(".testPost").addEventListener("click", (e) => {
     e.preventDefault();
 
     if (form.checkValidity()) {
@@ -151,7 +151,7 @@ function postOrder(orderQuantity) {
         },
       ]; */
       const postData = JSON.stringify(orderQuantity);
-      fetch(urlApi, {
+      fetch(urlApi + "order", {
         method: "post",
         headers: {
           "Content-Type": "application/json; charset=utf-8",
