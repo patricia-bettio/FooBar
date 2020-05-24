@@ -70,7 +70,7 @@ function displaySingleBeer(beer) {
     const amount = form.elements.quantity.value;
     console.log(amount);
   });
-
+  
   form.addEventListener("submit", (e) => {
     e.preventDefault();
 
@@ -108,11 +108,15 @@ function displaySingleBeer(beer) {
   //SHOW DETAILS
   let selectedBeer = beerClone.querySelector(".dropdown");
   selectedBeer.classList.add("hide");
-  beerClone.querySelector(".showMore").addEventListener("click", (e) => {
+  beerClone.querySelector(".showingMore").addEventListener("click", (e) => {
     //show deatils and turn glass onclick
     selectedBeer.classList.toggle("hide");
     showMoreGlass.classList.toggle("rotate");
   });
+  selectedBeer.addEventListener("click", (e)=>{
+    selectedBeer.classList.toggle("hide");
+    showMoreGlass.classList.toggle("rotate");
+  })
   //append
   beerList.appendChild(beerClone);
 }
