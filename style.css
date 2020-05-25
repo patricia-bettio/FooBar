@@ -319,7 +319,7 @@ li.sortBy {
 }
 #queueUnit {
   display: flex;
-  background-color: white;
+  /* background-color: white; */
 }
 
 #queueUnit p {
@@ -355,22 +355,54 @@ li.sortBy {
   width: auto;
 }
 
-/*------------ desktop view ----------*/
-@media screen and (min-width: 1200px) {
+/*------------ monitor view ----------*/
+@media screen and (min-width: 1920px) {
   #dashboard {
-    background-image: url("static/svg/foobar_v2.svg");
-    background-size: 100%;
-    background-repeat: no-repeat;
+    background: beige;
+    background-image: url("static/images/bubbles.png");
+    background-size: 60%;
   }
   #dashboard main {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: 0.3fr 0.5fr 0.6fr 0.4fr;
+    grid-template-columns: 0.8fr 1fr 0.5fr;
+    grid-template-rows: 0.1fr 1fr 0.4fr 0.7fr;
     grid-template-areas:
-      "time . ."
-      "serving taps bartenders"
-      ". . ."
-      "queue queue storage";
+      "time taps queue"
+      "serving bartenders queue"
+      "storage bartenders ."
+      "storage . .";
+  }
+  #nextInLine,
+  #bartenders,
+  #servingNext,
+  #mostWanted,
+  #tapsDashboard {
+    padding: 60px;
+  }
+  #mostWanted h1,
+  #nextInLine h1,
+  #servingNext h1,
+  #tapsDashboard h1,
+  #bartenders h1 {
+    font-family: var(--subtitle-font);
+    font-size: 35px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid grey;
+  }
+  #nextInLine p,
+  #servingNext p,
+  #tapsDashboard p,
+  #bartenders p {
+    font-family: var(--subtitle-font);
+    font-size: 20px;
+  }
+  #dashboard .foobarTitle {
+    grid-area: time;
+    font-family: var(--subtitle-font);
+    font-size: 100px;
+    margin-top: 10px;
+    padding-left: 40px;
+    color: olive;
   }
   #dashboard .subtitle {
     display: none;
@@ -378,93 +410,142 @@ li.sortBy {
   #dashboard #localTime {
     grid-area: time;
     display: flex;
-    align-self: flex-start;
+    align-self: flex-end;
     justify-content: flex-start;
     font-family: var(--form-font);
-    font-size: 25px;
-    margin-top: 30px;
+    font-size: 32px;
+    padding-bottom: 50px;
+    padding-left: 40px;
   }
   #dashboard #timer {
     grid-area: time;
     display: flex;
-    align-self: center;
+    align-self: flex-end;
     justify-self: flex-start;
     font-family: var(--form-font);
+    font-size: 23px;
+    margin-bottom: 20px;
+    padding-left: 40px;
   }
+  /*----- storage ------*/
   #mostWanted {
     grid-area: storage;
-    padding: 20px;
-    background: inherit;
   }
-  #mostWanted h1,
-  #nextInLine h1 {
-    font-family: var(--subtitle-font);
-    font-size: 25px;
+  #storageUnit {
+    grid-template-columns: repeat(4, 1fr);
   }
+  #storageUnit article {
+    display: grid;
+    align-items: self-end;
+    justify-items: center;
+  }
+  /*----- serving ------*/
   #servingNext {
     grid-area: serving;
-    display: flex;
-    align-self: center;
-    justify-content: flex-start;
-    margin-top: 100px;
-    border: 1px solid lightgray;
-  }
-  #servingNext h1 {
-    display: none;
   }
   #servingNext p {
     font-family: var(--subtitle-font);
   }
   #servingNext img {
-    width: 60px;
-    height: 60px;
+    width: 100px;
+    height: 100px;
+    display: block;
+  }
+  #servingUnit article {
+    display: inline-grid;
+    grid-template-columns: 50px 1fr;
+  }
+  .servingBeerGlass {
     display: inline-flex;
   }
+  #dashboard #servingUnit {
+    width: 300px;
+    text-align: left;
+  }
+  #servingUnit {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  #servingUnit .order {
+    display: none;
+  }
+  /*----- taps ------*/
   #tapsDashboard {
     grid-area: taps;
-    display: flex;
-    align-self: flex-start;
-    justify-self: flex-start;
-    margin: 20px 0 0 40px;
+    height: fit-content;
+    width: auto;
   }
   #tapsDashboard article {
     width: 30px;
     height: 30px;
   }
-  #tapsDashboard p.level {
+  #tapsDashboard p.level,
+  #tapsDashboard p.id {
     display: none;
   }
-  #tapsDashboard h1 {
+  #dashboard #tapsUnit {
+    width: 100%;
+  }
+  .tapImage {
+    height: 300px;
+    width: 100px;
+    justify-self: flex-start;
+  }
+  .bulletUse {
     display: none;
   }
+  /*----- bartenders ------*/
   #bartenders {
     grid-area: bartenders;
-    display: flex;
-    align-self: flex-end;
-    justify-self: flex-end;
-    display: inline-block;
+    align-self: center;
+    padding-top: 50px;
+  }
+  #bartenders article {
+    margin-right: 100px;
   }
   #bartenders .bartender {
-    width: 90px;
-    height: 90px;
-    border: 10px solid;
+    width: 150px;
+    height: 150px;
+    border: 5px solid;
   }
   #bartenders p {
-    margin: 3px;
-    background: white;
+    margin: 15px;
+    font-size: 22px;
+    font-family: var(--form-font);
+  }
+  #bartenders p.name {
+    font-family: var(--subtitle-font);
+    font-size: 30px;
   }
   #bartenders p.servingCustomer {
     display: none;
   }
-  #bartenders h1 {
-    display: none;
-  }
+  /*----- queue ------*/
   #nextInLine {
     grid-area: queue;
-    padding: 20px;
+  }
+  .queueLogo {
+    text-align: justify;
+  }
+  #queueUnit .id {
+    align-self: flex-start;
+  }
+  #queueUnit .startTime {
+    align-self: flex-start;
+  }
+  .queueLogo img {
+    height: 65px;
+    margin: 10px;
   }
   #queueUnit {
-    background: inherit;
+    display: grid;
+    grid-row-gap: 1.5em;
+  }
+  #queueUnit article {
+    align-items: center;
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: 0 55px 0 1fr 50px;
   }
 }
 
@@ -962,7 +1043,7 @@ li.sortBy {
     visibility: hidden;
   }
   /*---------- MOBILE DASHBOARD ---------*/
-  .desktopBackground {
+  .fooBar {
     display: none;
   }
   #dashboard {
