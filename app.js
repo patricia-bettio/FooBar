@@ -157,10 +157,11 @@ function postOrder(orderQuantity) {
       })
     
         .then((res) => res.json())
-        .then((data) => console.log(data));
+        .then((data) => showErrors(data));
      
     }
     post(orderQuantity);
+
 
 }
 
@@ -168,7 +169,7 @@ function showErrors(data){
   console.log(data)
   console.log(data.message)
   let dataMessage = data.message;
-  console.log(data.contains("We are not serving: "))
+  
   
 }
 
