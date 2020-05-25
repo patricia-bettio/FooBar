@@ -7,14 +7,89 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body id="beerApp">
-    <button class="testPost">Test Post
-    
-    </button>
+    <!-------- modal -------->
+    <button class="testPost">Test Post</button>
+
+    <button id="modalBtn">Modal Test</button>
+    <div id="modal" class="modal">
+      <div class="modalContent">
+        <span class="closeModal">&times;</span>
+
+        <!-------- review -------->
+        <h2 class="subtitle">Step 2 - Review your order</h2>
+
+        <!-------- payment -------->
+        <section class="formSection">
+          <h2 class="subtitle">Step 3 - Proceed to payment</h2>
+          <form>
+            <label for="acceptedCards">
+              Accepted Cards
+            </label>
+            <img class="cards" src="static/images/cards.png" alt="cards" />
+
+            <label for="cardName">
+              Cardholder's Name
+            </label>
+            <input
+              type="text"
+              name="cardName"
+              placeholder="John Smith"
+              autocomplete="name"
+              required
+            />
+            <p>Oops! You forgot to tell us your name</p>
+
+            <label for="cardNumber">
+              Card Number
+            </label>
+            <input
+              name="cardNumber"
+              type="text"
+              maxlength="19"
+              class="cc-number-input"
+              inputmode="numeric"
+              autocomplete="cc-number"
+              placeholder="xxxx xxxx xxxx xxxx"
+              required
+            />
+            <p>Oops! You forgot to write out your card number</p>
+
+            <label for="expiryDate">
+              Expiry Date
+            </label>
+            <input
+              name="expiryDate"
+              type="text"
+              maxlength="5"
+              class="cc-expiry-input"
+              required
+            />
+            <p>
+              Let us know when your card expires
+            </p>
+            <label for="ccv">
+              CVC
+            </label>
+            <input
+              name="ccv"
+              type="text"
+              maxlength="3"
+              class="cc-cvc-input"
+              required
+            />
+            <p>
+              CVC number is missing
+            </p>
+
+            <input type="submit" value="Pay Now" class="formSubmit" />
+          </form>
+        </section>
+      </div>
+    </div>
 
     <div class="header">
       <a href="/review.html">
         <img class="next" src="static/images/next.png" alt="next" />
-        
       </a>
       <h2 class="subtitle">Step 1 - Order your beers</h2>
     </div>
@@ -77,20 +152,16 @@
     <template>
       <article id="beerList">
         <img class="logo" src="" alt="beerLogo" />
-        
-        <div class="beerInfoName">
-        <h2 class="name">Name</h2>
-        <h2 class="category">Category</h2>
-        <p class="alcohol">ABV</p>
-      </div>
-       
 
-      
+        <div class="beerInfoName">
+          <h2 class="name">Name</h2>
+          <h2 class="category">Category</h2>
+          <p class="alcohol">ABV</p>
+        </div>
 
         <form class="appForm" action="" method="">
           <p class="price">30kr</p>
           <label for="quantity"></label>
-          <!-- <button class="minus">–</button> -->
           <input
             type="number"
             id="quantity"
@@ -99,13 +170,11 @@
             max="5"
             placeholder="0"
           />
-          <!-- <button class="plus">+</button> -->
-
         </form>
-        
+
         <div class="showingMore">
-        <img class="showMore" src="" alt="glassType" />
-        <button class="showMoreButton">↓</button>
+          <img class="showMore" src="" alt="glassType" />
+          <button class="showMoreButton">↓</button>
         </div>
       </article>
       <div class="dropdown">
