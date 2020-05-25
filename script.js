@@ -99,8 +99,9 @@ function updatedQueueUnit(queue) {
     //elements
     oneQueue.querySelector("p.id").textContent = `order #${queue[index].id}`;
     //oneQueue.querySelector("p.order").textContent = queue[index].order;
-    oneQueue.querySelector("p.startTime").textContent = dateFormatter(queue[index].startTime).slice(0,5);
- 
+    oneQueue.querySelector("p.startTime").textContent = dateFormatter(
+      queue[index].startTime
+    ).slice(0, 5);
 
     /*     //AVATAR *random - will change every 5 sec
        let numberImg = Math.floor(Math.random()*randomAvatar.length);
@@ -268,12 +269,12 @@ function updatedServingUnit(serving) {
     });
 }
 //----------------------QUEUE SIZE --------------------------------------//
-function setQueueSize(queueSize){
+function setQueueSize(queueSize) {
   document.querySelector(".queueCount span").textContent = queueSize.length;
-  updatedQueueSize(queueSize)
+  updatedQueueSize(queueSize);
 }
 
-function updatedQueueSize(queueSize){
+function updatedQueueSize(queueSize) {
   document.querySelector(".queueCount span").textContent = queueSize.length;
 }
 // ----------------------- dashboard desktop query ---------------------- //
@@ -314,6 +315,6 @@ function setTimeToClose() {
     let seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
     timeSpan.innerHTML =
-      "Time until closing: " + hours + ":" + minutes + ":" + seconds;
+      "We close in: " + hours + ":" + minutes + ":" + seconds;
   }, 50);
 }
