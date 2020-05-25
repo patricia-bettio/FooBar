@@ -358,26 +358,28 @@ li.sortBy {
 /*------------ monitor view ----------*/
 @media screen and (min-width: 1920px) {
   #dashboard {
-    background: beige;
     background-image: url("static/images/bubbles.png");
-    background-size: 60%;
+    background-size: 100%;
   }
   #dashboard main {
     display: grid;
-    grid-template-columns: 0.8fr 1fr 0.5fr;
-    grid-template-rows: 0.1fr 1fr 0.4fr 0.7fr;
+    grid-template-columns: 0.5fr 0.6fr 0.7fr;
+    grid-template-rows: 0.1fr 0.3fr 0.8fr;
     grid-template-areas:
-      "time taps queue"
-      "serving bartenders queue"
-      "storage bartenders ."
-      "storage . .";
+      "time serving storage"
+      "queue serving bartenders"
+      "queue . taps";
   }
+  #servingNext,
   #nextInLine,
   #bartenders,
-  #servingNext,
   #mostWanted,
   #tapsDashboard {
-    padding: 60px;
+    border-radius: 15px;
+    background: white;
+    box-shadow: 1px 1px 7px 2px #ccc;
+    padding: 2em;
+    margin: 7px;
   }
   #mostWanted h1,
   #nextInLine h1,
@@ -403,6 +405,11 @@ li.sortBy {
     margin-top: 10px;
     padding-left: 40px;
     color: olive;
+    border-radius: 15px;
+    background: #ececec;
+    background-image: url("static/images/bubbles.png");
+    box-shadow: 1px 1px 7px 2px #ccc;
+    margin-bottom: 50px;
   }
   #dashboard .subtitle {
     display: none;
@@ -410,34 +417,32 @@ li.sortBy {
   #dashboard #localTime {
     grid-area: time;
     display: flex;
-    align-self: flex-end;
+    align-self: flex-start;
     justify-content: flex-start;
     font-family: var(--form-font);
     font-size: 32px;
-    padding-bottom: 50px;
+    padding-top: 120px;
     padding-left: 40px;
   }
   #dashboard #timer {
     grid-area: time;
     display: flex;
-    align-self: flex-end;
+    align-self: flex-start;
     justify-self: flex-start;
     font-family: var(--form-font);
     font-size: 23px;
-    margin-bottom: 20px;
+    padding-top: 190px;
     padding-left: 40px;
   }
   /*----- storage ------*/
   #mostWanted {
     grid-area: storage;
   }
-  #storageUnit {
-    grid-template-columns: repeat(4, 1fr);
+  #mostWanted h1 {
+    display: none;
   }
-  #storageUnit article {
-    display: grid;
-    align-items: self-end;
-    justify-items: center;
+  #storageUnit {
+    display: flex;
   }
   /*----- serving ------*/
   #servingNext {
@@ -472,12 +477,14 @@ li.sortBy {
   /*----- taps ------*/
   #tapsDashboard {
     grid-area: taps;
-    height: fit-content;
-    width: auto;
+    background: white;
   }
   #tapsDashboard article {
     width: 30px;
     height: 30px;
+  }
+  #tapsDashboard h1 {
+    display: none;
   }
   #tapsDashboard p.level,
   #tapsDashboard p.id {
@@ -487,8 +494,8 @@ li.sortBy {
     width: 100%;
   }
   .tapImage {
-    height: 300px;
-    width: 100px;
+    height: 200px;
+    width: 50px;
     justify-self: flex-start;
   }
   .bulletUse {
@@ -498,15 +505,14 @@ li.sortBy {
   #bartenders {
     grid-area: bartenders;
     align-self: center;
-    padding-top: 50px;
-  }
-  #bartenders article {
-    margin-right: 100px;
   }
   #bartenders .bartender {
-    width: 150px;
-    height: 150px;
-    border: 5px solid;
+    width: 100px;
+    height: 100px;
+    border: 10px solid;
+  }
+  #bartenders h1 {
+    display: none;
   }
   #bartenders p {
     margin: 15px;
