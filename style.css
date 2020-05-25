@@ -358,17 +358,17 @@ li.sortBy {
 /*------------ desktop view ----------*/
 @media screen and (min-width: 1200px) {
   #dashboard {
-    background-image: url("static/svg/fooBar.svg");
+    background-image: url("static/svg/foobar_v2.svg");
     background-size: 100%;
     background-repeat: no-repeat;
   }
   #dashboard main {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: 0.3fr 0.5fr 0.1fr 0.4fr;
+    grid-template-rows: 0.3fr 0.5fr 0.6fr 0.4fr;
     grid-template-areas:
-      "serving taps time"
-      ". glasses bartenders"
+      "time . ."
+      "serving taps bartenders"
       ". . ."
       "queue queue storage";
   }
@@ -379,19 +379,17 @@ li.sortBy {
     grid-area: time;
     display: flex;
     align-self: flex-start;
-    justify-content: flex-end;
+    justify-content: flex-start;
     font-family: var(--form-font);
-    color: white;
     font-size: 25px;
     margin-top: 30px;
   }
   #dashboard #timer {
     grid-area: time;
     display: flex;
-    align-self: flex-start;
-    justify-self: flex-end;
+    align-self: center;
+    justify-self: flex-start;
     font-family: var(--form-font);
-    color: white;
   }
   #mostWanted {
     grid-area: storage;
@@ -406,7 +404,7 @@ li.sortBy {
   #servingNext {
     grid-area: serving;
     display: flex;
-    align-self: flex-end;
+    align-self: center;
     justify-content: flex-start;
     margin-top: 100px;
     border: 1px solid lightgray;
@@ -415,7 +413,6 @@ li.sortBy {
     display: none;
   }
   #servingNext p {
-    color: white;
     font-family: var(--subtitle-font);
   }
   #servingNext img {
@@ -428,26 +425,23 @@ li.sortBy {
     display: flex;
     align-self: flex-start;
     justify-self: flex-start;
-    margin-top: 20px;
+    margin: 20px 0 0 40px;
   }
   #tapsDashboard article {
     width: 30px;
     height: 30px;
   }
-  #tapsDashboard p.level,
-  #tapsDashboard .bulletUse {
+  #tapsDashboard p.level {
     display: none;
   }
   #tapsDashboard h1 {
     display: none;
   }
-  #tapsDashboard p {
-    color: white;
-  }
   #bartenders {
     grid-area: bartenders;
     display: flex;
     align-self: flex-end;
+    justify-self: flex-end;
     display: inline-block;
   }
   #bartenders .bartender {
