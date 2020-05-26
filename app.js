@@ -72,7 +72,7 @@ function displaySingleBeer(beer) {
     console.log(amount);
   });
 
-  /* document.querySelector(".testPost").addEventListener("click", (e) => {
+  document.querySelector(".testPost").addEventListener("click", (e) => {
     e.preventDefault();
 
     let validForm = true;
@@ -93,7 +93,7 @@ function displaySingleBeer(beer) {
         amount: form.elements.quantity.value,
       });
     }
-  }); */
+  });
 
   //hidden details in template:
   beerClone.querySelector(
