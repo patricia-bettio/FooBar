@@ -179,6 +179,17 @@ input#quantity {
   display: inline-block;
   vertical-align: middle;
 }
+/*----------------------modal ----------------------*/
+.reviewTheOrder{
+  list-style: none;
+}
+
+.modalBtn{
+  float: right;
+}
+.beerUnavailable {
+  filter: grayscale(100%);
+}
 /*-------------- increase/decrease buttons ---------*/
 .minus,
 .plus {
@@ -851,6 +862,11 @@ li.sortBy {
 @media screen and (max-width: 420px) {
   /*------- MOBILE BEER LIST -------*/
 
+  /*review*/
+
+  .modalBtn{
+    float: right;
+  }
   /*beer app*/
 
   .price {
