@@ -91,7 +91,7 @@ function updatedQueueUnit(queue) {
   document.querySelectorAll("#queueUnit article").forEach((oneQueue, index) => {
     //oneQueue.querySelector(".queueLogo").innerHTML = "";
     //oneQueue.querySelector("p.id").innerHTML = "";
-    console.log(oneQueue.querySelector(".queueLogo"));
+    //console.log(oneQueue.querySelector(".queueLogo"));
     oneQueue.querySelector(".queueLogo").innerHTML = "";
     oneQueue.querySelector("p.id").innerHTML = "";
     oneQueue.querySelector("p.startTime").innerHTML = "";
@@ -223,12 +223,21 @@ function updatedTapsUnit(taps) {
     oneTap.querySelector(".tapImage").src = `/svg/taps/${
       tapFormat.toLowerCase().split(" ")[0]
     }_tap.svg`;
+    
     //USE
     if (taps[index].inUse === false) {
       oneTap.querySelector(".bulletUse").style.background = "red";
+      //glass
+      oneTap.querySelector(".glassServed").src = ""; 
     } else {
       oneTap.querySelector(".bulletUse").style.background = "green";
+      //glass
+      oneTap.querySelector(".glassServed").src = `/svg/logoGlasses/${tapFormat.toLowerCase().split(" ")[0]}_glass_logo.svg`
     }
+
+
+
+
   });
 }
 
