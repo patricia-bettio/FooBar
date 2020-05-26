@@ -3,6 +3,9 @@
 export const urlApi = "https://beer-waffles.herokuapp.com/";
 export const urlDetails = "https://beer-waffles.herokuapp.com/beertypes";
 
+export const resdbEndpoint = "https://frontend2020-db3c.restdb.io/rest/beer-price";
+export const resdbApiKey = "5e95774d436377171a0c233c";
+
 export function dateFormatter(timestamp) {
   //console.log(timestamp);
   let date = new Date(timestamp);

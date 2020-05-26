@@ -1,12 +1,11 @@
 "use strict";
 
 import { urlDetails, urlApi } from "./modules/extra";
+import {resdbEndpoint, resdbApiKey} from "./modules/extra";
 
 document.addEventListener("DOMContentLoaded", init);
 
 let allBeers = [];
-let alcNumber = [];
-let orderQuantity = [];
 
 let orders = [];
 
@@ -16,9 +15,11 @@ let nameBeerEdit;
 let currentServing = [];
 let notAvailable;
 
+
 function init() {
   
   fetchDashboard();
+  getPrices();
   fetchData();
   setUpModal();
 }
@@ -77,12 +78,13 @@ function unavailableBeers(beers){
   })
 }
 
+
 function displayBeer(beers) {
   //console.log(beers);
   //clear
   document.querySelector("#beerArea").innerHTML = "";
   beers.forEach(displaySingleBeer);
-}
+  }
 
 function displaySingleBeer(beer) {
   //console.log(beer);
@@ -95,7 +97,8 @@ function displaySingleBeer(beer) {
   beerClone.querySelector("h2.category").textContent = `${beer.category}`;
   beerClone.querySelector("p.alcohol").textContent = `ABV: ${beer.alc} %`;
   beerClone.querySelector(".logo").src = `images/${beer.label}`;
-
+ 
+ 
   //form
   const form = beerClone.querySelector("form");
   window.form = form;
@@ -543,3 +546,27 @@ function setUpPayment() {
     // code copied from https://codepen.io/murani/pen/KyVbrp
   }
 }
+
+//**-----------------PRICES----------------* */
+function getPrices(){
+   
+  fetch(resdbEndpoint, {
+  method: "get",
+  headers: {
+  "accept": "application/json",
+  "x-apikey": resdbApiKey,
+  "cache-control": "no-cache",
+}
+})
+.then((res) => res.json())
+.then((data) => showPrices(data));
+};
+
+function showPrices(onePrice){
+
+  document.querySelectorAll("#beerArea article").forEach((oneItem, index)=>{
+    oneItem.querySelector(".price").textContent = onePrice[index].price;
+  })
+}
+
+//**-----------------------------------------* */
