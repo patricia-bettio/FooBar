@@ -37,7 +37,6 @@ p.price{
 #bartendersUnit {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  width: 400px;
   text-align: center;
 }
 
@@ -340,16 +339,17 @@ li.sortBy {
   height: 60px;
   width: auto;
 }
-/*SERVING*/
-.servingBeerGlass img {
-  height: 100px;
-  width: auto;
-}
+
 /*TAPS*/
 .bulletUse {
   width: 10px;
   height: 10px;
   border-radius: 50%;
+}
+
+.servingBeerGlass img {
+  height: 100px;
+  width: auto;
 }
 /*STORAGE*/
 #storageUnit {
@@ -369,12 +369,13 @@ li.sortBy {
   }
   #dashboard main {
     display: grid;
-    grid-template-columns: 0.5fr 0.6fr 0.7fr;
-    grid-template-rows: 0.1fr 0.3fr 0.8fr;
+    grid-template-columns: 0.5fr 0.5fr 0.7fr;
+    grid-template-rows: 0.1fr 0.3fr 1fr;
+    grid-auto-columns: max-content;
     grid-template-areas:
       "time serving storage"
       "queue serving bartenders"
-      "queue . taps";
+      "queue serving taps";
   }
   #servingNext,
   #nextInLine,
@@ -384,7 +385,7 @@ li.sortBy {
     border-radius: 15px;
     background: white;
     box-shadow: 1px 1px 7px 2px #ccc;
-    padding: 2em;
+    padding: 1em;
     margin: 7px;
   }
   #mostWanted h1,
@@ -458,19 +459,19 @@ li.sortBy {
     font-family: var(--subtitle-font);
   }
   #servingNext img {
-    width: 100px;
-    height: 100px;
-    display: block;
+    width: auto;
+    height: 120px;
+    margin-right: 0.5em;
   }
   #servingUnit article {
-    display: inline-grid;
-    grid-template-columns: 50px 1fr;
+    display: grid;
+    grid-template-columns: 80px 1fr;
   }
   .servingBeerGlass {
-    display: inline-flex;
+    display: block;
+    justify-content: flex-start;
   }
   #dashboard #servingUnit {
-    width: 300px;
     text-align: left;
   }
   #servingUnit {
@@ -521,7 +522,7 @@ li.sortBy {
     display: none;
   }
   #bartenders p {
-    margin: 15px;
+    margin: 5px;
     font-size: 22px;
     font-family: var(--form-font);
   }
