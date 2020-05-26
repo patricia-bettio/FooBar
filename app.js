@@ -136,7 +136,7 @@ function displaySingleBeer(beer) {
 //--------------------------------- +/- BEERS FORM -----------------------------------//
 function postOrder(orderQuantity) {
   console.log("Added to cart: ", orderQuantity);
-
+  //editOption(orderQuantity);
   /*---------------------POST--------------------*/
 
   function post(orderQuantity) {
@@ -165,6 +165,22 @@ function showErrors(data) {
   let dataMessage = data.message;
   console.log(data.contains("We are not serving: "));
 }
+
+//--------------------------------------EDIT --------------------------------------//
+function editOption(orderQuantity){
+  console.log(orderQuantity)
+  console.log(orderQuantity.name)
+  console.log(orderQuantity.amount)
+  console.log(document.querySelector("#orderDetailspreview"))
+  
+  const templateEdit = document.querySelector("#editOrderPreview").content;
+  const editArea = document.querySelector("#orderDetailspreview");
+  const cloneEdit = templateEdit.cloneNode(true);
+  console.log(cloneEdit.querySelector(".beerAmount"))
+  editArea.appendChild(cloneEdit);
+
+}
+
 
 //-------------------------------------- FILTER -------------------------------------//
 function setFilters(allBeers) {
