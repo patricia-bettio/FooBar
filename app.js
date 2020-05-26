@@ -8,10 +8,12 @@ let allBeers = [];
 let alcNumber = [];
 let orderQuantity = [];
 
-let orders = []
+let orders = [];
 
 function init() {
   fetchData();
+
+  setUpModal();
 }
 
 function fetchData() {
@@ -40,7 +42,6 @@ function displayBeer(beers) {
   //clear
   document.querySelector("#beerArea").innerHTML = "";
   beers.forEach(displaySingleBeer);
-
 }
 
 function displaySingleBeer(beer) {
@@ -63,17 +64,15 @@ function displaySingleBeer(beer) {
 
   elements.quantity.addEventListener("keyup", (e) => {
     console.dir(e.target.value);
-      //beer name
-      const name = beer.name;
-      console.log(name);
-      //amount
-      const amount = form.elements.quantity.value;
-      console.log(amount);
-
+    //beer name
+    const name = beer.name;
+    console.log(name);
+    //amount
+    const amount = form.elements.quantity.value;
+    console.log(amount);
   });
 
-
-   document.querySelector(".testPost").addEventListener("click", (e) => {
+  /* document.querySelector(".testPost").addEventListener("click", (e) => {
     e.preventDefault();
 
     let validForm = true;
@@ -81,11 +80,11 @@ function displaySingleBeer(beer) {
     const amount = form.elements.quantity.value;
 
     //add only amount > 0
-    if (amount === ""){
+    if (amount === "") {
       //console.log("zero")
       validForm = false;
     }
-    
+
     //post
     if (form.checkValidity() && validForm) {
       console.log("form is valid");
@@ -94,7 +93,7 @@ function displaySingleBeer(beer) {
         amount: form.elements.quantity.value,
       });
     }
-  });
+  }); */
 
   //hidden details in template:
   beerClone.querySelector(
@@ -134,42 +133,37 @@ function displaySingleBeer(beer) {
   beerList.appendChild(beerClone);
 }
 
-
 //--------------------------------- +/- BEERS FORM -----------------------------------//
 function postOrder(orderQuantity) {
   console.log("Added to cart: ", orderQuantity);
 
-    /*---------------------POST--------------------*/
+  /*---------------------POST--------------------*/
 
-    function post(orderQuantity) {
-     console.log("POST",orderQuantity)
+  function post(orderQuantity) {
+    console.log("POST", orderQuantity);
 
-     orders.push(orderQuantity)
-      const postData = JSON.stringify(orders);
-      console.log(postData)
-      fetch("https://beer-waffles.herokuapp.com/order", {
-        method: "post",
-        headers: {
-          "Content-Type": "application/json; charset=utf-8",
-        },
-        
+    orders.push(orderQuantity);
+    const postData = JSON.stringify(orders);
+    console.log(postData);
+    fetch("https://beer-waffles.herokuapp.com/order", {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json; charset=utf-8",
+      },
+
       body: postData,
-      })
-    
-        .then((res) => res.json())
-        .then((data) => console.log(data));
-     
-    }
-    post(orderQuantity);
-
+    })
+      .then((res) => res.json())
+      .then((data) => console.log(data));
+  }
+  post(orderQuantity);
 }
 
-function showErrors(data){
-  console.log(data)
-  console.log(data.message)
+function showErrors(data) {
+  console.log(data);
+  console.log(data.message);
   let dataMessage = data.message;
-  console.log(data.contains("We are not serving: "))
-  
+  console.log(data.contains("We are not serving: "));
 }
 
 //-------------------------------------- FILTER -------------------------------------//
@@ -310,4 +304,159 @@ function firstDesc() {
   }
   allBeers.sort(compareAlc);
   displayBeer(allBeers);
+}
+
+// ------------ modal ---------- //
+const modal = document.querySelector("#modal");
+const modalBtn = document.querySelector("#modalBtn");
+const span = document.querySelector(".closeModal");
+const editBtn = document.querySelector("#editBtn");
+const modal2 = document.querySelector("#modal2");
+const modalBtn2 = document.querySelector("#modalBtn2");
+const span2 = document.querySelector(".closeModal2");
+
+function setUpModal() {
+  modalBtn.addEventListener("click", (e) => {
+    modal.style.display = "block";
+  });
+  span.addEventListener("click", (e) => {
+    modal.style.display = "none";
+  });
+  //close modal when "edit" btn clicked
+  editBtn.addEventListener("click", (e) => {
+    modal.style.display = "none";
+  });
+  setUpPayment();
+}
+
+// ------- payment modal ------ //
+function setUpPayment() {
+  modalBtn2.addEventListener("click", (e) => {
+    modal2.style.display = "block";
+  });
+  span2.addEventListener("click", (e) => {
+    modal2.style.display = "none";
+  });
+  window.addEventListener("click", (e) => {
+    if (event.target == modal) {
+      modal2.style.display = "none";
+    }
+  });
+  setUpForm();
+
+  function setUpForm() {
+    const body = document.querySelector("body");
+    window.form = form;
+    window.elements = elements;
+    const form = document.querySelector("form");
+    const elements = form.elements;
+
+    form.setAttribute("novalidate", true);
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const formElements = form.querySelectorAll("input");
+      formElements.forEach((el) => {
+        el.classList.remove("invalid");
+      });
+
+      if (form.checkValidity()) {
+        body.classList.add("noForm");
+        body.classList.add(
+          "loadingGif"
+        ); /* &&
+            location.assign("http://localhost:1234/app.html") */
+      } else {
+        formElements.forEach((el) => {
+          if (!el.checkValidity()) {
+            el.classList.add("invalid");
+          }
+        });
+      }
+    });
+
+    // ------ code copied from https://codepen.io/murani/pen/KyVbrp --------
+    let ccNumberInput = document.querySelector(".cc-number-input"),
+      ccNumberPattern = /^\d{0,16}$/g,
+      ccNumberSeparator = " ",
+      ccNumberInputOldValue,
+      ccNumberInputOldCursor,
+      ccExpiryInput = document.querySelector(".cc-expiry-input"),
+      ccExpiryPattern = /^\d{0,4}$/g,
+      ccExpirySeparator = "/",
+      ccExpiryInputOldValue,
+      mask = (value, limit, separator) => {
+        var output = [];
+        for (let i = 0; i < value.length; i++) {
+          if (i !== 0 && i % limit === 0) {
+            output.push(separator);
+          }
+
+          output.push(value[i]);
+        }
+
+        return output.join("");
+      },
+      unmask = (value) => value.replace(/[^\d]/g, ""),
+      checkSeparator = (position, interval) =>
+        Math.floor(position / (interval + 1)),
+      ccNumberInputKeyDownHandler = (e) => {
+        let el = e.target;
+        ccNumberInputOldValue = el.value;
+        ccNumberInputOldCursor = el.selectionEnd;
+      },
+      ccNumberInputInputHandler = (e) => {
+        let el = e.target,
+          newValue = unmask(el.value),
+          newCursorPosition;
+
+        if (newValue.match(ccNumberPattern)) {
+          newValue = mask(newValue, 4, ccNumberSeparator);
+
+          newCursorPosition =
+            ccNumberInputOldCursor -
+            checkSeparator(ccNumberInputOldCursor, 4) +
+            checkSeparator(
+              ccNumberInputOldCursor +
+                (newValue.length - ccNumberInputOldValue.length),
+              4
+            ) +
+            (unmask(newValue).length - unmask(ccNumberInputOldValue).length);
+
+          el.value = newValue !== "" ? newValue : "";
+        } else {
+          el.value = ccNumberInputOldValue;
+          newCursorPosition = ccNumberInputOldCursor;
+        }
+
+        el.setSelectionRange(newCursorPosition, newCursorPosition);
+      },
+      // expiry date
+      ccExpiryInputKeyDownHandler = (e) => {
+        let el = e.target;
+        ccExpiryInputOldValue = el.value;
+        ccExpiryInputOldCursor = el.selectionEnd;
+      },
+      ccExpiryInputInputHandler = (e) => {
+        let el = e.target,
+          newValue = el.value;
+
+        newValue = unmask(newValue);
+        if (newValue.match(ccExpiryPattern)) {
+          newValue = mask(newValue, 2, ccExpirySeparator);
+          el.value = newValue;
+        } else {
+          el.value = ccExpiryInputOldValue;
+        }
+      };
+
+    // card number
+    ccNumberInput.addEventListener("keydown", ccNumberInputKeyDownHandler);
+    ccNumberInput.addEventListener("input", ccNumberInputInputHandler);
+
+    ccExpiryInput.addEventListener("keydown", ccExpiryInputKeyDownHandler);
+    ccExpiryInput.addEventListener("input", ccExpiryInputInputHandler);
+    // code copied from https://codepen.io/murani/pen/KyVbrp
+  }
 }
