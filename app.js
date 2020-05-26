@@ -10,9 +10,16 @@ let orderQuantity = [];
 
 let orders = [];
 
-function init() {
-  fetchData();
+let amountBeerEdit;
+let nameBeerEdit;
 
+let currentServing = [];
+let notAvailable;
+
+function init() {
+  
+  fetchDashboard();
+  fetchData();
   setUpModal();
 }
 
@@ -26,15 +33,48 @@ function fetchData() {
     });
 }
 
+
+function fetchDashboard(){
+  fetch(urlApi, {
+    method: "get",
+  })
+    .then((e) => e.json())
+    .then((e) => {
+      seeDashboard(e);
+    });
+}
+
+//currently serving:
+function seeDashboard(seeDashboard){
+seeDashboard.taps.forEach((oneTap)=>{
+  currentServing.push(oneTap.beer);
+})
+}
+
 function fetchBeers(beers) {
   //make global:
   allBeers = beers;
   //console.log(allBeers)
   //set Filter:
   setFilters(beers);
-
+  //disable unavailable
+  //unavailableBeers(beers);
   //show on template:
   displayBeer(beers);
+}
+
+function unavailableBeers(beers){
+  beers.forEach((oneBeer)=>{
+   // console.log(oneBeer.name)
+   // console.log(currentServing.includes(oneBeer.name))
+    if (currentServing.includes(oneBeer.name)){
+     // console.log("do nothing, beer is available")
+    } else {
+      console.log("This beer is NOT avaialble")
+      console.log(oneBeer.name)
+          
+    }
+  })
 }
 
 function displayBeer(beers) {
@@ -70,28 +110,42 @@ function displaySingleBeer(beer) {
     //amount
     const amount = form.elements.quantity.value;
     console.log(amount);
+
+    
+    nameBeerEdit = beer.name;
+    amountBeerEdit = form.elements.quantity.value;
+    
   });
 
-  document.querySelector(".testPost").addEventListener("click", (e) => {
+ 
+  //console.log(document.querySelector(".formSubmit"))
+  document.querySelector(".formSubmit").addEventListener("click", (e) => {
     e.preventDefault();
 
     let validForm = true;
 
+    const name = beer.name;
     const amount = form.elements.quantity.value;
 
+  
+  
     //add only amount > 0
     if (amount === "") {
-      //console.log("zero")
+      console.log("zero")
       validForm = false;
+      
     }
 
     //post
     if (form.checkValidity() && validForm) {
+      
       console.log("form is valid");
+      
       postOrder({
         name: beer.name,
         amount: form.elements.quantity.value,
       });
+      
     }
   });
 
@@ -137,6 +191,7 @@ function displaySingleBeer(beer) {
 function postOrder(orderQuantity) {
   console.log("Added to cart: ", orderQuantity);
 
+
   /*---------------------POST--------------------*/
 
   function post(orderQuantity) {
@@ -154,18 +209,37 @@ function postOrder(orderQuantity) {
       body: postData,
     })
       .then((res) => res.json())
-      .then((data) => console.log(data));
+      .then((data) => showErrors(data));
   }
   post(orderQuantity);
+ 
 }
 
 function showErrors(data) {
   console.log(data);
   console.log(data.message);
   let dataMessage = data.message;
-  console.log(data.contains("We are not serving: "));
+  if (dataMessage.includes("We are not serving:")){
+    alert(`Oops...${dataMessage}`);
+    setTimeout((e) => {
+      location.reload()
+    }, 1000)
+  }
 }
+//--------------------------------EDIT-------------------------------------------//
 
+function editOptionModal(){
+  console.log(nameBeerEdit)
+  console.log(amountBeerEdit)
+
+  document.querySelector(".modalContent .reviewTheOrder").innerHTML = "";
+  const areaReviw = document.querySelector(".modalContent .reviewTheOrder");
+  var reviewOrder = document.createElement('p');
+  reviewOrder.textContent = `${nameBeerEdit} x${amountBeerEdit}`;
+
+  areaReviw.appendChild(reviewOrder);
+
+}
 //-------------------------------------- FILTER -------------------------------------//
 function setFilters(allBeers) {
   //console.log(allBeers);
@@ -317,7 +391,16 @@ const span2 = document.querySelector(".closeModal2");
 
 function setUpModal() {
   modalBtn.addEventListener("click", (e) => {
-    modal.style.display = "block";
+    
+   console.log(amountBeerEdit)
+   console.log(nameBeerEdit)
+   if(!amountBeerEdit){
+     alert("select at least one")
+   } else {
+     modal.style.display = "block";
+     editOptionModal()
+   }
+  
   });
   span.addEventListener("click", (e) => {
     modal.style.display = "none";
