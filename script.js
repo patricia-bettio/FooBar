@@ -158,8 +158,11 @@ function updatedBartendersUnit(bartenders) {
         bartenders[index].servingCustomer;
       oneBartender.querySelector("p.usingTap").textContent =
         bartenders[index].usingTap;
+        let formatStatusNow = bartenders[index].statusDetail;
+      //console.log(formatStatusNow.charAt(0).toUpperCase()+formatStatusNow.slice(1))
+       
       oneBartender.querySelector("p.statusDetail").textContent =
-        bartenders[index].statusDetail;
+      formatStatusNow.charAt(0).toUpperCase()+formatStatusNow.slice(1);
     });
 }
 
@@ -218,6 +221,13 @@ function updatedTapsUnit(taps) {
     //oneTap.querySelector("p.beer").textContent = taps[index].beer;
     //oneTap.querySelector("p.inUse").textContent = taps[index].inUse;
     oneTap.querySelector("p.level").textContent = taps[index].level;
+    //alert
+    let findLevel = taps[index].level;
+    if (findLevel < 500) {
+      oneTap.querySelector(".tapImage").classList.add("glowLowLevel");
+    } else {
+      oneTap.querySelector(".tapImage").classList.remove("glowLowLevel");
+    }
     //IMAGE
     let tapFormat = taps[index].beer;
     oneTap.querySelector(".tapImage").src = `/svg/taps/${

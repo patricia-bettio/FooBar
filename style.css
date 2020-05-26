@@ -44,7 +44,6 @@ p.price {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   width: 400px;
-  text-align: center;
 }
 
 #servingUnit {
@@ -357,7 +356,7 @@ li.sortBy {
   grid-template-columns: repeat(5, 1fr);
 }
 .kegImage {
-  height: 110px;
+  height: 120px;
   width: auto;
 }
 /*monitor 14'*/
@@ -397,8 +396,8 @@ li.sortBy {
   #tapsDashboard h1,
   #bartenders h1 {
     font-family: var(--subtitle-font);
-    font-size: 35px;
-    padding-bottom: 30px;
+    font-size: 30px;
+    padding-bottom: 10px;
     border-bottom: 1px solid grey;
   }
   #nextInLine p,
@@ -444,6 +443,7 @@ li.sortBy {
   #mostWanted {
     grid-area: storage;
     text-align-last: center;
+    padding: 0;
   }
   #mostWanted h1 {
     display: none;
@@ -471,12 +471,11 @@ li.sortBy {
   }
   #servingNext img {
     width: auto;
-    height: 120px;
+    height: 110px;
     margin-right: 0.5em;
   }
   #servingUnit article {
     display: grid;
-    grid-template-columns: 80px 1fr;
   }
   .servingBeerGlass {
     display: block;
@@ -484,6 +483,7 @@ li.sortBy {
   }
   #dashboard #servingUnit {
     text-align: left;
+    object-fit: fill;
   }
   #servingUnit {
     display: grid;
@@ -527,6 +527,7 @@ li.sortBy {
   }
   #dashboard #tapsUnit {
     width: 100%;
+    justify-items: center;
   }
   .tapImage {
     height: 200px;
@@ -536,14 +537,29 @@ li.sortBy {
   .bulletUse {
     display: none;
   }
+
+  .glowLowLevel{
+    animation: glowLow 2s infinite alternate;
+  }
+
+  @keyframes glowLow {
+    from,
+    to {
+      filter: drop-shadow(0)
+    }
+    50% {
+      filter: drop-shadow(0 0 0.75rem yellow);
+    }
+  }
+
   /*----- bartenders ------*/
   #bartenders {
     grid-area: bartenders;
     align-self: center;
   }
   #bartenders .bartender {
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
     border: 10px solid;
   }
   #bartenders h1 {
@@ -556,9 +572,15 @@ li.sortBy {
   }
   #bartenders p.name {
     font-family: var(--subtitle-font);
-    font-size: 30px;
+    font-size: 20px;
   }
   #bartenders p.servingCustomer {
+    display: none;
+  }
+  #bartenders .status {
+    display: none;
+  }
+  #bartenders .usingTap{
     display: none;
   }
   /*----- queue ------*/
