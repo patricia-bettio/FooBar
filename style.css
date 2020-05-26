@@ -362,7 +362,7 @@ li.sortBy {
 }
 
 /*------------ monitor view ----------*/
-@media screen and (min-width: 1920px) {
+@media screen and (min-width: 1600px) {
   #dashboard {
     background-image: url("static/images/bubbles.png");
     background-size: 100%;
@@ -480,6 +480,11 @@ li.sortBy {
   }
   #servingUnit .order {
     display: none;
+  }
+
+  .glassServed{
+    height: 100px;
+    width: auto;
   }
   /*----- taps ------*/
   #tapsDashboard {
