@@ -28,7 +28,7 @@ html {
   scroll-behavior: smooth;
 }
 
-p.price{
+p.price {
   padding: 0;
   margin: 0;
   font-size: 16px;
@@ -692,7 +692,7 @@ li.sortBy {
     margin-right: 20px;
   }
 
-  .price{
+  .price {
     padding: 0;
     margin: 0;
     font-size: 16px;
@@ -808,7 +808,7 @@ li.sortBy {
 
   /*beer app*/
 
-  .price{
+  .price {
     padding: 0;
     margin: 0;
     font-size: 16px;
@@ -880,7 +880,7 @@ li.sortBy {
 
     /* margin-left: 20px; */
   }
-  #beerList .price{
+  #beerList .price {
     padding: 0;
     margin: 0;
     font-size: 16px;
@@ -965,10 +965,47 @@ li.sortBy {
     height: 80px;
     margin-right: 5px;
   }
-
   .showingMore {
     display: contents;
   }
+  /*------- modals ------*/
+  .modal,
+  .modal2 {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+  .modalContent,
+  .modalContent2 {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    width: 90%;
+    height: 100%;
+  }
+  .closeModal,
+  .closeModal2 {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  .closeModal:hover,
+  .closeModal:focus,
+  .closeModal2:hover,
+  .closeModal2:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
   /*----------- MOBILE REVIEW ------------*/
   button.next,
   button.nextReview {
