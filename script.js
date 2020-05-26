@@ -228,11 +228,13 @@ function updatedTapsUnit(taps) {
     if (taps[index].inUse === false) {
       oneTap.querySelector(".bulletUse").style.background = "red";
       //glass
+      oneTap.querySelector(".glassServed").classList.remove("glassServedRotate");
       oneTap.querySelector(".glassServed").src = ""; 
     } else {
       oneTap.querySelector(".bulletUse").style.background = "green";
       //glass
       oneTap.querySelector(".glassServed").src = `/svg/logoGlasses/${tapFormat.toLowerCase().split(" ")[0]}_glass_logo.svg`
+      oneTap.querySelector(".glassServed").classList.add("glassServedRotate");
     }
 
 
