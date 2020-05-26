@@ -357,10 +357,12 @@ li.sortBy {
   grid-template-columns: repeat(5, 1fr);
 }
 .kegImage {
-  height: 100px;
+  height: 110px;
   width: auto;
 }
-
+/*monitor 14'*/
+@media screen and (min-width: 1400px) and (max-width: 1600px) {
+}
 /*------------ monitor view ----------*/
 @media screen and (min-width: 1400px) {
   #dashboard {
@@ -369,11 +371,12 @@ li.sortBy {
   }
   #dashboard main {
     display: grid;
-    grid-template-columns: 0.5fr 0.5fr 0.7fr;
-    grid-template-rows: 0.1fr 0.3fr 1fr;
+    grid-template-columns: 25% 25% 50%;
+    justify-content: center;
+    grid-template-rows: 0.1fr 0.1fr 1fr;
     grid-auto-columns: max-content;
     grid-template-areas:
-      "time serving storage"
+      "queue serving storage"
       "queue serving bartenders"
       "queue serving taps";
   }
@@ -406,50 +409,58 @@ li.sortBy {
     font-size: 20px;
   }
   #dashboard .foobarTitle {
-    grid-area: time;
     font-family: var(--subtitle-font);
-    font-size: 100px;
+    font-size: 30px;
     margin-top: 10px;
-    padding-left: 40px;
     color: olive;
     border-radius: 15px;
-    background: #ececec;
-    background-image: url("static/images/bubbles.png");
+    margin: 0;
+    /*     background: #ececec;
+    background-image: url("static/images/bubbles.png"); */
     box-shadow: 1px 1px 7px 2px #ccc;
-    margin-bottom: 50px;
+    /*     margin-bottom: 50px; */
   }
   #dashboard .subtitle {
     display: none;
   }
   #dashboard #localTime {
-    grid-area: time;
-    display: flex;
-    align-self: flex-start;
-    justify-content: flex-start;
     font-family: var(--form-font);
     font-size: 32px;
-    padding-top: 120px;
-    padding-left: 40px;
+    margin: 0;
+    align-self: center;
+  }
+  #mainHeader {
+    display: flex;
+    justify-content: space-between;
   }
   #dashboard #timer {
-    grid-area: time;
-    display: flex;
-    align-self: flex-start;
-    justify-self: flex-start;
+    text-align-last: right;
     font-family: var(--form-font);
     font-size: 23px;
-    padding-top: 190px;
-    padding-left: 40px;
+    margin: 0;
+    align-self: center;
   }
   /*----- storage ------*/
   #mostWanted {
     grid-area: storage;
+    text-align-last: center;
   }
   #mostWanted h1 {
     display: none;
   }
   #storageUnit {
-    display: flex;
+    display: inline-grid;
+  }
+  #storageUnit article {
+    align-self: flex-end;
+    text-align-last: center;
+  }
+  /*show only 5*/
+  #storageUnit article:nth-child(n + 6) {
+    display: none;
+  }
+  #storageUnit .amount {
+    display: none;
   }
   /*----- serving ------*/
   #servingNext {
@@ -483,9 +494,20 @@ li.sortBy {
   }
 
   .glassServed {
-    height: 100px;
+    height: 130px;
     width: auto;
   }
+
+  .glassServedRotate {
+    animation: rotateServing 2s infinite;
+  }
+
+  @keyframes rotateServing {
+    to {
+      transform: rotate(-15deg);
+    }
+  }
+
   /*----- taps ------*/
   #tapsDashboard {
     grid-area: taps;
@@ -494,6 +516,7 @@ li.sortBy {
   #tapsDashboard article {
     width: 30px;
     height: 30px;
+    display: inline-table;
   }
   #tapsDashboard h1 {
     display: none;
@@ -1160,6 +1183,9 @@ li.sortBy {
     border-radius: 50%;
   }
   /*TAPS*/
+  .glassServed {
+    display: none;
+  }
   #dashboard #tapsUnit {
     width: 100%;
   }
@@ -1250,6 +1276,9 @@ li.sortBy {
 @media screen and (max-width: 325px) {
   .showingMore {
     display: block;
+  }
+  .glassServed {
+    display: none;
   }
   #beerList {
     grid-template-columns: 0fr 50px 1fr 0.4fr;
