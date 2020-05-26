@@ -483,9 +483,19 @@ li.sortBy {
   }
 
   .glassServed{
-    height: 100px;
+    height: 130px;
     width: auto;
   }
+
+  .glassServedRotate {
+    animation: rotateServing 2s  infinite;
+  }
+
+  @keyframes rotateServing {
+    to{ transform: rotate(-15deg); }
+  }
+  
+  
   /*----- taps ------*/
   #tapsDashboard {
     grid-area: taps;
@@ -1123,6 +1133,9 @@ li.sortBy {
     border-radius: 50%;
   }
   /*TAPS*/
+  .glassServed{
+   display: none;
+  }
   #dashboard #tapsUnit {
     width: 100%;
   }
@@ -1213,6 +1226,9 @@ li.sortBy {
 @media screen and (max-width: 325px) {
   .showingMore {
     display: block;
+  }
+  .glassServed{
+   display: none;
   }
   #beerList {
     grid-template-columns: 0fr 50px 1fr 0.4fr;
