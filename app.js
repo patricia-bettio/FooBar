@@ -9,8 +9,13 @@ let allBeers = [];
 
 let orders = [];
 
+//testing
 let amountBeerEdit;
 let nameBeerEdit;
+//object stored
+let userLastOption = []
+
+
 
 let currentServing = [];
 let notAvailable;
@@ -105,19 +110,45 @@ function displaySingleBeer(beer) {
   const elements = form.elements;
   window.elements = elements;
 
+  
   elements.quantity.addEventListener("keyup", (e) => {
-    console.dir(e.target.value);
+    //console.log(e)
+    //console.dir(e.target.value);
+
+    let objectReview = {
+       name: "",
+       amount: 0
+     }
+
+    // nameBeerEdit.find(beer => beer.name === beer.name); // either smth, either undefined
+    // if undefined add to array
+    // else change value
+
     //beer name
     const name = beer.name;
-    console.log(name);
+    //console.log(name);
     //amount
     const amount = form.elements.quantity.value;
-    console.log(amount);
+    //console.log(amount);
 
-    
-    nameBeerEdit = beer.name;
+    //PROBLEM
+    nameBeerEdit = name;
     amountBeerEdit = form.elements.quantity.value;
-    
+     
+     //TESTING
+/*      objectReview.name = name;
+     objectReview.amount = form.elements.quantity.value;
+     console.log(objectReview)
+     userLastOption.push(objectReview);
+     console.log(userLastOption)
+     console.log(objectReview.name) */
+
+
+  /* console.log(nameBeerEdit.find(beer => beer.name === objectReview.name))
+    if(nameBeerEdit.find(beer => beer.name === objectReview.name)){
+      console.log("name is there")
+    }
+    console.log(nameBeerEdit) */
   });
 
  
@@ -403,7 +434,7 @@ function setUpModal() {
   modalBtn.addEventListener("click", (e) => {
     
    console.log(amountBeerEdit)
-   console.log(nameBeerEdit)
+   console.log(userLastOption)
    if(!amountBeerEdit){
      alert("select at least one")
    } else {
@@ -566,14 +597,23 @@ function getPrices(){
 }
 })
 .then((res) => res.json())
-.then((data) => showPrices(data));
+.then((data) => data.forEach(showPrices));
 };
 
 function showPrices(onePrice){
-
-  document.querySelectorAll("#beerArea article").forEach((oneItem, index)=>{
-    oneItem.querySelector(".price").textContent = onePrice[index].price;
+  document.querySelectorAll("#beerList").forEach((e)=>{
+    let templateNameBeer = e.querySelector(".name").innerHTML;
+    if( onePrice.name === templateNameBeer){
+     console.log(e.querySelector(".price"))
+     console.log(onePrice.price)
+     e.querySelector(".price").textContent = onePrice.price;
+    }
   })
+  //option2 - match by order
+  /* console.log(onePrice)
+    document.querySelectorAll("#beerArea article").forEach((oneItem, index)=>{
+    oneItem.querySelector(".price").textContent = onePrice[index].price;
+  }) */
 }
 
 //**-----------------------------------------* */
