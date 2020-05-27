@@ -180,11 +180,11 @@ input#quantity {
   vertical-align: middle;
 }
 /*----------------------modal ----------------------*/
-.reviewTheOrder{
+.reviewTheOrder {
   list-style: none;
 }
 
-.modalBtn{
+.modalBtn {
   float: right;
 }
 .beerUnavailable {
@@ -420,21 +420,21 @@ li.sortBy {
   }
   #dashboard .foobarTitle {
     font-family: var(--subtitle-font);
-    font-size: 30px;
+    font-size: 60px;
     margin-top: 10px;
     color: olive;
     border-radius: 15px;
     margin: 0;
     /*     background: #ececec;
     background-image: url("static/images/bubbles.png"); */
-    box-shadow: 1px 1px 7px 2px #ccc;
+    /* box-shadow: 1px 1px 7px 2px #ccc; */
     /*     margin-bottom: 50px; */
   }
   #dashboard .subtitle {
     display: none;
   }
   #dashboard #localTime {
-    font-family: var(--form-font);
+    font-family: "Lemon/Milk";
     font-size: 32px;
     margin: 0;
     align-self: center;
@@ -445,8 +445,8 @@ li.sortBy {
   }
   #dashboard #timer {
     text-align-last: right;
-    font-family: var(--form-font);
-    font-size: 23px;
+    font-family: "Lemon/Milk";
+    font-size: 28px;
     margin: 0;
     align-self: center;
   }
@@ -549,14 +549,14 @@ li.sortBy {
     display: none;
   }
 
-  .glowLowLevel{
+  .glowLowLevel {
     animation: glowLow 2s infinite alternate;
   }
 
   @keyframes glowLow {
     from,
     to {
-      filter: drop-shadow(0)
+      filter: drop-shadow(0);
     }
     50% {
       filter: drop-shadow(0 0 0.75rem yellow);
@@ -591,7 +591,7 @@ li.sortBy {
   #bartenders .status {
     display: none;
   }
-  #bartenders .usingTap{
+  #bartenders .usingTap {
     display: none;
   }
   /*----- queue ------*/
@@ -864,7 +864,7 @@ li.sortBy {
 
   /*review*/
 
-  .modalBtn{
+  .modalBtn {
     float: right;
   }
   /*beer app*/
