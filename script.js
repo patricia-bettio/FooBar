@@ -242,6 +242,7 @@ function updatedTapsUnit(taps) {
         .querySelector(".glassServed")
         .classList.remove("glassServedRotate");
       oneTap.querySelector(".glassServed").src = "";
+      oneTap.querySelector(".pouringBeer").src = "";
     } else {
       oneTap.querySelector(".bulletUse").style.background = "green";
       //glass
@@ -249,6 +250,7 @@ function updatedTapsUnit(taps) {
         tapFormat.toLowerCase().split(" ")[0]
       }_glass_logo.svg`;
       oneTap.querySelector(".glassServed").classList.add("glassServedRotate");
+      oneTap.querySelector(".pouringBeer").src = "svg/pouringBeer.svg";
     }
   });
 }

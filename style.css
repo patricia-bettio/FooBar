@@ -53,7 +53,6 @@ p.price {
   text-align: center;
 }
 
-
 /*----------- DESKTOP BEER LIST -----------*/
 #beerApp {
   background-image: url(static/images/beerHeader_final.png);
@@ -296,11 +295,11 @@ li.sortBy {
   content: "↓";
 } */
 
-.arrowUpSort::after{
+.arrowUpSort::after {
   content: "↑";
 }
 
-.arrowDownSort::after{
+.arrowDownSort::after {
   content: "↓";
 }
 .sortBy {
@@ -518,12 +517,27 @@ li.sortBy {
   }
 
   .glassServedRotate {
-    animation: rotateServing 2s infinite;
+    animation: rotateServing 8s infinite;
   }
 
   @keyframes rotateServing {
     to {
       transform: rotate(-15deg);
+    }
+  }
+  .pouringBeer {
+    height: 70px;
+    width: 50px;
+    animation: pouringBeer 2s ease-in both;
+  }
+  @keyframes pouringBeer {
+    0% {
+      transform: rotateY(30deg) translateY(-100px) skewY(-30deg);
+      opacity: 0;
+    }
+    100% {
+      transform: rotateY(0deg) translateY(-55px) skewY(0deg);
+      opacity: 0.7;
     }
   }
 
@@ -719,7 +733,7 @@ li.sortBy {
     border: inherit;
     border-radius: 10px;
   }
-  .resetFilter{
+  .resetFilter {
     float: right;
   }
   img.logo {
@@ -1001,11 +1015,26 @@ li.sortBy {
     width: auto;
   }
   .glassServedRotate {
-    animation: rotateServing 2s infinite;
+    animation: rotateServing 8s infinite;
   }
   @keyframes rotateServing {
     to {
       transform: rotate(-15deg);
+    }
+  }
+  .pouringBeer {
+    height: 70px;
+    width: 50px;
+    animation: pouringBeer 2s ease-in both;
+  }
+  @keyframes pouringBeer {
+    0% {
+      transform: rotateY(30deg) translateY(-100px) skewY(-30deg);
+      opacity: 0;
+    }
+    100% {
+      transform: rotateY(0deg) translateY(-55px) skewY(0deg);
+      opacity: 0.7;
     }
   }
   /*----- taps ------*/
@@ -1124,20 +1153,19 @@ li.sortBy {
 
   /*FILTER*/
 
-  #filters{
-
+  #filters {
   }
 
-  .filterOptions{
+  .filterOptions {
     display: none;
     position: absolute;
     background-color: #f1f1f1;
     min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
   }
 
-  .showFilters{
+  .showFilters {
     display: block;
   }
 
@@ -1151,7 +1179,7 @@ li.sortBy {
     font-size: 16px;
   }
 
-  li.sortBy{
+  li.sortBy {
     display: block;
   }
   #beerApp {
@@ -1161,7 +1189,7 @@ li.sortBy {
   }
 
   /**/
-  .backgroundAdjust{
+  .backgroundAdjust {
     background-size: contain;
   }
   #heroImg {
@@ -1250,7 +1278,7 @@ li.sortBy {
     font-size: 16px;
     padding: 12px;
   }
-  .resetFilter{
+  .resetFilter {
     float: right;
   }
   p.alcohol {
