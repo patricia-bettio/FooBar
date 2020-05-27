@@ -7,13 +7,25 @@
 @font-face {
   font-family: "Lemon/Milk";
   src: url("fonts/LemonMilk.otf");
-  font-weight: 100;
+  font-weight: normal;
   font-style: normal;
 }
 @font-face {
   font-family: "Lemon/Milk light";
   src: url("fonts/LemonMilklight.otf");
-  font-weight: 100;
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Noto Sans JP Light";
+  src: url("fonts/NotoSansJP-Light.otf");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Noto Sans JP Regular";
+  src: url("fonts/NotoSansJP-Regular.otf");
+  font-weight: normal;
   font-style: normal;
 }
 
@@ -85,7 +97,6 @@ p.price {
 }
 h2.subtitle {
   grid-area: subtitle;
-  background-image: url(static/images/bubbles.png);
   display: flex;
   align-self: center;
   font-size: 18px;
@@ -223,6 +234,8 @@ input#quantity {
   box-shadow: 1px 1px 7px 2px #ccc;
   background-color: white;
   padding: 1em;
+  font-family: "Noto Sans JP Regular";
+  text-align: justify;
 }
 
 /*logo*/
@@ -724,7 +737,7 @@ li.sortBy {
   }
   h2.subtitle {
     font-size: 34px;
-    padding: 20px 0 30px 0;
+    padding: 150px 0 30px 0;
   }
   .filterButton,
   .sortButton,
@@ -752,6 +765,9 @@ li.sortBy {
     justify-self: flex-start;
     margin: 5px 10px;
   }
+  li.sortBy {
+    font-size: 20px;
+  }
   .minus,
   .plus {
     grid-area: buttons;
@@ -772,11 +788,59 @@ li.sortBy {
     height: 85px;
     margin-right: 20px;
   }
-
-  .price {
-    padding: 0;
-    margin: 0;
-    font-size: 16px;
+  .dropdown {
+    font-family: "Noto Sans JP Regular";
+    font-size: 20px;
+    padding: 40px 70px;
+    text-align: justify;
+  }
+  /* .dropdown p.aroma::before {
+    content: url("static/icons/aroma.png");
+    display: inline-flex;
+    width: 10px;
+    height: 10px;
+  } */
+  /*------- modals ------*/
+  .modal,
+  .modal2 {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+  .modalContent,
+  .modalContent2 {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    width: 90%;
+    height: 100%;
+  }
+  .closeModal,
+  .closeModal2 {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  .closeModal:hover,
+  .closeModal:focus,
+  .closeModal2:hover,
+  .closeModal2:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  p.price {
+    padding-top: 15px;
+    font-size: 22px;
+    display: block;
   }
 
   /*----------- REVIEW ------------*/
@@ -797,6 +861,11 @@ li.sortBy {
     display: flex;
     justify-content: center;
   }
+  img.cards {
+    width: 140px;
+    height: 30px;
+    margin-left: 190px;
+  }
   label {
     margin: 5px 0 10px 0;
   }
@@ -807,7 +876,7 @@ li.sortBy {
     display: block;
     font-family: var(--form-font);
     font-size: 14px;
-    width: 310px;
+    width: 380px;
     padding: 8px;
   }
   input + p {
@@ -867,7 +936,7 @@ li.sortBy {
     text-transform: uppercase;
     cursor: pointer;
     justify-self: center;
-    width: 310px;
+    width: 400px;
   }
   .formSubmit:hover {
     color: black;
@@ -1153,8 +1222,8 @@ li.sortBy {
 
   /*FILTER*/
 
-  #filters {
-  }
+  /* #filters {
+  } */
 
   .filterOptions {
     display: none;
@@ -1185,7 +1254,7 @@ li.sortBy {
   #beerApp {
     background-image: url(static/images/beerHeader_final.png);
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: 100%;
   }
 
   /**/
@@ -1270,6 +1339,7 @@ li.sortBy {
     display: flex;
     align-self: center;
     font-size: 18px;
+    padding: 0 0 30px 0;
     font-family: var(--subtitle-font);
   }
   .filterButton,
@@ -1340,6 +1410,12 @@ li.sortBy {
   }
   .showingMore {
     display: contents;
+  }
+  .dropdown {
+    font-family: "Noto Sans JP Regular";
+    font-size: 16px;
+    padding: 25px 45px;
+    text-align: justify;
   }
   /*------- modals ------*/
   .modal,
