@@ -858,6 +858,248 @@ li.sortBy {
   }
 }
 
+/*------- tablet for DASHBOARD -------*/
+@media screen and (max-width: 1200px) and (min-device-width: 760px) {
+  #dashboard {
+    background-image: url("static/images/bubbles.png");
+    background-size: 100%;
+  }
+  #dashboard main {
+    display: grid;
+    grid-template-columns: 25% 25% 50%;
+    justify-content: center;
+    grid-template-rows: 0.1fr 0.1fr 1fr;
+    grid-auto-columns: max-content;
+    grid-template-areas:
+      "queue serving storage"
+      "queue serving bartenders"
+      "queue serving taps";
+  }
+  #servingNext,
+  #nextInLine,
+  #bartenders,
+  #mostWanted,
+  #tapsDashboard {
+    border-radius: 15px;
+    background: white;
+    box-shadow: 1px 1px 7px 2px #ccc;
+    padding: 1em;
+    margin: 7px;
+  }
+  #mostWanted h1,
+  #nextInLine h1,
+  #servingNext h1,
+  #tapsDashboard h1,
+  #bartenders h1 {
+    font-family: var(--subtitle-font);
+    font-size: 22px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid grey;
+  }
+  #nextInLine p,
+  #servingNext p,
+  #tapsDashboard p,
+  #bartenders p {
+    font-family: var(--subtitle-font);
+    font-size: 16px;
+  }
+  #dashboard .foobarTitle {
+    font-family: var(--subtitle-font);
+    font-size: 40px;
+    margin-top: 10px;
+    color: olive;
+    margin: 0;
+  }
+  #dashboard .subtitle {
+    display: none;
+  }
+  #dashboard #localTime {
+    font-family: "Lemon/Milk";
+    font-size: 24px;
+  }
+  #mainHeader {
+    display: flex;
+    justify-content: space-between;
+  }
+  #dashboard #timer {
+    text-align-last: right;
+    font-family: "Lemon/Milk";
+    font-size: 24px;
+    margin: 0;
+    align-self: center;
+  }
+  /*----- storage ------*/
+  #mostWanted {
+    grid-area: storage;
+    text-align-last: center;
+    padding: 0;
+  }
+  #mostWanted h1 {
+    display: none;
+  }
+  #storageUnit {
+    display: inline-grid;
+  }
+  #storageUnit article {
+    align-self: flex-end;
+    text-align-last: center;
+  }
+  #storageUnit .kegImage {
+    width: 45px;
+    height: 95px;
+  }
+  /*show only 5*/
+  #storageUnit article:nth-child(n + 6) {
+    display: none;
+  }
+  #storageUnit .amount {
+    display: none;
+  }
+  /*----- serving ------*/
+  #servingNext {
+    grid-area: serving;
+  }
+  #servingNext p {
+    font-family: var(--subtitle-font);
+  }
+  #servingNext img {
+    width: auto;
+    height: 80px;
+    margin-right: 0.5em;
+  }
+  #servingUnit article {
+    display: grid;
+  }
+  .servingBeerGlass {
+    display: block;
+    justify-content: flex-start;
+  }
+  #dashboard #servingUnit {
+    text-align: left;
+    object-fit: fill;
+  }
+  #servingUnit {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  #servingUnit .order {
+    display: none;
+  }
+  .glassServed {
+    height: 100px;
+    width: auto;
+  }
+  .glassServedRotate {
+    animation: rotateServing 2s infinite;
+  }
+  @keyframes rotateServing {
+    to {
+      transform: rotate(-15deg);
+    }
+  }
+  /*----- taps ------*/
+  #tapsDashboard {
+    grid-area: taps;
+    background: white;
+  }
+  #tapsDashboard article {
+    width: 30px;
+    height: 30px;
+    display: inline-table;
+  }
+  #tapsDashboard h1 {
+    display: none;
+  }
+  #tapsDashboard p.level,
+  #tapsDashboard p.id {
+    display: none;
+  }
+  #dashboard #tapsUnit {
+    width: 100%;
+    justify-items: center;
+  }
+  .tapImage {
+    height: 195px;
+    width: 45px;
+    justify-self: flex-start;
+  }
+  .bulletUse {
+    display: none;
+  }
+  .glowLowLevel {
+    animation: glowLow 2s infinite alternate;
+  }
+  @keyframes glowLow {
+    from,
+    to {
+      filter: drop-shadow(0);
+    }
+    50% {
+      filter: drop-shadow(0 0 0.75rem yellow);
+    }
+  }
+  /*----- bartenders ------*/
+  #bartenders {
+    grid-area: bartenders;
+    align-self: center;
+  }
+  #bartenders .bartender {
+    width: 65px;
+    height: 65px;
+    border: 7px solid;
+  }
+  #bartenders h1 {
+    display: none;
+  }
+  #bartenders p {
+    margin: 5px;
+    font-size: 14px;
+    font-family: var(--form-font);
+  }
+  #bartenders p.name {
+    font-family: var(--subtitle-font);
+    font-size: 18px;
+  }
+  #bartenders p.servingCustomer {
+    display: none;
+  }
+  #bartenders .status {
+    display: none;
+  }
+  #bartenders .usingTap {
+    display: none;
+  }
+  /*----- queue ------*/
+  #nextInLine {
+    grid-area: queue;
+  }
+  .queueLogo {
+    text-align: justify;
+  }
+  #queueUnit .id {
+    align-self: flex-start;
+  }
+  #queueUnit .startTime {
+    align-self: flex-start;
+    display: none;
+  }
+  .queueLogo img {
+    height: 45px;
+    margin: 10px;
+  }
+  #queueUnit {
+    display: grid;
+    grid-row-gap: 1.5em;
+  }
+  #queueUnit article {
+    align-items: center;
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-rows: 0 55px 0 1fr 50px;
+    margin: 0;
+  }
+}
+
 /*----------- mobile view -----------*/
 @media screen and (max-width: 420px) {
   /*------- MOBILE BEER LIST -------*/
