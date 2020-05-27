@@ -14,6 +14,7 @@ let amountBeerEdit;
 let nameBeerEdit;
 //object stored
 let userLastOption = []
+let updatedUserSelection = [];
 
 
 
@@ -112,43 +113,28 @@ function displaySingleBeer(beer) {
 
   
   elements.quantity.addEventListener("keyup", (e) => {
-    //console.log(e)
-    //console.dir(e.target.value);
 
     let objectReview = {
        name: "",
        amount: 0
      }
 
-    // nameBeerEdit.find(beer => beer.name === beer.name); // either smth, either undefined
-    // if undefined add to array
-    // else change value
-
     //beer name
     const name = beer.name;
-    //console.log(name);
     //amount
     const amount = form.elements.quantity.value;
-    //console.log(amount);
-
-    //PROBLEM
-    nameBeerEdit = name;
-    amountBeerEdit = form.elements.quantity.value;
      
-     //TESTING
-/*      objectReview.name = name;
+     //EDIT
+     objectReview.name = name;
      objectReview.amount = form.elements.quantity.value;
-     console.log(objectReview)
-     userLastOption.push(objectReview);
-     console.log(userLastOption)
-     console.log(objectReview.name) */
+      const getLastInstance = userLastOption.findIndex(beer=>beer.name===name)
+      if (getLastInstance === -1) {
+        userLastOption.push(objectReview)
+      } else {
+      userLastOption[getLastInstance] = objectReview;
+      }
+   editOptionModal(userLastOption);
 
-
-  /* console.log(nameBeerEdit.find(beer => beer.name === objectReview.name))
-    if(nameBeerEdit.find(beer => beer.name === objectReview.name)){
-      console.log("name is there")
-    }
-    console.log(nameBeerEdit) */
   });
 
  
@@ -262,16 +248,16 @@ function showErrors(data) {
 }
 //--------------------------------EDIT-------------------------------------------//
 
-function editOptionModal(){
-  console.log(nameBeerEdit)
-  console.log(amountBeerEdit)
-
+function editOptionModal(userLastOption){
+  
   document.querySelector(".modalContent .reviewTheOrder").innerHTML = "";
-  const areaReviw = document.querySelector(".modalContent .reviewTheOrder");
-  var reviewOrder = document.createElement('p');
-  reviewOrder.textContent = `${nameBeerEdit} x${amountBeerEdit}`;
-
-  areaReviw.appendChild(reviewOrder);
+  userLastOption.forEach((oneSelection)=>{
+    //console.log(oneSelection)
+    const areaReviw = document.querySelector(".modalContent .reviewTheOrder");
+    var reviewOrder = document.createElement('p');
+    reviewOrder.textContent = `${oneSelection.name} x${oneSelection.amount}`;
+    areaReviw.appendChild(reviewOrder);
+  })
 
 }
 //-------------------------------------- FILTER -------------------------------------//
@@ -432,16 +418,7 @@ const span2 = document.querySelector(".closeModal2");
 
 function setUpModal() {
   modalBtn.addEventListener("click", (e) => {
-    
-   console.log(amountBeerEdit)
-   console.log(userLastOption)
-   if(!amountBeerEdit){
-     alert("select at least one")
-   } else {
-     modal.style.display = "block";
-     editOptionModal()
-   }
-  
+    modal.style.display = "block";
   });
   span.addEventListener("click", (e) => {
     modal.style.display = "none";
@@ -604,8 +581,6 @@ function showPrices(onePrice){
   document.querySelectorAll("#beerList").forEach((e)=>{
     let templateNameBeer = e.querySelector(".name").innerHTML;
     if( onePrice.name === templateNameBeer){
-     console.log(e.querySelector(".price"))
-     console.log(onePrice.price)
      e.querySelector(".price").textContent = onePrice.price;
     }
   })
