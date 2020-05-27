@@ -250,10 +250,6 @@ function setFilters(allBeers) {
   document.querySelector(".filterButton").addEventListener("click", (e) => {
     document.querySelector(".filterOptions").classList.toggle("showFilters");
   });
-  //show sorting:
-  document.querySelector(".sortButton").addEventListener("click", (e) => {
-    document.querySelector(".sortOptions").classList.toggle("showSorting");
-  });
   // filters event listeners:
   document
     .querySelector("[data-filter='IPA']")
@@ -288,6 +284,7 @@ function filterIPA() {
     return IPA.category == "IPA";
   });
   displayBeer(ipaBeers);
+  document.querySelector(".filterOptions").classList.remove("showFilters")
 }
 
 function filterHefe() {
@@ -296,6 +293,7 @@ function filterHefe() {
     return hefe.category == "Hefeweizen";
   });
   displayBeer(hefeBeers);
+  document.querySelector(".filterOptions").classList.remove("showFilters")
 }
 
 function filterOkt() {
@@ -304,6 +302,7 @@ function filterOkt() {
     return okt.category == "Oktoberfest";
   });
   displayBeer(oktBeers);
+  document.querySelector(".filterOptions").classList.remove("showFilters")
 }
 
 function filterEuro() {
@@ -312,6 +311,7 @@ function filterEuro() {
     return euro.category == "European Lager";
   });
   displayBeer(euroBeers);
+  document.querySelector(".filterOptions").classList.remove("showFilters")
 }
 
 function filterStout() {
@@ -320,6 +320,7 @@ function filterStout() {
     return stout.category == "Stout";
   });
   displayBeer(stoutBeers);
+  document.querySelector(".filterOptions").classList.remove("showFilters")
 }
 
 function filterBelgian() {
@@ -328,6 +329,7 @@ function filterBelgian() {
     return belgian.category == "Belgian Specialty Ale";
   });
   displayBeer(belgianBeers);
+  document.querySelector(".filterOptions").classList.remove("showFilters")
 }
 
 function filterCalif() {
@@ -336,24 +338,29 @@ function filterCalif() {
     return calif.category == "California Common";
   });
   displayBeer(califBeers);
+  document.querySelector(".filterOptions").classList.remove("showFilters")
 }
 
 function resetFilter() {
-  console.log(allBeers);
-  displayBeer(allBeers);
+  location.reload()
 }
 
 //--------sorting-------------//
 function sortAlc() {
   console.log(allBeers);
+  document.querySelector("#beerApp").classList.add("backgroundAdjust");
   if (event.target.dataset.sortDirection === "asc") {
     event.target.dataset.sortDirection = "desc";
-    console.log("sort asc");
+    //console.log( document.querySelector(".sortOptions li"));
+    document.querySelector(".sortOptions li").classList.remove("arrowDownSort")
+    document.querySelector(".sortOptions li").classList.add("arrowUpSort")
     firstAsc(allBeers);
   } else {
     console.log("sort desc");
     firstDesc(allBeers);
     event.target.dataset.sortDirection = "asc";
+    document.querySelector(".sortOptions li").classList.remove("arrowUpSort")
+    document.querySelector(".sortOptions li").classList.add("arrowDownSort")
   }
 }
 //condition - ascending

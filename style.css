@@ -53,6 +53,7 @@ p.price {
   text-align: center;
 }
 
+
 /*----------- DESKTOP BEER LIST -----------*/
 #beerApp {
   background-image: url(static/images/beerHeader_final.png);
@@ -286,13 +287,20 @@ li.sortBy {
   font-family: var(--subtitle-font);
 }
 .sortOptions {
-  display: none;
   list-style: none;
 }
-.sortOptions li::before {
+/* .sortOptions li::before {
   content: "↑";
 }
 .sortOptions li::after {
+  content: "↓";
+} */
+
+.arrowUpSort::after{
+  content: "↑";
+}
+
+.arrowDownSort::after{
   content: "↓";
 }
 .sortBy {
@@ -711,6 +719,9 @@ li.sortBy {
     border: inherit;
     border-radius: 10px;
   }
+  .resetFilter{
+    float: right;
+  }
   img.logo {
     width: 80px;
     height: 80px;
@@ -869,6 +880,25 @@ li.sortBy {
   }
   /*beer app*/
 
+  /*FILTER*/
+
+  #filters{
+
+  }
+
+  .filterOptions{
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+
+  .showFilters{
+    display: block;
+  }
+
   .price {
     padding: 0;
     margin: 0;
@@ -879,9 +909,18 @@ li.sortBy {
     font-size: 16px;
   }
 
+  li.sortBy{
+    display: block;
+  }
   #beerApp {
     background-image: url(static/images/beerHeader_final.png);
     background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  /**/
+  .backgroundAdjust{
+    background-size: contain;
   }
   #heroImg {
     width: 100%;
@@ -968,6 +1007,9 @@ li.sortBy {
   .resetFilter {
     font-size: 16px;
     padding: 12px;
+  }
+  .resetFilter{
+    float: right;
   }
   p.alcohol {
     grid-area: beerAlc;
