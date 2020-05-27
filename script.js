@@ -158,11 +158,11 @@ function updatedBartendersUnit(bartenders) {
         bartenders[index].servingCustomer;
       oneBartender.querySelector("p.usingTap").textContent =
         bartenders[index].usingTap;
-        let formatStatusNow = bartenders[index].statusDetail;
+      let formatStatusNow = bartenders[index].statusDetail;
       //console.log(formatStatusNow.charAt(0).toUpperCase()+formatStatusNow.slice(1))
-       
+
       oneBartender.querySelector("p.statusDetail").textContent =
-      formatStatusNow.charAt(0).toUpperCase()+formatStatusNow.slice(1);
+        formatStatusNow.charAt(0).toUpperCase() + formatStatusNow.slice(1);
     });
 }
 
@@ -233,23 +233,23 @@ function updatedTapsUnit(taps) {
     oneTap.querySelector(".tapImage").src = `/svg/taps/${
       tapFormat.toLowerCase().split(" ")[0]
     }_tap.svg`;
-    
+
     //USE
     if (taps[index].inUse === false) {
       oneTap.querySelector(".bulletUse").style.background = "red";
       //glass
-      oneTap.querySelector(".glassServed").classList.remove("glassServedRotate");
-      oneTap.querySelector(".glassServed").src = ""; 
+      oneTap
+        .querySelector(".glassServed")
+        .classList.remove("glassServedRotate");
+      oneTap.querySelector(".glassServed").src = "";
     } else {
       oneTap.querySelector(".bulletUse").style.background = "green";
       //glass
-      oneTap.querySelector(".glassServed").src = `/svg/logoGlasses/${tapFormat.toLowerCase().split(" ")[0]}_glass_logo.svg`
+      oneTap.querySelector(".glassServed").src = `/svg/logoGlasses/${
+        tapFormat.toLowerCase().split(" ")[0]
+      }_glass_logo.svg`;
       oneTap.querySelector(".glassServed").classList.add("glassServedRotate");
     }
-
-
-
-
   });
 }
 
