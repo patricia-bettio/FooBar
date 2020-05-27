@@ -159,10 +159,30 @@ function updatedBartendersUnit(bartenders) {
       oneBartender.querySelector("p.usingTap").textContent =
         bartenders[index].usingTap;
       let formatStatusNow = bartenders[index].statusDetail;
-      //console.log(formatStatusNow.charAt(0).toUpperCase()+formatStatusNow.slice(1))
 
-      oneBartender.querySelector("p.statusDetail").textContent =
-        formatStatusNow.charAt(0).toUpperCase() + formatStatusNow.slice(1);
+      if (formatStatusNow === "pourBeer") {
+        oneBartender.querySelector("p.statusDetail").textContent =
+          "Pouring beer";
+      } else if (formatStatusNow === "receivePayment") {
+        oneBartender.querySelector("p.statusDetail").textContent =
+          "Receiving payment";
+      } else if (formatStatusNow === "reserveTap") {
+        oneBartender.querySelector("p.statusDetail").textContent =
+          "Reserving tap";
+      } else if (formatStatusNow === "startServing") {
+        oneBartender.querySelector("p.statusDetail").textContent =
+          "Started serving";
+      } else if (formatStatusNow === "replaceKeg") {
+        oneBartender.querySelector("p.statusDetail").textContent =
+          "Replacing keg";
+      } else if (formatStatusNow === "ready") {
+        oneBartender
+          .querySelector(".bartender")
+          .classList.add("glowingBartender");
+        oneBartender.querySelector("p.statusDetail").textContent = "READY";
+      }
+      /* oneBartender.querySelector("p.statusDetail").textContent =
+        formatStatusNow.charAt(0).toUpperCase() + formatStatusNow.slice(1); */
     });
 }
 

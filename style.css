@@ -51,6 +51,18 @@ p.price {
   grid-template-columns: repeat(3, 1fr);
   text-align: center;
 }
+.glowingBartender {
+  animation: glowBart 5s infinite alternate;
+}
+@keyframes glowBart {
+  from,
+  to {
+    filter: drop-shadow(0);
+  }
+  50% {
+    filter: drop-shadow(0 0 0.75rem green);
+  }
+}
 
 #tapsUnit {
   display: grid;
