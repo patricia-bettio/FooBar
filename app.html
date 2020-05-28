@@ -10,8 +10,7 @@
    
 
     <!-------- modal for EDIT -------->
-    <button id="modalBtn">Next</button>
-    <div id="modal" class="modal">
+       <div id="modal" class="modal">
       <div class="modalContent">
         <span class="closeModal">&times;</span>
         <!-------- edit & next btns -------->
@@ -147,10 +146,11 @@
           </li>
         </div>
       </div>
-
+      <button id="modalBtn">Next</button>
       <div id="reset">
         <button class="resetFilter">Reset</button>
       </div>
+     
     </section>
 
     <!------------------------------SHOW BEERS----------------------------->
@@ -192,6 +192,22 @@
     </template>
 
     <div class="testPNG"></div>
+
+    <!--ERRORS MODAL-->
+    <div id="errorModal1" class="errorModal1">
+      <div class="notAvailable">
+        <span class="closeErrorModal1">&times;</span>
+        <p class="notServing">Not serving</p>
+      </div>
+    </div>
+
+    <div id="errorModal2" class="errorModal2">
+      <div class="minimumOne">
+        <span class="closeErrorModal2">&times;</span>
+        <p class="minimum">Not serving</p>
+      </div>
+    </div>
+
     <script src="app.js"></script>
   </body>
 </html>

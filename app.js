@@ -123,22 +123,27 @@ function displaySingleBeer(beer) {
     const name = beer.name;
     //amount
     const amount = form.elements.quantity.value;
-     
+
      //EDIT
      objectReview.name = name;
      objectReview.amount = form.elements.quantity.value;
       const getLastInstance = userLastOption.findIndex(beer=>beer.name===name)
-      if (getLastInstance === -1) {
+
+      if (getLastInstance === -1 ) {
         userLastOption.push(objectReview)
       } else {
       userLastOption[getLastInstance] = objectReview;
-      }
-   editOptionModal(userLastOption);
+      } 
+  
+
+      userLastOption = userLastOption;
+     editOptionModal(userLastOption);
+
 
   });
 
  
-  //console.log(document.querySelector(".formSubmit"))
+
   document.querySelector(".formSubmit").addEventListener("click", (e) => {
     e.preventDefault();
 
@@ -150,7 +155,8 @@ function displaySingleBeer(beer) {
   
   
     //add only amount > 0
-    if (amount === "") {
+    if (amount === "" ) {
+  
       console.log("zero")
       validForm = false;
       
@@ -235,31 +241,64 @@ function postOrder(orderQuantity) {
  
 }
 
+//------------------------------------ERRORS MODAL -------------------------------//
 function showErrors(data) {
   console.log(data);
   console.log(data.message);
   let dataMessage = data.message;
+  const errorUnavailable =  document.getElementById("errorModal1");
+  const span = errorUnavailable.querySelector("span");
   if (dataMessage.includes("We are not serving:")){
-    alert(`Oops...${dataMessage}`);
-    setTimeout((e) => {
-      location.reload()
-    }, 1000)
+   errorUnavailable.classList.add("errorShow");
+   errorUnavailable.querySelector(".notServing").textContent = `Oops...${dataMessage}`;
+   span.addEventListener("click", (e)=>{
+  location.reload()
+   })
   }
+}
+
+function showErrorAtLeastOne(){
+  const errorMinimum = document.getElementById("errorModal2");
+  errorMinimum.classList.add("errorShow");
+  const span = errorMinimum.querySelector("span");
+  errorMinimum.querySelector(".minimum").innerHTML = "Select at least One";
+  span.addEventListener("click", (e) => {
+    errorMinimum.classList.remove("errorShow");
+  });
 }
 //--------------------------------EDIT-------------------------------------------//
 
 function editOptionModal(userLastOption){
-  
+
   document.querySelector(".modalContent .reviewTheOrder").innerHTML = "";
   userLastOption.forEach((oneSelection)=>{
+  //if 0
+    //console.log(oneSelection.amount > 0)
+    if(oneSelection.amount>0){
     //console.log(oneSelection)
     const areaReviw = document.querySelector(".modalContent .reviewTheOrder");
     var reviewOrder = document.createElement('p');
     reviewOrder.textContent = `${oneSelection.name} x${oneSelection.amount}`;
+  
     areaReviw.appendChild(reviewOrder);
+
+ /*    //price  
+    console.log(oneSelection.amount)
+    let oneBuy = oneSelection.amount;
+    let price = oneSelection.name;
+    console.log(price) */
+  }
   })
 
+ 
+
 }
+//-----------------------------------PRICE-------------------------------------------//
+
+function showTotalPrice(){
+  console.log(userLastOption)
+}
+showTotalPrice()
 //-------------------------------------- FILTER -------------------------------------//
 function setFilters(allBeers) {
   //console.log(allBeers);
@@ -418,7 +457,21 @@ const span2 = document.querySelector(".closeModal2");
 
 function setUpModal() {
   modalBtn.addEventListener("click", (e) => {
+   if (userLastOption == "") {
+     console.log("select at least one")
+     showErrorAtLeastOne();
+
+   } else {
     modal.style.display = "block";
+   }
+
+  /*   userLastOption.forEach((e)=>{
+    if (e.amount == "0") {
+      console.log("select at least one")
+    } 
+    }) */
+
+ 
   });
   span.addEventListener("click", (e) => {
     modal.style.display = "none";
@@ -584,6 +637,7 @@ function showPrices(onePrice){
      e.querySelector(".price").textContent = onePrice.price;
     }
   })
+ 
   //option2 - match by order
   /* console.log(onePrice)
     document.querySelectorAll("#beerArea article").forEach((oneItem, index)=>{
