@@ -1,3 +1,4 @@
+/*-------------- fonts ------------*/
 @font-face {
   font-family: "College Block";
   src: url("fonts/CollegeBlock.otf");
@@ -29,6 +30,7 @@
   font-style: normal;
 }
 
+/*------------ variables ----------*/
 :root {
   --form-font: "Monaco", sans-serif;
   --beer-font: "College Block";
@@ -313,12 +315,6 @@ li.sortBy {
 .sortOptions {
   list-style: none;
 }
-/* .sortOptions li::before {
-  content: "↑";
-}
-.sortOptions li::after {
-  content: "↓";
-} */
 
 .arrowUpSort::after {
   content: "↑";
@@ -402,11 +398,12 @@ li.sortBy {
   height: 120px;
   width: auto;
 }
-/*monitor 14'*/
-@media screen and (min-width: 1400px) and (max-width: 1600px) {
-}
+
+/*--------------------------RESPONSIVE------------------------*/
+/*------------ monitor 14'' ----------*/
+
 /*------------ monitor view ----------*/
-@media screen and (min-width: 1400px) {
+@media screen and (min-width: 1200px) {
   #dashboard {
     background-image: url("static/images/bubbles.png");
     background-size: contain;
@@ -621,7 +618,7 @@ li.sortBy {
     }
   }
 
-  /*----- bartenders ------*/
+  /*------ bartenders ------*/
   #bartenders {
     grid-area: bartenders;
     align-self: center;
@@ -681,8 +678,7 @@ li.sortBy {
   }
 }
 
-/*-----------------------------------------------------------RESPONSIVE---------------------------------------------------------------------------*/
-@media screen and (max-width: 1200px) and (min-device-width: 768px) {
+/* @media screen and (max-width: 1200px) and (min-device-width: 768px) {
   #beerApp {
     background-image: url(static/images/beerHeader_final.png);
     background-repeat: no-repeat;
@@ -706,11 +702,11 @@ li.sortBy {
     margin-bottom: 5px;
     margin-top: 1.5em;
   }
-}
+} */
 /*ipad pro landscape*/
 
-/*------------ tablet view ----------*/
-@media screen and (max-width: 1200px) {
+/*------------ DESKTOP ----------*/
+@media screen and (max-width: 1200px) and (min-width: 1020px) {
   /*-------- TABLET BEER LIST ------*/
   #beerApp {
     background-image: url(static/images/beerHeader_final.png);
@@ -975,8 +971,34 @@ li.sortBy {
   }
 }
 
-/*------- tablet for DASHBOARD -------*/
-@media screen and (max-width: 1200px) and (min-device-width: 760px) {
+/*------------ TABLET ------------*/
+@media screen and (max-width: 1020px) and (min-device-width: 760px) {
+  /*------------ form ------------*/
+  #beerApp {
+    background-image: url(static/images/beerHeader_final.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  .beerInfoName {
+    grid-area: beer;
+  }
+  .showingMore {
+    display: grid;
+    align-self: center;
+  }
+  #beerList {
+    grid-template-columns: 0.3fr 80px 1fr 0.5fr;
+  }
+  #beerList p {
+    margin-left: 10px;
+    margin-top: 5px;
+  }
+  #beerList h2 {
+    margin-bottom: 5px;
+    margin-top: 1.5em;
+  }
+
+  /*------------ dashboard ------------*/
   #dashboard {
     background-image: url("static/images/bubbles.png");
     background-size: 100%;
@@ -1244,7 +1266,7 @@ li.sortBy {
   }
 }
 
-/*----------- mobile view -----------*/
+/*------------ MOBILE ------------*/
 @media screen and (max-width: 420px) {
   /*------- MOBILE BEER LIST -------*/
 
