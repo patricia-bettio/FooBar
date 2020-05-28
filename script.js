@@ -8,12 +8,12 @@ import { dateFormatter } from "./modules/extra";
 //-----------------------------------GLOBAL--------------------------------------//
 /*Avatar*/
 let randomAvatar = [
-  "/images/avatar/avatar1.png",
-  "/images/avatar/avatar2.png",
-  "/images/avatar/avatar3.png",
-  "/images/avatar/avatar4.png",
-  "/images/avatar/avatar5.png",
-  "/images/avatar/avatar6.png",
+  "images/avatar/avatar1.png",
+  "images/avatar/avatar2.png",
+  "images/avatar/avatar3.png",
+  "images/avatar/avatar4.png",
+  "images/avatar/avatar5.png",
+  "images/avatar/avatar6.png",
 ];
 let topFive;
 let sortStorage;
@@ -113,7 +113,7 @@ function updatedQueueUnit(queue) {
     const queueFormat = queue[index].order;
     queueFormat.forEach((e) => {
       let image = new Image();
-      image.src = `/images/circle_logo/${
+      image.src = `images/circle_logo/${
         e.toLowerCase().split(" ")[0]
       }_circle.png`;
       oneQueue.querySelector(".queueLogo").appendChild(image);
@@ -214,7 +214,7 @@ function updatedStorageUnit(storage) {
     ).textContent = `kegs:${storage[index].amount}`;
     //IMAGE
     let kegFormat = storage[index].name;
-    oneKeg.querySelector(".kegImage").src = `/svg/bottles/${
+    oneKeg.querySelector(".kegImage").src = `svg/bottles/${
       kegFormat.toLowerCase().split(" ")[0]
     }_bottle.svg`;
   });
@@ -250,7 +250,7 @@ function updatedTapsUnit(taps) {
     }
     //IMAGE
     let tapFormat = taps[index].beer;
-    oneTap.querySelector(".tapImage").src = `/svg/taps/${
+    oneTap.querySelector(".tapImage").src = `svg/taps/${
       tapFormat.toLowerCase().split(" ")[0]
     }_tap.svg`;
 
@@ -269,7 +269,7 @@ function updatedTapsUnit(taps) {
     } else if (taps[index].inUse === true) {
       oneTap.querySelector(".bulletUse").style.background = "green";
       //glass
-      oneTap.querySelector(".glassServed").src = `/svg/logoGlasses/${
+      oneTap.querySelector(".glassServed").src = `svg/logoGlasses/${
         tapFormat.toLowerCase().split(" ")[0]
       }_glass_logo.svg`;
       oneTap.querySelector(".glassServed").classList.add("glassServedRotate");
@@ -317,7 +317,7 @@ function updatedServingUnit(serving) {
       const orderFormat = serving[index].order;
       orderFormat.forEach((e) => {
         let image = new Image();
-        image.src = `/svg/logoGlasses/${
+        image.src = `svg/logoGlasses/${
           e.toLowerCase().split(" ")[0]
         }_glass_logo.svg`;
         oneServing.querySelector(".servingBeerGlass").appendChild(image);
