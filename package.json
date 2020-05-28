@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/pbettio/dashboard#readme",
   "devDependencies": {
+    "bubbles-animation": "^0.1.0",
     "parcel-bundler": "^1.12.4",
     "parcel-plugin-static-files-copy": "^2.3.1"
   },

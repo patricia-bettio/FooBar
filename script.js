@@ -278,6 +278,8 @@ function updatedTapsUnit(taps) {
       oneTap
         .querySelector(".pouringBeer")
         .classList.add("pouringBeerAnimation");
+
+      // TODO: fix this
     } else if (tapImage.src === "svg/taps/row_tap.svg") {
       oneTap.querySelector(".pouringBeer").src = "svg/pouringBeerStout.svg";
       oneTap
