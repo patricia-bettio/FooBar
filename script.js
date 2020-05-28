@@ -250,6 +250,7 @@ function updatedTapsUnit(taps) {
     }
     //IMAGE
     let tapFormat = taps[index].beer;
+    let tapImage = oneTap.querySelector(".tapImage");
     oneTap.querySelector(".tapImage").src = `/svg/taps/${
       tapFormat.toLowerCase().split(" ")[0]
     }_tap.svg`;
@@ -262,8 +263,11 @@ function updatedTapsUnit(taps) {
         .querySelector(".glassServed")
         .classList.remove("glassServedRotate");
       oneTap.querySelector(".glassServed").src = "";
+      oneTap
+        .querySelector(".pouringBeer")
+        .classList.remove("pouringBeerAnimation");
       oneTap.querySelector(".pouringBeer").src = "";
-    } else {
+    } else if (taps[index].inUse === true) {
       oneTap.querySelector(".bulletUse").style.background = "green";
       //glass
       oneTap.querySelector(".glassServed").src = `/svg/logoGlasses/${
@@ -271,6 +275,14 @@ function updatedTapsUnit(taps) {
       }_glass_logo.svg`;
       oneTap.querySelector(".glassServed").classList.add("glassServedRotate");
       oneTap.querySelector(".pouringBeer").src = "svg/pouringBeer.svg";
+      oneTap
+        .querySelector(".pouringBeer")
+        .classList.add("pouringBeerAnimation");
+    } else if (tapImage.src === "svg/taps/row_tap.svg") {
+      oneTap.querySelector(".pouringBeer").src = "svg/pouringBeerStout.svg";
+      oneTap
+        .querySelector(".pouringBeer")
+        .classList.add("pouringBeerAnimation");
     }
   });
 }

@@ -411,6 +411,92 @@ li.sortBy {
     background-image: url("static/images/bubbles.png");
     background-size: 100%;
   }
+
+  /*------- bubbles -----*/
+  /* .bubbles-animated {
+    position: relative;
+    height: 450px;
+    width: 100%;
+    max-height: 80vw;
+    max-width: 500px;
+  }
+
+  span {
+    position: absolute;
+    display: block;
+    width: 20px;
+    height: 20px;
+    opacity: 0;
+    background: beige;
+    border-radius: 50%;
+    animation: fade infinite ease;
+  }
+
+  span.f1 {
+    top: 40%;
+    left: 20%;
+    transform: scale(2);
+    animation-duration: 3.5s;
+  }
+
+  span.f2 {
+    top: 25%;
+    left: 70%;
+    animation-duration: 3.5s;
+  }
+
+  span.f3 {
+    top: 70%;
+    left: 30%;
+    transform: scale(4);
+    animation-duration: 3.2s;
+  }
+
+  span.f4 {
+    top: 90%;
+    left: 90%;
+    transform: scale(2.5);
+    animation-duration: 2.7s;
+  }
+
+  span.f5 {
+    top: 80%;
+    left: 10%;
+    animation-duration: 2.3s;
+  }
+
+  span.f6 {
+    top: 55%;
+    left: 80%;
+    transform: scale(3);
+    animation-duration: 2.5s;
+  }
+
+  span.f7 {
+    transform: scale(1.5);
+    top: 20%;
+    left: 10%;
+    animation-duration: 2s;
+  }
+
+  span.f8 {
+    top: 5%;
+    left: 95%;
+    animation-duration: 2.1s;
+  }
+
+  @keyframes fade {
+    0% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  } */
+
   #dashboard main {
     display: grid;
     grid-template-columns: 25% 25% 50%;
@@ -542,7 +628,7 @@ li.sortBy {
   }
 
   .glassServedRotate {
-    animation: rotateServing 8s infinite;
+    animation: rotateServing 6s forwards;
   }
 
   @keyframes rotateServing {
@@ -553,6 +639,8 @@ li.sortBy {
   .pouringBeer {
     height: 70px;
     width: 50px;
+  }
+  .pouringBeerAnimation {
     animation: pouringBeer 2s ease-in both;
   }
   @keyframes pouringBeer {
@@ -562,7 +650,7 @@ li.sortBy {
     }
     100% {
       transform: rotateY(0deg) translateY(-55px) skewY(0deg);
-      opacity: 0.7;
+      opacity: 0.8;
     }
   }
 
@@ -1096,7 +1184,7 @@ li.sortBy {
     width: auto;
   }
   .glassServedRotate {
-    animation: rotateServing 8s infinite;
+    animation: rotateServing 6s forwards;
   }
   @keyframes rotateServing {
     to {
@@ -1106,6 +1194,8 @@ li.sortBy {
   .pouringBeer {
     height: 70px;
     width: 50px;
+  }
+  .pouringBeerAnimation {
     animation: pouringBeer 2s ease-in both;
   }
   @keyframes pouringBeer {
@@ -1115,7 +1205,7 @@ li.sortBy {
     }
     100% {
       transform: rotateY(0deg) translateY(-55px) skewY(0deg);
-      opacity: 0.7;
+      opacity: 0.8;
     }
   }
   /*----- taps ------*/
@@ -1700,6 +1790,10 @@ li.sortBy {
   .servingBeerGlass img {
     margin-right: 5px;
   }
+  .pouringBeer {
+    display: none;
+  }
+
   /*STORAGE*/
   #storageUnit {
     grid-template-columns: repeat(4, 1fr);
