@@ -266,13 +266,23 @@ input#quantity {
 }
 .rotate {
   transform: rotate(-45deg);
+  animation: rotateApp 6s  forwards;
+}
+
+@keyframes rotateApp {
+  20% {
+    transform: rotate(-15deg);
+  }
+  60% {
+    transform: rotate(-45deg);
+  }
 }
 
 /*filter and sort section*/
 #filterAndSort {
-  display: inline-grid;
-  grid-auto-flow: column;
-  grid-gap: 1em;
+  display: block;
+  margin-bottom: 5px;
+  opacity: 0.9;
 }
 /*filter*/
 .filterOptions {
@@ -302,11 +312,11 @@ input#quantity {
 #sorting {
   background: white;
   border-radius: 10px;
+  float: left;
+  margin-right: 3px;
 }
 li.filter,
 li.sortBy {
-  border-bottom: white 4px solid;
-  margin: 5px;
   font-size: 14px;
   font-family: var(--subtitle-font);
 }
@@ -328,7 +338,7 @@ li.sortBy {
   content: "↓";
 }
 .sortBy {
-  padding: 10px;
+  padding: 12px;
   cursor: pointer;
 }
 .sortBy:hover {
@@ -599,7 +609,6 @@ li.sortBy {
     justify-items: center;
   }
   .tapImage {
-    height: 200px;
     width: 50px;
     justify-self: flex-start;
   }
@@ -718,6 +727,7 @@ li.sortBy {
   }
   #beerList {
     border-radius: 15px;
+    /* box-shadow: 1px 1px 7px 2px #ccc; */
     box-shadow: 1px 1px 7px 2px #ccc;
   }
   #beerList h2,
@@ -769,9 +779,7 @@ li.sortBy {
     border: inherit;
     border-radius: 10px;
   }
-  .resetFilter {
-    float: right;
-  }
+
   img.logo {
     width: 80px;
     height: 80px;
@@ -790,6 +798,7 @@ li.sortBy {
   }
   li.sortBy {
     font-size: 20px;
+    padding: 20px;
   }
   .minus,
   .plus {
@@ -846,7 +855,9 @@ li.sortBy {
     height: 100%;
   }
   .closeModal,
-  .closeModal2 {
+  .closeModal2,
+  .closeErrorModal1,
+  .closeErrorModal2 {
     color: #aaaaaa;
     float: right;
     font-size: 28px;
@@ -855,7 +866,11 @@ li.sortBy {
   .closeModal:hover,
   .closeModal:focus,
   .closeModal2:hover,
-  .closeModal2:focus {
+  .closeModal2:focus,
+  .closeErrorModal1:hover,
+  .closeErrorModal1:focus,
+  .closeErrorModal2:hover,
+  .closeErrorModal2:focus {
     color: #000;
     text-decoration: none;
     cursor: pointer;
@@ -866,6 +881,37 @@ li.sortBy {
     display: block;
   }
 
+  /*error modal*/
+  .errorModal1, .errorModal2{
+    display: none;
+    position: fixed;
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+  .errorShow{
+    display: block;
+  }
+  .notAvailable, .minimumOne{
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    text-align: center;
+  }
+  /*NEXT*/
+
+  #modalBtn {
+    right: 10px;
+    padding: 12px;
+    position: fixed;
+  }
   /*----------- REVIEW ------------*/
   button.next,
   button.nextReview {
@@ -1285,6 +1331,7 @@ li.sortBy {
 
   li.sortBy {
     display: block;
+    padding: 12px;
   }
   #beerApp {
     background-image: url(static/images/beerHeader_final.png);
@@ -1382,10 +1429,9 @@ li.sortBy {
   .resetFilter {
     font-size: 16px;
     padding: 12px;
+    
   }
-  .resetFilter {
-    float: right;
-  }
+
   p.alcohol {
     grid-area: beerAlc;
     display: flex;
@@ -1475,7 +1521,9 @@ li.sortBy {
     height: 100%;
   }
   .closeModal,
-  .closeModal2 {
+  .closeModal2,
+  .closeErrorModal1,
+  .closeErrorModal2 {
     color: #aaaaaa;
     float: right;
     font-size: 28px;
@@ -1484,7 +1532,11 @@ li.sortBy {
   .closeModal:hover,
   .closeModal:focus,
   .closeModal2:hover,
-  .closeModal2:focus {
+  .closeModal2:focus,
+  .closeErrorModal1:hover,
+  .closeErrorModal1:focus,
+  .closeErrorModal2:hover,
+  .closeErrorModal2:focus {
     color: #000;
     text-decoration: none;
     cursor: pointer;
@@ -1651,8 +1703,10 @@ li.sortBy {
     width: 100%;
   }
   .tapImage {
-    height: fit-content;
     width: auto;
+  }
+  .pouringBeer{
+    display: none;
   }
   .bulletUse {
     display: inline-block;
