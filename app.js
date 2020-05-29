@@ -1,7 +1,7 @@
 "use strict";
 
 import { urlDetails, urlApi } from "./modules/extra";
-import {resdbEndpoint, resdbApiKey} from "./modules/extra";
+import { resdbEndpoint, resdbApiKey } from "./modules/extra";
 
 document.addEventListener("DOMContentLoaded", init);
 
@@ -13,17 +13,13 @@ let orders = [];
 let amountBeerEdit;
 let nameBeerEdit;
 //object stored
-let userLastOption = []
+let userLastOption = [];
 let updatedUserSelection = [];
-
-
 
 let currentServing = [];
 let notAvailable;
 
-
 function init() {
-  
   fetchDashboard();
   getPrices();
   fetchData();
@@ -40,8 +36,7 @@ function fetchData() {
     });
 }
 
-
-function fetchDashboard(){
+function fetchDashboard() {
   fetch(urlApi, {
     method: "get",
   })
@@ -52,10 +47,10 @@ function fetchDashboard(){
 }
 
 //currently serving:
-function seeDashboard(seeDashboard){
-seeDashboard.taps.forEach((oneTap)=>{
-  currentServing.push(oneTap.beer);
-})
+function seeDashboard(seeDashboard) {
+  seeDashboard.taps.forEach((oneTap) => {
+    currentServing.push(oneTap.beer);
+  });
 }
 
 function fetchBeers(beers) {
@@ -70,27 +65,25 @@ function fetchBeers(beers) {
   displayBeer(beers);
 }
 
-function unavailableBeers(beers){
-  beers.forEach((oneBeer)=>{
-   // console.log(oneBeer.name)
-   // console.log(currentServing.includes(oneBeer.name))
-    if (currentServing.includes(oneBeer.name)){
-     // console.log("do nothing, beer is available")
+function unavailableBeers(beers) {
+  beers.forEach((oneBeer) => {
+    // console.log(oneBeer.name)
+    // console.log(currentServing.includes(oneBeer.name))
+    if (currentServing.includes(oneBeer.name)) {
+      // console.log("do nothing, beer is available")
     } else {
-      console.log("This beer is NOT avaialble")
-      console.log(oneBeer.name)
-          
+      console.log("This beer is NOT avaialble");
+      console.log(oneBeer.name);
     }
-  })
+  });
 }
-
 
 function displayBeer(beers) {
   //console.log(beers);
   //clear
   document.querySelector("#beerArea").innerHTML = "";
   beers.forEach(displaySingleBeer);
-  }
+}
 
 function displaySingleBeer(beer) {
   //console.log(beer);
@@ -103,46 +96,40 @@ function displaySingleBeer(beer) {
   beerClone.querySelector("h2.category").textContent = `${beer.category}`;
   beerClone.querySelector("p.alcohol").textContent = `ABV: ${beer.alc} %`;
   beerClone.querySelector(".logo").src = `images/${beer.label}`;
- 
- 
+
   //form
   const form = beerClone.querySelector("form");
   window.form = form;
   const elements = form.elements;
   window.elements = elements;
 
-  
   elements.quantity.addEventListener("keyup", (e) => {
-
     let objectReview = {
-       name: "",
-       amount: 0
-     }
+      name: "",
+      amount: 0,
+    };
 
     //beer name
     const name = beer.name;
     //amount
     const amount = form.elements.quantity.value;
 
-     //EDIT
-     objectReview.name = name;
-     objectReview.amount = form.elements.quantity.value;
-      const getLastInstance = userLastOption.findIndex(beer=>beer.name===name)
+    //EDIT
+    objectReview.name = name;
+    objectReview.amount = form.elements.quantity.value;
+    const getLastInstance = userLastOption.findIndex(
+      (beer) => beer.name === name
+    );
 
-      if (getLastInstance === -1 ) {
-        userLastOption.push(objectReview)
-      } else {
+    if (getLastInstance === -1) {
+      userLastOption.push(objectReview);
+    } else {
       userLastOption[getLastInstance] = objectReview;
-      } 
-  
+    }
 
-      userLastOption = userLastOption;
-     editOptionModal(userLastOption);
-
-
+    userLastOption = userLastOption;
+    editOptionModal(userLastOption);
   });
-
- 
 
   document.querySelector(".formSubmit").addEventListener("click", (e) => {
     e.preventDefault();
@@ -152,26 +139,20 @@ function displaySingleBeer(beer) {
     const name = beer.name;
     const amount = form.elements.quantity.value;
 
-  
-  
     //add only amount > 0
-    if (amount === "" ) {
-  
-      console.log("zero")
+    if (amount === "") {
+      console.log("zero");
       validForm = false;
-      
     }
 
     //post
     if (form.checkValidity() && validForm) {
-      
       console.log("form is valid");
-      
+
       postOrder({
         name: beer.name,
         amount: form.elements.quantity.value,
       });
-      
     }
   });
 
@@ -217,7 +198,6 @@ function displaySingleBeer(beer) {
 function postOrder(orderQuantity) {
   console.log("Added to cart: ", orderQuantity);
 
-
   /*---------------------POST--------------------*/
 
   function post(orderQuantity) {
@@ -238,7 +218,6 @@ function postOrder(orderQuantity) {
       .then((data) => showErrors(data));
   }
   post(orderQuantity);
- 
 }
 
 //------------------------------------ERRORS MODAL -------------------------------//
@@ -246,59 +225,57 @@ function showErrors(data) {
   console.log(data);
   console.log(data.message);
   let dataMessage = data.message;
-  const errorUnavailable =  document.getElementById("errorModal1");
+  const errorUnavailable = document.getElementById("errorModal1");
   const span = errorUnavailable.querySelector("span");
-  if (dataMessage.includes("We are not serving:")){
-   errorUnavailable.classList.add("errorShow");
-   errorUnavailable.querySelector(".notServing").textContent = `Oops...${dataMessage}`;
-   span.addEventListener("click", (e)=>{
-  location.reload()
-   })
+  if (dataMessage.includes("We are not serving:")) {
+    errorUnavailable.classList.add("errorShow");
+    errorUnavailable.querySelector(
+      ".notServing"
+    ).textContent = `Oops...${dataMessage}`;
+    span.addEventListener("click", (e) => {
+      location.reload();
+    });
   }
 }
 
-function showErrorAtLeastOne(){
+function showErrorAtLeastOne() {
   const errorMinimum = document.getElementById("errorModal2");
   errorMinimum.classList.add("errorShow");
   const span = errorMinimum.querySelector("span");
-  errorMinimum.querySelector(".minimum").innerHTML = "Select at least One";
+  errorMinimum.querySelector(".minimum").innerHTML = "Order at least one beer";
   span.addEventListener("click", (e) => {
     errorMinimum.classList.remove("errorShow");
   });
 }
 //--------------------------------EDIT-------------------------------------------//
 
-function editOptionModal(userLastOption){
-
+function editOptionModal(userLastOption) {
   document.querySelector(".modalContent .reviewTheOrder").innerHTML = "";
-  userLastOption.forEach((oneSelection)=>{
-  //if 0
+  userLastOption.forEach((oneSelection) => {
+    //if 0
     //console.log(oneSelection.amount > 0)
-    if(oneSelection.amount>0){
-    //console.log(oneSelection)
-    const areaReviw = document.querySelector(".modalContent .reviewTheOrder");
-    var reviewOrder = document.createElement('p');
-    reviewOrder.textContent = `${oneSelection.name} x${oneSelection.amount}`;
-  
-    areaReviw.appendChild(reviewOrder);
+    if (oneSelection.amount > 0) {
+      //console.log(oneSelection)
+      const areaReviw = document.querySelector(".modalContent .reviewTheOrder");
+      var reviewOrder = document.createElement("p");
+      reviewOrder.textContent = `${oneSelection.name} x${oneSelection.amount}`;
 
- /*    //price  
+      areaReviw.appendChild(reviewOrder);
+
+      /*    //price  
     console.log(oneSelection.amount)
     let oneBuy = oneSelection.amount;
     let price = oneSelection.name;
     console.log(price) */
-  }
-  })
-
- 
-
+    }
+  });
 }
 //-----------------------------------PRICE-------------------------------------------//
 
-function showTotalPrice(){
-  console.log(userLastOption)
+function showTotalPrice() {
+  console.log(userLastOption);
 }
-showTotalPrice()
+showTotalPrice();
 //-------------------------------------- FILTER -------------------------------------//
 function setFilters(allBeers) {
   //console.log(allBeers);
@@ -340,7 +317,7 @@ function filterIPA() {
     return IPA.category == "IPA";
   });
   displayBeer(ipaBeers);
-  document.querySelector(".filterOptions").classList.remove("showFilters")
+  document.querySelector(".filterOptions").classList.remove("showFilters");
 }
 
 function filterHefe() {
@@ -349,7 +326,7 @@ function filterHefe() {
     return hefe.category == "Hefeweizen";
   });
   displayBeer(hefeBeers);
-  document.querySelector(".filterOptions").classList.remove("showFilters")
+  document.querySelector(".filterOptions").classList.remove("showFilters");
 }
 
 function filterOkt() {
@@ -358,7 +335,7 @@ function filterOkt() {
     return okt.category == "Oktoberfest";
   });
   displayBeer(oktBeers);
-  document.querySelector(".filterOptions").classList.remove("showFilters")
+  document.querySelector(".filterOptions").classList.remove("showFilters");
 }
 
 function filterEuro() {
@@ -367,7 +344,7 @@ function filterEuro() {
     return euro.category == "European Lager";
   });
   displayBeer(euroBeers);
-  document.querySelector(".filterOptions").classList.remove("showFilters")
+  document.querySelector(".filterOptions").classList.remove("showFilters");
 }
 
 function filterStout() {
@@ -376,7 +353,7 @@ function filterStout() {
     return stout.category == "Stout";
   });
   displayBeer(stoutBeers);
-  document.querySelector(".filterOptions").classList.remove("showFilters")
+  document.querySelector(".filterOptions").classList.remove("showFilters");
 }
 
 function filterBelgian() {
@@ -385,7 +362,7 @@ function filterBelgian() {
     return belgian.category == "Belgian Specialty Ale";
   });
   displayBeer(belgianBeers);
-  document.querySelector(".filterOptions").classList.remove("showFilters")
+  document.querySelector(".filterOptions").classList.remove("showFilters");
 }
 
 function filterCalif() {
@@ -394,11 +371,11 @@ function filterCalif() {
     return calif.category == "California Common";
   });
   displayBeer(califBeers);
-  document.querySelector(".filterOptions").classList.remove("showFilters")
+  document.querySelector(".filterOptions").classList.remove("showFilters");
 }
 
 function resetFilter() {
-  location.reload()
+  location.reload();
 }
 
 //--------sorting-------------//
@@ -408,15 +385,15 @@ function sortAlc() {
   if (event.target.dataset.sortDirection === "asc") {
     event.target.dataset.sortDirection = "desc";
     //console.log( document.querySelector(".sortOptions li"));
-    document.querySelector(".sortOptions li").classList.remove("arrowDownSort")
-    document.querySelector(".sortOptions li").classList.add("arrowUpSort")
+    document.querySelector(".sortOptions li").classList.remove("arrowDownSort");
+    document.querySelector(".sortOptions li").classList.add("arrowUpSort");
     firstAsc(allBeers);
   } else {
     console.log("sort desc");
     firstDesc(allBeers);
     event.target.dataset.sortDirection = "asc";
-    document.querySelector(".sortOptions li").classList.remove("arrowUpSort")
-    document.querySelector(".sortOptions li").classList.add("arrowDownSort")
+    document.querySelector(".sortOptions li").classList.remove("arrowUpSort");
+    document.querySelector(".sortOptions li").classList.add("arrowDownSort");
   }
 }
 //condition - ascending
@@ -457,21 +434,18 @@ const span2 = document.querySelector(".closeModal2");
 
 function setUpModal() {
   modalBtn.addEventListener("click", (e) => {
-   if (userLastOption == "") {
-     console.log("select at least one")
-     showErrorAtLeastOne();
+    if (userLastOption == "") {
+      console.log("select at least one");
+      showErrorAtLeastOne();
+    } else {
+      modal.style.display = "block";
+    }
 
-   } else {
-    modal.style.display = "block";
-   }
-
-  /*   userLastOption.forEach((e)=>{
+    /*   userLastOption.forEach((e)=>{
     if (e.amount == "0") {
       console.log("select at least one")
     } 
     }) */
-
- 
   });
   span.addEventListener("click", (e) => {
     modal.style.display = "none";
@@ -616,28 +590,27 @@ function setUpPayment() {
 }
 
 //**-----------------PRICES----------------* */
-function getPrices(){
-   
+function getPrices() {
   fetch(resdbEndpoint, {
-  method: "get",
-  headers: {
-  "accept": "application/json",
-  "x-apikey": resdbApiKey,
-  "cache-control": "no-cache",
-}
-})
-.then((res) => res.json())
-.then((data) => data.forEach(showPrices));
-};
-
-function showPrices(onePrice){
-  document.querySelectorAll("#beerList").forEach((e)=>{
-    let templateNameBeer = e.querySelector(".name").innerHTML;
-    if( onePrice.name === templateNameBeer){
-     e.querySelector(".price").textContent = onePrice.price;
-    }
+    method: "get",
+    headers: {
+      accept: "application/json",
+      "x-apikey": resdbApiKey,
+      "cache-control": "no-cache",
+    },
   })
- 
+    .then((res) => res.json())
+    .then((data) => data.forEach(showPrices));
+}
+
+function showPrices(onePrice) {
+  document.querySelectorAll("#beerList").forEach((e) => {
+    let templateNameBeer = e.querySelector(".name").innerHTML;
+    if (onePrice.name === templateNameBeer) {
+      e.querySelector(".price").textContent = onePrice.price;
+    }
+  });
+
   //option2 - match by order
   /* console.log(onePrice)
     document.querySelectorAll("#beerArea article").forEach((oneItem, index)=>{
