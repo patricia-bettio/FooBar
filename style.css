@@ -1805,7 +1805,7 @@ li.sortBy {
     border-radius: 15px;
     background: white;
     box-shadow: 1px 1px 7px 2px #ccc;
-    padding-bottom: 2em;
+    padding: 0.2em 1em 2em 1em;
   }
   .avatar {
     height: 40px;
