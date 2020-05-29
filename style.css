@@ -66,9 +66,8 @@ p.price {
 }
 
 #tapsUnit {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  width: 400px;
+/*   display: grid;
+  grid-template-columns: repeat(7, 1fr); */
 }
 
 #servingUnit {
@@ -426,12 +425,12 @@ li.sortBy {
     display: grid;
     grid-template-columns: 25% 25% 50%;
     justify-content: center;
-    grid-template-rows: 0.1fr 0.1fr 1fr;
+    /* grid-template-rows: 0.1fr 0.1fr 1fr; */
     grid-auto-columns: max-content;
     grid-template-areas:
       "queue serving storage"
-      "queue serving bartenders"
-      "queue serving taps";
+      "queue serving taps"
+      "queue serving bartenders";
   }
   #servingNext,
   #nextInLine,
@@ -498,9 +497,11 @@ li.sortBy {
     grid-area: storage;
     text-align-last: center;
     padding: 0;
+    display: inline-flex;
   }
   #mostWanted h1 {
-    display: none;
+    /* display: none; */
+  
   }
   #storageUnit {
     display: inline-grid;
@@ -538,6 +539,7 @@ li.sortBy {
   #dashboard #servingUnit {
     text-align: left;
     object-fit: fill;
+    width: 100%;
   }
   #servingUnit {
     display: grid;
@@ -563,7 +565,7 @@ li.sortBy {
   }
   .pouringBeer {
     height: 70px;
-    width: 50px;
+ /*    width: 50px; */
   }
   .pouringBeerAnimation {
     /* animation: pouringBeer 6s ease-in both; */
@@ -594,9 +596,8 @@ li.sortBy {
     background: white;
   }
   #tapsDashboard article {
-    width: 30px;
-    height: 30px;
-    display: inline-table;
+/*     width: 30px; */
+/*     height: auto; */
   }
   #tapsDashboard h1 {
     display: none;
@@ -607,11 +608,16 @@ li.sortBy {
   }
   #dashboard #tapsUnit {
     width: 100%;
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: repeat(7, 1fr);
     justify-items: center;
+    align-items: baseline;
+    text-align: center;
   }
   .tapImage {
     width: 50px;
-    justify-self: flex-start;
+/*     justify-self: flex-start; */
   }
   .bulletUse {
     display: none;
@@ -1250,9 +1256,9 @@ li.sortBy {
   #dashboard #tapsUnit {
     width: 100%;
     justify-items: center;
+    text-align-last: justify;
   }
   .tapImage {
-    height: 195px;
     width: 45px;
     justify-self: flex-start;
   }
@@ -1784,6 +1790,9 @@ li.sortBy {
   }
   #dashboard #tapsUnit {
     width: 100%;
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: repeat(7,1fr);
   }
   .tapImage {
     width: auto;
