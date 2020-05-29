@@ -65,11 +65,6 @@ p.price {
   }
 }
 
-#tapsUnit {
-/*   display: grid;
-  grid-template-columns: repeat(7, 1fr); */
-}
-
 #servingUnit {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -501,6 +496,8 @@ li.sortBy {
   }
   #mostWanted h1 {
     /* display: none; */
+    align-self: center;
+    margin: 7px;
   
   }
   #storageUnit {
@@ -594,10 +591,6 @@ li.sortBy {
   #tapsDashboard {
     grid-area: taps;
     background: white;
-  }
-  #tapsDashboard article {
-/*     width: 30px; */
-/*     height: auto; */
   }
   #tapsDashboard h1 {
     display: none;
