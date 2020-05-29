@@ -16,6 +16,8 @@ let nameBeerEdit;
 let userLastOption = []
 let updatedUserSelection = [];
 
+//PRICE
+let totalPrice = 0;
 
 
 let currentServing = [];
@@ -627,22 +629,32 @@ function getPrices(){
 }
 })
 .then((res) => res.json())
-.then((data) => data.forEach(showPrices));
+//.then((data) => showTotal(data))
+.then((data) => showPrices(data))
+
+
 };
 
-function showPrices(onePrice){
-  document.querySelectorAll("#beerList").forEach((e)=>{
-    let templateNameBeer = e.querySelector(".name").innerHTML;
-    if( onePrice.name === templateNameBeer){
-     e.querySelector(".price").textContent = onePrice.price;
-    }
+function showPrices(thePrices){
+
+  thePrices.forEach((onePrice)=>{
+    document.querySelectorAll("#beerList").forEach((e)=>{
+      let templateNameBeer = e.querySelector(".name").innerHTML;
+      if( onePrice.name === templateNameBeer){
+       e.querySelector(".price").textContent = onePrice.price;
+      }
+    })
   })
- 
-  //option2 - match by order
-  /* console.log(onePrice)
-    document.querySelectorAll("#beerArea article").forEach((oneItem, index)=>{
-    oneItem.querySelector(".price").textContent = onePrice[index].price;
-  }) */
+
+  console.log(thePrices)
+  console.log(userLastOption)
+  console.log(thePrices.find(el=> el.name === userLastOption.name))
+
+}
+
+function showTotal(data) {
+  console.log(data)
+  console.log()
 }
 
 //**-----------------------------------------* */
