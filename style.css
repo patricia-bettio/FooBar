@@ -33,6 +33,7 @@
   --form-font: "Monaco", sans-serif;
   --beer-font: "College Block";
   --subtitle-font: "Lemon/Milk light";
+  --details-font: "Noto Sans JP Regular";
   --category-color: #b79027;
 }
 
@@ -266,7 +267,7 @@ input#quantity {
 }
 .rotate {
   transform: rotate(-45deg);
-  animation: rotateApp 6s  forwards;
+  animation: rotateApp 6s forwards;
 }
 
 @keyframes rotateApp {
@@ -882,7 +883,8 @@ li.sortBy {
   }
 
   /*error modal*/
-  .errorModal1, .errorModal2{
+  .errorModal1,
+  .errorModal2 {
     display: none;
     position: fixed;
     z-index: 1; /* Sit on top */
@@ -891,13 +893,14 @@ li.sortBy {
     width: 100%; /* Full width */
     height: 100%; /* Full height */
     overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    background-color: rgb(0, 0, 0); /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
   }
-  .errorShow{
+  .errorShow {
     display: block;
   }
-  .notAvailable, .minimumOne{
+  .notAvailable,
+  .minimumOne {
     background-color: #fefefe;
     margin: 15% auto; /* 15% from the top and centered */
     padding: 20px;
@@ -909,9 +912,48 @@ li.sortBy {
 
   #modalBtn {
     right: 10px;
-    padding: 12px;
+    padding: 18px;
     position: fixed;
+    font-size: 20px;
+    border: inherit;
+    border-radius: 10px;
+    background: var(--category-color);
+    font-family: var(--subtitle-font);
   }
+  #editBtn {
+    left: 43%;
+    position: relative;
+    padding: 20px 26px;
+    font-size: 22px;
+    border: inherit;
+    border-radius: 10px;
+    font-family: var(--subtitle-font);
+  }
+  #modalBtn2 {
+    left: 43%;
+    position: relative;
+    padding: 20px 26px;
+    font-size: 22px;
+    border: inherit;
+    border-radius: 10px;
+    font-family: var(--subtitle-font);
+  }
+  .reviewTheOrder {
+    font-family: var(--details-font);
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 26px;
+  }
+  #beerApp h3 {
+    text-align: center;
+    font-family: "Lemon/Milk";
+    padding: 40px;
+    font-size: 26px;
+  }
+  #beerApp h2.subtitle {
+    font-size: 36px;
+  }
+
   /*----------- REVIEW ------------*/
   button.next,
   button.nextReview {
@@ -1296,9 +1338,50 @@ li.sortBy {
 
   /*review*/
 
-  .modalBtn {
+  #modalBtn {
     float: right;
+    padding: 12px;
+    position: fixed;
+    font-size: 16px;
+    border: inherit;
+    border-radius: 10px;
+    background: var(--category-color);
+    font-family: var(--subtitle-font);
   }
+  #editBtn {
+    left: 39%;
+    position: relative;
+    padding: 16px 22px;
+    font-size: 16px;
+    border: inherit;
+    border-radius: 10px;
+    font-family: var(--subtitle-font);
+  }
+  #modalBtn2 {
+    left: 39%;
+    position: relative;
+    padding: 16px 22px;
+    font-size: 16px;
+    border: inherit;
+    border-radius: 10px;
+    font-family: var(--subtitle-font);
+  }
+  .reviewTheOrder {
+    font-family: var(--details-font);
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 20px;
+  }
+  #beerApp h3 {
+    text-align: center;
+    font-family: "Lemon/Milk";
+    padding: 40px;
+    font-size: 20px;
+  }
+  #beerApp h2.subtitle {
+    font-size: 20px;
+  }
+
   /*beer app*/
 
   /*FILTER*/
@@ -1429,7 +1512,6 @@ li.sortBy {
   .resetFilter {
     font-size: 16px;
     padding: 12px;
-    
   }
 
   p.alcohol {
@@ -1705,7 +1787,7 @@ li.sortBy {
   .tapImage {
     width: auto;
   }
-  .pouringBeer{
+  .pouringBeer {
     display: none;
   }
   .bulletUse {
