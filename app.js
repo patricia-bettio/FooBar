@@ -617,5 +617,3 @@ function showPrices(onePrice) {
     oneItem.querySelector(".price").textContent = onePrice[index].price;
   }) */
 }
-
-//**-----------------------------------------* */

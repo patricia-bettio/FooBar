@@ -498,7 +498,6 @@ li.sortBy {
     /* display: none; */
     align-self: center;
     margin: 7px;
-  
   }
   #storageUnit {
     display: inline-grid;
@@ -562,19 +561,20 @@ li.sortBy {
   }
   .pouringBeer {
     height: 70px;
- /*    width: 50px; */
+    margin-left: 3%;
+    /*    width: 50px; */
   }
   .pouringBeerAnimation {
     /* animation: pouringBeer 6s ease-in both; */
-    animation: pouringBeer 3s infinite linear;
+    animation: pouringBeer 4s infinite linear;
   }
   @keyframes pouringBeer {
     from {
-      transform: rotateY(30deg) translateY(-100px) skewY(-30deg);
+      transform: rotateY(30deg) translateY(-120px) skewY(-30deg);
       opacity: 0;
     }
     to {
-      transform: rotateY(0deg) translateY(-55px) skewY(-30deg);
+      transform: rotateY(0deg) translateY(-45px) skewY(-30deg);
       opacity: 0.8;
     }
     /* 0% {
@@ -610,7 +610,7 @@ li.sortBy {
   }
   .tapImage {
     width: 50px;
-/*     justify-self: flex-start; */
+    /*     justify-self: flex-start; */
   }
   .bulletUse {
     display: none;
@@ -1785,7 +1785,7 @@ li.sortBy {
     width: 100%;
     display: grid;
     grid-auto-flow: column;
-    grid-template-columns: repeat(7,1fr);
+    grid-template-columns: repeat(7, 1fr);
   }
   .tapImage {
     width: auto;
