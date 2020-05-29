@@ -80,7 +80,7 @@ p.price {
 
 /*----------- DESKTOP BEER LIST -----------*/
 #beerApp {
-  background-image: url(static/images/beerHeader_final.png);
+  background-image: url(static/images/beerHeader_finalVersion.png);
   background-repeat: no-repeat;
   background-size: contain;
 }
@@ -105,7 +105,7 @@ p.price {
 }
 .header {
   display: grid;
-  grid-template-columns: 0.2fr 1fr 0.2fr;
+  grid-template-columns: 0.1fr 1fr 0.2fr;
   grid-template-areas: "previous subtitle next";
 }
 h2.subtitle {
@@ -419,7 +419,7 @@ li.sortBy {
 /*------------ monitor view ----------*/
 @media screen and (min-width: 1400px) {
   #dashboard {
-    background-image: url("static/images/bubbles.png");
+    background-image: url("static/images/beerHeader_dashboard.png");
     background-size: 100%;
   }
   #dashboard main {
@@ -694,7 +694,7 @@ li.sortBy {
 /*-----------------------------------------------------------RESPONSIVE---------------------------------------------------------------------------*/
 @media screen and (max-width: 1200px) and (min-device-width: 768px) {
   #beerApp {
-    background-image: url(static/images/beerHeader_final.png);
+    background-image: url(static/images/beerHeader_finalVersion.png);
     background-repeat: no-repeat;
     background-size: cover;
   }
@@ -723,7 +723,7 @@ li.sortBy {
 @media screen and (max-width: 1200px) {
   /*-------- TABLET BEER LIST ------*/
   #beerApp {
-    background-image: url(static/images/beerHeader_final.png);
+    background-image: url(static/images/beerHeader_finalVersion.png);
     background-repeat: no-repeat;
   }
   #beerList {
@@ -752,7 +752,7 @@ li.sortBy {
   .header {
     display: grid;
     grid-template-columns: 0.2fr 1fr 0.2fr;
-    grid-template-rows: 120px 0.4fr;
+    grid-template-rows: 70px 0.4fr;
     grid-template-areas:
       ". . ."
       "previous subtitle next";
@@ -1066,8 +1066,9 @@ li.sortBy {
 /*------- tablet for DASHBOARD -------*/
 @media screen and (max-width: 1200px) and (min-device-width: 760px) {
   #dashboard {
-    background-image: url("static/images/bubbles.png");
-    background-size: 100%;
+    background-image: url("static/images/beerHeader_dashboard.png");
+    background-repeat: no-repeat;
+    background-size: cover;
   }
   #dashboard main {
     display: grid;
@@ -1417,7 +1418,7 @@ li.sortBy {
     padding: 12px;
   }
   #beerApp {
-    background-image: url(static/images/beerHeader_final.png);
+    background-image: url(static/images/beerHeader_finalVersion.png);
     background-repeat: no-repeat;
     background-size: 100%;
   }
@@ -1504,7 +1505,7 @@ li.sortBy {
     display: flex;
     align-self: center;
     font-size: 18px;
-    padding: 0 0 30px 0;
+    padding: 0 0 20px 0;
     font-family: var(--subtitle-font);
   }
   .filterButton,
@@ -1733,11 +1734,11 @@ li.sortBy {
     visibility: hidden;
   }
   /*---------- MOBILE DASHBOARD ---------*/
-  .fooBar {
+  h1.foobarTitle {
     display: none;
   }
   #dashboard {
-    background-image: url(static/images/beerHeader_long.png);
+    background-image: url(static/images/beerHeader_finalVersion.png);
     background-size: cover;
     background-repeat: no-repeat;
   }
