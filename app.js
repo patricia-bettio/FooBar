@@ -9,15 +9,16 @@ let allBeers = [];
 
 let orders = [];
 
-//testing
-let amountBeerEdit;
-let nameBeerEdit;
 //object stored
 let userLastOption = [];
 let updatedUserSelection = [];
 
 let currentServing = [];
 let notAvailable;
+
+//price
+let allThePrices = [];
+let finalTotalPrice = 0;
 
 function init() {
   fetchDashboard();
@@ -129,6 +130,16 @@ function displaySingleBeer(beer) {
 
     userLastOption = userLastOption;
     editOptionModal(userLastOption);
+    
+    //PRICE
+    let oneItemPrice;
+    userLastOption.forEach((singleChoice)=>{
+      let filteredResult = allThePrices.find(el=> el.name === singleChoice.name);
+      let onePrice = filteredResult.price;
+      let oneAmount = singleChoice.amount;
+      oneItemPrice = parseInt(onePrice)*oneAmount;
+      showTotalPrice(oneItemPrice)
+    })
   });
 
   document.querySelector(".formSubmit").addEventListener("click", (e) => {
@@ -252,30 +263,30 @@ function showErrorAtLeastOne() {
 function editOptionModal(userLastOption) {
   document.querySelector(".modalContent .reviewTheOrder").innerHTML = "";
   userLastOption.forEach((oneSelection) => {
-    //if 0
-    //console.log(oneSelection.amount > 0)
     if (oneSelection.amount > 0) {
-      //console.log(oneSelection)
       const areaReviw = document.querySelector(".modalContent .reviewTheOrder");
-      var reviewOrder = document.createElement("p");
-      reviewOrder.textContent = `${oneSelection.name} x${oneSelection.amount}`;
-
+      let reviewOrder = document.createElement("p");
+      reviewOrder.textContent = `${oneSelection.name} x${oneSelection.amount} `;
       areaReviw.appendChild(reviewOrder);
-
-      /*    //price  
-    console.log(oneSelection.amount)
-    let oneBuy = oneSelection.amount;
-    let price = oneSelection.name;
-    console.log(price) */
     }
   });
 }
 //-----------------------------------PRICE-------------------------------------------//
 
-function showTotalPrice() {
-  console.log(userLastOption);
+function showTotalPrice(oneItemPrice) {
+ 
+  if (oneItemPrice) {
+  const beerArea = document.querySelector(".modalContent .reviewTheOrder");
+  let singleAmount = document.createElement("p");
+  singleAmount.className = "singleAmount"
+  singleAmount.textContent = `- ${oneItemPrice}dk`;
+  beerArea.appendChild(singleAmount)
+  }
 }
-showTotalPrice();
+
+function showCheckoutPrice(checkOut) {
+  console.log(checkOut)
+}
 //-------------------------------------- FILTER -------------------------------------//
 function setFilters(allBeers) {
   //console.log(allBeers);
@@ -600,22 +611,25 @@ function getPrices() {
     },
   })
     .then((res) => res.json())
-    .then((data) => data.forEach(showPrices));
+    .then((data) => showPrices(data));
 }
 
-function showPrices(onePrice) {
-  document.querySelectorAll("#beerList").forEach((e) => {
-    let templateNameBeer = e.querySelector(".name").innerHTML;
-    if (onePrice.name === templateNameBeer) {
-      e.querySelector(".price").textContent = onePrice.price;
-    }
-  });
+function showPrices(thePrices) {
+  
+  thePrices.forEach((onePrice)=>{
+    document.querySelectorAll("#beerList").forEach((e)=>{
+      let templateNameBeer = e.querySelector(".name").innerHTML;
+      if( onePrice.name === templateNameBeer){
+       e.querySelector(".price").textContent = onePrice.price;
+      }
+    })
+  })
 
-  //option2 - match by order
-  /* console.log(onePrice)
-    document.querySelectorAll("#beerArea article").forEach((oneItem, index)=>{
-    oneItem.querySelector(".price").textContent = onePrice[index].price;
-  }) */
+  allThePrices = thePrices;
+ /*  console.log(thePrices)
+  console.log(userLastOption)
+  console.log(thePrices.find(el=> el.name === userLastOption))
+ */
 }
 
 //**-----------------------------------------* */
