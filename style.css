@@ -1587,7 +1587,11 @@ li.sortBy {
     font-size: 16px;
     padding: 25px 45px;
     text-align: justify;
+    transition-timing-function: ease;
   }
+  /* .dropdownTransition {
+    transition-timing-function: ease;
+  } */
   /*------- modals ------*/
   .modal,
   .modal2 {
