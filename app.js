@@ -198,6 +198,7 @@ function displaySingleBeer(beer) {
     //show deatils and turn glass onclick
     selectedBeer.classList.toggle("hide");
     showMoreGlass.classList.toggle("rotate");
+    showMore.classList.add("dropdownTransition");
   });
   selectedBeer.addEventListener("click", (e) => {
     selectedBeer.classList.toggle("hide");
