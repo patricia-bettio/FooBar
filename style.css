@@ -670,6 +670,269 @@ li.sortBy {
 }
 /*monitor 14'*/
 @media screen and (min-width: 1400px) and (max-width: 1600px) {
+  #dashboard {
+    background-image: url("static/images/beerHeader_dashboard.png");
+    background-size: 100%;
+  }
+  #dashboard main {
+    display: grid;
+    grid-template-columns: 25% 25% 50%;
+    justify-content: center;
+    grid-auto-columns: max-content;
+    grid-template-areas:
+      "queue serving storage"
+      "queue serving taps"
+      "queue serving bartenders";
+  }
+  #servingNext,
+  #nextInLine,
+  #bartenders,
+  #mostWanted,
+  #tapsDashboard {
+    border-radius: 15px;
+    background: #ffffffcf;
+    box-shadow: 1px 1px 7px 2px #ffec90;
+    padding: 1em;
+    margin: 7px;
+  }
+  #mostWanted h1,
+  #nextInLine h1,
+  #servingNext h1,
+  #tapsDashboard h1,
+  #bartenders h1 {
+    font-family: var(--subtitle-font);
+    font-size: 30px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid grey;
+  }
+  #nextInLine p,
+  #servingNext p,
+  #tapsDashboard p,
+  #bartenders p {
+    font-family: var(--subtitle-font);
+    font-size: 20px;
+  }
+  #dashboard .foobarTitle {
+    font-family: var(--subtitle-font);
+    font-size: 60px;
+    margin-top: 10px;
+    color: olive;
+    border-radius: 15px;
+    margin: 0;
+  }
+  #dashboard .subtitle {
+    display: none;
+  }
+  #dashboard #localTime {
+    font-family: "Lemon/Milk";
+    font-size: 32px;
+    margin: 0;
+    align-self: center;
+  }
+  #mainHeader {
+    display: flex;
+    justify-content: space-between;
+  }
+  #dashboard #timer {
+    text-align-last: right;
+    font-family: "Lemon/Milk";
+    font-size: 28px;
+    margin: 0;
+    align-self: center;
+  }
+  /*----- storage ------*/
+  #mostWanted {
+    grid-area: storage;
+    text-align-last: center;
+    padding: 0;
+    display: inline-flex;
+  }
+  #mostWanted h1 {
+    align-self: center;
+    margin: 7px;
+  }
+  #storageUnit {
+    display: inline-grid;
+  }
+  #storageUnit article {
+    align-self: flex-end;
+    text-align-last: center;
+  }
+  /*show only 5*/
+  #storageUnit article:nth-child(n + 6) {
+    display: none;
+  }
+  #storageUnit .amount {
+    display: none;
+  }
+  #storageUnit {
+    font-family: var(--subtitle-font);
+  }
+  /*----- serving ------*/
+  #servingNext {
+    grid-area: serving;
+  }
+  #servingNext p {
+    font-family: var(--subtitle-font);
+  }
+  #servingNext img {
+    width: auto;
+    height: 110px;
+    margin-right: 0.5em;
+  }
+  #servingUnit article {
+    display: grid;
+  }
+  .servingBeerGlass {
+    display: block;
+    justify-content: flex-start;
+  }
+  #dashboard #servingUnit {
+    text-align: left;
+    object-fit: fill;
+    width: 100%;
+  }
+  #servingUnit {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  #servingUnit .order {
+    display: none;
+  }
+
+  .glassServed {
+    height: 130px;
+    width: auto;
+  }
+
+  .glassServedRotate {
+    animation: rotateServing 6s forwards;
+  }
+
+  @keyframes rotateServing {
+    to {
+      transform: rotate(-15deg);
+    }
+  }
+  .pouringBeer {
+    height: 70px;
+    width: 80px;
+  }
+  .pouringBeerAnimation {
+    animation: pouringBeer 3s infinite linear;
+  }
+  @keyframes pouringBeer {
+    from {
+      transform: rotateY(30deg) translateY(-100px) skewY(-30deg);
+      opacity: 0;
+    }
+    to {
+      transform: rotateY(0deg) translateY(-55px) skewY(-30deg);
+      opacity: 0.8;
+    }
+  }
+
+  /*----- taps ------*/
+  #tapsDashboard {
+    grid-area: taps;
+  }
+  #tapsDashboard h1 {
+    display: none;
+  }
+  #tapsDashboard p.level,
+  #tapsDashboard p.id {
+    display: none;
+  }
+  #dashboard #tapsUnit {
+    width: 100%;
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: repeat(7, 1fr);
+    justify-items: center;
+    align-items: baseline;
+    text-align: center;
+  }
+  .tapImage {
+    width: 50px;
+    /*     justify-self: flex-start; */
+  }
+  .bulletUse {
+    display: none;
+  }
+
+  .glowLowLevel {
+    animation: glowLow 2s infinite alternate;
+  }
+
+  @keyframes glowLow {
+    from,
+    to {
+      filter: drop-shadow(0);
+    }
+    50% {
+      filter: drop-shadow(0 0 0.75rem yellow);
+    }
+  }
+
+  /*----- bartenders ------*/
+  #bartenders {
+    grid-area: bartenders;
+    align-self: center;
+  }
+  #bartenders .bartender {
+    width: 80px;
+    height: 80px;
+    border: 5px solid;
+    border-radius: 50%;
+  }
+  #bartenders h1 {
+    display: none;
+  }
+  #bartenders p {
+    margin: 5px;
+    font-size: 22px;
+    font-family: var(--form-font);
+  }
+  #bartenders p.name {
+    font-family: var(--subtitle-font);
+    font-size: 20px;
+  }
+  #bartenders p.servingCustomer {
+    display: none;
+  }
+  #bartenders .status {
+    display: none;
+  }
+  #bartenders .usingTap {
+    display: none;
+  }
+  /*----- queue ------*/
+  #nextInLine {
+    grid-area: queue;
+  }
+  .queueLogo {
+    text-align: justify;
+  }
+  #queueUnit .id {
+    align-self: flex-start;
+  }
+  #queueUnit .startTime {
+    align-self: flex-start;
+  }
+  .queueLogo img {
+    height: 65px;
+    margin: 10px;
+  }
+  #queueUnit {
+    display: grid;
+    grid-row-gap: 1.5em;
+  }
+  #queueUnit article {
+    align-items: center;
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: 0 55px 0 1fr 50px;
+  }
 }
 /*------------ monitor view ----------*/
 @media screen and (min-width: 1400px) {
@@ -723,10 +986,6 @@ li.sortBy {
     color: olive;
     border-radius: 15px;
     margin: 0;
-    /*     background: #ececec;
-    background-image: url("static/images/bubbles.png"); */
-    /* box-shadow: 1px 1px 7px 2px #ccc; */
-    /*     margin-bottom: 50px; */
   }
   #dashboard .subtitle {
     display: none;
@@ -773,6 +1032,9 @@ li.sortBy {
   }
   #storageUnit .amount {
     display: none;
+  }
+  #storageUnit {
+    font-family: var(--subtitle-font);
   }
   /*----- serving ------*/
   #servingNext {
@@ -822,10 +1084,9 @@ li.sortBy {
   }
   .pouringBeer {
     height: 70px;
-    /*    width: 50px; */
+    width: 80px;
   }
   .pouringBeerAnimation {
-    /* animation: pouringBeer 6s ease-in both; */
     animation: pouringBeer 3s infinite linear;
   }
   @keyframes pouringBeer {
@@ -897,7 +1158,8 @@ li.sortBy {
   #bartenders .bartender {
     width: 80px;
     height: 80px;
-    border: 10px solid;
+    border: 5px solid;
+    border-radius: 50%;
   }
   #bartenders h1 {
     display: none;
@@ -2114,6 +2376,7 @@ li.sortBy {
     font-size: 14px;
     font-family: "Lemon/Milk";
   }
+
   /*TAPS*/
   .glassServed {
     display: none;
