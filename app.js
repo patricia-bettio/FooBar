@@ -280,7 +280,7 @@ function showTotalPrice(oneItemPrice) {
     const beerArea = document.querySelector(".modalContent .reviewTheOrder");
     let singleAmount = document.createElement("p");
     singleAmount.className = "singleAmount";
-    singleAmount.textContent = `- ${oneItemPrice}dk`;
+    singleAmount.textContent = `${oneItemPrice}kr`;
     beerArea.appendChild(singleAmount);
   }
 }
