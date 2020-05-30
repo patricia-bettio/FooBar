@@ -2058,8 +2058,9 @@ li.sortBy {
   }
   #dashboard {
     background-image: url(static/images/beerHeader_finalVersion.png);
-    background-size: cover;
+    background-size: contain;
     background-repeat: no-repeat;
+    overflow: hidden;
   }
   #dashboard h1 {
     font-size: 18px;
@@ -2080,7 +2081,7 @@ li.sortBy {
   #dashboard #timer {
     display: flex;
     justify-content: center;
-    font-family: var(--form-font);
+    font-family: var(--subtitle-font);
     font-size: 16px;
     padding-bottom: 20px;
   }
@@ -2091,11 +2092,27 @@ li.sortBy {
   /*BARTENDER*/
   #dashboard #bartendersUnit {
     width: 100%;
+    font-family: var(--subtitle-font);
   }
   .bartender {
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
     border-radius: 50%;
+    border: 4px solid;
+  }
+  #bartenders p.name {
+    text-transform: uppercase;
+  }
+  #bartenders p.servingCustomer {
+    display: none;
+  }
+  #bartenders p.status {
+    text-transform: lowercase;
+    font-family: var(--details-font);
+  }
+  #bartenders p.statusDetail {
+    font-size: 14px;
+    font-family: "Lemon/Milk";
   }
   /*TAPS*/
   .glassServed {
@@ -2106,6 +2123,7 @@ li.sortBy {
     display: grid;
     grid-auto-flow: column;
     grid-template-columns: repeat(7, 1fr);
+    font-family: var(--subtitle-font);
   }
   .tapImage {
     width: auto;
@@ -2149,11 +2167,19 @@ li.sortBy {
     display: grid;
     grid-row-gap: 1.5em;
   }
+  p.queueCount {
+    font-family: var(--details-font);
+    font-size: 22px;
+    border-bottom: 1px solid grey;
+    margin: 10px;
+    padding-bottom: 7px;
+  }
   #queueUnit article {
     align-items: center;
     display: grid;
     grid-auto-flow: column;
     grid-template-columns: 0px 55px 0px 1fr 50px;
+    padding: 0 10px;
   }
   /*SERVING*/
   #servingUnit article {
@@ -2178,13 +2204,20 @@ li.sortBy {
   #dashboard #servingUnit article {
     padding: 0.5em;
   }
-
   .servingBeerGlass img {
     margin-right: 5px;
+    width: 40px;
+    height: auto;
   }
   /*STORAGE*/
   #storageUnit {
     grid-template-columns: repeat(4, 1fr);
+    font-family: var(--subtitle-font);
+    padding: 0 10px;
+    font-size: 12px;
+  }
+  #storageUnit p.amount {
+    font-family: var(--details-font);
   }
   #storageUnit article {
     display: grid;
