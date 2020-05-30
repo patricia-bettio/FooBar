@@ -268,6 +268,7 @@ function editOptionModal(userLastOption) {
     if (oneSelection.amount > 0) {
       const areaReviw = document.querySelector(".modalContent .reviewTheOrder");
       let reviewOrder = document.createElement("p");
+      reviewOrder.className = "priceAmount";
       reviewOrder.textContent = `${oneSelection.name} x${oneSelection.amount} `;
       areaReviw.appendChild(reviewOrder);
     }
