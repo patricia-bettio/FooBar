@@ -211,7 +211,7 @@ function updatedStorageUnit(storage) {
     oneKeg.querySelector("p.name").textContent = storage[index].name;
     oneKeg.querySelector(
       "p.amount"
-    ).textContent = `kegs:${storage[index].amount}`;
+    ).textContent = `Kegs: ${storage[index].amount}`;
     //IMAGE
     let kegFormat = storage[index].name;
     oneKeg.querySelector(".kegImage").src = `svg/bottles/${
