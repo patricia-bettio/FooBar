@@ -1364,6 +1364,7 @@ li.sortBy {
     font-family: var(--subtitle-font);
   }
   #editBtn {
+    display: block;
     left: 39%;
     position: relative;
     padding: 16px 22px;
@@ -1383,18 +1384,18 @@ li.sortBy {
   }
   .reviewTheOrder {
     display: grid;
-    grid-template-columns: 0.5fr 0.5fr;
-    grid-template-areas: "beer amount";
+    grid-auto-flow: column;
+    grid-template-areas: "beerReview amountReview";
     font-family: var(--details-font);
-    margin-bottom: 20px;
     font-size: 20px;
-    padding: 25px;
   }
-  .reviewTheOrder p {
-    grid-area: beer;
+  .reviewTheOrder p.priceAmount {
+    grid-area: beerReview;
+    grid-row: auto;
   }
   .reviewTheOrder p.singleAmount {
-    grid-area: amount;
+    grid-area: amountReview;
+    grid-row: auto;
   }
   #beerApp h3 {
     text-align: center;
