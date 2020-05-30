@@ -668,7 +668,7 @@ li.sortBy {
   height: 120px;
   width: auto;
 }
-/*monitor 14'*/
+/*-------------- monitor 14' -----------*/
 @media screen and (min-width: 1400px) and (max-width: 1600px) {
   #dashboard {
     background-image: url("static/images/beerHeader_dashboard.png");
@@ -701,7 +701,7 @@ li.sortBy {
   #tapsDashboard h1,
   #bartenders h1 {
     font-family: var(--subtitle-font);
-    font-size: 30px;
+    font-size: 20px;
     padding-bottom: 10px;
     border-bottom: 1px solid grey;
   }
@@ -767,6 +767,7 @@ li.sortBy {
   }
   #storageUnit {
     font-family: var(--subtitle-font);
+    margin: 0;
   }
   /*----- serving ------*/
   #servingNext {
@@ -799,16 +800,17 @@ li.sortBy {
   #servingUnit .order {
     display: none;
   }
-
+  #servingUnit .servingBeerGlass img {
+    width: 40px;
+    height: auto;
+  }
   .glassServed {
     height: 130px;
     width: auto;
   }
-
   .glassServedRotate {
     animation: rotateServing 6s forwards;
   }
-
   @keyframes rotateServing {
     to {
       transform: rotate(-15deg);
@@ -852,18 +854,19 @@ li.sortBy {
     align-items: baseline;
     text-align: center;
   }
+  img.glassServed.glassServedRotate {
+    width: 60px;
+    align-self: flex-end;
+  }
   .tapImage {
-    width: 50px;
-    /*     justify-self: flex-start; */
+    width: 30px;
   }
   .bulletUse {
     display: none;
   }
-
   .glowLowLevel {
     animation: glowLow 2s infinite alternate;
   }
-
   @keyframes glowLow {
     from,
     to {
@@ -913,11 +916,14 @@ li.sortBy {
   .queueLogo {
     text-align: justify;
   }
-  #queueUnit .id {
-    align-self: flex-start;
+  .queueLogo img {
+    width: 60px;
+    height: 20px;
   }
+  #queueUnit .id,
   #queueUnit .startTime {
     align-self: flex-start;
+    font-size: 16px;
   }
   .queueLogo img {
     height: 65px;
