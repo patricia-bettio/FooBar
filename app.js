@@ -175,21 +175,12 @@ function displaySingleBeer(beer) {
   });
 
   //hidden details in template:
-  beerClone.querySelector(
-    ".aroma"
-  ).textContent = `Aroma: ${beer.description.aroma}`;
-  beerClone.querySelector(
-    ".appearance"
-  ).textContent = `Appearance: ${beer.description.appearance}`;
-  beerClone.querySelector(
-    ".flavor"
-  ).textContent = `Flavor: ${beer.description.flavor}`;
-  beerClone.querySelector(
-    ".mouthfeel"
-  ).textContent = `Mouthfeel: ${beer.description.mouthfeel}`;
-  beerClone.querySelector(
-    ".overallImpression"
-  ).textContent = `Overall Impression: ${beer.description.overallImpression}`;
+
+  beerClone.querySelector(".aroma span").textContent = ` ${beer.description.aroma}`;
+  beerClone.querySelector(".appearance span").textContent = ` ${beer.description.appearance}`;
+  beerClone.querySelector(".flavor span").textContent = ` ${beer.description.flavor}`;
+  beerClone.querySelector(".mouthfeel span").textContent = ` ${beer.description.mouthfeel}`;
+  beerClone.querySelector(".overallImpression span").textContent = ` ${beer.description.overallImpression}`;
 
   //grab by category
   const formatCategory = beer.category.toLowerCase().split(" ")[0];
@@ -203,11 +194,12 @@ function displaySingleBeer(beer) {
     //show deatils and turn glass onclick
     selectedBeer.classList.toggle("hide");
     showMoreGlass.classList.toggle("rotate");
-    showMore.classList.add("dropdownTransition");
+    //showMoreGlass.classList.add("dropdownTransition");
   });
   selectedBeer.addEventListener("click", (e) => {
     selectedBeer.classList.toggle("hide");
     showMoreGlass.classList.toggle("rotate");
+    
   });
   //append
   beerList.appendChild(beerClone);
@@ -261,10 +253,13 @@ function showErrorAtLeastOne() {
   const errorMinimum = document.getElementById("errorModal2");
   errorMinimum.classList.add("errorShow");
   const span = errorMinimum.querySelector("span");
-  errorMinimum.querySelector(".minimum").innerHTML = "Order at least one beer";
+  errorMinimum.querySelector(".minimum").innerHTML = "Select at least one beer";
   span.addEventListener("click", (e) => {
     errorMinimum.classList.remove("errorShow");
   });
+  errorMinimum.addEventListener("click", (e)=>{
+    errorMinimum.classList.remove("errorShow");
+  })
 }
 //--------------------------------EDIT-------------------------------------------//
 

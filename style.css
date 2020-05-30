@@ -71,6 +71,241 @@ p.price {
   width: 500px;
   text-align: center;
 }
+/*DESKTOP APP*/
+
+  #beerArea{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+ .modal,
+ .modal2 {
+   display: none;
+   position: fixed;
+   z-index: 1;
+   left: 0;
+   top: 0;
+   width: 100%;
+   height: 100%;
+   overflow: auto;
+   background-color: rgb(0, 0, 0);
+   background-color: rgba(0, 0, 0, 0.4);
+ }
+ .modalContent,
+ .modalContent2 {
+   background-color: #fefefe;
+   margin: auto;
+   padding: 20px;
+   width: 90%;
+   height: 100%;
+ }
+ .closeModal,
+ .closeModal2,
+ .closeErrorModal1,
+ .closeErrorModal2 {
+   color: #aaaaaa;
+   float: right;
+   font-size: 28px;
+   font-weight: bold;
+ }
+ .closeModal:hover,
+ .closeModal:focus,
+ .closeModal2:hover,
+ .closeModal2:focus,
+ .closeErrorModal1:hover,
+ .closeErrorModal1:focus,
+ .closeErrorModal2:hover,
+ .closeErrorModal2:focus {
+   color: #000;
+   text-decoration: none;
+   cursor: pointer;
+ }
+ p.price {
+   padding-top: 15px;
+   font-size: 22px;
+   display: block;
+ }
+
+ /*error modal*/
+ .errorModal1,
+ .errorModal2 {
+   display: none;
+   position: fixed;
+   z-index: 1; /* Sit on top */
+   left: 0;
+   top: 0;
+   width: 100%; /* Full width */
+   height: 100%; /* Full height */
+   overflow: auto; /* Enable scroll if needed */
+   background-color: rgb(0, 0, 0); /* Fallback color */
+   background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+ }
+ .errorShow {
+   display: block;
+ }
+ .notAvailable,
+ .minimumOne {
+   background-color: #fefefe;
+   margin: 15% auto; /* 15% from the top and centered */
+   padding: 20px;
+   border: 1px solid #888;
+   width: 80%;
+   text-align: center;
+   font-family: var(--form-font);
+   font-size: 14px;
+ }
+ /*NEXT*/
+
+ #modalBtn {
+   right: 10px;
+   padding: 18px;
+   position: fixed;
+   font-size: 20px;
+   border: inherit;
+   border-radius: 10px;
+   background: var(--category-color);
+   font-family: var(--subtitle-font);
+ }
+ #editBtn {
+   left: 43%;
+   position: relative;
+   padding: 20px 26px;
+   font-size: 22px;
+   border: inherit;
+   border-radius: 10px;
+   font-family: var(--subtitle-font);
+ }
+ #modalBtn2 {
+   left: 43%;
+   position: relative;
+   padding: 20px 26px;
+   font-size: 22px;
+   border: inherit;
+   border-radius: 10px;
+   font-family: var(--subtitle-font);
+ }
+ .reviewTheOrder {
+   font-family: var(--details-font);
+   text-align: center;
+   margin-bottom: 20px;
+   font-size: 26px;
+ }
+ #beerApp h3 {
+   text-align: center;
+   font-family: "Lemon/Milk";
+   padding: 40px;
+   font-size: 26px;
+ }
+ #beerApp h2.subtitle {
+   font-size: 36px;
+ }
+
+ /*----------- REVIEW ------------*/
+ button.next,
+ button.nextReview {
+   float: right;
+ }
+ article#reviewOrderList {
+   padding: 30px;
+ }
+
+ /*------------ FORM ------------*/
+ .formSection {
+   display: block;
+   font-family: var(--subtitle-font);
+ }
+ h2.subtitle {
+   display: flex;
+   justify-content: center;
+ }
+ img.cards {
+   width: 140px;
+   height: 30px;
+   margin-left: 190px;
+ }
+ label {
+   margin: 5px 0 10px 0;
+ }
+ form input {
+   margin-bottom: 20px;
+   background-color: rgb(230, 228, 228);
+   border-radius: 5px solid inherit;
+   display: block;
+   font-family: var(--form-font);
+   font-size: 14px;
+   width: 380px;
+   padding: 8px;
+ }
+ input + p {
+   display: none;
+ }
+ .invalid {
+   font-size: 14px;
+   width: 310px;
+   padding: 8px;
+ }
+ input.invalid + p {
+   display: block;
+   font-size: 14px;
+   margin-top: -24px;
+   margin-bottom: 30px;
+   background-color: inherit;
+   border: 2px solid red;
+   padding: 6px;
+   font-family: "Times New Roman", sans-serif;
+   width: 310px;
+   border-bottom-left-radius: 5px;
+   border-bottom-right-radius: 5px;
+ }
+ input:focus,
+ textarea:focus {
+   background-color: white;
+   color: black;
+ }
+ form {
+   justify-content: center;
+   display: grid;
+   padding: 60px;
+   background: white;
+ }
+ .cc-expiry-input {
+   display: inline-flex;
+   margin-right: 5%;
+   width: calc(55% - 40px);
+ }
+ .cc-expiry-input.invalid + p {
+   width: calc(55% - 40px);
+ }
+ .cc-cvc-input {
+   display: inline-flex;
+   width: calc(37.8% - 40px);
+ }
+ .cc-cvc-input.invalid + p {
+   width: calc(37.8% - 40px);
+ }
+ .formSubmit {
+   font-size: 20px;
+   padding: 20px;
+   border: solid 1px olive;
+   background-color: inherit;
+   letter-spacing: 1px;
+   font-family: var(--subtitle-font);
+   text-transform: uppercase;
+   cursor: pointer;
+   justify-self: center;
+   width: 400px;
+ }
+ .formSubmit:hover {
+   color: black;
+   background-color: white;
+ }
+ .loadingGif {
+   background-image: url(gifs/beer3.gif);
+   background-repeat: no-repeat;
+   background-size: cover;
+ }
+ .noForm {
+   visibility: hidden;
+ }
 
 /*----------- DESKTOP BEER LIST -----------*/
 #beerApp {
@@ -232,6 +467,21 @@ input#quantity {
 }
 
 /*dropdown*/
+.aroma img,
+.appearance img,
+.flavor img,
+.mouthfeel img,
+.overallImpression img {
+  height: 30px;
+  width: auto;
+}
+.dropdown p {
+  color: var(--category-color);
+}
+.dropdown span {
+  color: black;
+}
+
 .hide {
   display: none;
 }
@@ -242,10 +492,11 @@ input#quantity {
   background-color: white;
   padding: 1em;
   font-family: "Noto Sans JP Regular";
-  animation: slide-top 0.5s ease-in-out both;
+  /* animation: slide-top 0.5s ease-in-out both; */
 }
 .dropdown p.close {
-  padding-left: 95%;
+  float: right;
+  margin: 0;
 }
 @keyframes slide-top {
   0% {
@@ -272,7 +523,7 @@ input#quantity {
 }
 .rotate {
   transform: rotate(-45deg);
-  animation: rotateApp 6s forwards;
+  animation: rotateApp 6s infinite;
 }
 
 @keyframes rotateApp {
@@ -731,6 +982,9 @@ li.sortBy {
 /*------------ tablet view ----------*/
 @media screen and (max-width: 1200px) {
   /*-------- TABLET BEER LIST ------*/
+  #beerArea{
+    display: block;
+  }
   #beerApp {
     background-image: url(static/images/beerHeader_finalVersion.png);
     background-repeat: no-repeat;
@@ -834,10 +1088,11 @@ li.sortBy {
     font-family: "Noto Sans JP Regular";
     font-size: 20px;
     padding: 40px 70px;
-    animation: slide-top 0.5s ease-in-out both;
+    /* animation: slide-top 0.5s ease-in-out both; */
   }
   .dropdown p.close {
-    padding-left: 95%;
+    float: right;
+    margin: 0;
   }
   @keyframes slide-top {
     0% {
@@ -921,6 +1176,8 @@ li.sortBy {
     border: 1px solid #888;
     width: 80%;
     text-align: center;
+    font-family: var(--form-font);
+    font-size: 14px;
   }
   /*NEXT*/
 
@@ -1475,6 +1732,9 @@ li.sortBy {
     margin-top: 140px;
   }
 
+  #beerArea {
+    display: block;
+  }
   .beerInfoName {
     display: flex;
     flex-direction: column;
@@ -1581,6 +1841,8 @@ li.sortBy {
   }
   .showMoreButton {
     grid-area: glassButton;
+    align-self: center;
+    align-items: center;
     border-radius: 50%;
     height: 25px;
     width: 25px;
@@ -1602,20 +1864,27 @@ li.sortBy {
   .dropdown {
     font-family: "Noto Sans JP Regular";
     font-size: 16px;
-    padding: 25px 45px;
+    padding: 16px;
     text-align: justify;
-    animation: slide-top 0.5s ease-in-out both;
+    /* animation: slide-top 0.7s ease-in-out both; */
   }
   .dropdown p.close {
-    padding-left: 95%;
+    float: right;
+    margin: 0;
   }
   @keyframes slide-top {
-    0% {
+/*     0% {
       transform: translateY(0);
     }
     100% {
       transform: translateY(-100px);
-    }
+    } */
+      0% {
+        transform: translateY(-50px);
+      }
+      100% {
+        transform: translateY(0px);
+      }
   }
 
   /*------- modals ------*/
@@ -1914,6 +2183,7 @@ li.sortBy {
 @media screen and (max-width: 325px) {
   .showingMore {
     display: block;
+    align-self: center;
   }
   .glassServed {
     display: none;
