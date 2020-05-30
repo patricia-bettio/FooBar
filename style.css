@@ -695,8 +695,8 @@ li.sortBy {
   #mostWanted,
   #tapsDashboard {
     border-radius: 15px;
-    background: white;
-    box-shadow: 1px 1px 7px 2px #ccc;
+    background: #ffffffcf;
+    box-shadow: 1px 1px 7px 2px #ffec90;
     padding: 1em;
     margin: 7px;
   }
@@ -851,7 +851,6 @@ li.sortBy {
   /*----- taps ------*/
   #tapsDashboard {
     grid-area: taps;
-    background: white;
   }
   #tapsDashboard h1 {
     display: none;
@@ -1454,6 +1453,7 @@ li.sortBy {
   #dashboard #servingUnit {
     text-align: left;
     object-fit: fill;
+    width: 100%;
   }
   #servingUnit {
     display: grid;
