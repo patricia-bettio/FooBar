@@ -242,7 +242,18 @@ input#quantity {
   background-color: white;
   padding: 1em;
   font-family: "Noto Sans JP Regular";
-  text-align: justify;
+  animation: slide-top 0.5s ease-in-out both;
+}
+.dropdown p.close {
+  padding-left: 95%;
+}
+@keyframes slide-top {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-100px);
+  }
 }
 
 /*logo*/
@@ -823,14 +834,19 @@ li.sortBy {
     font-family: "Noto Sans JP Regular";
     font-size: 20px;
     padding: 40px 70px;
-    text-align: justify;
+    animation: slide-top 0.5s ease-in-out both;
   }
-  /* .dropdown p.aroma::before {
-    content: url("static/icons/aroma.png");
-    display: inline-flex;
-    width: 10px;
-    height: 10px;
-  } */
+  .dropdown p.close {
+    padding-left: 95%;
+  }
+  @keyframes slide-top {
+    0% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(-100px);
+    }
+  }
   /*------- modals ------*/
   .modal,
   .modal2 {
@@ -1588,7 +1604,20 @@ li.sortBy {
     font-size: 16px;
     padding: 25px 45px;
     text-align: justify;
+    animation: slide-top 0.5s ease-in-out both;
   }
+  .dropdown p.close {
+    padding-left: 95%;
+  }
+  @keyframes slide-top {
+    0% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(-100px);
+    }
+  }
+
   /*------- modals ------*/
   .modal,
   .modal2 {
