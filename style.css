@@ -498,7 +498,6 @@ li.sortBy {
     /* display: none; */
     align-self: center;
     margin: 7px;
-  
   }
   #storageUnit {
     display: inline-grid;
@@ -562,7 +561,7 @@ li.sortBy {
   }
   .pouringBeer {
     height: 70px;
- /*    width: 50px; */
+    /*    width: 50px; */
   }
   .pouringBeerAnimation {
     /* animation: pouringBeer 6s ease-in both; */
@@ -610,7 +609,7 @@ li.sortBy {
   }
   .tapImage {
     width: 50px;
-/*     justify-self: flex-start; */
+    /*     justify-self: flex-start; */
   }
   .bulletUse {
     display: none;
@@ -1367,10 +1366,19 @@ li.sortBy {
     font-family: var(--subtitle-font);
   }
   .reviewTheOrder {
+    display: grid;
+    grid-template-columns: 0.5fr 0.5fr;
+    grid-template-areas: "beer amount";
     font-family: var(--details-font);
-    text-align: center;
     margin-bottom: 20px;
     font-size: 20px;
+    padding: 25px;
+  }
+  .reviewTheOrder p {
+    grid-area: beer;
+  }
+  .reviewTheOrder p.singleAmount {
+    grid-area: amount;
   }
   #beerApp h3 {
     text-align: center;
@@ -1785,7 +1793,7 @@ li.sortBy {
     width: 100%;
     display: grid;
     grid-auto-flow: column;
-    grid-template-columns: repeat(7,1fr);
+    grid-template-columns: repeat(7, 1fr);
   }
   .tapImage {
     width: auto;

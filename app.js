@@ -130,16 +130,18 @@ function displaySingleBeer(beer) {
 
     userLastOption = userLastOption;
     editOptionModal(userLastOption);
-    
+
     //PRICE
     let oneItemPrice;
-    userLastOption.forEach((singleChoice)=>{
-      let filteredResult = allThePrices.find(el=> el.name === singleChoice.name);
+    userLastOption.forEach((singleChoice) => {
+      let filteredResult = allThePrices.find(
+        (el) => el.name === singleChoice.name
+      );
       let onePrice = filteredResult.price;
       let oneAmount = singleChoice.amount;
-      oneItemPrice = parseInt(onePrice)*oneAmount;
-      showTotalPrice(oneItemPrice)
-    })
+      oneItemPrice = parseInt(onePrice) * oneAmount;
+      showTotalPrice(oneItemPrice);
+    });
   });
 
   document.querySelector(".formSubmit").addEventListener("click", (e) => {
@@ -274,18 +276,17 @@ function editOptionModal(userLastOption) {
 //-----------------------------------PRICE-------------------------------------------//
 
 function showTotalPrice(oneItemPrice) {
- 
   if (oneItemPrice) {
-  const beerArea = document.querySelector(".modalContent .reviewTheOrder");
-  let singleAmount = document.createElement("p");
-  singleAmount.className = "singleAmount"
-  singleAmount.textContent = `- ${oneItemPrice}dk`;
-  beerArea.appendChild(singleAmount)
+    const beerArea = document.querySelector(".modalContent .reviewTheOrder");
+    let singleAmount = document.createElement("p");
+    singleAmount.className = "singleAmount";
+    singleAmount.textContent = `${oneItemPrice}kr`;
+    beerArea.appendChild(singleAmount);
   }
 }
 
 function showCheckoutPrice(checkOut) {
-  console.log(checkOut)
+  console.log(checkOut);
 }
 //-------------------------------------- FILTER -------------------------------------//
 function setFilters(allBeers) {
@@ -615,18 +616,17 @@ function getPrices() {
 }
 
 function showPrices(thePrices) {
-  
-  thePrices.forEach((onePrice)=>{
-    document.querySelectorAll("#beerList").forEach((e)=>{
+  thePrices.forEach((onePrice) => {
+    document.querySelectorAll("#beerList").forEach((e) => {
       let templateNameBeer = e.querySelector(".name").innerHTML;
-      if( onePrice.name === templateNameBeer){
-       e.querySelector(".price").textContent = onePrice.price;
+      if (onePrice.name === templateNameBeer) {
+        e.querySelector(".price").textContent = `${onePrice.price}kr`;
       }
-    })
-  })
+    });
+  });
 
   allThePrices = thePrices;
- /*  console.log(thePrices)
+  /*  console.log(thePrices)
   console.log(userLastOption)
   console.log(thePrices.find(el=> el.name === userLastOption))
  */
