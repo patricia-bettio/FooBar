@@ -257,28 +257,27 @@ form input {
   font-family: var(--form-font);
   font-size: 14px;
   width: 380px;
-  padding: 8px;
+  padding: 15px;
 }
 input + p {
   display: none;
 }
 .invalid {
   font-size: 14px;
-  width: 310px;
-  padding: 8px;
+  width: 380px;
+  padding: 15px;
 }
 input.invalid + p {
   display: block;
   font-size: 14px;
-  margin-top: -24px;
-  margin-bottom: 30px;
   background-color: inherit;
   border: 2px solid red;
-  padding: 6px;
+  padding: 15px;
   font-family: "Times New Roman", sans-serif;
-  width: 310px;
+  width: 380px;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
+  margin: -15px 0 30px 0;
 }
 input:focus,
 textarea:focus {
@@ -1550,11 +1549,15 @@ li.sortBy {
     text-align: start;
     margin-left: 100px;
     grid-row: auto;
+    padding-bottom: 10px;
+    border-bottom: 1px solid lightgrey;
   }
   .reviewTheOrder p.singleAmount {
     grid-area: amountReview;
     margin-right: 50px;
     grid-row: auto;
+    padding-bottom: 10px;
+    border-bottom: 1px solid lightgrey;
   }
   #beerApp h3 {
     text-align: center;
@@ -1599,22 +1602,21 @@ li.sortBy {
     display: none;
   }
   .invalid {
-    font-size: 14px;
-    width: 310px;
-    padding: 8px;
+    font-size: 16px;
+    width: 400px;
+    padding: 15px;
   }
   input.invalid + p {
     display: block;
     font-size: 14px;
-    margin-top: -24px;
-    margin-bottom: 30px;
     background-color: inherit;
     border: 2px solid red;
-    padding: 6px;
+    padding: 8px;
     font-family: "Times New Roman", sans-serif;
-    width: 310px;
+    width: 410px;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
+    font-family: var(--details-font);
   }
   input:focus,
   textarea:focus {
@@ -2320,21 +2322,21 @@ li.sortBy {
   }
   .invalid {
     font-size: 14px;
-    width: 310px;
+    width: 270px;
     padding: 8px;
   }
   input.invalid + p {
     display: block;
-    font-size: 14px;
-    margin-top: -24px;
-    margin-bottom: 30px;
+    font-size: 12px;
     background-color: inherit;
     border: 2px solid red;
     padding: 6px;
     font-family: "Times New Roman", sans-serif;
-    width: 310px;
+    width: 270px;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
+    margin: -15px 25px 30px 25px;
+    font-family: var(--details-font);
   }
   input:focus,
   textarea:focus {
