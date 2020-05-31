@@ -36,7 +36,6 @@
   --details-font: "Noto Sans JP Regular";
   --category-color: #b79027;
 }
-
 html {
   scroll-behavior: smooth;
 }
@@ -155,7 +154,7 @@ p.price {
 }
 
 /*added order*/
-.modalAdd1{
+.modalAdd1 {
   background-image: url(static/images/beerHeader_finalVersion.png);
   background-size: cover;
   display: none;
@@ -167,7 +166,7 @@ p.price {
   height: 100%; /* Full height */
   overflow: auto; /* Enable scroll if needed */
 }
-.addedOrder{
+.addedOrder {
   background-color: #fefefe;
   margin: 50% auto; /* 15% from the top and centered */
   padding: 20px;
@@ -175,7 +174,12 @@ p.price {
   width: 80%;
   text-align: center;
   font-family: var(--form-font);
-  font-size: 14px;
+  font-size: 16px;
+}
+.gif {
+  background-image: url(static/gifs/beer3.gif);
+  background-repeat: no-repeat;
+  background-size: 20%;
 }
 
 /*NEXT*/
@@ -258,28 +262,27 @@ form input {
   font-family: var(--form-font);
   font-size: 14px;
   width: 380px;
-  padding: 8px;
+  padding: 15px;
 }
 input + p {
   display: none;
 }
 .invalid {
   font-size: 14px;
-  width: 310px;
-  padding: 8px;
+  width: 380px;
+  padding: 15px;
 }
 input.invalid + p {
   display: block;
   font-size: 14px;
-  margin-top: -24px;
-  margin-bottom: 30px;
   background-color: inherit;
   border: 2px solid red;
-  padding: 6px;
+  padding: 15px;
   font-family: "Times New Roman", sans-serif;
-  width: 310px;
+  width: 380px;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
+  margin: -15px 0 30px 0;
 }
 input:focus,
 textarea:focus {
@@ -323,14 +326,14 @@ form {
   color: black;
   background-color: white;
 }
-.loadingGif {
-  background-image: url(gifs/beer3.gif);
+/* .loadingGif {
+  background-image: url(static/gifs/beer3.gif);
   background-repeat: no-repeat;
   background-size: cover;
 }
 .noForm {
   visibility: hidden;
-}
+} */
 
 /*----------- DESKTOP BEER LIST -----------*/
 #beerApp {
@@ -1328,14 +1331,24 @@ li.sortBy {
     font-size: 34px;
     padding: 150px 0 30px 0;
   }
-  .minimumOrder{
+  .minimumOrder {
     display: none;
   }
-  .minimumErrorShow{
+  .minimumErrorShow {
     display: block;
     font-size: 25px;
     text-align: center;
     font-family: var(--subtitle-font);
+  }
+  h2.minimumOrder {
+    font-size: 20px;
+    border: 2px solid red;
+    border-radius: 10px;
+    padding: 10px;
+  }
+  h2.minimumOrder::before {
+    content: "❗";
+    margin-right: 15px;
   }
   p.totalPrice {
     text-align: center;
@@ -1439,7 +1452,7 @@ li.sortBy {
     background-color: #fefefe;
     margin: auto;
     padding: 20px;
-    width: 90%;
+    width: 85%;
     height: 100%;
   }
   .closeModal,
@@ -1517,6 +1530,7 @@ li.sortBy {
     border: inherit;
     border-radius: 10px;
     font-family: var(--subtitle-font);
+    color: var(--category-color);
   }
   #modalBtn2 {
     left: 43%;
@@ -1526,6 +1540,7 @@ li.sortBy {
     border: inherit;
     border-radius: 10px;
     font-family: var(--subtitle-font);
+    color: var(--category-color);
   }
   .reviewTheOrder {
     display: grid;
@@ -1539,11 +1554,15 @@ li.sortBy {
     text-align: start;
     margin-left: 100px;
     grid-row: auto;
+    padding-bottom: 10px;
+    border-bottom: 1px solid lightgrey;
   }
   .reviewTheOrder p.singleAmount {
     grid-area: amountReview;
     margin-right: 50px;
     grid-row: auto;
+    padding-bottom: 10px;
+    border-bottom: 1px solid lightgrey;
   }
   #beerApp h3 {
     text-align: center;
@@ -1567,42 +1586,42 @@ li.sortBy {
   img.cards {
     width: 140px;
     height: 30px;
-    margin-left: 260px;
+    margin-left: 280px;
   }
   label {
     margin: 5px 0 10px 0;
-    font-size: 18px;
+    font-size: 20px;
   }
   form input {
     margin-bottom: 20px;
     background-color: rgb(230, 228, 228);
-    border-radius: 10px solid inherit;
+    border: inherit;
+    border-radius: 10px;
     display: block;
     font-family: var(--form-font);
     font-size: 16px;
-    width: 380px;
-    padding: 8px;
+    width: 400px;
+    padding: 15px;
   }
   input + p {
     display: none;
   }
   .invalid {
-    font-size: 14px;
-    width: 310px;
-    padding: 8px;
+    font-size: 16px;
+    width: 400px;
+    padding: 15px;
   }
   input.invalid + p {
     display: block;
     font-size: 14px;
-    margin-top: -24px;
-    margin-bottom: 30px;
     background-color: inherit;
     border: 2px solid red;
-    padding: 6px;
+    padding: 8px;
     font-family: "Times New Roman", sans-serif;
-    width: 310px;
+    width: 410px;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
+    font-family: var(--details-font);
   }
   input:focus,
   textarea:focus {
@@ -1639,20 +1658,20 @@ li.sortBy {
     text-transform: uppercase;
     cursor: pointer;
     justify-self: center;
-    width: 400px;
+    width: 430px;
   }
   .formSubmit:hover {
     color: black;
     background-color: white;
   }
-  .loadingGif {
+  /* .loadingGif {
     background-image: url(gifs/beer3.gif);
     background-repeat: no-repeat;
     background-size: cover;
   }
   .noForm {
     visibility: hidden;
-  }
+  } */
 }
 
 /*------- tablet for DASHBOARD -------*/
@@ -1952,6 +1971,7 @@ li.sortBy {
     border: inherit;
     border-radius: 10px;
     font-family: var(--subtitle-font);
+    color: var(--category-color);
   }
   #modalBtn2 {
     left: 39%;
@@ -1961,6 +1981,7 @@ li.sortBy {
     border: inherit;
     border-radius: 10px;
     font-family: var(--subtitle-font);
+    color: var(--category-color);
   }
   .reviewTheOrder {
     display: grid;
@@ -1972,13 +1993,17 @@ li.sortBy {
   .reviewTheOrder p.priceAmount {
     grid-area: beerReview;
     text-align: start;
-    margin-left: 30px;
+    margin-left: 20px;
     grid-row: auto;
+    padding-bottom: 10px;
+    border-bottom: 1px solid lightgrey;
   }
   .reviewTheOrder p.singleAmount {
     grid-area: amountReview;
     margin-right: 10px;
     grid-row: auto;
+    padding-bottom: 10px;
+    border-bottom: 1px solid lightgrey;
   }
   #beerApp h3 {
     text-align: center;
@@ -1993,6 +2018,17 @@ li.sortBy {
     text-align: center;
     font-size: 14px;
     font-family: "Lemon/Milk";
+  }
+
+  h2.minimumOrder {
+    font-size: 16px;
+    border: 2px solid red;
+    border-radius: 10px;
+    padding: 10px;
+  }
+  h2.minimumOrder::before {
+    content: "❗";
+    margin-right: 15px;
   }
 
   /*beer app*/
@@ -2042,8 +2078,8 @@ li.sortBy {
   #heroImg {
     width: 100%;
   }
- .header {
-     display: grid;
+  .header {
+    display: grid;
     grid-template-columns: 0.2fr 1fr 0.2fr;
     grid-template-rows: 120px 0.4fr;
     grid-template-areas:
@@ -2231,7 +2267,7 @@ li.sortBy {
     background-color: #fefefe;
     margin: auto;
     padding: 20px;
-    width: 90%;
+    width: 80%;
     height: 100%;
   }
   .closeModal,
@@ -2267,12 +2303,12 @@ li.sortBy {
   }
   label {
     font-size: 14px;
-    margin: 5px 0 10px 0;
+    margin: 5px 25px 10px 25px;
   }
   img.cards {
     width: 100px;
     height: 20px;
-    margin-left: 230px;
+    margin-left: 210px;
   }
   form input {
     margin-bottom: 20px;
@@ -2282,29 +2318,30 @@ li.sortBy {
     display: block;
     font-family: var(--form-font);
     font-size: 14px;
-    width: 310px;
+    width: 270px;
     padding: 10px;
+    margin: 5px 25px 10px 25px;
   }
   input + p {
     display: none;
   }
   .invalid {
     font-size: 14px;
-    width: 310px;
+    width: 270px;
     padding: 8px;
   }
   input.invalid + p {
     display: block;
-    font-size: 14px;
-    margin-top: -24px;
-    margin-bottom: 30px;
+    font-size: 12px;
     background-color: inherit;
     border: 2px solid red;
     padding: 6px;
     font-family: "Times New Roman", sans-serif;
-    width: 310px;
+    width: 270px;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
+    margin: -15px 25px 30px 25px;
+    font-family: var(--details-font);
   }
   input:focus,
   textarea:focus {
@@ -2342,20 +2379,20 @@ li.sortBy {
     text-transform: uppercase;
     cursor: pointer;
     justify-self: center;
-    width: 310px;
+    width: 280px;
   }
   .formSubmit:hover {
     color: black;
     background-color: white;
   }
-  .loadingGif {
+  /* .loadingGif {
     background-image: url(gifs/beer3.gif);
     background-repeat: no-repeat;
     background-size: cover;
   }
   .noForm {
     visibility: hidden;
-  }
+  } */
   /*---------- MOBILE DASHBOARD ---------*/
   h1.foobarTitle {
     display: none;
