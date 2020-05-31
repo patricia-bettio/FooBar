@@ -148,6 +148,12 @@ function displaySingleBeer(beer) {
   beerClone.querySelector(".flavor span").textContent = ` ${beer.description.flavor}`;
   beerClone.querySelector(".mouthfeel span").textContent = ` ${beer.description.mouthfeel}`;
   beerClone.querySelector(".overallImpression span").textContent = ` ${beer.description.overallImpression}`;
+  //ICONS
+  beerClone.querySelector(".dropdown .aromaImage").src = "icons/aroma.png";
+  beerClone.querySelector(".dropdown .appearanceImage").src = "icons/appearance.png";
+  beerClone.querySelector(".dropdown .flavorImage").src = "icons/flavor.png";
+  beerClone.querySelector(".dropdown .mouthfeelImage").src = "icons/mouthfeel.png";
+  beerClone.querySelector(".dropdown .overallImage").src = "icons/overallImpression.png";
   //grab by category
   const formatCategory = beer.category.toLowerCase().split(" ")[0];
   let showMoreGlass = beerClone.querySelector(".showMore");
