@@ -75,10 +75,8 @@ function queueUnit(queue) {
   const queueArea = document.querySelector("#queueUnit");
   //clear
   queueArea.innerHTML = "";
-
   queue.forEach((queue) => {
     const cloneQueue = templateQueue.cloneNode(true);
-
     queueArea.appendChild(cloneQueue);
   });
   updatedQueueUnit(queue);
@@ -88,6 +86,7 @@ function updatedQueueUnit(queue) {
   //console.log({ queue });
   updatedQueueSize(queue);
 
+
   document.querySelectorAll("#queueUnit article").forEach((oneQueue, index) => {
     //oneQueue.querySelector(".queueLogo").innerHTML = "";
     //oneQueue.querySelector("p.id").innerHTML = "";
@@ -96,6 +95,12 @@ function updatedQueueUnit(queue) {
     oneQueue.querySelector("p.id").innerHTML = "";
     oneQueue.querySelector("p.startTime").innerHTML = "";
 
+
+/*     let filteredResult = queue.find(
+      (el) => el.id === queue[index].id
+    );
+    console.log(filteredResult.id)
+    console.log(queue[index].id === filteredResult.id) */
     //elements
     oneQueue.querySelector("p.id").textContent = `order #${queue[index].id}`;
     //oneQueue.querySelector("p.order").textContent = queue[index].order;
