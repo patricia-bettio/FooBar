@@ -174,7 +174,12 @@ p.price {
   width: 80%;
   text-align: center;
   font-family: var(--form-font);
-  font-size: 14px;
+  font-size: 16px;
+}
+.gif {
+  background-image: url(static/gifs/beer3.gif);
+  background-repeat: no-repeat;
+  background-size: 20%;
 }
 
 /*NEXT*/
@@ -321,14 +326,14 @@ form {
   color: black;
   background-color: white;
 }
-.loadingGif {
-  background-image: url(gifs/beer3.gif);
+/* .loadingGif {
+  background-image: url(static/gifs/beer3.gif);
   background-repeat: no-repeat;
   background-size: cover;
 }
 .noForm {
   visibility: hidden;
-}
+} */
 
 /*----------- DESKTOP BEER LIST -----------*/
 #beerApp {
@@ -1659,14 +1664,14 @@ li.sortBy {
     color: black;
     background-color: white;
   }
-  .loadingGif {
+  /* .loadingGif {
     background-image: url(gifs/beer3.gif);
     background-repeat: no-repeat;
     background-size: cover;
   }
   .noForm {
     visibility: hidden;
-  }
+  } */
 }
 
 /*------- tablet for DASHBOARD -------*/
@@ -2380,14 +2385,14 @@ li.sortBy {
     color: black;
     background-color: white;
   }
-  .loadingGif {
+  /* .loadingGif {
     background-image: url(gifs/beer3.gif);
     background-repeat: no-repeat;
     background-size: cover;
   }
   .noForm {
     visibility: hidden;
-  }
+  } */
   /*---------- MOBILE DASHBOARD ---------*/
   h1.foobarTitle {
     display: none;
