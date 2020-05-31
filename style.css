@@ -138,6 +138,7 @@ p.price {
   background-color: rgb(0, 0, 0); /* Fallback color */
   background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
 }
+
 .errorShow {
   display: block;
 }
@@ -152,6 +153,31 @@ p.price {
   font-family: var(--form-font);
   font-size: 14px;
 }
+
+/*added order*/
+.modalAdd1{
+  background-image: url(static/images/beerHeader_finalVersion.png);
+  background-size: cover;
+  display: none;
+  position: fixed;
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+}
+.addedOrder{
+  background-color: #fefefe;
+  margin: 50% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border-radius: 10px;
+  width: 80%;
+  text-align: center;
+  font-family: var(--form-font);
+  font-size: 14px;
+}
+
 /*NEXT*/
 
 #modalBtn {
@@ -1302,6 +1328,15 @@ li.sortBy {
     font-size: 34px;
     padding: 150px 0 30px 0;
   }
+  .minimumOrder{
+    display: none;
+  }
+  .minimumErrorShow{
+    display: block;
+    font-size: 25px;
+    text-align: center;
+    font-family: var(--subtitle-font);
+  }
   p.totalPrice {
     text-align: center;
     font-size: 20px;
@@ -1630,13 +1665,10 @@ li.sortBy {
   #dashboard main {
     display: grid;
     grid-template-columns: 25% 25% 50%;
-    justify-content: center;
-    grid-template-rows: 0.1fr 0.1fr 1fr;
-    grid-auto-columns: max-content;
     grid-template-areas:
       "queue serving storage"
-      "queue serving bartenders"
-      "queue serving taps";
+      "queue serving taps"
+      "queue serving bartenders";
   }
   #servingNext,
   #nextInLine,
@@ -1893,6 +1925,10 @@ li.sortBy {
 
 /*----------- mobile view -----------*/
 @media screen and (max-width: 420px) {
+  /*bubbles*/
+  .bubbles {
+    display: none;
+  }
   /*------- MOBILE BEER LIST -------*/
 
   /*review*/
@@ -2006,8 +2042,8 @@ li.sortBy {
   #heroImg {
     width: 100%;
   }
-  .header {
-    display: grid;
+ .header {
+     display: grid;
     grid-template-columns: 0.2fr 1fr 0.2fr;
     grid-template-rows: 120px 0.4fr;
     grid-template-areas:
@@ -2328,7 +2364,6 @@ li.sortBy {
     background-image: url(static/images/beerHeader_finalVersion.png);
     background-size: contain;
     background-repeat: no-repeat;
-    overflow: hidden;
   }
   #dashboard h1 {
     font-size: 18px;
