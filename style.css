@@ -2108,6 +2108,9 @@ li.sortBy {
     grid-area: beer;
     grid-template-areas: "beerName beerCategory beerAlc";
   }
+  .beerInfoName h2.name {
+    margin-top: 35px;
+  }
   #beerList {
     grid-template-areas: "buttons logo beer glass glassButton";
   }
