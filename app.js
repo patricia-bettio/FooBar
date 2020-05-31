@@ -6,17 +6,9 @@ import { resdbEndpoint, resdbApiKey } from "./modules/extra";
 document.addEventListener("DOMContentLoaded", init);
 
 let allBeers = [];
-
 let orders = [];
-
-//object stored
 let userLastOption = [];
-let updatedUserSelection = [];
-
 let currentServing = [];
-let notAvailable;
-
-//price
 let allThePrices = [];
 
 
@@ -55,14 +47,8 @@ function seeDashboard(seeDashboard) {
 }
 
 function fetchBeers(beers) {
-  //make global:
   allBeers = beers;
-  //console.log(allBeers)
-  //set Filter:
   setFilters(beers);
-  //disable unavailable
-  //unavailableBeers(beers);
-  //show on template:
   displayBeer(beers);
 }
 
@@ -80,8 +66,6 @@ function unavailableBeers(beers) {
 }
 
 function displayBeer(beers) {
-  //console.log(beers);
-  //clear
   document.querySelector("#beerArea").innerHTML = "";
   beers.forEach(displaySingleBeer);
 }
@@ -91,46 +75,38 @@ function displaySingleBeer(beer) {
   const beerTemplate = document.querySelector("template").content;
   const beerList = document.querySelector("#beerArea");
   const beerClone = beerTemplate.cloneNode(true);
-
   //properties:
   beerClone.querySelector("h2.name").textContent = `${beer.name}`;
   beerClone.querySelector("h2.category").textContent = `${beer.category}`;
   beerClone.querySelector("p.alcohol").textContent = `ABV: ${beer.alc} %`;
   beerClone.querySelector(".logo").src = `images/${beer.label}`;
-
   //form
   const form = beerClone.querySelector("form");
   window.form = form;
   const elements = form.elements;
   window.elements = elements;
-
   elements.quantity.addEventListener("keyup", (e) => {
     let objectReview = {
       name: "",
       amount: 0,
     };
-
     //beer name
     const name = beer.name;
     //amount
     const amount = form.elements.quantity.value;
-
     //EDIT
     objectReview.name = name;
     objectReview.amount = form.elements.quantity.value;
     const getLastInstance = userLastOption.findIndex(
       (beer) => beer.name === name
     );
-
     if (getLastInstance === -1) {
       userLastOption.push(objectReview);
     } else {
       userLastOption[getLastInstance] = objectReview;
     }
-
     userLastOption = userLastOption;
     editOptionModal(userLastOption);
-
     //PRICE
     let oneItemPrice;
     let finalTotalPrice = 0;
@@ -145,48 +121,37 @@ function displaySingleBeer(beer) {
       finalTotalPrice += oneItemPrice
       showCheckoutPrice(finalTotalPrice)
     });
-
-
   });
-
   document.querySelector(".formSubmit").addEventListener("click", (e) => {
     e.preventDefault();
-
+    setUpPayment()
     let validForm = true;
-
     const name = beer.name;
     const amount = form.elements.quantity.value;
-
     //add only amount > 0
     if (amount === "") {
       console.log("zero");
       validForm = false;
     }
-
     //post
     if (form.checkValidity() && validForm) {
       console.log("form is valid");
-
       postOrder({
         name: beer.name,
         amount: form.elements.quantity.value,
       });
     }
   });
-
-  //hidden details in template:
-
+  //DROPDOWN
   beerClone.querySelector(".aroma span").textContent = ` ${beer.description.aroma}`;
   beerClone.querySelector(".appearance span").textContent = ` ${beer.description.appearance}`;
   beerClone.querySelector(".flavor span").textContent = ` ${beer.description.flavor}`;
   beerClone.querySelector(".mouthfeel span").textContent = ` ${beer.description.mouthfeel}`;
   beerClone.querySelector(".overallImpression span").textContent = ` ${beer.description.overallImpression}`;
-
   //grab by category
   const formatCategory = beer.category.toLowerCase().split(" ")[0];
   let showMoreGlass = beerClone.querySelector(".showMore");
   showMoreGlass.src = `svg/glasses/${formatCategory}_glass.svg`;
-
   //SHOW DETAILS
   let selectedBeer = beerClone.querySelector(".dropdown");
   selectedBeer.classList.add("hide");
@@ -199,21 +164,16 @@ function displaySingleBeer(beer) {
   selectedBeer.addEventListener("click", (e) => {
     selectedBeer.classList.toggle("hide");
     showMoreGlass.classList.toggle("rotate");
-    
   });
   //append
   beerList.appendChild(beerClone);
 }
 
-//--------------------------------- +/- BEERS FORM -----------------------------------//
+//--------------------------------- BEERS FORM -----------------------------------//
 function postOrder(orderQuantity) {
   console.log("Added to cart: ", orderQuantity);
-
   /*---------------------POST--------------------*/
-
   function post(orderQuantity) {
-    console.log("POST", orderQuantity);
-
     orders.push(orderQuantity);
     const postData = JSON.stringify(orders);
     console.log(postData);
@@ -222,7 +182,6 @@ function postOrder(orderQuantity) {
       headers: {
         "Content-Type": "application/json; charset=utf-8",
       },
-
       body: postData,
     })
       .then((res) => res.json())
@@ -233,8 +192,6 @@ function postOrder(orderQuantity) {
 
 //------------------------------------ERRORS MODAL -------------------------------//
 function showErrors(data) {
-  console.log(data);
-  console.log(data.message);
   let dataMessage = data.message;
   const errorUnavailable = document.getElementById("errorModal1");
   const span = errorUnavailable.querySelector("span");
@@ -247,19 +204,21 @@ function showErrors(data) {
       location.reload();
     });
   }
+  const modalAdd = document.getElementById("modalAdd");
+  const spanAdd = modalAdd.querySelector("span");
+  if(dataMessage == "added"){
+    console.log("was added")
+    modalAdd.classList.add("errorShow");
+    spanAdd.addEventListener("click", (e) => {
+      location.reload();
+    });
+    
+  }
 }
 
 function showErrorAtLeastOne() {
-  const errorMinimum = document.getElementById("errorModal2");
-  errorMinimum.classList.add("errorShow");
-  const span = errorMinimum.querySelector("span");
-  errorMinimum.querySelector(".minimum").innerHTML = "Select at least one beer";
-  span.addEventListener("click", (e) => {
-    errorMinimum.classList.remove("errorShow");
-  });
-  errorMinimum.addEventListener("click", (e)=>{
-    errorMinimum.classList.remove("errorShow");
-  })
+const minimumError = document.querySelector(".minimumOrder");
+minimumError.classList.add("minimumErrorShow");
 }
 //--------------------------------EDIT-------------------------------------------//
 
@@ -267,11 +226,14 @@ function editOptionModal(userLastOption) {
   document.querySelector(".modalContent .reviewTheOrder").innerHTML = "";
   userLastOption.forEach((oneSelection) => {
     if (oneSelection.amount > 0) {
+      document.querySelector(".minimumOrder").classList.remove("minimumErrorShow");
       const areaReviw = document.querySelector(".modalContent .reviewTheOrder");
       let reviewOrder = document.createElement("p");
       reviewOrder.className = "priceAmount";
       reviewOrder.textContent = `${oneSelection.name} x${oneSelection.amount} `;
       areaReviw.appendChild(reviewOrder);
+    } else {
+      document.querySelector(".minimumOrder").classList.add("minimumErrorShow");
     }
   });
 }
@@ -486,18 +448,24 @@ function setUpPayment() {
   setUpForm();
 
   function setUpForm() {
-    const body = document.querySelector("body");
-    window.form = form;
-    window.elements = elements;
-    const form = document.querySelector("form");
-    const elements = form.elements;
+    //console.log(document.querySelector("#modal2"))
+    //console.log(document.querySelector("form"))
+    const body = document.querySelector("#modal2");
 
+    const form = document.querySelector(".formSection form");
+    window.form = form;
+    console.log(form)
+    const elements = form.elements;
+    window.elements = elements;
+    console.log(elements)
     form.setAttribute("novalidate", true);
 
-    form.addEventListener("submit", (e) => {
+   
+    document.querySelector(".formSubmit").addEventListener("click", (e) => {
       e.preventDefault();
 
       const formElements = form.querySelectorAll("input");
+      console.log(formElements)
       formElements.forEach((el) => {
         el.classList.remove("invalid");
       });
@@ -600,6 +568,7 @@ function setUpPayment() {
     ccExpiryInput.addEventListener("input", ccExpiryInputInputHandler);
     // code copied from https://codepen.io/murani/pen/KyVbrp
   }
+
 }
 
 //**-----------------PRICES----------------* */

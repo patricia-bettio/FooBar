@@ -310,9 +310,7 @@ function updatedServingUnit(serving) {
       //clear images
       oneServing.querySelector(".servingBeerGlass").innerHTML = "";
       //elements
-      oneServing.querySelector(
-        "p.id"
-      ).textContent = `order #${serving[index].id}`;
+      oneServing.querySelector("p.id").textContent = `order #${serving[index].id}`;
       //build images
       const orderFormat = serving[index].order;
       orderFormat.forEach((e) => {

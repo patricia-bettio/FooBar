@@ -98,6 +98,7 @@
     <div class="header">
       <h2 class="subtitle">Step 1 - Order your beers</h2>
     </div>
+    <h2 class="minimumOrder">Select at Least One!</h2>
 
     <!--------------------------------FILTERING and SORTING--------------------------------------------->
     <section id="filterAndSort">
@@ -105,49 +106,22 @@
         <button class="filterButton">Types of beer</button>
         <div class="filterOptions">
           <li class="filter" data-action="filter" data-filter="IPA">IPA</li>
-          <li class="filter" data-action="filter" data-filter="Hefeweizen">
-            Hefeweizen
-          </li>
-          <li class="filter" data-action="filter" data-filter="Oktoberfest">
-            Oktoberfest
-          </li>
-          <li class="filter" data-action="filter" data-filter="European Lager">
-            European Lager
-          </li>
+          <li class="filter" data-action="filter" data-filter="Hefeweizen">Hefeweizen</li>
+          <li class="filter" data-action="filter" data-filter="Oktoberfest">Oktoberfest</li>
+          <li class="filter" data-action="filter" data-filter="European Lager">European Lager</li>
           <li class="filter" data-action="filter" data-filter="Stout">Stout</li>
-          <li
-            class="filter"
-            data-action="filter"
-            data-filter="Belgian Specialty Ale"
-          >
-            Belgian Specialty Ale
-          </li>
-          <li
-            class="filter"
-            data-action="filter"
-            data-filter="California Common"
-          >
-            California Common
-          </li>
+          <li class="filter" data-action="filter" data-filter="Belgian Specialty Ale">Belgian Specialty Ale</li>
+          <li class="filter" data-action="filter" data-filter="California Common">California Common</li>
         </div>
       </div>
 
       <div id="sorting">
         <div class="sortOptions">
-          <li
-            class="sortBy"
-            data-action="sort"
-            data-sort-direction="asc"
-            data-sort="alc"
-          >
-            Alc
-          </li>
+          <li class="sortBy" data-action="sort" data-sort-direction="asc" data-sort="alc">Alc</li>
         </div>
       </div>
       <button id="modalBtn">Next</button>
-      <div id="reset">
-        <button class="resetFilter">Reset</button>
-      </div>
+      <div id="reset"><button class="resetFilter">Reset</button></div>
     </section>
 
     <!------------------------------SHOW BEERS----------------------------->
@@ -186,7 +160,7 @@
 
     <div class="testPNG"></div>
 
-    <!--ERRORS MODAL-->
+    <!--ERRORS/messages MODAL-->
     <div id="errorModal1" class="errorModal1">
       <div class="notAvailable">
         <span class="closeErrorModal1">&times;</span>
@@ -194,10 +168,10 @@
       </div>
     </div>
 
-    <div id="errorModal2" class="errorModal2">
-      <div class="minimumOne">
+    <div id="modalAdd" class="modalAdd1">
+      <div class="addedOrder">
         <span class="closeErrorModal2">&times;</span>
-        <p class="minimum">Not serving</p>
+        <p class="addedBeer">Your order was placed!<br>Please follow on the dashboard</p>
       </div>
     </div>
 
