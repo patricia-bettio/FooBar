@@ -315,6 +315,7 @@ form {
   border: 1px solid;
   width: 290px;
   justify-self: center;
+  border-radius: 10px;
 }
 .confirmHide {
   display: none;
@@ -330,6 +331,7 @@ form {
   cursor: pointer;
   justify-self: center;
   width: 400px;
+  border-radius: 10px;
 }
 .formSubmit:hover {
   color: black;
@@ -1663,6 +1665,7 @@ li.sortBy {
     text-transform: uppercase;
     font-size: 18px;
     padding: 20px;
+    border-radius: 10px;
   }
   .formSubmit {
     display: none;
@@ -1676,6 +1679,7 @@ li.sortBy {
     cursor: pointer;
     justify-self: flex-start;
     width: 250px;
+    border-radius: 10px;
   }
   .formSubmitShow {
     display: block;
@@ -2343,6 +2347,9 @@ li.sortBy {
     font-family: var(--details-font);
     margin-bottom: 0;
   }
+  input:valid {
+    border: 2px solid green;
+  }
   input:focus,
   textarea:focus {
     background-color: white;
@@ -2379,6 +2386,7 @@ li.sortBy {
     text-transform: uppercase;
     font-size: 16px;
     padding: 20px;
+    border-radius: 10px;
   }
   .formSubmit {
     font-size: 16px;
@@ -2392,6 +2400,7 @@ li.sortBy {
     cursor: pointer;
     justify-self: flex-start;
     width: 280px;
+    border-radius: 10px;
   }
   .formSubmit:hover {
     color: black;
@@ -2399,15 +2408,15 @@ li.sortBy {
   }
 
   /*bottom form*/
-  label[for="expiryDate"]{
-  grid-area: expiry;
-  width: max-content;
+  label[for="expiryDate"] {
+    grid-area: expiry;
+    width: max-content;
   }
-  label[for="ccv"]{
+  label[for="ccv"] {
     grid-area: ccv;
     width: max-content;
   }
-  #bottomForm{
+  #bottomForm {
     display: grid;
     grid-template-areas: "expiry ccv";
   }
