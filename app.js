@@ -11,7 +11,6 @@ let userLastOption = [];
 let currentServing = [];
 let allThePrices = [];
 
-
 function init() {
   fetchDashboard();
   getPrices();
@@ -118,13 +117,13 @@ function displaySingleBeer(beer) {
       let oneAmount = singleChoice.amount;
       oneItemPrice = parseInt(onePrice) * oneAmount;
       showTotalPrice(oneItemPrice);
-      finalTotalPrice += oneItemPrice
-      showCheckoutPrice(finalTotalPrice)
+      finalTotalPrice += oneItemPrice;
+      showCheckoutPrice(finalTotalPrice);
     });
   });
   document.querySelector(".formSubmit").addEventListener("click", (e) => {
     e.preventDefault();
-    setUpPayment()
+    setUpPayment();
     let validForm = true;
     const name = beer.name;
     const amount = form.elements.quantity.value;
@@ -143,17 +142,30 @@ function displaySingleBeer(beer) {
     }
   });
   //DROPDOWN
-  beerClone.querySelector(".aroma span").textContent = ` ${beer.description.aroma}`;
-  beerClone.querySelector(".appearance span").textContent = ` ${beer.description.appearance}`;
-  beerClone.querySelector(".flavor span").textContent = ` ${beer.description.flavor}`;
-  beerClone.querySelector(".mouthfeel span").textContent = ` ${beer.description.mouthfeel}`;
-  beerClone.querySelector(".overallImpression span").textContent = ` ${beer.description.overallImpression}`;
+  beerClone.querySelector(
+    ".aroma span"
+  ).textContent = ` ${beer.description.aroma}`;
+  beerClone.querySelector(
+    ".appearance span"
+  ).textContent = ` ${beer.description.appearance}`;
+  beerClone.querySelector(
+    ".flavor span"
+  ).textContent = ` ${beer.description.flavor}`;
+  beerClone.querySelector(
+    ".mouthfeel span"
+  ).textContent = ` ${beer.description.mouthfeel}`;
+  beerClone.querySelector(
+    ".overallImpression span"
+  ).textContent = ` ${beer.description.overallImpression}`;
   //ICONS
   beerClone.querySelector(".dropdown .aromaImage").src = "icons/aroma.png";
-  beerClone.querySelector(".dropdown .appearanceImage").src = "icons/appearance.png";
+  beerClone.querySelector(".dropdown .appearanceImage").src =
+    "icons/appearance.png";
   beerClone.querySelector(".dropdown .flavorImage").src = "icons/flavor.png";
-  beerClone.querySelector(".dropdown .mouthfeelImage").src = "icons/mouthfeel.png";
-  beerClone.querySelector(".dropdown .overallImage").src = "icons/overallImpression.png";
+  beerClone.querySelector(".dropdown .mouthfeelImage").src =
+    "icons/mouthfeel.png";
+  beerClone.querySelector(".dropdown .overallImage").src =
+    "icons/overallImpression.png";
   //grab by category
   const formatCategory = beer.category.toLowerCase().split(" ")[0];
   let showMoreGlass = beerClone.querySelector(".showMore");
@@ -212,19 +224,18 @@ function showErrors(data) {
   }
   const modalAdd = document.getElementById("modalAdd");
   const spanAdd = modalAdd.querySelector("span");
-  if(dataMessage == "added"){
-    console.log("was added")
+  if (dataMessage == "added") {
+    console.log("was added");
     modalAdd.classList.add("errorShow");
     spanAdd.addEventListener("click", (e) => {
       location.reload();
     });
-    
   }
 }
 
 function showErrorAtLeastOne() {
-const minimumError = document.querySelector(".minimumOrder");
-minimumError.classList.add("minimumErrorShow");
+  const minimumError = document.querySelector(".minimumOrder");
+  minimumError.classList.add("minimumErrorShow");
 }
 //--------------------------------EDIT-------------------------------------------//
 
@@ -232,7 +243,9 @@ function editOptionModal(userLastOption) {
   document.querySelector(".modalContent .reviewTheOrder").innerHTML = "";
   userLastOption.forEach((oneSelection) => {
     if (oneSelection.amount > 0) {
-      document.querySelector(".minimumOrder").classList.remove("minimumErrorShow");
+      document
+        .querySelector(".minimumOrder")
+        .classList.remove("minimumErrorShow");
       const areaReviw = document.querySelector(".modalContent .reviewTheOrder");
       let reviewOrder = document.createElement("p");
       reviewOrder.className = "priceAmount";
@@ -255,7 +268,9 @@ function showTotalPrice(oneItemPrice) {
   }
 }
 function showCheckoutPrice(checkOut) {
-  document.querySelector(".modalContent2 .totalPrice span").textContent = ` ${checkOut}dkk`;
+  document.querySelector(
+    ".modalContent2 .totalPrice span"
+  ).textContent = ` ${checkOut}dkk`;
 }
 //-------------------------------------- FILTER -------------------------------------//
 function setFilters(allBeers) {
@@ -460,18 +475,17 @@ function setUpPayment() {
 
     const form = document.querySelector(".formSection form");
     window.form = form;
-    console.log(form)
+    console.log(form);
     const elements = form.elements;
     window.elements = elements;
-    console.log(elements)
+    console.log(elements);
     form.setAttribute("novalidate", true);
 
-   
-    document.querySelector(".formSubmit").addEventListener("click", (e) => {
+    document.querySelector(".confirm").addEventListener("click", (e) => {
       e.preventDefault();
 
       const formElements = form.querySelectorAll("input");
-      console.log(formElements)
+      console.log(formElements);
       formElements.forEach((el) => {
         el.classList.remove("invalid");
       });
@@ -574,7 +588,6 @@ function setUpPayment() {
     ccExpiryInput.addEventListener("input", ccExpiryInputInputHandler);
     // code copied from https://codepen.io/murani/pen/KyVbrp
   }
-
 }
 
 //**-----------------PRICES----------------* */
