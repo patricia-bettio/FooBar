@@ -45,7 +45,7 @@ function fetchData() {
     });
 }
 function showData(data) {
-  /* setCurrentTime(data.timestamp); */
+  setCurrentTime(data.timestamp);
   queueUnit(data.queue);
   bartendersUnit(data.bartenders);
   storageUnit(data.storage.sort((a, b) => (a.amount > b.amount ? 1 : -1)));
@@ -62,7 +62,7 @@ function fetchDataInterval() {
     });
 }
 function updateData(data) {
-  /* setCurrentTime(data.timestamp); */
+  setCurrentTime(data.timestamp);
   updatedQueueUnit(data.queue);
   updatedBartendersUnit(data.bartenders);
   updatedStorageUnit(
@@ -355,22 +355,22 @@ function widthChange(desktop) {
 } */
 
 // ------------ timer ---------- //
-/* function setCurrentTime(localTime) {
+function setCurrentTime(localTime) {
   document.querySelector("#localTime").innerHTML =
     "Time: " + dateFormatter(localTime);
-} */
+}
 function setTimeToClose() {
   const timeSpan = document.getElementById("timer");
   const mins = 60;
-  const now = Date.now();
+  const now = moment();
   let date = new Date();
   // Set deadline hours, minutes, seconds, milliseconds
   date.setHours(22, 0, 0, 0);
   let deadline = date.getTime();
 
   setInterval(() => {
-    let currentTime = new Date().getTime();
-    let distance = deadline - currentTime;
+    let now = moment();
+    let distance = deadline - now;
     let hours = Math.floor((distance % (1000 * 60 * 3600)) / (1000 * 3600));
     let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
     let seconds = Math.floor((distance % (1000 * 60)) / 1000);
