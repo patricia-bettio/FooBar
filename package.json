@@ -23,6 +23,7 @@
     "parcel-plugin-static-files-copy": "^2.3.1"
   },
   "dependencies": {
-    "fonts.css": "^2.0.0"
+    "fonts.css": "^2.0.0",
+    "moment": "^2.26.0"
   }
 }

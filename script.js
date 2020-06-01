@@ -1,9 +1,14 @@
 "use strict";
 
 //-----------------------------------IMPORT--------------------------------------//
-//-----formatted time-----//
+//----- formatted time -----//
 import { urlApi } from "./modules/extra";
 import { dateFormatter } from "./modules/extra";
+/* import { moment } from "./node_modules/moment/moment"; */
+
+//----- moment.js -----//
+var moment = require("moment"); // require
+moment().format();
 
 //-----------------------------------GLOBAL--------------------------------------//
 /*Avatar*/
@@ -310,7 +315,9 @@ function updatedServingUnit(serving) {
       //clear images
       oneServing.querySelector(".servingBeerGlass").innerHTML = "";
       //elements
-      oneServing.querySelector("p.id").textContent = `order #${serving[index].id}`;
+      oneServing.querySelector(
+        "p.id"
+      ).textContent = `order #${serving[index].id}`;
       //build images
       const orderFormat = serving[index].order;
       orderFormat.forEach((e) => {
@@ -355,15 +362,15 @@ function setCurrentTime(localTime) {
 function setTimeToClose() {
   const timeSpan = document.getElementById("timer");
   const mins = 60;
-  const now = Date.now();
+  const now = moment();
   let date = new Date();
   // Set deadline hours, minutes, seconds, milliseconds
   date.setHours(22, 0, 0, 0);
   let deadline = date.getTime();
 
   setInterval(() => {
-    let currentTime = new Date().getTime();
-    let distance = deadline - currentTime;
+    let now = moment();
+    let distance = deadline - now;
     let hours = Math.floor((distance % (1000 * 60 * 3600)) / (1000 * 3600));
     let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
     let seconds = Math.floor((distance % (1000 * 60)) / 1000);
