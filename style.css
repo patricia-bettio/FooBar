@@ -1344,7 +1344,7 @@ li.sortBy {
   }
   h2.subtitle {
     font-size: 34px;
-    padding: 150px 0 30px 0;
+    padding: 80px 0 30px 0;
   }
   .minimumOrder {
     display: none;
@@ -1369,6 +1369,7 @@ li.sortBy {
     text-align: center;
     font-size: 20px;
     font-family: "Lemon/Milk";
+    padding-bottom: 60px;
   }
   .filterButton,
   .sortButton,
@@ -1604,7 +1605,7 @@ li.sortBy {
     margin-left: 280px;
   }
   label {
-    margin: 5px 0 10px 0;
+    display: contents;
     font-size: 20px;
   }
   form input {
