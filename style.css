@@ -43,7 +43,7 @@ html {
 p.price {
   padding: 0;
   margin: 0;
-  font-size: 16px;
+  font-size: 20px;
 }
 #bartendersUnit {
   display: grid;
@@ -255,7 +255,8 @@ label {
   margin: 5px 0 10px 0;
 }
 form input {
-  margin-bottom: 20px;
+  margin-bottom: 30px;
+  margin-top: 8px;
   background-color: rgb(230, 228, 228);
   border-radius: 5px solid inherit;
   display: block;
@@ -321,7 +322,7 @@ form {
 .formSubmit {
   font-size: 20px;
   padding: 20px;
-  border: solid 1px olive;
+  border: solid 1px var(--category-color);
   background-color: inherit;
   letter-spacing: 1px;
   font-family: var(--subtitle-font);
@@ -334,14 +335,6 @@ form {
   color: black;
   background-color: white;
 }
-/* .loadingGif {
-  background-image: url(static/gifs/beer3.gif);
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-.noForm {
-  visibility: hidden;
-} */
 
 /*----------- DESKTOP BEER LIST -----------*/
 #beerApp {
@@ -1282,7 +1275,6 @@ li.sortBy {
     margin-top: 1.5em;
   }
 }
-/*ipad pro landscape*/
 
 /*------------ tablet view ----------*/
 @media screen and (max-width: 1200px) {
@@ -1301,25 +1293,23 @@ li.sortBy {
   }
   #beerList {
     border-radius: 15px;
-    /* box-shadow: 1px 1px 7px 2px #ccc; */
     box-shadow: 1px 1px 7px 2px #ccc;
   }
   #beerList h2,
   #reviewOrderList h2 {
     font-family: var(--beer-font);
-    /* margin-left: 30px; */
-    font-size: 20px;
+    font-size: 24px;
   }
   #beerList h2:last-of-type,
   #reviewOrderList h2:last-of-type {
     color: var(--category-color);
-    /* margin-left: 30px; */
-    font-size: 20px;
+    font-size: 24px;
+    margin-top: 0;
   }
   #beerList p,
   #reviewOrderList p {
     font-family: var(--form-font);
-    font-size: 15px;
+    font-size: 20px;
     color: grey;
   }
   .header {
@@ -1370,6 +1360,7 @@ li.sortBy {
     font-size: 20px;
     font-family: "Lemon/Milk";
     padding-bottom: 60px;
+    letter-spacing: 0.1em;
   }
   .filterButton,
   .sortButton,
@@ -1378,7 +1369,6 @@ li.sortBy {
     border: inherit;
     border-radius: 10px;
   }
-
   img.logo {
     width: 80px;
     height: 80px;
@@ -1387,9 +1377,7 @@ li.sortBy {
     margin: 25px 0;
   }
   input#quantity {
-    /* height: 15px; */
-    width: 3em;
-    /* font-size: 18px; */
+    width: 2em;
     display: flex;
     align-self: center;
     justify-self: flex-start;
@@ -1424,6 +1412,7 @@ li.sortBy {
   }
   .showMoreButton {
     margin-right: 15px;
+    border: inherit;
   }
   .showMore {
     width: 120px;
@@ -1491,11 +1480,6 @@ li.sortBy {
     color: #000;
     text-decoration: none;
     cursor: pointer;
-  }
-  p.price {
-    padding-top: 15px;
-    font-size: 22px;
-    display: block;
   }
 
   /*error modal*/
@@ -1609,7 +1593,8 @@ li.sortBy {
     font-size: 20px;
   }
   form input {
-    margin-bottom: 20px;
+    margin-bottom: 35px;
+    margin-top: 10px;
     background-color: rgb(230, 228, 228);
     border: inherit;
     border-radius: 10px;
@@ -1639,6 +1624,10 @@ li.sortBy {
     border-bottom-right-radius: 5px;
     font-family: var(--details-font);
   }
+  input.invalid + p::before {
+    content: "❗";
+    margin-right: 10px;
+  }
   input:focus,
   textarea:focus {
     background-color: white;
@@ -1663,18 +1652,31 @@ li.sortBy {
   .cc-cvc-input.invalid + p {
     width: calc(37.8% - 40px);
   }
+  .confirm {
+    background: inherit;
+    width: 250px;
+    margin-top: 20px;
+    justify-self: flex-start;
+    border: solid 1px var(--category-color);
+    letter-spacing: 1px;
+    font-family: var(--subtitle-font);
+    cursor: pointer;
+    text-transform: uppercase;
+    font-size: 18px;
+    padding: 20px;
+  }
   .formSubmit {
     display: none;
     font-size: 20px;
     padding: 20px;
-    border: solid 1px olive;
+    border: solid 1px var(--category-color);
     background-color: inherit;
     letter-spacing: 1px;
     font-family: var(--subtitle-font);
     text-transform: uppercase;
     cursor: pointer;
-    justify-self: center;
-    width: 430px;
+    justify-self: flex-start;
+    width: 250px;
   }
   .formSubmitShow {
     display: block;
@@ -1683,14 +1685,6 @@ li.sortBy {
     color: black;
     background-color: white;
   }
-  /* .loadingGif {
-    background-image: url(gifs/beer3.gif);
-    background-repeat: no-repeat;
-    background-size: cover;
-  }
-  .noForm {
-    visibility: hidden;
-  } */
 }
 
 /*------- tablet for DASHBOARD -------*/
@@ -1965,9 +1959,7 @@ li.sortBy {
     display: none;
   }
   /*------- MOBILE BEER LIST -------*/
-
   /*review*/
-
   #modalBtn {
     float: right;
     padding: 12px;
@@ -2034,8 +2026,8 @@ li.sortBy {
     text-align: center;
     font-size: 14px;
     font-family: "Lemon/Milk";
+    letter-spacing: 0.1em;
   }
-
   h2.minimumOrder {
     font-size: 16px;
     border: 2px solid red;
@@ -2050,10 +2042,6 @@ li.sortBy {
   /*beer app*/
 
   /*FILTER*/
-
-  /* #filters {
-  } */
-
   .filterOptions {
     display: none;
     position: absolute;
@@ -2062,11 +2050,9 @@ li.sortBy {
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
   }
-
   .showFilters {
     display: block;
   }
-
   .price {
     padding: 0;
     margin: 0;
@@ -2076,7 +2062,6 @@ li.sortBy {
   li.sortBy {
     font-size: 16px;
   }
-
   li.sortBy {
     display: block;
     padding: 12px;
@@ -2115,7 +2100,6 @@ li.sortBy {
     height: 50px;
     margin-top: 140px;
   }
-
   #beerArea {
     display: block;
   }
@@ -2132,7 +2116,6 @@ li.sortBy {
   #beerList {
     grid-template-areas: "buttons logo beer glass glassButton";
   }
-
   #beerAre #beerList {
     display: grid;
     grid-template-columns: 0.9fr 0.3fr 1fr 1fr;
@@ -2143,18 +2126,15 @@ li.sortBy {
   #beerList h2,
   #reviewOrderList h2 {
     grid-area: beerName;
-    font-size: 18px;
+    font-size: 19px;
     display: inline-flex;
     text-transform: uppercase;
-    /* margin-left: 20px; */
     margin-bottom: 0;
   }
   #beerList h2:last-of-type,
   #reviewOrderList h2:last-of-type {
     grid-area: beerCategory;
-    font-size: 16px;
-
-    /* margin-left: 20px; */
+    font-size: 19px;
   }
   #beerList .price {
     padding: 0;
@@ -2164,8 +2144,9 @@ li.sortBy {
   #beerList p,
   #reviewOrderList p {
     grid-area: beerAlc;
-    font-size: 12px;
+    font-size: 14px;
     margin-left: 10px;
+    margin-top: 10px;
   }
 
   #dashboard h2.subtitle {
@@ -2231,6 +2212,7 @@ li.sortBy {
     align-self: center;
     align-items: center;
     border-radius: 50%;
+    border: inherit;
     height: 25px;
     width: 25px;
     background-color: #d4bd7f;
@@ -2323,15 +2305,15 @@ li.sortBy {
   }
   label {
     font-size: 14px;
-    margin: 5px 25px 10px 25px;
   }
   img.cards {
     width: 100px;
     height: 20px;
-    margin-left: 210px;
+    margin-left: 185px;
   }
   form input {
     margin-bottom: 20px;
+    margin-top: 8px;
     background-color: rgb(230, 228, 228);
     border-radius: 7px;
     border: inherit;
@@ -2386,30 +2368,37 @@ li.sortBy {
   .cc-cvc-input.invalid + p {
     width: calc(37.8% - 40px);
   }
-  .formSubmit {
-    font-size: 20px;
+  .confirm {
+    background: inherit;
+    width: 280px;
+    margin-top: 10px;
+    justify-self: flex-start;
+    border: solid 1px var(--category-color);
+    letter-spacing: 1px;
+    font-family: var(--subtitle-font);
+    cursor: pointer;
+    text-transform: uppercase;
+    font-size: 16px;
     padding: 20px;
-    border: solid 1px olive;
+  }
+  .formSubmit {
+    font-size: 16px;
+    padding: 20px;
+    margin-top: 10px;
+    border: solid 1px var(--category-color);
     background-color: inherit;
     letter-spacing: 1px;
     font-family: var(--subtitle-font);
     text-transform: uppercase;
     cursor: pointer;
-    justify-self: center;
+    justify-self: flex-start;
     width: 280px;
   }
   .formSubmit:hover {
     color: black;
     background-color: white;
   }
-  /* .loadingGif {
-    background-image: url(gifs/beer3.gif);
-    background-repeat: no-repeat;
-    background-size: cover;
-  }
-  .noForm {
-    visibility: hidden;
-  } */
+
   /*---------- MOBILE DASHBOARD ---------*/
   h1.foobarTitle {
     display: none;
