@@ -436,12 +436,6 @@ function setUpModal() {
     } else {
       modal.style.display = "block";
     }
-
-    /*   userLastOption.forEach((e)=>{
-    if (e.amount == "0") {
-      console.log("select at least one")
-    } 
-    }) */
   });
   span.addEventListener("click", (e) => {
     modal.style.display = "none";
@@ -469,8 +463,6 @@ function setUpPayment() {
   setUpForm();
 
   function setUpForm() {
-    //console.log(document.querySelector("#modal2"))
-    //console.log(document.querySelector("form"))
     const body = document.querySelector("#modal2");
 
     const form = document.querySelector(".formSection form");
@@ -490,8 +482,6 @@ function setUpPayment() {
       if (form.checkValidity()) {
         document.querySelector(".formSubmit").classList.add("formSubmitShow");
         document.querySelector(".confirm").classList.add("confirmHide");
-        /* &&
-            location.assign("http://localhost:1234/app.html") */
       } else {
         formElements.forEach((el) => {
           if (!el.checkValidity()) {

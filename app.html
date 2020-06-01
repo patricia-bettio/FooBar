@@ -36,53 +36,57 @@
                 <img class="cards" src="static/images/cards.png" alt="cards" />
                 <label for="cardName">
                   Cardholder's Name
-               
-                <input
-                  type="text"
-                  name="cardName"
-                  placeholder="John Smith"
-                  autocomplete="name"
-                  required
-                /><p>Oops! You forgot to tell us your name</p></label>
-                
+
+                  <input
+                    type="text"
+                    name="cardName"
+                    placeholder="John Smith"
+                    autocomplete="name"
+                    required
+                  />
+                  <p>Oops! You forgot to tell us your name</p></label
+                >
+
                 <label for="cardNumber">
                   Card Number
-                <input
-                  name="cardNumber"
-                  type="text"
-                  maxlength="19"
-                  class="cc-number-input"
-                  inputmode="numeric"
-                  autocomplete="cc-number"
-                  placeholder="xxxx xxxx xxxx xxxx"
-                  required
-                />
-                <p>Oops! You forgot to write out your card number</p>
-              </label>
+                  <input
+                    name="cardNumber"
+                    type="text"
+                    maxlength="19"
+                    class="cc-number-input"
+                    inputmode="numeric"
+                    autocomplete="cc-number"
+                    placeholder="xxxx xxxx xxxx xxxx"
+                    required
+                  />
+                  <p>Oops! You forgot to write out your card number</p>
+                </label>
                 <label for="expiryDate">
                   Expiry Date
-                <input
-                  name="expiryDate"
-                  type="text"
-                  maxlength="5"
-                  class="cc-expiry-input"
-                  required
-                />
-                <p>
-                  Let us know when your card expires
-                </p></label>
+                  <input
+                    name="expiryDate"
+                    type="text"
+                    maxlength="5"
+                    class="cc-expiry-input"
+                    required
+                  />
+                  <p>
+                    Your card expiry date is missing
+                  </p></label
+                >
                 <label for="ccv">
                   CVC
-                <input
-                  name="ccv"
-                  type="text"
-                  maxlength="3"
-                  class="cc-cvc-input"
-                  required
-                />
-                <p>
-                  CVC number is missing
-                </p></label>
+                  <input
+                    name="ccv"
+                    type="text"
+                    maxlength="3"
+                    class="cc-cvc-input"
+                    required
+                  />
+                  <p>
+                    Your CVC number is missing
+                  </p></label
+                >
                 <input
                   type="submit"
                   value="Confirm my details"
