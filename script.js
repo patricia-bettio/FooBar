@@ -1,9 +1,14 @@
 "use strict";
 
 //-----------------------------------IMPORT--------------------------------------//
-//-----formatted time-----//
+//----- formatted time -----//
 import { urlApi } from "./modules/extra";
 import { dateFormatter } from "./modules/extra";
+/* import { moment } from "./node_modules/moment/moment"; */
+
+//----- moment.js -----//
+var moment = require("moment"); // require
+moment().format();
 
 //-----------------------------------GLOBAL--------------------------------------//
 /*Avatar*/
@@ -40,7 +45,7 @@ function fetchData() {
     });
 }
 function showData(data) {
-  setCurrentTime(data.timestamp);
+  /* setCurrentTime(data.timestamp); */
   queueUnit(data.queue);
   bartendersUnit(data.bartenders);
   storageUnit(data.storage.sort((a, b) => (a.amount > b.amount ? 1 : -1)));
@@ -57,7 +62,7 @@ function fetchDataInterval() {
     });
 }
 function updateData(data) {
-  setCurrentTime(data.timestamp);
+  /* setCurrentTime(data.timestamp); */
   updatedQueueUnit(data.queue);
   updatedBartendersUnit(data.bartenders);
   updatedStorageUnit(
@@ -310,7 +315,9 @@ function updatedServingUnit(serving) {
       //clear images
       oneServing.querySelector(".servingBeerGlass").innerHTML = "";
       //elements
-      oneServing.querySelector("p.id").textContent = `order #${serving[index].id}`;
+      oneServing.querySelector(
+        "p.id"
+      ).textContent = `order #${serving[index].id}`;
       //build images
       const orderFormat = serving[index].order;
       orderFormat.forEach((e) => {
@@ -348,10 +355,10 @@ function widthChange(desktop) {
 } */
 
 // ------------ timer ---------- //
-function setCurrentTime(localTime) {
+/* function setCurrentTime(localTime) {
   document.querySelector("#localTime").innerHTML =
     "Time: " + dateFormatter(localTime);
-}
+} */
 function setTimeToClose() {
   const timeSpan = document.getElementById("timer");
   const mins = 60;
