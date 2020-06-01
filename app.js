@@ -475,26 +475,22 @@ function setUpPayment() {
 
     const form = document.querySelector(".formSection form");
     window.form = form;
-    console.log(form);
     const elements = form.elements;
     window.elements = elements;
-    console.log(elements);
     form.setAttribute("novalidate", true);
 
     document.querySelector(".confirm").addEventListener("click", (e) => {
       e.preventDefault();
 
       const formElements = form.querySelectorAll("input");
-      console.log(formElements);
       formElements.forEach((el) => {
         el.classList.remove("invalid");
       });
 
       if (form.checkValidity()) {
-        body.classList.add("noForm");
-        body.classList.add(
-          "loadingGif"
-        ); /* &&
+        document.querySelector(".formSubmit").classList.add("formSubmitShow");
+        document.querySelector(".confirm").classList.add("confirmHide");
+        /* &&
             location.assign("http://localhost:1234/app.html") */
       } else {
         formElements.forEach((el) => {

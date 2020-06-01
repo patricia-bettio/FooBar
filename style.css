@@ -292,7 +292,6 @@ textarea:focus {
 form {
   justify-content: center;
   display: grid;
-  padding: 60px;
   background: white;
 }
 .cc-expiry-input {
@@ -314,6 +313,10 @@ form {
   background: inherit;
   border: 1px solid;
   width: 290px;
+  justify-self: center;
+}
+.confirmHide{
+  display: none;
 }
 .formSubmit {
   font-size: 20px;
@@ -1635,7 +1638,6 @@ li.sortBy {
   form {
     justify-content: center;
     display: grid;
-    padding: 60px;
   }
   .cc-expiry-input {
     display: inline-flex;
@@ -1653,6 +1655,7 @@ li.sortBy {
     width: calc(37.8% - 40px);
   }
   .formSubmit {
+    display: none;
     font-size: 20px;
     padding: 20px;
     border: solid 1px olive;
@@ -1663,6 +1666,9 @@ li.sortBy {
     cursor: pointer;
     justify-self: center;
     width: 430px;
+  }
+  .formSubmitShow {
+    display: block;
   }
   .formSubmit:hover {
     color: black;
@@ -2068,6 +2074,7 @@ li.sortBy {
   li.sortBy {
     display: block;
     padding: 12px;
+    font-size: 16px;
   }
   #beerApp {
     background-image: url(static/images/beerHeader_finalVersion.png);
@@ -2327,7 +2334,6 @@ li.sortBy {
     font-size: 14px;
     width: 270px;
     padding: 10px;
-    margin: 5px 25px 10px 25px;
   }
   input + p {
     display: none;
@@ -2347,8 +2353,8 @@ li.sortBy {
     width: 270px;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
-    margin: -15px 25px 30px 25px;
     font-family: var(--details-font);
+    margin-bottom: 0;
   }
   input:focus,
   textarea:focus {
@@ -2358,11 +2364,9 @@ li.sortBy {
   form {
     justify-content: center;
     display: grid;
-    padding: 80px;
-    border-radius: 10px;
   }
   .cc-expiry-input {
-    display: inline-flex;
+    display: block;
     margin-right: 5%;
     width: calc(55% - 40px);
   }
@@ -2370,7 +2374,7 @@ li.sortBy {
     width: calc(55% - 40px);
   }
   .cc-cvc-input {
-    display: inline-flex;
+    display: block;
     width: calc(37.8% - 40px);
   }
   .cc-cvc-input.invalid + p {
