@@ -21,7 +21,7 @@
         <h2 class="subtitle">Step 3 - Proceed to payment</h2>
 
         <!-------- modal for POST -------->
-        <button id="modalBtn2">Pay</button>
+        <input type="submit" value="Pay" id="modalBtn2" />
         <div id="modal2" class="modal2">
           <div class="modalContent2">
             <span class="closeModal2">&times;</span>
@@ -85,11 +85,11 @@
                 <p>
                   CVC number is missing
                 </p>
-                <input
+                <!-- <input
                   type="submit"
                   value="Confirm my details"
                   class="confirm"
-                />
+                /> -->
                 <input type="submit" value="Pay Now" class="formSubmit" />
               </form>
             </section>
@@ -211,6 +211,8 @@
       </div>
     </div>
 
+    <!-- <script src="./node_modules/card.js/src/card.js"></script> -->
+    <!-- <script type="text/javascript" src="dist/creditcard.min.js"></script> -->
     <script src="app.js"></script>
   </body>
 </html>

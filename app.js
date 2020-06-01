@@ -5,11 +5,21 @@ import { resdbEndpoint, resdbApiKey } from "./modules/extra";
 
 document.addEventListener("DOMContentLoaded", init);
 
+/* let card = require("./node_modules/card.js/src/card.js"); */
+
 let allBeers = [];
 let orders = [];
 let userLastOption = [];
 let currentServing = [];
 let allThePrices = [];
+
+const modal = document.querySelector("#modal");
+const modalBtn = document.querySelector("#modalBtn");
+const span = document.querySelector(".closeModal");
+const editBtn = document.querySelector("#editBtn");
+const modal2 = document.querySelector("#modal2");
+const modalBtn2 = document.querySelector("#modalBtn2");
+const span2 = document.querySelector(".closeModal2");
 
 function init() {
   fetchDashboard();
@@ -121,9 +131,8 @@ function displaySingleBeer(beer) {
       showCheckoutPrice(finalTotalPrice);
     });
   });
-  document.querySelector(".formSubmit").addEventListener("click", (e) => {
+  document.querySelector("#modalBtn2").addEventListener("click", (e) => {
     e.preventDefault();
-    setUpPayment();
     let validForm = true;
     const name = beer.name;
     const amount = form.elements.quantity.value;
@@ -131,16 +140,17 @@ function displaySingleBeer(beer) {
     if (amount === "") {
       console.log("zero");
       validForm = false;
-    }
-    //post
-    if (form.checkValidity() && validForm) {
+      //post
+    } else if (form.checkValidity() && validForm) {
       console.log("form is valid");
-      postOrder({
+      /* postOrder({
         name: beer.name,
         amount: form.elements.quantity.value,
-      });
+      }); */
+      setUpModal();
     }
   });
+
   //DROPDOWN
   beerClone.querySelector(
     ".aroma span"
@@ -185,6 +195,159 @@ function displaySingleBeer(beer) {
   });
   //append
   beerList.appendChild(beerClone);
+}
+
+function setUpModal() {
+  modalBtn.addEventListener("click", (e) => {
+    if (userLastOption == "") {
+      console.log("select at least one");
+      showErrorAtLeastOne();
+    } else {
+      modal.style.display = "block";
+    }
+  });
+  span.addEventListener("click", (e) => {
+    modal.style.display = "none";
+  });
+  //close modal when "edit" btn clicked
+  editBtn.addEventListener("click", (e) => {
+    modal.style.display = "none";
+  });
+  setUpPayment();
+}
+
+// ------- payment modal ------ //
+function setUpPayment() {
+  modalBtn2.addEventListener("click", (e) => {
+    modal2.style.display = "block";
+  });
+  span2.addEventListener("click", (e) => {
+    modal2.style.display = "none";
+  });
+  window.addEventListener("click", (e) => {
+    if (event.target == modal) {
+      modal2.style.display = "none";
+    }
+  });
+  setUpForm();
+
+  function setUpForm() {
+    const body = document.querySelector("#modal2");
+    const form = document.querySelector(".formSection form");
+    window.form = form;
+    console.log(form);
+    const elements = form.elements;
+    window.elements = elements;
+    console.log(elements);
+
+    let validForm = true;
+    form.setAttribute("novalidate", true);
+
+    document.querySelector(".formSubmit").addEventListener("click", (e) => {
+      e.preventDefault();
+
+      const formElements = form.querySelectorAll("input");
+      /* console.log(formElements); */
+      /* formElements.forEach((el) => {
+        el.classList.remove("invalid");
+      }); */
+
+      //post
+      if (form.checkValidity() && validForm) {
+        console.log("PAYMENT WENT THROUGH");
+        postOrder();
+      } else {
+        formElements.forEach((el) => {
+          if (!el.checkValidity()) {
+            el.classList.add("invalid");
+          }
+        });
+      }
+    });
+
+    // ------ code copied from https://codepen.io/murani/pen/KyVbrp --------
+    let ccNumberInput = document.querySelector(".cc-number-input"),
+      ccNumberPattern = /^\d{0,16}$/g,
+      ccNumberSeparator = " ",
+      ccNumberInputOldValue,
+      ccNumberInputOldCursor,
+      ccExpiryInput = document.querySelector(".cc-expiry-input"),
+      ccExpiryPattern = /^\d{0,4}$/g,
+      ccExpirySeparator = "/",
+      ccExpiryInputOldValue,
+      mask = (value, limit, separator) => {
+        var output = [];
+        for (let i = 0; i < value.length; i++) {
+          if (i !== 0 && i % limit === 0) {
+            output.push(separator);
+          }
+
+          output.push(value[i]);
+        }
+
+        return output.join("");
+      },
+      unmask = (value) => value.replace(/[^\d]/g, ""),
+      checkSeparator = (position, interval) =>
+        Math.floor(position / (interval + 1)),
+      ccNumberInputKeyDownHandler = (e) => {
+        let el = e.target;
+        ccNumberInputOldValue = el.value;
+        ccNumberInputOldCursor = el.selectionEnd;
+      },
+      ccNumberInputInputHandler = (e) => {
+        let el = e.target,
+          newValue = unmask(el.value),
+          newCursorPosition;
+
+        if (newValue.match(ccNumberPattern)) {
+          newValue = mask(newValue, 4, ccNumberSeparator);
+
+          newCursorPosition =
+            ccNumberInputOldCursor -
+            checkSeparator(ccNumberInputOldCursor, 4) +
+            checkSeparator(
+              ccNumberInputOldCursor +
+                (newValue.length - ccNumberInputOldValue.length),
+              4
+            ) +
+            (unmask(newValue).length - unmask(ccNumberInputOldValue).length);
+
+          el.value = newValue !== "" ? newValue : "";
+        } else {
+          el.value = ccNumberInputOldValue;
+          newCursorPosition = ccNumberInputOldCursor;
+        }
+
+        el.setSelectionRange(newCursorPosition, newCursorPosition);
+      },
+      // expiry date
+      ccExpiryInputKeyDownHandler = (e) => {
+        let el = e.target;
+        ccExpiryInputOldValue = el.value;
+        ccExpiryInputOldCursor = el.selectionEnd;
+      },
+      ccExpiryInputInputHandler = (e) => {
+        let el = e.target,
+          newValue = el.value;
+
+        newValue = unmask(newValue);
+        if (newValue.match(ccExpiryPattern)) {
+          newValue = mask(newValue, 2, ccExpirySeparator);
+          el.value = newValue;
+        } else {
+          el.value = ccExpiryInputOldValue;
+        }
+      };
+
+    // card number
+    ccNumberInput.addEventListener("keydown", ccNumberInputKeyDownHandler);
+    ccNumberInput.addEventListener("input", ccNumberInputInputHandler);
+
+    ccExpiryInput.addEventListener("keydown", ccExpiryInputKeyDownHandler);
+    ccExpiryInput.addEventListener("input", ccExpiryInputInputHandler);
+    // code copied from https://codepen.io/murani/pen/KyVbrp
+  }
 }
 
 //--------------------------------- BEERS FORM -----------------------------------//
@@ -417,177 +580,6 @@ function firstDesc() {
   }
   allBeers.sort(compareAlc);
   displayBeer(allBeers);
-}
-
-// ------------ modal ---------- //
-const modal = document.querySelector("#modal");
-const modalBtn = document.querySelector("#modalBtn");
-const span = document.querySelector(".closeModal");
-const editBtn = document.querySelector("#editBtn");
-const modal2 = document.querySelector("#modal2");
-const modalBtn2 = document.querySelector("#modalBtn2");
-const span2 = document.querySelector(".closeModal2");
-
-function setUpModal() {
-  modalBtn.addEventListener("click", (e) => {
-    if (userLastOption == "") {
-      console.log("select at least one");
-      showErrorAtLeastOne();
-    } else {
-      modal.style.display = "block";
-    }
-
-    /*   userLastOption.forEach((e)=>{
-    if (e.amount == "0") {
-      console.log("select at least one")
-    } 
-    }) */
-  });
-  span.addEventListener("click", (e) => {
-    modal.style.display = "none";
-  });
-  //close modal when "edit" btn clicked
-  editBtn.addEventListener("click", (e) => {
-    modal.style.display = "none";
-  });
-  setUpPayment();
-}
-
-// ------- payment modal ------ //
-function setUpPayment() {
-  modalBtn2.addEventListener("click", (e) => {
-    modal2.style.display = "block";
-  });
-  span2.addEventListener("click", (e) => {
-    modal2.style.display = "none";
-  });
-  window.addEventListener("click", (e) => {
-    if (event.target == modal) {
-      modal2.style.display = "none";
-    }
-  });
-  setUpForm();
-
-  function setUpForm() {
-    //console.log(document.querySelector("#modal2"))
-    //console.log(document.querySelector("form"))
-    const body = document.querySelector("#modal2");
-
-    const form = document.querySelector(".formSection form");
-    window.form = form;
-    console.log(form);
-    const elements = form.elements;
-    window.elements = elements;
-    console.log(elements);
-    form.setAttribute("novalidate", true);
-
-    document.querySelector(".confirm").addEventListener("click", (e) => {
-      e.preventDefault();
-
-      const formElements = form.querySelectorAll("input");
-      console.log(formElements);
-      formElements.forEach((el) => {
-        el.classList.remove("invalid");
-      });
-
-      if (form.checkValidity()) {
-        body.classList.add("noForm");
-        body.classList.add(
-          "loadingGif"
-        ); /* &&
-            location.assign("http://localhost:1234/app.html") */
-      } else {
-        formElements.forEach((el) => {
-          if (!el.checkValidity()) {
-            el.classList.add("invalid");
-          }
-        });
-      }
-    });
-
-    // ------ code copied from https://codepen.io/murani/pen/KyVbrp --------
-    let ccNumberInput = document.querySelector(".cc-number-input"),
-      ccNumberPattern = /^\d{0,16}$/g,
-      ccNumberSeparator = " ",
-      ccNumberInputOldValue,
-      ccNumberInputOldCursor,
-      ccExpiryInput = document.querySelector(".cc-expiry-input"),
-      ccExpiryPattern = /^\d{0,4}$/g,
-      ccExpirySeparator = "/",
-      ccExpiryInputOldValue,
-      mask = (value, limit, separator) => {
-        var output = [];
-        for (let i = 0; i < value.length; i++) {
-          if (i !== 0 && i % limit === 0) {
-            output.push(separator);
-          }
-
-          output.push(value[i]);
-        }
-
-        return output.join("");
-      },
-      unmask = (value) => value.replace(/[^\d]/g, ""),
-      checkSeparator = (position, interval) =>
-        Math.floor(position / (interval + 1)),
-      ccNumberInputKeyDownHandler = (e) => {
-        let el = e.target;
-        ccNumberInputOldValue = el.value;
-        ccNumberInputOldCursor = el.selectionEnd;
-      },
-      ccNumberInputInputHandler = (e) => {
-        let el = e.target,
-          newValue = unmask(el.value),
-          newCursorPosition;
-
-        if (newValue.match(ccNumberPattern)) {
-          newValue = mask(newValue, 4, ccNumberSeparator);
-
-          newCursorPosition =
-            ccNumberInputOldCursor -
-            checkSeparator(ccNumberInputOldCursor, 4) +
-            checkSeparator(
-              ccNumberInputOldCursor +
-                (newValue.length - ccNumberInputOldValue.length),
-              4
-            ) +
-            (unmask(newValue).length - unmask(ccNumberInputOldValue).length);
-
-          el.value = newValue !== "" ? newValue : "";
-        } else {
-          el.value = ccNumberInputOldValue;
-          newCursorPosition = ccNumberInputOldCursor;
-        }
-
-        el.setSelectionRange(newCursorPosition, newCursorPosition);
-      },
-      // expiry date
-      ccExpiryInputKeyDownHandler = (e) => {
-        let el = e.target;
-        ccExpiryInputOldValue = el.value;
-        ccExpiryInputOldCursor = el.selectionEnd;
-      },
-      ccExpiryInputInputHandler = (e) => {
-        let el = e.target,
-          newValue = el.value;
-
-        newValue = unmask(newValue);
-        if (newValue.match(ccExpiryPattern)) {
-          newValue = mask(newValue, 2, ccExpirySeparator);
-          el.value = newValue;
-        } else {
-          el.value = ccExpiryInputOldValue;
-        }
-      };
-
-    // card number
-    ccNumberInput.addEventListener("keydown", ccNumberInputKeyDownHandler);
-    ccNumberInput.addEventListener("input", ccNumberInputInputHandler);
-
-    ccExpiryInput.addEventListener("keydown", ccExpiryInputKeyDownHandler);
-    ccExpiryInput.addEventListener("input", ccExpiryInputInputHandler);
-    // code copied from https://codepen.io/murani/pen/KyVbrp
-  }
 }
 
 //**-----------------PRICES----------------* */

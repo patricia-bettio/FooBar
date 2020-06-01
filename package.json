@@ -23,6 +23,8 @@
     "parcel-plugin-static-files-copy": "^2.3.1"
   },
   "dependencies": {
+    "card.js": "0.0.2",
+    "creditcard.js": "^2.1.6",
     "fonts.css": "^2.0.0"
   }
 }
