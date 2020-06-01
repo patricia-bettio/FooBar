@@ -66,8 +66,7 @@ function updateData(data) {
   updatedQueueUnit(data.queue);
   updatedBartendersUnit(data.bartenders);
   updatedStorageUnit(
-    data.storage.sort((a, b) => (a.amount > b.amount ? 1 : -1))
-  );
+    data.storage.sort((a, b) => (a.amount > b.amount ? 1 : -1)));
   updatedTapsUnit(data.taps);
   updatedServingUnit(data.serving);
 }
@@ -80,17 +79,15 @@ function queueUnit(queue) {
   const queueArea = document.querySelector("#queueUnit");
   //clear
   queueArea.innerHTML = "";
-
- 
   updatedQueueUnit(queue);
 }
 
 function updatedQueueUnit(queue) {
-  //console.log({ queue });
+
   updatedQueueSize(queue);
 
-  console.log(document.querySelectorAll("#queueUnit article").length);
-  console.log(queue.length)
+  //console.log(document.querySelectorAll("#queueUnit article").length);
+  //console.log(queue.length)
   //1.remove old nodes
   document.querySelectorAll("#queueUnit article").forEach((node)=>{
     
@@ -102,7 +99,7 @@ function updatedQueueUnit(queue) {
   //2.add new
   queue.forEach((item) => {
     if(document.querySelector(`#queueUnit article[data-id="${item.id}"]`)){
-      console.log("id is there")
+     // console.log("id is there")
       return
     }
     const templateQueue = document.querySelector("#queueTemplate").content;
@@ -134,13 +131,6 @@ function updatedQueueUnit(queue) {
     queueArea.appendChild(cloneQueue);
   });
   
-
-  
-
-  document.querySelectorAll("#queueUnit article").forEach((oneQueue, index) => {
- 
-
-  });
 }
 
 //-----------------------------------BARTENDERS--------------------------------------//
@@ -317,35 +307,48 @@ function servingUnit(serving) {
   const servingArea = document.querySelector("#servingUnit");
   //clear
   servingArea.innerHTML = "";
-  serving.forEach((oneCustomer) => {
-    const cloneServing = templateServing.cloneNode(true);
-    //--------append-------//
-    servingArea.appendChild(cloneServing);
-  });
   updatedServingUnit(serving);
 }
 
 function updatedServingUnit(serving) {
-  document
-    .querySelectorAll("#servingUnit article")
-    .forEach((oneServing, index) => {
-      //clear images
-      oneServing.querySelector(".servingBeerGlass").innerHTML = "";
+
+  document.querySelectorAll("#servingUnit article").forEach((node)=>{
+
+    const found = serving.find(item=>item.id == node.dataset.id)
+    if(!found){
+      node.remove();
+    }
+  })
+  
+  serving.forEach((item)=>{
+    if(document.querySelector(`#servingUnit article[data-id="${item.id}"]`)) {
+      return
+    }
+
+  const templateServing = document.querySelector("#servingTemplate").content;
+  const cloneServing = templateServing.cloneNode(true);
+  const servingArea = document.querySelector("#servingUnit");
+
+  cloneServing.querySelector("article").dataset.id = item.id;
       //elements
-      oneServing.querySelector(
-        "p.id"
-      ).textContent = `order #${serving[index].id}`;
+      cloneServing.querySelector("p.id").textContent = `order #${item.id}`;
+
       //build images
-      const orderFormat = serving[index].order;
+      const orderFormat = item.order;
       orderFormat.forEach((e) => {
         let image = new Image();
         image.src = `svg/logoGlasses/${
           e.toLowerCase().split(" ")[0]
         }_glass_logo.svg`;
-        oneServing.querySelector(".servingBeerGlass").appendChild(image);
+        cloneServing.querySelector(".servingBeerGlass").appendChild(image);
+
       });
+
+      servingArea.appendChild(cloneServing);
     });
-}
+
+  }
+
 //----------------------QUEUE SIZE --------------------------------------//
 function setQueueSize(queueSize) {
   document.querySelector(".queueCount span").textContent = queueSize.length;
