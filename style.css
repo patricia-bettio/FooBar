@@ -1359,7 +1359,7 @@ li.sortBy {
     text-align: center;
     font-size: 20px;
     font-family: "Lemon/Milk";
-    padding-bottom: 60px;
+    padding-bottom: 0px;
     letter-spacing: 0.1em;
   }
   .filterButton,
@@ -1589,7 +1589,6 @@ li.sortBy {
     margin-left: 280px;
   }
   label {
-    display: contents;
     font-size: 20px;
   }
   form input {
@@ -2309,7 +2308,7 @@ li.sortBy {
   img.cards {
     width: 100px;
     height: 20px;
-    margin-left: 185px;
+    margin: auto;
   }
   form input {
     margin-bottom: 20px;
@@ -2366,7 +2365,7 @@ li.sortBy {
     width: calc(37.8% - 40px);
   }
   .cc-cvc-input.invalid + p {
-    width: calc(37.8% - 40px);
+    width: calc(37.8% - 0px);
   }
   .confirm {
     background: inherit;
@@ -2399,6 +2398,19 @@ li.sortBy {
     background-color: white;
   }
 
+  /*bottom form*/
+  label[for="expiryDate"]{
+  grid-area: expiry;
+  width: max-content;
+  }
+  label[for="ccv"]{
+    grid-area: ccv;
+    width: max-content;
+  }
+  #bottomForm{
+    display: grid;
+    grid-template-areas: "expiry ccv";
+  }
   /*---------- MOBILE DASHBOARD ---------*/
   h1.foobarTitle {
     display: none;
