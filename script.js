@@ -75,7 +75,7 @@ function queueUnit(queue) {
   const queueArea = document.querySelector("#queueUnit");
   //clear
   queueArea.innerHTML = "";
-
+  
   queue.forEach((queue) => {
     const cloneQueue = templateQueue.cloneNode(true);
 
@@ -85,18 +85,23 @@ function queueUnit(queue) {
 }
 
 function updatedQueueUnit(queue) {
-  //console.log({ queue });
   updatedQueueSize(queue);
 
   document.querySelectorAll("#queueUnit article").forEach((oneQueue, index) => {
-    //oneQueue.querySelector(".queueLogo").innerHTML = "";
-    //oneQueue.querySelector("p.id").innerHTML = "";
-    //console.log(oneQueue.querySelector(".queueLogo"));
+ 
+
+
     oneQueue.querySelector(".queueLogo").innerHTML = "";
     oneQueue.querySelector("p.id").innerHTML = "";
     oneQueue.querySelector("p.startTime").innerHTML = "";
 
     //elements
+    let idExists = oneQueue.querySelector("p.id");
+    console.log(idExists)
+    //console.log(idExists.innerHTML.indexOf("order") !== -1)
+    console.log(document.querySelector("p.id"))
+    
+
     oneQueue.querySelector("p.id").textContent = `order #${queue[index].id}`;
     //oneQueue.querySelector("p.order").textContent = queue[index].order;
     oneQueue.querySelector("p.startTime").textContent = dateFormatter(
