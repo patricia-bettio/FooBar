@@ -315,7 +315,7 @@ form {
   width: 290px;
   justify-self: center;
 }
-.confirmHide{
+.confirmHide {
   display: none;
 }
 .formSubmit {
@@ -853,19 +853,18 @@ li.sortBy {
     }
   }
   .pouringBeer {
- display: block;
- margin: auto;
- position: absolute;
- width: 60px;
- height: 60px;
- 
+    display: block;
+    margin: auto;
+    position: absolute;
+    width: 60px;
+    height: 60px;
   }
   .pouringBeerAnimation {
     animation: pouringBeerGo 3s infinite;
   }
   @keyframes pouringBeerGo {
     0% {
-      transform: translateY(0%) rotateY(45deg) skewY(-45deg);  
+      transform: translateY(0%) rotateY(45deg) skewY(-45deg);
     }
     100% {
       transform: translateY(100%);
@@ -980,19 +979,22 @@ li.sortBy {
 }
 /*------------ monitor view ----------*/
 @media screen and (min-width: 1400px) {
-  #bartenders, #mostWanted, #tapsDashboard{
+  #bartenders,
+  #mostWanted,
+  #tapsDashboard {
     align-self: start;
   }
   #dashboard {
     background-image: url("static/images/beerHeader_dashboard.png");
-    background-size: 100%;
+    background-size: cover;
   }
   #dashboard main {
     display: grid;
     grid-template-columns: 25% 25% 50%;
     justify-content: center;
     grid-template-rows: max-content;
-    grid-auto-columns: max-content;
+    /* grid-auto-columns: max-content; */
+    grid-template-rows: 0.1fr 0.2fr 0.1fr;
     grid-template-areas:
       "queue serving storage"
       "queue serving taps"
@@ -1008,6 +1010,7 @@ li.sortBy {
     box-shadow: 1px 1px 7px 2px #ffec90;
     padding: 1em;
     margin: 7px;
+    display: table;
   }
   #mostWanted h1,
   #nextInLine h1,
@@ -1129,29 +1132,27 @@ li.sortBy {
       transform: rotate(-15deg);
     }
   }
-  
+
   .pouringBeer {
     display: block;
     margin: auto;
     position: absolute;
     width: 60px;
     height: 60px;
-    
-     }
-     .pouringBeerAnimation {
-       animation: pouringBeerGo 3s infinite;
-     }
-     @keyframes pouringBeerGo {
-      0% {
-        transform: translateY(-100%) rotateY(45deg) skewY(-45deg);  
-        height: 40px;
-      }
-      100% {
-        transform: translateY(100%);
-        height: 0px;
-      }
+  }
+  .pouringBeerAnimation {
+    animation: pouringBeerGo 3s infinite;
+  }
+  @keyframes pouringBeerGo {
+    0% {
+      transform: translateY(-100%) rotateY(45deg) skewY(-45deg);
+      height: 40px;
     }
- 
+    100% {
+      transform: translateY(100%);
+      height: 0px;
+    }
+  }
 
   /*----- taps ------*/
   #tapsDashboard {
@@ -1286,7 +1287,9 @@ li.sortBy {
 /*------------ tablet view ----------*/
 @media screen and (max-width: 1200px) {
   /*-------- TABLET BEER LIST ------*/
-  #bartenders, #mostWanted, #tapsDashboard{
+  #bartenders,
+  #mostWanted,
+  #tapsDashboard {
     align-self: start;
   }
   #beerArea {
@@ -1693,14 +1696,13 @@ li.sortBy {
 @media screen and (max-width: 1200px) and (min-device-width: 760px) {
   #dashboard {
     background-image: url("static/images/beerHeader_dashboard.png");
-    background-repeat: no-repeat;
-    background-size: auto;
+    background-size: 100%;
   }
 
   #dashboard main {
     display: grid;
     grid-template-columns: 25% 25% 50%;
-    grid-template-rows: max-content;
+    grid-template-rows: 0.1fr 0.2fr 0.1fr;
     grid-template-areas:
       "queue serving storage"
       "queue serving taps"
@@ -1716,6 +1718,7 @@ li.sortBy {
     box-shadow: 1px 1px 7px 2px #ccc;
     padding: 1em;
     margin: 7px;
+    display: table;
   }
   #mostWanted h1,
   #nextInLine h1,
@@ -1829,30 +1832,27 @@ li.sortBy {
       transform: rotate(-15deg);
     }
   }
- 
-  
+
   .pouringBeer {
     display: block;
     margin: auto;
     position: absolute;
     width: 60px;
     height: 60px;
-    
-     }
-     .pouringBeerAnimation {
-       animation: pouringBeerGo 3s infinite;
-     }
-     @keyframes pouringBeerGo {
-      0% {
-        transform: translateY(-100%) rotateY(45deg) skewY(-45deg);  
-        height: 40px;
-      }
-      100% {
-        transform: translateY(100%);
-        height: 0px;
-      }
+  }
+  .pouringBeerAnimation {
+    animation: pouringBeerGo 3s infinite;
+  }
+  @keyframes pouringBeerGo {
+    0% {
+      transform: translateY(-100%) rotateY(45deg) skewY(-45deg);
+      height: 40px;
     }
-   
+    100% {
+      transform: translateY(100%);
+      height: 0px;
+    }
+  }
 
   /*----- taps ------*/
   #tapsDashboard {
@@ -2455,6 +2455,7 @@ li.sortBy {
     height: 80px;
     border-radius: 50%;
     border: 4px solid;
+    /* display: grid; */
   }
   #bartenders p.name {
     text-transform: uppercase;
