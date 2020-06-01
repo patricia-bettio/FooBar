@@ -81,11 +81,7 @@ function queueUnit(queue) {
   //clear
   queueArea.innerHTML = "";
 
-  queue.forEach((queue) => {
-    const cloneQueue = templateQueue.cloneNode(true);
-
-    queueArea.appendChild(cloneQueue);
-  });
+ 
   updatedQueueUnit(queue);
 }
 
@@ -93,20 +89,31 @@ function updatedQueueUnit(queue) {
   //console.log({ queue });
   updatedQueueSize(queue);
 
-  document.querySelectorAll("#queueUnit article").forEach((oneQueue, index) => {
-    //oneQueue.querySelector(".queueLogo").innerHTML = "";
-    //oneQueue.querySelector("p.id").innerHTML = "";
-    //console.log(oneQueue.querySelector(".queueLogo"));
-    oneQueue.querySelector(".queueLogo").innerHTML = "";
-    oneQueue.querySelector("p.id").innerHTML = "";
-    oneQueue.querySelector("p.startTime").innerHTML = "";
+  console.log(document.querySelectorAll("#queueUnit article").length);
+  console.log(queue.length)
+  //1.remove old nodes
+  document.querySelectorAll("#queueUnit article").forEach((node)=>{
+    
+    const found = queue.find(item=>item.id == node.dataset.id)
+    if(!found){
+      node.remove()
+    }
+  })
+  //2.add new
+  queue.forEach((item) => {
+    if(document.querySelector(`#queueUnit article[data-id="${item.id}"]`)){
+      console.log("id is there")
+      return
+    }
+    const templateQueue = document.querySelector("#queueTemplate").content;
+    const cloneQueue = templateQueue.cloneNode(true);
+    const queueArea = document.querySelector("#queueUnit");
 
+    cloneQueue.querySelector("article").dataset.id = item.id;
     //elements
-    oneQueue.querySelector("p.id").textContent = `order #${queue[index].id}`;
+    cloneQueue.querySelector("p.id").textContent = `order #${item.id}`;
     //oneQueue.querySelector("p.order").textContent = queue[index].order;
-    oneQueue.querySelector("p.startTime").textContent = dateFormatter(
-      queue[index].startTime
-    ).slice(0, 5);
+    cloneQueue.querySelector("p.startTime").textContent = dateFormatter(item.startTime).slice(0, 5);
 
     /*     //AVATAR *random - will change every 5 sec
        let numberImg = Math.floor(Math.random()*randomAvatar.length);
@@ -115,14 +122,24 @@ function updatedQueueUnit(queue) {
 
     //IMAGES
 
-    const queueFormat = queue[index].order;
+    const queueFormat = item.order;
     queueFormat.forEach((e) => {
       let image = new Image();
       image.src = `images/circle_logo/${
         e.toLowerCase().split(" ")[0]
       }_circle.png`;
-      oneQueue.querySelector(".queueLogo").appendChild(image);
+      cloneQueue.querySelector(".queueLogo").appendChild(image);
     });
+
+    queueArea.appendChild(cloneQueue);
+  });
+  
+
+  
+
+  document.querySelectorAll("#queueUnit article").forEach((oneQueue, index) => {
+ 
+
   });
 }
 
