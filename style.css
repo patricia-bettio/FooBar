@@ -855,7 +855,7 @@ li.sortBy {
   .pouringBeer {
  display: block;
  margin: auto;
- position: fixed;
+ position: absolute;
  width: 60px;
  height: 60px;
  
@@ -919,7 +919,6 @@ li.sortBy {
   /*----- bartenders ------*/
   #bartenders {
     grid-area: bartenders;
-    align-self: center;
   }
   #bartenders .bartender {
     width: 80px;
@@ -981,6 +980,9 @@ li.sortBy {
 }
 /*------------ monitor view ----------*/
 @media screen and (min-width: 1400px) {
+  #bartenders, #mostWanted, #tapsDashboard{
+    align-self: start;
+  }
   #dashboard {
     background-image: url("static/images/beerHeader_dashboard.png");
     background-size: 100%;
@@ -989,7 +991,7 @@ li.sortBy {
     display: grid;
     grid-template-columns: 25% 25% 50%;
     justify-content: center;
-    /* grid-template-rows: 0.1fr 0.1fr 1fr; */
+    grid-template-rows: max-content;
     grid-auto-columns: max-content;
     grid-template-areas:
       "queue serving storage"
@@ -1131,7 +1133,7 @@ li.sortBy {
   .pouringBeer {
     display: block;
     margin: auto;
-    position: fixed;
+    position: absolute;
     width: 60px;
     height: 60px;
     
@@ -1196,7 +1198,6 @@ li.sortBy {
   /*----- bartenders ------*/
   #bartenders {
     grid-area: bartenders;
-    align-self: center;
   }
   #bartenders .bartender {
     width: 80px;
@@ -1285,6 +1286,9 @@ li.sortBy {
 /*------------ tablet view ----------*/
 @media screen and (max-width: 1200px) {
   /*-------- TABLET BEER LIST ------*/
+  #bartenders, #mostWanted, #tapsDashboard{
+    align-self: start;
+  }
   #beerArea {
     display: block;
   }
@@ -1690,11 +1694,13 @@ li.sortBy {
   #dashboard {
     background-image: url("static/images/beerHeader_dashboard.png");
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: auto;
   }
+
   #dashboard main {
     display: grid;
     grid-template-columns: 25% 25% 50%;
+    grid-template-rows: max-content;
     grid-template-areas:
       "queue serving storage"
       "queue serving taps"
@@ -1828,7 +1834,7 @@ li.sortBy {
   .pouringBeer {
     display: block;
     margin: auto;
-    position: fixed;
+    position: absolute;
     width: 60px;
     height: 60px;
     
