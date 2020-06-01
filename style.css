@@ -310,6 +310,11 @@ form {
 .cc-cvc-input.invalid + p {
   width: calc(37.8% - 40px);
 }
+.confirm {
+  background: inherit;
+  border: 1px solid;
+  width: 290px;
+}
 .formSubmit {
   font-size: 20px;
   padding: 20px;
