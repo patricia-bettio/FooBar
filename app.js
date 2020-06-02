@@ -221,6 +221,9 @@ function showErrors(data) {
     span.addEventListener("click", (e) => {
       location.reload();
     });
+    errorUnavailable.addEventListener("click", (e) => {
+      location.reload();
+    });
   }
   const modalAdd = document.getElementById("modalAdd");
   const spanAdd = modalAdd.querySelector("span");
@@ -228,6 +231,9 @@ function showErrors(data) {
     console.log("was added");
     modalAdd.classList.add("errorShow");
     spanAdd.addEventListener("click", (e) => {
+      location.reload();
+    });
+    modalAdd.addEventListener("click", (e) => {
       location.reload();
     });
   }
@@ -430,7 +436,7 @@ const span2 = document.querySelector(".closeModal2");
 
 function setUpModal() {
   modalBtn.addEventListener("click", (e) => {
-    if (userLastOption == "") {
+    if (userLastOption == "" ) {
       console.log("select at least one");
       showErrorAtLeastOne();
     } else {
