@@ -747,7 +747,7 @@ li.sortBy {
     font-family: var(--subtitle-font);
     font-size: 60px;
     margin-top: 10px;
-    color: olive;
+    color: var(--category-color);
     border-radius: 15px;
     margin: 0;
   }
@@ -1028,7 +1028,7 @@ li.sortBy {
     font-family: var(--subtitle-font);
     font-size: 60px;
     margin-top: 10px;
-    color: olive;
+    color: var(--category-color);
     border-radius: 15px;
     margin: 0;
   }
@@ -1713,8 +1713,8 @@ li.sortBy {
   #mostWanted,
   #tapsDashboard {
     border-radius: 15px;
-    background: white;
-    box-shadow: 1px 1px 7px 2px #ccc;
+    background: #ffffffcf;
+    box-shadow: 1px 1px 7px 2px #ffec90;
     padding: 1em;
     margin: 7px;
     display: table;
@@ -1740,7 +1740,7 @@ li.sortBy {
     font-family: var(--subtitle-font);
     font-size: 40px;
     margin-top: 10px;
-    color: olive;
+    color: var(--category-color);
     margin: 0;
   }
   #dashboard .subtitle {
@@ -1856,7 +1856,8 @@ li.sortBy {
   /*----- taps ------*/
   #tapsDashboard {
     grid-area: taps;
-    background: white;
+    background: #ffffffcf;
+    box-shadow: 1px 1px 7px 2px #ffec90;
   }
   #tapsDashboard article {
     width: 30px;
@@ -1902,7 +1903,8 @@ li.sortBy {
   #bartenders .bartender {
     width: 65px;
     height: 65px;
-    border: 7px solid;
+    border-radius: 50%;
+    border: 4px solid;
   }
   #bartenders h1 {
     display: none;
@@ -2073,8 +2075,9 @@ li.sortBy {
   }
   #beerApp {
     background-image: url(static/images/beerHeader_finalVersion.png);
-    background-repeat: no-repeat;
     background-size: 100%;
+    background-repeat: no-repeat;
+    overflow: hidden;
   }
 
   /**/
