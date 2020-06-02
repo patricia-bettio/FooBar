@@ -934,7 +934,6 @@ li.sortBy {
   }
   .queueLogo img {
     height: 65px;
-    margin: 10px;
   }
   #queueUnit {
     display: grid;
@@ -1212,11 +1211,11 @@ li.sortBy {
   }
   .queueLogo img {
     height: 65px;
-    margin: 10px;
+    margin-right: 5px;
   }
   #queueUnit {
     display: grid;
-    grid-row-gap: 1.5em;
+    grid-row-gap: 2.5em;
   }
   #queueUnit article {
     align-items: center;
@@ -1825,7 +1824,7 @@ li.sortBy {
     display: block;
     margin: auto;
     position: absolute;
-    width: 60px;
+    width: 40px;
     height: 60px;
   }
   .pouringBeerAnimation {
@@ -1862,11 +1861,13 @@ li.sortBy {
   }
   #dashboard #tapsUnit {
     width: 100%;
-    justify-items: center;
-    text-align-last: justify;
+    width: 100%;
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: repeat(7, 1fr);
   }
   .tapImage {
-    width: 45px;
+    width: 40px;
     justify-self: flex-start;
   }
   .bulletUse {
@@ -1932,7 +1933,7 @@ li.sortBy {
   }
   .queueLogo img {
     height: 45px;
-    margin: 10px;
+    margin-right: 5px;
   }
   #queueUnit {
     display: grid;
@@ -1942,7 +1943,7 @@ li.sortBy {
     align-items: center;
     display: grid;
     grid-auto-flow: column;
-    grid-template-rows: 0 55px 0 1fr 50px;
+    grid-template-rows: 0 55px 0 50px;
     margin: 0;
   }
 }
@@ -2427,7 +2428,7 @@ li.sortBy {
   }
   #dashboard {
     background-image: url(static/images/beerHeader_finalVersion.png);
-    background-size: contain;
+    background-size: 100%;
     background-repeat: no-repeat;
   }
   #dashboard h1 {
