@@ -480,6 +480,9 @@ function setUpPayment() {
       });
 
       if (form.checkValidity()) {
+        formElements.forEach((el) => {
+          el.classList.add("valid");
+        });
         document.querySelector(".formSubmit").classList.add("formSubmitShow");
         document.querySelector(".confirm").classList.add("confirmHide");
       } else {
