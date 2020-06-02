@@ -2309,9 +2309,15 @@ li.sortBy {
   label {
     font-size: 14px;
   }
+  /* img.cards {
+    width: 100px;
+    height: 40px;
+    margin: auto;
+    margin-bottom: 40px;
+  } */
   img.cards {
     width: 100px;
-    height: 20px;
+    height: 100px;
     margin: auto;
   }
   form input {
@@ -2347,7 +2353,7 @@ li.sortBy {
     font-family: var(--details-font);
     margin-bottom: 0;
   }
-  input:valid {
+  .valid {
     border: 2px solid green;
   }
   input:focus,
