@@ -257,6 +257,9 @@ input.invalid + p {
   border-bottom-right-radius: 5px;
   margin: -15px 0 0px 0;
 }
+.valid {
+  border: 2px solid green;
+}
 input:focus,
 textarea:focus {
   background-color: white;
@@ -2062,8 +2065,6 @@ li.sortBy {
   #beerApp {
     background-image: url(static/images/beerHeader_finalVersion.png);
     background-size: 100%;
-    background-repeat: no-repeat;
-    overflow: hidden;
   }
 
   /**/
