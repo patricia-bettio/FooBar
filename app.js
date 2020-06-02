@@ -560,7 +560,6 @@ function setUpPayment() {
       ccExpiryInputKeyDownHandler = (e) => {
         let el = e.target;
         ccExpiryInputOldValue = el.value;
-        ccExpiryInputOldCursor = el.selectionEnd;
       },
       ccExpiryInputInputHandler = (e) => {
         let el = e.target,
