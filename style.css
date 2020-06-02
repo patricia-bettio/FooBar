@@ -94,7 +94,6 @@ p.price {
   margin: auto;
   padding: 20px;
   width: 90%;
-  height: 100%;
 }
 .closeModal,
 .closeModal2,
@@ -125,7 +124,8 @@ p.price {
 
 /*error modal*/
 .errorModal1,
-.errorModal2 {
+.errorModal2,
+.modalAdd1 {
   display: none;
   position: fixed;
   z-index: 1; /* Sit on top */
@@ -142,7 +142,8 @@ p.price {
   display: block;
 }
 .notAvailable,
-.minimumOne {
+.minimumOne,
+.addedOrder {
   background-color: #fefefe;
   margin: 15% auto; /* 15% from the top and centered */
   padding: 20px;
@@ -153,34 +154,6 @@ p.price {
   font-size: 14px;
 }
 
-/*added order*/
-.modalAdd1 {
-  background-image: url(static/images/beerHeader_finalVersion.png);
-  background-size: cover;
-  display: none;
-  position: fixed;
-  z-index: 1; /* Sit on top */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-}
-.addedOrder {
-  background-color: #fefefe;
-  margin: 50% auto; /* 15% from the top and centered */
-  padding: 20px;
-  border-radius: 10px;
-  width: 80%;
-  text-align: center;
-  font-family: var(--form-font);
-  font-size: 16px;
-}
-.gif {
-  background-image: url(static/gifs/beer3.gif);
-  background-repeat: no-repeat;
-  background-size: 20%;
-}
 
 /*NEXT*/
 
@@ -283,7 +256,7 @@ input.invalid + p {
   width: 380px;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
-  margin: -15px 0 30px 0;
+  margin: -15px 0 0px 0;
 }
 input:focus,
 textarea:focus {
@@ -296,7 +269,7 @@ form {
   background: white;
 }
 .cc-expiry-input {
-  display: inline-flex;
+  display: block;
   margin-right: 5%;
   width: calc(55% - 40px);
 }
@@ -1587,12 +1560,13 @@ li.sortBy {
     justify-content: center;
   }
   img.cards {
-    width: 140px;
-    height: 30px;
-    margin-left: 280px;
+    width: 100px;
+    height: 100px;
+    margin: auto;
   }
   label {
     font-size: 20px;
+    display: block;
   }
   form input {
     margin-bottom: 35px;
@@ -1640,7 +1614,7 @@ li.sortBy {
     display: grid;
   }
   .cc-expiry-input {
-    display: inline-flex;
+    display: bock;
     margin-right: 5%;
     width: calc(55% - 40px);
   }
@@ -1648,11 +1622,11 @@ li.sortBy {
     width: calc(55% - 40px);
   }
   .cc-cvc-input {
-    display: inline-flex;
+    display: block;
     width: calc(37.8% - 40px);
   }
   .cc-cvc-input.invalid + p {
-    width: calc(37.8% - 40px);
+    width: calc(37.8% - 0px);
   }
   .confirm {
     background: inherit;
@@ -1667,6 +1641,7 @@ li.sortBy {
     font-size: 18px;
     padding: 20px;
     border-radius: 10px;
+    justify-self: center;
   }
   .formSubmit {
     display: none;
@@ -1678,7 +1653,6 @@ li.sortBy {
     font-family: var(--subtitle-font);
     text-transform: uppercase;
     cursor: pointer;
-    justify-self: flex-start;
     width: 250px;
     border-radius: 10px;
   }
@@ -1688,6 +1662,18 @@ li.sortBy {
   .formSubmit:hover {
     color: black;
     background-color: white;
+  }
+  label[for="expiryDate"] {
+    grid-area: expiry;
+    width: max-content;
+  }
+  label[for="ccv"] {
+    grid-area: ccv;
+    width: max-content;
+  }
+  #bottomForm{
+    display: grid;
+    grid-template-areas: "expiry ccv";
   }
 }
 
@@ -2367,7 +2353,8 @@ li.sortBy {
     color: black;
   }
   form {
-    justify-content: center;
+    justify-self: center;
+    justify-items: center;
     display: grid;
   }
   .cc-expiry-input {
@@ -2398,6 +2385,7 @@ li.sortBy {
     font-size: 16px;
     padding: 20px;
     border-radius: 10px;
+    justify-self: center;
   }
   .formSubmit {
     font-size: 16px;
@@ -2409,7 +2397,7 @@ li.sortBy {
     font-family: var(--subtitle-font);
     text-transform: uppercase;
     cursor: pointer;
-    justify-self: flex-start;
+    justify-self: center;
     width: 280px;
     border-radius: 10px;
   }
@@ -2430,6 +2418,7 @@ li.sortBy {
   #bottomForm {
     display: grid;
     grid-template-areas: "expiry ccv";
+    margin: 15px;
   }
   /*---------- MOBILE DASHBOARD ---------*/
   h1.foobarTitle {
