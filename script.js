@@ -4,7 +4,6 @@
 //----- formatted time -----//
 import { urlApi } from "./modules/extra";
 import { dateFormatter } from "./modules/extra";
-/* import { moment } from "./node_modules/moment/moment"; */
 
 //----- moment.js -----//
 var moment = require("moment"); // require
@@ -20,17 +19,12 @@ let randomAvatar = [
   "images/avatar/avatar5.png",
   "images/avatar/avatar6.png",
 ];
-let topFive;
-let sortStorage;
 
 //-----------------------------------INITIALIZE--------------------------------------//
 document.addEventListener("DOMContentLoaded", init);
 
 function init() {
   fetchData();
-
-  /* displayDesktopScene(); */
-
   setTimeToClose();
 }
 
@@ -52,6 +46,7 @@ function showData(data) {
   tapsUnit(data.taps);
   servingUnit(data.serving);
 }
+
 function fetchDataInterval() {
   fetch(urlApi, {
     method: "get",
@@ -61,12 +56,12 @@ function fetchDataInterval() {
       updateData(data);
     });
 }
+
 function updateData(data) {
   setCurrentTime(data.timestamp);
   updatedQueueUnit(data.queue);
   updatedBartendersUnit(data.bartenders);
-  updatedStorageUnit(
-    data.storage.sort((a, b) => (a.amount > b.amount ? 1 : -1)));
+  updatedStorageUnit(data.storage.sort((a, b) => (a.amount > b.amount ? 1 : -1)));
   updatedTapsUnit(data.taps);
   updatedServingUnit(data.serving);
 }
@@ -85,12 +80,8 @@ function queueUnit(queue) {
 function updatedQueueUnit(queue) {
 
   updatedQueueSize(queue);
-
-  //console.log(document.querySelectorAll("#queueUnit article").length);
-  //console.log(queue.length)
   //1.remove old nodes
   document.querySelectorAll("#queueUnit article").forEach((node)=>{
-    
     const found = queue.find(item=>item.id == node.dataset.id)
     if(!found){
       node.remove()
@@ -99,45 +90,37 @@ function updatedQueueUnit(queue) {
   //2.add new
   queue.forEach((item) => {
     if(document.querySelector(`#queueUnit article[data-id="${item.id}"]`)){
-     // console.log("id is there")
+      //console.log("id is there")
       return
     }
     const templateQueue = document.querySelector("#queueTemplate").content;
     const cloneQueue = templateQueue.cloneNode(true);
     const queueArea = document.querySelector("#queueUnit");
-
+    //dataset
     cloneQueue.querySelector("article").dataset.id = item.id;
     //elements
     cloneQueue.querySelector("p.id").textContent = `order #${item.id}`;
-    //oneQueue.querySelector("p.order").textContent = queue[index].order;
     cloneQueue.querySelector("p.startTime").textContent = dateFormatter(item.startTime).slice(0, 5);
 
-    /*     //AVATAR *random - will change every 5 sec
+    /* //AVATAR *random - will change every 5 sec
        let numberImg = Math.floor(Math.random()*randomAvatar.length);
        let displayedAvatar = randomAvatar[numberImg];
        oneQueue.querySelector(".avatar").src = displayedAvatar; */
 
     //IMAGES
-
     const queueFormat = item.order;
     queueFormat.forEach((e) => {
       let image = new Image();
-      image.src = `images/circle_logo/${
-        e.toLowerCase().split(" ")[0]
-      }_circle.png`;
+      image.src = `images/circle_logo/${e.toLowerCase().split(" ")[0]}_circle.png`;
       cloneQueue.querySelector(".queueLogo").appendChild(image);
     });
-
     queueArea.appendChild(cloneQueue);
-  });
-  
+  }); 
 }
 
 //-----------------------------------BARTENDERS--------------------------------------//
 function bartendersUnit(bartenders) {
-  //console.log({ bartenders });
-  const templateBartenders = document.querySelector("#bartendersTemplate")
-    .content;
+  const templateBartenders = document.querySelector("#bartendersTemplate").content;
   const bartendersArea = document.querySelector("#bartendersUnit");
 
   bartendersArea.innerHTML = "";
@@ -152,66 +135,42 @@ function bartendersUnit(bartenders) {
     } else if (oneBartender.name === "Dannie") {
       cloneBartender.querySelector(".bartender").src = "images/dannie.jpeg";
     }
-
-    //-----append-----//
     bartendersArea.appendChild(cloneBartender);
   });
   updatedBartendersUnit(bartenders);
 }
 
 function updatedBartendersUnit(bartenders) {
-  //console.log({ bartenders });
-  document
-    .querySelectorAll("#bartendersUnit article")
-    .forEach((oneBartender, index) => {
-      oneBartender.querySelector("p.status").textContent =
-        bartenders[index].status;
-      oneBartender.querySelector("p.servingCustomer").textContent =
-        bartenders[index].servingCustomer;
-      oneBartender.querySelector("p.usingTap").textContent =
-        bartenders[index].usingTap;
+  document.querySelectorAll("#bartendersUnit article").forEach((oneBartender, index) => {
+      oneBartender.querySelector("p.status").textContent = bartenders[index].status;
+      oneBartender.querySelector("p.servingCustomer").textContent = bartenders[index].servingCustomer;
+      oneBartender.querySelector("p.usingTap").textContent = bartenders[index].usingTap;
       let formatStatusNow = bartenders[index].statusDetail;
 
       if (formatStatusNow === "pourBeer") {
-        oneBartender.querySelector("p.statusDetail").textContent =
-          "Pouring beer";
+        oneBartender.querySelector("p.statusDetail").textContent = "Pouring beer";
       } else if (formatStatusNow === "receivePayment") {
-        oneBartender.querySelector("p.statusDetail").textContent =
-          "Receiving payment";
+        oneBartender.querySelector("p.statusDetail").textContent = "Receiving payment";
       } else if (formatStatusNow === "reserveTap") {
-        oneBartender.querySelector("p.statusDetail").textContent =
-          "Reserving tap";
+        oneBartender.querySelector("p.statusDetail").textContent = "Reserving tap";
       } else if (formatStatusNow === "startServing") {
-        oneBartender.querySelector("p.statusDetail").textContent =
-          "Started serving";
+        oneBartender.querySelector("p.statusDetail").textContent = "Started serving";
       } else if (formatStatusNow === "replaceKeg") {
-        oneBartender.querySelector("p.statusDetail").textContent =
-          "Replacing keg";
+        oneBartender.querySelector("p.statusDetail").textContent = "Replacing keg";
       } else if (formatStatusNow === "ready") {
-        oneBartender
-          .querySelector(".bartender")
-          .classList.add("glowingBartender");
+        oneBartender.querySelector(".bartender").classList.add("glowingBartender");
         oneBartender.querySelector("p.statusDetail").textContent = "READY";
       }
-      /* oneBartender.querySelector("p.statusDetail").textContent =
-        formatStatusNow.charAt(0).toUpperCase() + formatStatusNow.slice(1); */
     });
 }
 
 //-----------------------------------STORAGE--------------------------------------//
 function storageUnit(storage) {
-  //top5
-  //console.log(storage.slice(0,5))
-  //display
   const templateStorage = document.querySelector("#storageTemplate").content;
   const storageArea = document.querySelector("#storageUnit");
-  //clear
   storageArea.innerHTML = "";
-  //template
   storage.forEach((oneKeg) => {
     const cloneStorage = templateStorage.cloneNode(true);
-
-    //-----append-----//
     storageArea.appendChild(cloneStorage);
   });
   updatedStorageUnit(storage);
@@ -221,27 +180,20 @@ function updatedStorageUnit(storage) {
   //display
   document.querySelectorAll("#storageUnit article").forEach((oneKeg, index) => {
     oneKeg.querySelector("p.name").textContent = storage[index].name;
-    oneKeg.querySelector(
-      "p.amount"
-    ).textContent = `Kegs: ${storage[index].amount}`;
+    oneKeg.querySelector("p.amount").textContent = `Kegs: ${storage[index].amount}`;
     //IMAGE
     let kegFormat = storage[index].name;
-    oneKeg.querySelector(".kegImage").src = `svg/bottles/${
-      kegFormat.toLowerCase().split(" ")[0]
-    }_bottle.svg`;
+    oneKeg.querySelector(".kegImage").src = `svg/bottles/${kegFormat.toLowerCase().split(" ")[0]}_bottle.svg`;
   });
 }
 
 //-----------------------------------TAPS UNIT--------------------------------------//
 function tapsUnit(taps) {
-  //console.log(taps);
   const templateTaps = document.querySelector("#tapsTemplate").content;
   const tapsArea = document.querySelector("#tapsUnit");
-
   tapsArea.innerHTML = "";
   taps.forEach((oneTap) => {
     const cloneTaps = templateTaps.cloneNode(true);
-
     tapsArea.appendChild(cloneTaps);
   });
   updatedTapsUnit(taps);
@@ -250,8 +202,6 @@ function tapsUnit(taps) {
 function updatedTapsUnit(taps) {
   document.querySelectorAll("#tapsUnit article").forEach((oneTap, index) => {
     oneTap.querySelector("p.id").textContent = taps[index].id;
-    //oneTap.querySelector("p.beer").textContent = taps[index].beer;
-    //oneTap.querySelector("p.inUse").textContent = taps[index].inUse;
     oneTap.querySelector("p.level").textContent = taps[index].level;
     //alert
     let findLevel = taps[index].level;
@@ -262,40 +212,27 @@ function updatedTapsUnit(taps) {
     }
     //IMAGE
     let tapFormat = taps[index].beer;
-    oneTap.querySelector(".tapImage").src = `svg/taps/${
-      tapFormat.toLowerCase().split(" ")[0]
-    }_tap.svg`;
-
+    oneTap.querySelector(".tapImage").src = `svg/taps/${tapFormat.toLowerCase().split(" ")[0]}_tap.svg`;
+    //stout
+    let beerPath = oneTap.querySelector(".tapImage").src;
     //USE
     if (taps[index].inUse === false) {
       oneTap.querySelector(".bulletUse").style.background = "red";
       //glass
-      oneTap
-        .querySelector(".glassServed")
-        .classList.remove("glassServedRotate");
+      oneTap.querySelector(".glassServed").classList.remove("glassServedRotate");
       oneTap.querySelector(".glassServed").src = "";
-      oneTap
-        .querySelector(".pouringBeer")
-        .classList.remove("pouringBeerAnimation");
+      oneTap.querySelector(".pouringBeer").classList.remove("pouringBeerAnimation");
       oneTap.querySelector(".pouringBeer").src = "";
-    } else if (taps[index].inUse === true) {
+      } else if (taps[index].inUse === true) {
       oneTap.querySelector(".bulletUse").style.background = "green";
       //glass
-      oneTap.querySelector(".glassServed").src = `svg/logoGlasses/${
-        tapFormat.toLowerCase().split(" ")[0]
-      }_glass_logo.svg`;
+      oneTap.querySelector(".glassServed").src = `svg/logoGlasses/${tapFormat.toLowerCase().split(" ")[0]}_glass_logo.svg`;
       oneTap.querySelector(".glassServed").classList.add("glassServedRotate");
       oneTap.querySelector(".pouringBeer").src = "svg/pouringBeer.svg";
-      oneTap
-        .querySelector(".pouringBeer")
-        .classList.add("pouringBeerAnimation");
-
-      // TODO: fix this
-    } else if (tapImage.src === "svg/taps/row_tap.svg") {
+      oneTap.querySelector(".pouringBeer").classList.add("pouringBeerAnimation");
+      } else if (beerPath === "svg/taps/row_tap.svg") {
       oneTap.querySelector(".pouringBeer").src = "svg/pouringBeerStout.svg";
-      oneTap
-        .querySelector(".pouringBeer")
-        .classList.add("pouringBeerAnimation");
+      oneTap.querySelector(".pouringBeer").classList.add("pouringBeerAnimation");
     }
   });
 }
@@ -311,20 +248,17 @@ function servingUnit(serving) {
 }
 
 function updatedServingUnit(serving) {
-
+  
   document.querySelectorAll("#servingUnit article").forEach((node)=>{
-
     const found = serving.find(item=>item.id == node.dataset.id)
     if(!found){
       node.remove();
     }
   })
-  
   serving.forEach((item)=>{
     if(document.querySelector(`#servingUnit article[data-id="${item.id}"]`)) {
       return
-    }
-
+  }
   const templateServing = document.querySelector("#servingTemplate").content;
   const cloneServing = templateServing.cloneNode(true);
   const servingArea = document.querySelector("#servingUnit");
@@ -332,21 +266,15 @@ function updatedServingUnit(serving) {
   cloneServing.querySelector("article").dataset.id = item.id;
       //elements
       cloneServing.querySelector("p.id").textContent = `order #${item.id}`;
-
       //build images
       const orderFormat = item.order;
       orderFormat.forEach((e) => {
         let image = new Image();
-        image.src = `svg/logoGlasses/${
-          e.toLowerCase().split(" ")[0]
-        }_glass_logo.svg`;
+        image.src = `svg/logoGlasses/${e.toLowerCase().split(" ")[0]}_glass_logo.svg`;
         cloneServing.querySelector(".servingBeerGlass").appendChild(image);
-
       });
-
       servingArea.appendChild(cloneServing);
     });
-
   }
 
 //----------------------QUEUE SIZE --------------------------------------//
@@ -354,30 +282,13 @@ function setQueueSize(queueSize) {
   document.querySelector(".queueCount span").textContent = queueSize.length;
   updatedQueueSize(queueSize);
 }
-
 function updatedQueueSize(queueSize) {
   document.querySelector(".queueCount span").textContent = queueSize.length;
 }
-// ----------------------- dashboard desktop query ---------------------- //
-/* function displayDesktopScene() {
-  // media query event handler
-  if (matchMedia) {
-    const desktop = window.matchMedia("(min-width: 1200px)");
-    desktop.addListener(widthChange);
-    widthChange(desktop);
-  }
-}
-
-function widthChange(desktop) {
-  const fooBar = desktop.matches
-    ? document.body.classList.add("match-media-1-component-css")
-    : document.body.classList.remove("match-media-1-component-css");
-} */
 
 // ------------ timer ---------- //
 function setCurrentTime(localTime) {
-  document.querySelector("#localTime").innerHTML =
-    "Time: " + dateFormatter(localTime);
+  document.querySelector("#localTime").innerHTML = "Time: " + dateFormatter(localTime);
 }
 function setTimeToClose() {
   const timeSpan = document.getElementById("timer");
@@ -394,8 +305,6 @@ function setTimeToClose() {
     let hours = Math.floor((distance % (1000 * 60 * 3600)) / (1000 * 3600));
     let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
     let seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-    timeSpan.innerHTML =
-      "We close in: " + hours + ":" + minutes + ":" + seconds;
+    timeSpan.innerHTML = "We close in: " + hours + ":" + minutes + ":" + seconds;
   }, 50);
 }
