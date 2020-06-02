@@ -32,21 +32,17 @@
               <form>
                 <label for="acceptedCards"> </label>
                 <img class="cards" src="static/images/cards2.png" alt="cards" />
-                <label for="cardName">
-                  Cardholder's Name
-
+                <label for="cardName">Cardholder's Name
                   <input
                     type="text"
                     name="cardName"
                     placeholder="John Smith"
                     autocomplete="name"
-                    required
-                  />
-                  <p>Oops! You forgot to tell us your name</p></label
-                >
+                    required/>
+                  <p>Oops! You forgot to tell us your name</p>
+                </label>
 
-                <label for="cardNumber">
-                  Card Number
+                <label for="cardNumber">Card Number
                   <input
                     name="cardNumber"
                     type="text"
@@ -55,43 +51,38 @@
                     inputmode="numeric"
                     autocomplete="cc-number"
                     placeholder="xxxx xxxx xxxx xxxx"
-                    required
-                  />
+                    required/>
                   <p>Oops! You forgot to write out your card number</p>
                 </label>
+
                 <div id="bottomForm">
-                  <label for="expiryDate">
-                    Expiry Date
+                  <label for="expiryDate">Expiry Date
                     <input
                       name="expiryDate"
                       type="text"
                       maxlength="5"
                       class="cc-expiry-input"
-                      required
-                    />
-                    <p>
-                      Your card expiry date is missing
-                    </p></label
-                  >
-                  <label for="ccv">
-                    CVC
+                      required/>
+                    <p>Your card expiry date is missing</p>
+                    </label>
+
+                  <label for="ccv">CVC
                     <input
                       name="ccv"
                       type="text"
                       maxlength="3"
                       class="cc-cvc-input"
-                      required
-                    />
-                    <p>
-                      Your CVC number is missing
-                    </p></label
-                  >
+                      required/>
+                    <p>Your CVC number is missing
+                    </p>
+                    </label>
                 </div>
+
                 <input
                   type="submit"
                   value="Confirm my details"
-                  class="confirm"
-                />
+                  class="confirm"/>
+
                 <input type="submit" value="Pay Now" class="formSubmit" />
               </form>
             </section>
@@ -111,43 +102,18 @@
         <button class="filterButton">Types of beer</button>
         <div class="filterOptions">
           <li class="filter" data-action="filter" data-filter="IPA">IPA</li>
-          <li class="filter" data-action="filter" data-filter="Hefeweizen">
-            Hefeweizen
-          </li>
-          <li class="filter" data-action="filter" data-filter="Oktoberfest">
-            Oktoberfest
-          </li>
-          <li class="filter" data-action="filter" data-filter="European Lager">
-            European Lager
-          </li>
+          <li class="filter" data-action="filter" data-filter="Hefeweizen">Hefeweizen</li>
+          <li class="filter" data-action="filter" data-filter="Oktoberfest">Oktoberfest</li>
+          <li class="filter" data-action="filter" data-filter="European Lager">European Lager</li>
           <li class="filter" data-action="filter" data-filter="Stout">Stout</li>
-          <li
-            class="filter"
-            data-action="filter"
-            data-filter="Belgian Specialty Ale"
-          >
-            Belgian Specialty Ale
-          </li>
-          <li
-            class="filter"
-            data-action="filter"
-            data-filter="California Common"
-          >
-            California Common
-          </li>
+          <li class="filter" data-action="filter" data-filter="Belgian Specialty Ale">Belgian Specialty Ale</li>
+          <li class="filter" data-action="filter" data-filter="California Common">California Common</li>
         </div>
       </div>
 
       <div id="sorting">
         <div class="sortOptions">
-          <li
-            class="sortBy"
-            data-action="sort"
-            data-sort-direction="asc"
-            data-sort="alc"
-          >
-            Alc
-          </li>
+          <li class="sortBy" data-action="sort" data-sort-direction="asc" data-sort="alc">Alc</li>
         </div>
       </div>
       <button id="modalBtn">Next</button>
@@ -180,16 +146,16 @@
       </article>
       <div class="dropdown">
         <p class="close">x</p>
-        <p class="aroma"><img class="aromaImage" />Aroma:<span></span></p>
+        <p class="aroma"><img class="aromaImage"/>Aroma:<span></span></p>
         <p class="appearance">
-          <img class="appearanceImage" />Appearance:<span></span>
+          <img class="appearanceImage"/>Appearance:<span></span>
         </p>
-        <p class="flavor"><img class="flavorImage" />Flavor:<span></span></p>
+        <p class="flavor"><img class="flavorImage"/>Flavor:<span></span></p>
         <p class="mouthfeel">
-          <img class="mouthfeelImage" />Mouthfeel:<span></span>
+          <img class="mouthfeelImage"/>Mouthfeel:<span></span>
         </p>
         <p class="overallImpression">
-          <img class="overallImage" />Overall Impression:<span></span>
+          <img class="overallImage"/>Overall Impression:<span></span>
         </p>
       </div>
     </template>
@@ -207,9 +173,7 @@
     <div id="modalAdd" class="modalAdd1">
       <div class="addedOrder">
         <span class="closeErrorModal2">&times;</span>
-        <p class="addedBeer">
-          Your order was placed!<br />Please follow on the dashboard
-        </p>
+        <p class="addedBeer">Your order was placed!<br />Please follow on the dashboard</p>
       </div>
     </div>
 
