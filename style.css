@@ -1464,14 +1464,14 @@ li.sortBy {
   .errorModal2 {
     display: none;
     position: fixed;
-    z-index: 1; /* Sit on top */
+    z-index: 1;
     left: 0;
     top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0, 0, 0); /* Fallback color */
-    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+    width: 100%;
+    height: 100%; 
+    overflow: auto;
+    background-color: rgb(0, 0, 0); 
+    background-color: rgba(0, 0, 0, 0.4); 
   }
   .errorShow {
     display: block;
@@ -2302,12 +2302,7 @@ li.sortBy {
   label {
     font-size: 14px;
   }
-  /* img.cards {
-    width: 100px;
-    height: 40px;
-    margin: auto;
-    margin-bottom: 40px;
-  } */
+
   img.cards {
     width: 100px;
     height: 100px;
@@ -2468,7 +2463,6 @@ li.sortBy {
     height: 80px;
     border-radius: 50%;
     border: 4px solid;
-    /* display: grid; */
   }
   #bartenders p.name {
     text-transform: uppercase;
@@ -2624,51 +2618,62 @@ li.sortBy {
   bottom: 0;
   z-index: 5;
   margin-right: 50px;
-  /* background-image: radial-gradient(circle, yellow, white); */
   background-color: white;
   opacity: 0.5;
   border-radius: 50%;
-  width: 40px;
-  height: 40px;
   animation: up 4s infinite;
 }
 
 .bubble-2 {
   left: 350px;
   animation: up 2s infinite;
+  width: 20px;
+  height: 20px;
 }
 
 .bubble-3 {
   left: 750px;
   opacity: 0.3;
   animation: up 5s infinite;
+  width: 30px;
+  height: 30px;
 }
 
 .bubble-4 {
   left: 1150px;
   animation: up 6s infinite;
+  width: 15px;
+  height: 15px;
 }
 
 .bubble-5 {
   left: 50px;
   animation: up 5s infinite;
+  width: 40px;
+  height: 40px;
 }
 
 .bubble-6 {
   left: 300px;
   opacity: 0.3;
   animation: up 3s infinite;
+  width: 20px;
+  height: 20px;
 }
 
 .bubble-7 {
   left: 670px;
   animation: up 4s infinite;
+  width: 35px;
+  height: 35px;
 }
 
 .bubble-8 {
   left: 1050px;
   opacity: 0.3;
   animation: up 3s infinite;
+  width: 40px;
+  height: 40px;
 }
 
 /* Bubbles Animation */
