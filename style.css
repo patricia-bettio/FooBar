@@ -1415,6 +1415,7 @@ li.sortBy {
   .showMoreButton {
     margin-right: 15px;
     border: inherit;
+    justify-content: space-around;
   }
   .showMore {
     width: 120px;
@@ -2220,6 +2221,7 @@ li.sortBy {
     width: 25px;
     background-color: #d4bd7f;
     color: white;
+    justify-content: space-around;
   }
   .showMore {
     grid-area: glass;
