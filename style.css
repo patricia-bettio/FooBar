@@ -45,6 +45,7 @@ html {
 #bartendersUnit {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  text-align-last: center;
 }
 .glowingBartender {
   animation: glowBart 5s infinite alternate;
@@ -567,7 +568,7 @@ li.sortBy {
 }
 
 .avatar {
-  height: 60px;
+  height: 35px;
   width: auto;
 }
 
@@ -719,8 +720,8 @@ li.sortBy {
     display: none;
   }
   #servingUnit .servingBeerGlass img {
-    width: 40px;
-    height: auto;
+    width: auto;
+    height: 100px;
   }
   .glassServed {
     height: 130px;
@@ -841,8 +842,15 @@ li.sortBy {
   }
   #queueUnit .id,
   #queueUnit .startTime {
-    align-self: flex-start;
     font-size: 16px;
+    margin-top: 0;
+  }
+  #queueUnit .startTime{
+    align-self: flex-start;
+    margin-top: 0;
+  }
+  .headerOrder{
+    display: inline-grid;
   }
   .queueLogo img {
     height: 65px;
@@ -855,7 +863,7 @@ li.sortBy {
     align-items: center;
     display: grid;
     grid-auto-flow: column;
-    grid-template-columns: 0 55px 0 1fr 50px;
+    grid-template-columns: 0px 55px 0px 1fr 50px;
   }
 }
 /*--------------------------- MONITOR DASHBOARD -----------------------*/
@@ -967,6 +975,9 @@ li.sortBy {
   /* serving section */
   #servingNext {
     grid-area: serving;
+  }
+  #servingNext .startTime{
+    display: none;
   }
   #servingNext p {
     font-family: var(--subtitle-font);
@@ -1103,6 +1114,7 @@ li.sortBy {
     grid-area: queue;
   }
   .queueLogo {
+    align-self: self-start;
     text-align: justify;
   }
   #queueUnit .id {
@@ -1123,7 +1135,11 @@ li.sortBy {
     align-items: center;
     display: grid;
     grid-auto-flow: column;
-    grid-template-columns: 0 55px 0 1fr 50px;
+    width: 100%;
+    grid-template-columns: 55px 0 1fr 50px;
+  }
+  .headerOrder{
+    display: inline-grid;
   }
 }
 
@@ -1645,6 +1661,7 @@ li.sortBy {
   #storageUnit article {
     align-self: flex-end;
     text-align-last: center;
+    font-family: var(--subtitle-font);
   }
   #storageUnit .kegImage {
     width: 45px;
@@ -1658,6 +1675,9 @@ li.sortBy {
     display: none;
   }
   /* serving section */
+  #servingNext .startTime{
+    display: none;
+  }
   #servingNext {
     grid-area: serving;
   }
@@ -1801,18 +1821,25 @@ li.sortBy {
     grid-area: queue;
   }
   .queueLogo {
+    align-self: self-start;
     text-align: justify;
   }
   #queueUnit .id {
     align-self: flex-start;
+    margin-top: 0;
   }
   #queueUnit .startTime {
     align-self: flex-start;
-    display: none;
+    margin-top: 0px;
+    font-size: 14px;
   }
   .queueLogo img {
-    height: 45px;
-    margin-right: 5px;
+    height: 50px;
+    margin-right: 2px;
+  }
+  .headerOrder {
+    display: inline-grid;
+    justify-items: center;
   }
   #queueUnit {
     display: grid;
@@ -1822,8 +1849,11 @@ li.sortBy {
     align-items: center;
     display: grid;
     grid-auto-flow: column;
-    grid-template-rows: 0 55px 0 50px;
-    margin: 0;
+    width: 100%;
+    grid-template-columns: 48px 0 1fr 30px;
+  }
+  .avatar{
+    height: 25px;
   }
 }
 
@@ -2371,7 +2401,7 @@ li.sortBy {
     text-transform: uppercase;
   }
   #bartenders p.servingCustomer {
-    display: none;
+    /* display: none; */
   }
   #bartenders p.status {
     text-transform: lowercase;
@@ -2418,6 +2448,7 @@ li.sortBy {
   }
   .queueLogo {
     text-align: justify;
+    justify-self: self-start;
   }
   #queueUnit .id {
     align-self: flex-start;
@@ -2442,10 +2473,9 @@ li.sortBy {
     padding-bottom: 7px;
   }
   #queueUnit article {
-    align-items: center;
     display: grid;
     grid-auto-flow: column;
-    grid-template-columns: 0px 55px 0px 1fr 50px;
+    grid-template-columns: 60px 0px 1fr 30px;
     padding: 0 10px;
   }
   /* serving section */
@@ -2505,6 +2535,12 @@ li.sortBy {
   }
   #beerList {
     grid-template-columns: 0fr 50px 1fr 0.4fr;
+  }
+  #storageUnit {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .queueLogo img {
+    height: 50px;
   }
 }
 /* background bubbles */
