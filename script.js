@@ -102,10 +102,10 @@ function updatedQueueUnit(queue) {
     cloneQueue.querySelector("p.id").textContent = `order #${item.id}`;
     cloneQueue.querySelector("p.startTime").textContent = dateFormatter(item.startTime).slice(0, 5);
 
-    /* //AVATAR *random - will change every 5 sec
-       let numberImg = Math.floor(Math.random()*randomAvatar.length);
-       let displayedAvatar = randomAvatar[numberImg];
-       oneQueue.querySelector(".avatar").src = displayedAvatar; */
+    //AVATAR
+    let numberImg = Math.floor(Math.random()*randomAvatar.length);
+    let displayedAvatar = randomAvatar[numberImg];
+    cloneQueue.querySelector(".avatar").src = displayedAvatar;
 
     //IMAGES
     const queueFormat = item.order;
@@ -143,8 +143,11 @@ function bartendersUnit(bartenders) {
 function updatedBartendersUnit(bartenders) {
   document.querySelectorAll("#bartendersUnit article").forEach((oneBartender, index) => {
       oneBartender.querySelector("p.status").textContent = bartenders[index].status;
-      oneBartender.querySelector("p.servingCustomer").textContent = bartenders[index].servingCustomer;
-      oneBartender.querySelector("p.usingTap").textContent = bartenders[index].usingTap;
+      oneBartender.querySelector("p.servingCustomer").textContent = `#${bartenders[index].servingCustomer}`;
+      oneBartender.querySelector("p.usingTap").textContent = `Tap ${bartenders[index].usingTap}`;
+      if (bartenders[index].usingTap == null){
+      oneBartender.querySelector("p.usingTap").textContent = " n/a";
+      }
       let formatStatusNow = bartenders[index].statusDetail;
 
       if (formatStatusNow === "pourBeer") {
