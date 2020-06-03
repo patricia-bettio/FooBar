@@ -1,113 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dashboard</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body id="dashboard">
-    <!-- <img class="fooBar" src="static/svg/fooBar.svg" alt="fooBar"> -->
-   <div id="mainHeader">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body id="dashboard">
+
+  <div id="mainHeader">
     <h1 class="foobarTitle">FooBar</h1>
     <h2 class="subtitle">Overview</h2>
 
-   <h1 id="localTime">Local time</h1> 
-   <!-- moment.js -->
-   <!-- <div class="bg-light border-right" id="sidebar-wrapper"></div> -->
+    <h1 id="localTime">Local time</h1>
     <span id="timer"></span>
-  </div> 
-    <main>
-      <!-- <img class="fooBar" src="static/svg/fooBar.svg" alt="fooBar"> -->
+  </div>
+  <main>
+    <div id="nextInLine">
+      <h1 id="unitTitle">Next in line</h1>
+      <p class="queueCount">Queue size: <span></span></p>
+      <template id="queueTemplate">
+        <article>
+          <img class="avatar" src="" alt="" />
+          <p class="id"></p>
+          <p class="order"></p>
+          <div class="queueLogo"></div>
+          <p class="startTime"></p>
+        </article>
+      </template>
+      <section id="queueUnit"></section>
+    </div>
 
-        <div id="nextInLine">
-          <h1 id="unitTitle">Next in line</h1>
-          <p class="queueCount">Queue size: <span></span></p>
-          <template id="queueTemplate">
-            <article>
-              <img class="avatar" src="" alt="" />
-              <p class="id"></p>
-              <p class="order"></p>
-              <div class="queueLogo"></div>
-              <p class="startTime"></p>
-            </article>
-          </template>
-          <section id="queueUnit"></section>
-        </div>
+    <div id="bartenders">
+      <h1>Bartenders</h1>
+      <template id="bartendersTemplate">
+        <article>
+          <img src="" alt="bartenderImg" class="bartender" />
+          <p class="name"></p>
+          <p class="status"></p>
+          <p class="servingCustomer"></p>
+          <p class="usingTap"></p>
+          <p class="statusDetail"></p>
+        </article>
+      </template>
+      <section id="bartendersUnit"></section>
+    </div>
 
-        <div id="bartenders">
-          <h1>Bartenders</h1>
-          <template id="bartendersTemplate">
-            <article>
-              <img src="" alt="bartenderImg" class="bartender" />
-              <p class="name"></p>
-              <p class="status"></p>
-              <p class="servingCustomer"></p>
-              <p class="usingTap"></p>
-              <p class="statusDetail"></p>
-            </article>
-          </template>
-          <section id="bartendersUnit"></section>
-        </div>
+    <div id="tapsDashboard">
+      <h1>Taps</h1>
+      <template id="tapsTemplate">
+        <article>
+          <p class="id"></p>
+          <img class="tapImage" src="" alt="" />
+          <p class="beer"></p>
+          <p class="inUse"></p>
+          <div class="bulletUse"></div>
+          <p class="level"></p>
+          <img class="pouringBeer" src="" alt="">
+          <img class="glassServed" src="" alt="">
+        </article>
+      </template>
+      <section id="tapsUnit"></section>
+    </div>
 
-        <div id="tapsDashboard">
-          <h1>Taps</h1>
-          <template id="tapsTemplate">
-            <article>
-              <p class="id"></p>
-              <img class="tapImage" src="" alt="" />
-              <p class="beer"></p>
-              <p class="inUse"></p>
-              <div class="bulletUse"></div>
-              <p class="level"></p>
-              <img class="pouringBeer" src="" alt="">
-              <img class="glassServed" src="" alt="">
-            </article>
-          </template>
-          <section id="tapsUnit"></section>
-        </div>
+    <div id="servingNext">
+      <h1>Serving Next</h1>
+      <template id="servingTemplate">
+        <article>
+          <p class="id"></p>
+          <p class="order"></p>
+          <div class="servingBeerGlass"></div>
+          <p class="startTime"></p>
+        </article>
+      </template>
+      <section id="servingUnit"></section>
+    </div>
 
-        <div id="servingNext">
-          <h1>Serving Next</h1>
-          <template id="servingTemplate">
-            <article>
-              <p class="id"></p>
-              <p class="order"></p>
-              <div class="servingBeerGlass"></div>
-              <p class="startTime"></p>
-            </article>
-          </template>
-          <section id="servingUnit"></section>
-        </div>
-
-        <div id="mostWanted">
-          <h1>Top 5</h1>
-          <template id="storageTemplate">
-            <article>
-              <p class="name"></p>
-              <img class="kegImage" src="" alt="" />
-              <p class="amount"></p>
-            </article>
-          </template>
-          <section id="storageUnit"></section>
-        </div>
-      </div>
+    <div id="mostWanted">
+      <h1>Top 5</h1>
+      <template id="storageTemplate">
+        <article>
+          <p class="name"></p>
+          <img class="kegImage" src="" alt="" />
+          <p class="amount"></p>
+        </article>
+      </template>
+      <section id="storageUnit"></section>
+    </div>
+    </div>
 
 
-      <div class="bubbles bubble-1"></div>
-      <div class="bubbles bubble-5"></div>
-      <div class="bubbles bubble-2"></div>
-      <div class="bubbles bubble-6"></div>
-      <div class="bubbles bubble-3"></div>
-      <div class="bubbles bubble-7"></div>
-      <div class="bubbles bubble-4"></div>
-      <div class="bubbles bubble-8"></div>
+    <div class="bubbles bubble-1"></div>
+    <div class="bubbles bubble-5"></div>
+    <div class="bubbles bubble-2"></div>
+    <div class="bubbles bubble-6"></div>
+    <div class="bubbles bubble-3"></div>
+    <div class="bubbles bubble-7"></div>
+    <div class="bubbles bubble-4"></div>
+    <div class="bubbles bubble-8"></div>
 
 
-    </main>
+  </main>
 
 
-    <script src="./node_modules/moment/moment.js"></script>
-    <script src="script.js"></script>
-  </body>
+  <script src="./node_modules/moment/moment.js"></script>
+  <script src="script.js"></script>
+</body>
+
 </html>

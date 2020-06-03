@@ -1,3 +1,4 @@
+/*------------ FONTS ------------*/
 @font-face {
   font-family: "College Block";
   src: url("fonts/CollegeBlock.otf");
@@ -29,26 +30,21 @@
   font-style: normal;
 }
 
+/*---------- VARIABLES ---------*/
 :root {
   --form-font: "Monaco", sans-serif;
   --beer-font: "College Block";
   --subtitle-font: "Lemon/Milk light";
   --details-font: "Noto Sans JP Regular";
-  --category-color: #b79027;
+  --beer-color: #b79027;
 }
 html {
   scroll-behavior: smooth;
 }
 
-p.price {
-  padding: 0;
-  margin: 0;
-  font-size: 20px;
-}
 #bartendersUnit {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  text-align: center;
 }
 .glowingBartender {
   animation: glowBart 5s infinite alternate;
@@ -62,15 +58,13 @@ p.price {
     filter: drop-shadow(0 0 0.75rem green);
   }
 }
-
-#servingUnit {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  width: 500px;
-  text-align: center;
+p.price {
+  padding: 0;
+  margin: 0;
+  font-size: 20px;
 }
-/*DESKTOP APP*/
 
+/*------------------------- BEER APP/FORM -----------------------*/
 #beerArea {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -122,20 +116,20 @@ p.price {
   display: block;
 }
 
-/*error modal*/
+/* error modal */
 .errorModal1,
 .errorModal2,
 .modalAdd1 {
   display: none;
   position: fixed;
-  z-index: 1; /* Sit on top */
+  z-index: 1;
   left: 0;
   top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0, 0, 0); /* Fallback color */
-  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+  width: 100%;
+  height: 100%;
+  overflow: auto; 
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
 .errorShow {
@@ -145,7 +139,7 @@ p.price {
 .minimumOne,
 .addedOrder {
   background-color: #fefefe;
-  margin: 15% auto; /* 15% from the top and centered */
+  margin: 15% auto; 
   padding: 20px;
   border: 1px solid #888;
   width: 80%;
@@ -154,8 +148,7 @@ p.price {
   font-size: 14px;
 }
 
-/*NEXT*/
-
+/* modals */
 #modalBtn {
   right: 10px;
   padding: 18px;
@@ -163,7 +156,7 @@ p.price {
   font-size: 20px;
   border: inherit;
   border-radius: 10px;
-  background: var(--category-color);
+  background: var(--beer-color);
   font-family: var(--subtitle-font);
 }
 #editBtn {
@@ -200,16 +193,7 @@ p.price {
   font-size: 36px;
 }
 
-/*----------- REVIEW ------------*/
-button.next,
-button.nextReview {
-  float: right;
-}
-article#reviewOrderList {
-  padding: 30px;
-}
-
-/*------------ FORM ------------*/
+/*------------ PAYMENT FORM ------------*/
 .formSection {
   display: block;
   font-family: var(--subtitle-font);
@@ -298,7 +282,7 @@ form {
 .formSubmit {
   font-size: 20px;
   padding: 20px;
-  border: solid 1px var(--category-color);
+  border: solid 1px var(--beer-color);
   background-color: inherit;
   letter-spacing: 1px;
   font-family: var(--subtitle-font);
@@ -313,7 +297,7 @@ form {
   background-color: white;
 }
 
-/*----------- DESKTOP BEER LIST -----------*/
+/*--------------------------- DESKTOP BEER LIST ---------------------*/
 #beerApp {
   background-image: url(static/images/beerHeader_finalVersion.png);
   background-repeat: no-repeat;
@@ -363,19 +347,15 @@ h2.subtitle {
   background: white;
 }
 h2.name {
-  /* grid-area: beer; */
   display: flex;
   align-self: flex-start;
   margin-left: 10px;
 }
 h2.category {
-  /* grid-area: beer; */
   display: flex;
-  /* align-self: center; */
   margin-left: 10px;
 }
 p.alcohol {
-  /* grid-area: beer; */
   display: flex;
   align-self: flex-end;
   margin-left: 10px;
@@ -411,14 +391,6 @@ input#quantity {
   height: 30px;
   align-self: center;
 }
-.minus,
-.plus {
-  grid-area: buttons;
-  height: 20px;
-  width: 20px;
-  font-size: 60%;
-  margin-top: 5px;
-}
 /*PLUS AND MINUS*/
 /*https://codepen.io/Tanya_Rybachuk/pen/jyxzEp*/
 span {
@@ -438,41 +410,17 @@ input#quantity {
   display: inline-block;
   vertical-align: middle;
 }
-/*----------------------modal ----------------------*/
+/* modal */
 .reviewTheOrder {
   list-style: none;
 }
-
 .modalBtn {
   float: right;
 }
 .beerUnavailable {
   filter: grayscale(100%);
 }
-/*-------------- increase/decrease buttons ---------*/
-.minus,
-.plus {
-  grid-area: buttons;
-  height: 40px;
-  width: 40px;
-  border-radius: 50%;
-  border: none;
-  background: orange;
-  font-size: 100%;
-  text-align: center;
-  font-weight: 500;
-  color: rgb(255, 255, 255);
-  box-shadow: 0 1.5px 4px rgba(0, 0, 0, 0.4), 0 2.5px 6px rgba(0, 0, 0, 0.2);
-}
-.plus:hover,
-.minus:hover {
-  background: inherit;
-  border: 1px solid orange;
-  color: orange;
-  cursor: pointer;
-}
-
-/*dropdown*/
+/* dropdown */
 .aroma img,
 .appearance img,
 .flavor img,
@@ -482,12 +430,11 @@ input#quantity {
   width: auto;
 }
 .dropdown p {
-  color: var(--category-color);
+  color: var(--beer-color);
 }
 .dropdown span {
   color: black;
 }
-
 .hide {
   display: none;
 }
@@ -496,7 +443,7 @@ input#quantity {
   box-shadow: 1px 1px 7px 2px #ccc;
   background-color: white;
   padding: 1em;
-  font-family: "Noto Sans JP Regular";
+  font-family: var(--details-font);
   animation: slide-top 0.5s ease-in-out both;
 }
 .dropdown p.close {
@@ -510,104 +457,6 @@ input#quantity {
   100% {
     transform: translateY(0px);
   }
-}
-
-/*logo*/
-.logo {
-  height: 100px;
-  width: 100px;
-}
-/*button*/
-.showMoreButton {
-  display: grid;
-  float: right;
-}
-.showMore {
-  background-repeat: no-repeat;
-  height: 100px;
-}
-.rotate {
-  transform: rotate(-45deg);
-  animation: rotateApp 6s infinite;
-}
-
-@keyframes rotateApp {
-  20% {
-    transform: rotate(-15deg);
-  }
-  60% {
-    transform: rotate(-45deg);
-  }
-}
-
-/*filter and sort section*/
-#filterAndSort {
-  display: block;
-  margin-bottom: 5px;
-  opacity: 0.9;
-}
-/*filter*/
-.filterOptions {
-  display: none;
-  list-style: none;
-  cursor: pointer;
-}
-.filterButton,
-.sortButton,
-.resetFilter {
-  font-family: var(--subtitle-font);
-  padding: 20px;
-  border: 1px solid inherit;
-}
-.filter:hover {
-  border-bottom: 2px solid rosybrown;
-}
-.filter {
-  padding: 10px;
-}
-.showFilters {
-  display: block;
-}
-
-/*sort*/
-#filters,
-#sorting {
-  background: white;
-  border-radius: 10px;
-  float: left;
-  margin-right: 3px;
-}
-li.filter,
-li.sortBy {
-  font-size: 14px;
-  font-family: var(--subtitle-font);
-}
-.sortOptions {
-  list-style: none;
-}
-/* .sortOptions li::before {
-  content: "↑";
-}
-.sortOptions li::after {
-  content: "↓";
-} */
-
-.arrowUpSort::after {
-  content: "↑";
-}
-
-.arrowDownSort::after {
-  content: "↓";
-}
-.sortBy {
-  padding: 12px;
-  cursor: pointer;
-}
-.sortBy:hover {
-  border-bottom: 2px solid goldenrod;
-}
-.showSorting {
-  display: block;
 }
 .showMoreButton {
   grid-area: glass;
@@ -630,22 +479,90 @@ li.sortBy {
   height: 65px;
   margin-right: 20px;
 }
-
-/*---------------------------- DASHBOARD --------------------------*/
-/*QUEUE*/
-#unitTitle {
-  font-family: var(--beer-font);
+.rotate {
+  transform: rotate(-45deg);
+  animation: rotateApp 6s infinite;
 }
-#queueUnit {
-  display: flex;
-  /* background-color: white; */
+@keyframes rotateApp {
+  20% {
+    transform: rotate(-15deg);
+  }
+  60% {
+    transform: rotate(-45deg);
+  }
 }
-
-#queueUnit p {
+/* beer logo image */
+.logo {
+  height: 100px;
+  width: 100px;
+}
+/* filter and sort section */
+#filterAndSort {
+  display: block;
+  margin-bottom: 5px;
+  opacity: 0.9;
+}
+/* filter */
+.filterOptions {
+  display: none;
+  list-style: none;
+  cursor: pointer;
+}
+.filterButton,
+.sortButton,
+.resetFilter {
+  font-family: var(--subtitle-font);
+  padding: 20px;
+  border: 1px solid inherit;
+}
+.filter:hover {
+  border-bottom: 2px solid rosybrown;
+}
+.filter {
+  padding: 10px;
+}
+.showFilters {
+  display: block;
+}
+/* sort */
+#filters,
+#sorting {
+  background: white;
+  border-radius: 10px;
+  float: left;
+  margin-right: 3px;
+}
+li.filter,
+li.sortBy {
+  font-size: 14px;
   font-family: var(--subtitle-font);
 }
+.sortOptions {
+  list-style: none;
+}
+.arrowUpSort::after {
+  content: "↑";
+}
+.arrowDownSort::after {
+  content: "↓";
+}
+.sortBy {
+  padding: 12px;
+  cursor: pointer;
+}
+.sortBy:hover {
+  border-bottom: 2px solid goldenrod;
+}
+.showSorting {
+  display: block;
+}
+
+/*---------------------------- DASHBOARD --------------------------*/
+/* queue section */
+#queueUnit {
+  display: flex;
+}
 .queueLogo img {
-  height: 100px;
   width: auto;
 }
 
@@ -654,18 +571,13 @@ li.sortBy {
   width: auto;
 }
 
-/*TAPS*/
+/* taps section */
 .bulletUse {
   width: 10px;
   height: 10px;
   border-radius: 50%;
 }
-
-.servingBeerGlass img {
-  height: 100px;
-  width: auto;
-}
-/*STORAGE*/
+/* storage section */
 #storageUnit {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -674,7 +586,7 @@ li.sortBy {
   height: 120px;
   width: auto;
 }
-/*-------------- monitor 14' -----------*/
+/*-------------------------- MONITOR 14'' -----------------------*/
 @media screen and (min-width: 1400px) and (max-width: 1600px) {
   #dashboard {
     background-image: url("static/images/beerHeader_dashboard.png");
@@ -722,7 +634,7 @@ li.sortBy {
     font-family: var(--subtitle-font);
     font-size: 60px;
     margin-top: 10px;
-    color: var(--category-color);
+    color: var(--beer-color);
     border-radius: 15px;
     margin: 0;
   }
@@ -946,9 +858,8 @@ li.sortBy {
     grid-template-columns: 0 55px 0 1fr 50px;
   }
 }
-/*------------ monitor view ----------*/
+/*--------------------------- MONITOR DASHBOARD -----------------------*/
 @media screen and (min-width: 1400px) {
-  #bartenders,
   #mostWanted,
   #tapsDashboard {
     align-self: start;
@@ -962,7 +873,6 @@ li.sortBy {
     grid-template-columns: 25% 25% 50%;
     justify-content: center;
     grid-template-rows: max-content;
-    /* grid-auto-columns: max-content; */
     grid-template-rows: 0.1fr 0.2fr 0.1fr;
     grid-template-areas:
       "queue serving storage"
@@ -1002,7 +912,7 @@ li.sortBy {
     font-family: var(--subtitle-font);
     font-size: 60px;
     margin-top: 10px;
-    color: var(--category-color);
+    color: var(--beer-color);
     border-radius: 15px;
     margin: 0;
   }
@@ -1026,7 +936,7 @@ li.sortBy {
     margin: 0;
     align-self: center;
   }
-  /*----- storage ------*/
+  /* storage section */
   #mostWanted {
     grid-area: storage;
     text-align-last: center;
@@ -1034,7 +944,6 @@ li.sortBy {
     display: inline-flex;
   }
   #mostWanted h1 {
-    /* display: none; */
     align-self: center;
     margin: 7px;
   }
@@ -1045,7 +954,7 @@ li.sortBy {
     align-self: flex-end;
     text-align-last: center;
   }
-  /*show only 5*/
+  /* most wanted */
   #storageUnit article:nth-child(n + 6) {
     display: none;
   }
@@ -1055,7 +964,7 @@ li.sortBy {
   #storageUnit {
     font-family: var(--subtitle-font);
   }
-  /*----- serving ------*/
+  /* serving section */
   #servingNext {
     grid-area: serving;
   }
@@ -1086,12 +995,10 @@ li.sortBy {
   #servingUnit .order {
     display: none;
   }
-
   .glassServed {
     height: 130px;
     width: auto;
   }
-
   .glassServedRotate {
     animation: rotateServing 6s forwards;
   }
@@ -1101,7 +1008,6 @@ li.sortBy {
       transform: rotate(-15deg);
     }
   }
-
   .pouringBeer {
     display: block;
     margin: auto;
@@ -1122,8 +1028,7 @@ li.sortBy {
       height: 0px;
     }
   }
-
-  /*----- taps ------*/
+  /* taps section */
   #tapsDashboard {
     grid-area: taps;
   }
@@ -1145,16 +1050,13 @@ li.sortBy {
   }
   .tapImage {
     width: 50px;
-    /*     justify-self: flex-start; */
   }
   .bulletUse {
     display: none;
   }
-
   .glowLowLevel {
     animation: glowLow 2s infinite alternate;
   }
-
   @keyframes glowLow {
     from,
     to {
@@ -1164,10 +1066,10 @@ li.sortBy {
       filter: drop-shadow(0 0 0.75rem yellow);
     }
   }
-
-  /*----- bartenders ------*/
+  /* bartenders section */
   #bartenders {
     grid-area: bartenders;
+    text-align: center;
   }
   #bartenders .bartender {
     width: 80px;
@@ -1196,7 +1098,7 @@ li.sortBy {
   #bartenders .usingTap {
     display: none;
   }
-  /*----- queue ------*/
+  /* queue section */
   #nextInLine {
     grid-area: queue;
   }
@@ -1225,8 +1127,9 @@ li.sortBy {
   }
 }
 
-/*-----------------------------------------------------------RESPONSIVE---------------------------------------------------------------------------*/
+/*--------------------- TABLET VIEW -------------------*/
 @media screen and (max-width: 1200px) and (min-device-width: 768px) {
+  /*----------------- TABLET BEER LIST ----------------*/
   #beerApp {
     background-image: url(static/images/beerHeader_finalVersion.png);
     background-repeat: no-repeat;
@@ -1235,12 +1138,10 @@ li.sortBy {
   .beerInfoName {
     grid-area: beer;
   }
-  .showingMore {
-    display: grid;
-    align-self: center;
-  }
   #beerList {
     grid-template-columns: 0.3fr 80px 1fr 0.5fr;
+    box-shadow: 1px 1px 7px 2px #ccc;
+    border-radius: 15px;
   }
   #beerList p {
     margin-left: 10px;
@@ -1250,26 +1151,8 @@ li.sortBy {
     margin-bottom: 5px;
     margin-top: 1.5em;
   }
-}
-
-/*------------ tablet view ----------*/
-@media screen and (max-width: 1200px) {
-  /*-------- TABLET BEER LIST ------*/
-  #bartenders,
-  #mostWanted,
-  #tapsDashboard {
-    align-self: start;
-  }
   #beerArea {
     display: block;
-  }
-  #beerApp {
-    background-image: url(static/images/beerHeader_finalVersion.png);
-    background-repeat: no-repeat;
-  }
-  #beerList {
-    border-radius: 15px;
-    box-shadow: 1px 1px 7px 2px #ccc;
   }
   #beerList h2,
   #reviewOrderList h2 {
@@ -1278,7 +1161,7 @@ li.sortBy {
   }
   #beerList h2:last-of-type,
   #reviewOrderList h2:last-of-type {
-    color: var(--category-color);
+    color: var(--beer-color);
     font-size: 24px;
     margin-top: 0;
   }
@@ -1353,7 +1236,6 @@ li.sortBy {
     margin: 25px 0;
   }
   input#quantity {
-    width: 2em;
     display: flex;
     align-self: center;
     justify-self: flex-start;
@@ -1374,15 +1256,6 @@ li.sortBy {
   .showFilters {
     display: block;
   }
-  .minus,
-  .plus {
-    grid-area: buttons;
-    height: 30px;
-    width: 30px;
-    font-size: 60%;
-    margin-top: 5px;
-    display: none;
-  }
   .appFormSubmit {
     display: none;
   }
@@ -1395,9 +1268,15 @@ li.sortBy {
     width: 120px;
     height: 85px;
     margin-right: 20px;
+    display: grid;
+    align-self: center;
+  }
+  .showingMore {
+    display: grid;
+    align-self: center;
   }
   .dropdown {
-    font-family: "Noto Sans JP Regular";
+    font-family: var(--details-font);
     font-size: 20px;
     padding: 40px 70px;
     text-align: justify;
@@ -1415,7 +1294,7 @@ li.sortBy {
       transform: translateY(0px);
     }
   }
-  /*------- modals ------*/
+  /*----------------- TABLET MODALS -------------*/
   .modal,
   .modal2 {
     display: none;
@@ -1459,19 +1338,19 @@ li.sortBy {
     cursor: pointer;
   }
 
-  /*error modal*/
+  /* error modal */
   .errorModal1,
   .errorModal2 {
     display: none;
     position: fixed;
-    z-index: 1; /* Sit on top */
+    z-index: 1;
     left: 0;
     top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0, 0, 0); /* Fallback color */
-    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+    width: 100%;
+    height: 100%;
+    overflow: auto; 
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4); 
   }
   .errorShow {
     display: block;
@@ -1479,7 +1358,7 @@ li.sortBy {
   .notAvailable,
   .minimumOne {
     background-color: #fefefe;
-    margin: 15% auto; /* 15% from the top and centered */
+    margin: 15% auto;
     padding: 20px;
     border: 1px solid #888;
     width: 80%;
@@ -1487,8 +1366,7 @@ li.sortBy {
     font-family: var(--form-font);
     font-size: 14px;
   }
-  /*NEXT*/
-
+  /* modals */
   #modalBtn {
     right: 10px;
     padding: 18px;
@@ -1496,7 +1374,7 @@ li.sortBy {
     font-size: 20px;
     border: inherit;
     border-radius: 10px;
-    background: var(--category-color);
+    background: var(--beer-color);
     font-family: var(--subtitle-font);
   }
   #editBtn {
@@ -1507,7 +1385,7 @@ li.sortBy {
     border: inherit;
     border-radius: 10px;
     font-family: var(--subtitle-font);
-    color: var(--category-color);
+    color: var(--beer-color);
   }
   #modalBtn2 {
     left: 43%;
@@ -1517,7 +1395,7 @@ li.sortBy {
     border: inherit;
     border-radius: 10px;
     font-family: var(--subtitle-font);
-    color: var(--category-color);
+    color: var(--beer-color);
   }
   .reviewTheOrder {
     display: grid;
@@ -1634,7 +1512,7 @@ li.sortBy {
     width: 300px;
     margin-top: 20px;
     justify-self: flex-start;
-    border: solid 1px var(--category-color);
+    border: solid 1px var(--beer-color);
     letter-spacing: 1px;
     font-family: var(--subtitle-font);
     cursor: pointer;
@@ -1648,7 +1526,7 @@ li.sortBy {
     display: none;
     font-size: 20px;
     padding: 20px;
-    border: solid 1px var(--category-color);
+    border: solid 1px var(--beer-color);
     background-color: inherit;
     letter-spacing: 1px;
     font-family: var(--subtitle-font);
@@ -1679,13 +1557,12 @@ li.sortBy {
   }
 }
 
-/*------- tablet for DASHBOARD -------*/
+/*------------------------ TABLET DASHBOARD --------------------*/
 @media screen and (max-width: 1200px) and (min-device-width: 760px) {
   #dashboard {
     background-image: url("static/images/beerHeader_dashboard.png");
     background-size: 100%;
   }
-
   #dashboard main {
     display: grid;
     grid-template-columns: 25% 25% 50%;
@@ -1724,11 +1601,16 @@ li.sortBy {
     font-family: var(--subtitle-font);
     font-size: 16px;
   }
+  #bartenders,
+  #mostWanted,
+  #tapsDashboard {
+    align-self: start;
+  }
   #dashboard .foobarTitle {
     font-family: var(--subtitle-font);
     font-size: 40px;
     margin-top: 10px;
-    color: var(--category-color);
+    color: var(--beer-color);
     margin: 0;
   }
   #dashboard .subtitle {
@@ -1749,7 +1631,7 @@ li.sortBy {
     margin: 0;
     align-self: center;
   }
-  /*----- storage ------*/
+  /* storage section */
   #mostWanted {
     grid-area: storage;
     text-align-last: center;
@@ -1776,7 +1658,7 @@ li.sortBy {
   #storageUnit .amount {
     display: none;
   }
-  /*----- serving ------*/
+  /* serving section */
   #servingNext {
     grid-area: serving;
   }
@@ -1819,7 +1701,6 @@ li.sortBy {
       transform: rotate(-15deg);
     }
   }
-
   .pouringBeer {
     display: block;
     margin: auto;
@@ -1840,8 +1721,7 @@ li.sortBy {
       height: 0px;
     }
   }
-
-  /*----- taps ------*/
+  /* taps section */
   #tapsDashboard {
     grid-area: taps;
     background: #ffffffcf;
@@ -1885,7 +1765,7 @@ li.sortBy {
       filter: drop-shadow(0 0 0.75rem yellow);
     }
   }
-  /*----- bartenders ------*/
+  /* bartenders */
   #bartenders {
     grid-area: bartenders;
     align-self: center;
@@ -1948,14 +1828,14 @@ li.sortBy {
   }
 }
 
-/*----------- mobile view -----------*/
+/*------------------------- MOBILE VIEW ----------------------*/
 @media screen and (max-width: 420px) {
-  /*bubbles*/
+  /* background bubbles */
   .bubbles {
     display: none;
   }
   /*------- MOBILE BEER LIST -------*/
-  /*review*/
+  /* review */
   #modalBtn {
     float: right;
     padding: 12px;
@@ -1963,7 +1843,7 @@ li.sortBy {
     font-size: 16px;
     border: inherit;
     border-radius: 10px;
-    background: var(--category-color);
+    background: var(--beer-color);
     font-family: var(--subtitle-font);
   }
   #editBtn {
@@ -1975,7 +1855,7 @@ li.sortBy {
     border: inherit;
     border-radius: 10px;
     font-family: var(--subtitle-font);
-    color: var(--category-color);
+    color: var(--beer-color);
   }
   #modalBtn2 {
     left: 39%;
@@ -1985,7 +1865,7 @@ li.sortBy {
     border: inherit;
     border-radius: 10px;
     font-family: var(--subtitle-font);
-    color: var(--category-color);
+    color: var(--beer-color);
   }
   .reviewTheOrder {
     display: grid;
@@ -2024,6 +1904,15 @@ li.sortBy {
     font-family: "Lemon/Milk";
     letter-spacing: 0.1em;
   }
+  .minimumOrder {
+    display: none;
+  }
+  .minimumErrorShow {
+    display: block;
+    font-size: 25px;
+    text-align: center;
+    font-family: var(--subtitle-font);
+  }
   h2.minimumOrder {
     font-size: 16px;
     border: 2px solid red;
@@ -2035,9 +1924,7 @@ li.sortBy {
     margin-right: 15px;
   }
 
-  /*beer app*/
-
-  /*FILTER*/
+  /* filter */
   .filterOptions {
     display: none;
     position: absolute;
@@ -2110,6 +1997,8 @@ li.sortBy {
   }
   #beerList {
     grid-template-areas: "buttons logo beer glass glassButton";
+    box-shadow: 1px 1px 7px 2px #ccc;
+    border-radius: 15px;
   }
   #beerAre #beerList {
     display: grid;
@@ -2121,7 +2010,7 @@ li.sortBy {
   #beerList h2,
   #reviewOrderList h2 {
     grid-area: beerName;
-    font-size: 19px;
+    font-size: 20px;
     display: inline-flex;
     text-transform: uppercase;
     margin-bottom: 0;
@@ -2129,7 +2018,9 @@ li.sortBy {
   #beerList h2:last-of-type,
   #reviewOrderList h2:last-of-type {
     grid-area: beerCategory;
-    font-size: 19px;
+    font-size: 20px;
+    margin-top: 0;
+    color: var(--beer-color);
   }
   #beerList .price {
     padding: 0;
@@ -2142,8 +2033,9 @@ li.sortBy {
     font-size: 14px;
     margin-left: 10px;
     margin-top: 10px;
+    font-family: var(--details-font);
+    color: grey;
   }
-
   #dashboard h2.subtitle {
     margin-top: 120px;
   }
@@ -2160,8 +2052,8 @@ li.sortBy {
   .resetFilter {
     font-size: 16px;
     padding: 12px;
+    border: inherit;
   }
-
   p.alcohol {
     grid-area: beerAlc;
     display: flex;
@@ -2187,17 +2079,6 @@ li.sortBy {
   input#quantity {
     font-size: 18px;
     width: 15px;
-  }
-  .minus,
-  .plus {
-    grid-area: buttons;
-    height: 20px;
-    width: 20px;
-    display: flex;
-    align-self: center;
-    font-size: 60%;
-    /*test*/
-    display: none;
   }
   .appFormSubmit {
     display: none;
@@ -2227,7 +2108,7 @@ li.sortBy {
     display: contents;
   }
   .dropdown {
-    font-family: "Noto Sans JP Regular";
+    font-family: var(--details-font);
     font-size: 16px;
     padding: 25px 35px;
     text-align: justify;
@@ -2246,7 +2127,7 @@ li.sortBy {
     }
   }
 
-  /*------- modals ------*/
+  /* modals */
   .modal,
   .modal2 {
     display: none;
@@ -2302,12 +2183,6 @@ li.sortBy {
   label {
     font-size: 14px;
   }
-  /* img.cards {
-    width: 100px;
-    height: 40px;
-    margin: auto;
-    margin-bottom: 40px;
-  } */
   img.cards {
     width: 100px;
     height: 100px;
@@ -2346,6 +2221,10 @@ li.sortBy {
     font-family: var(--details-font);
     margin-bottom: 0;
   }
+  input.invalid + p::before {
+    content: "❗";
+    margin-right: 5px;
+  }
   .valid {
     border: 2px solid green;
   }
@@ -2379,7 +2258,7 @@ li.sortBy {
     width: 280px;
     margin-top: 10px;
     justify-self: flex-start;
-    border: solid 1px var(--category-color);
+    border: solid 1px var(--beer-color);
     letter-spacing: 1px;
     font-family: var(--subtitle-font);
     cursor: pointer;
@@ -2389,11 +2268,27 @@ li.sortBy {
     border-radius: 10px;
     justify-self: center;
   }
+  .confirm {
+    background: inherit;
+    width: 300px;
+    margin-top: 20px;
+    justify-self: flex-start;
+    border: solid 1px var(--beer-color);
+    letter-spacing: 1px;
+    font-family: var(--subtitle-font);
+    cursor: pointer;
+    text-transform: uppercase;
+    font-size: 18px;
+    padding: 20px;
+    border-radius: 10px;
+    justify-self: flex-start;
+  }
   .formSubmit {
+    display: none;
     font-size: 16px;
     padding: 20px;
     margin-top: 10px;
-    border: solid 1px var(--category-color);
+    border: solid 1px var(--beer-color);
     background-color: inherit;
     letter-spacing: 1px;
     font-family: var(--subtitle-font);
@@ -2403,12 +2298,15 @@ li.sortBy {
     width: 280px;
     border-radius: 10px;
   }
+  .formSubmitShow {
+    display: block;
+  }
   .formSubmit:hover {
     color: black;
     background-color: white;
   }
 
-  /*bottom form*/
+  /* bottom form */
   label[for="expiryDate"] {
     grid-area: expiry;
     width: max-content;
@@ -2422,7 +2320,9 @@ li.sortBy {
     grid-template-areas: "expiry ccv";
     margin: 15px;
   }
-  /*---------- MOBILE DASHBOARD ---------*/
+
+  /*---------------------------- MOBILE DASHBOARD ----------------------*/
+  /* overall styling */
   h1.foobarTitle {
     display: none;
   }
@@ -2457,8 +2357,7 @@ li.sortBy {
   #dashboard article {
     text-align: center;
   }
-
-  /*BARTENDER*/
+  /* bartender section */
   #dashboard #bartendersUnit {
     width: 100%;
     font-family: var(--subtitle-font);
@@ -2468,7 +2367,6 @@ li.sortBy {
     height: 80px;
     border-radius: 50%;
     border: 4px solid;
-    /* display: grid; */
   }
   #bartenders p.name {
     text-transform: uppercase;
@@ -2484,8 +2382,7 @@ li.sortBy {
     font-size: 14px;
     font-family: "Lemon/Milk";
   }
-
-  /*TAPS*/
+  /* taps section */
   .glassServed {
     display: none;
   }
@@ -2505,7 +2402,7 @@ li.sortBy {
   .bulletUse {
     display: inline-block;
   }
-  /*QUEUE*/
+  /* queue section */
   #nextInLine,
   #bartenders,
   #servingNext,
@@ -2525,10 +2422,11 @@ li.sortBy {
   }
   #queueUnit .id {
     align-self: flex-start;
+    font-family: var(--subtitle-font);
   }
-
   #queueUnit .startTime {
     align-self: flex-start;
+    font-family: var(--subtitle-font);
   }
   .queueLogo img {
     height: 65px;
@@ -2540,7 +2438,6 @@ li.sortBy {
   }
   p.queueCount {
     font-family: var(--details-font);
-    font-size: 22px;
     border-bottom: 1px solid grey;
     margin: 10px;
     padding-bottom: 7px;
@@ -2552,7 +2449,7 @@ li.sortBy {
     grid-template-columns: 0px 55px 0px 1fr 50px;
     padding: 0 10px;
   }
-  /*SERVING*/
+  /* serving section */
   #servingUnit article {
     display: inline-grid;
     grid-template-columns: 50px 1fr;
@@ -2562,9 +2459,10 @@ li.sortBy {
   }
   #dashboard #servingUnit {
     width: 300px;
-    text-align: left;
   }
-
+  #servingNext p.id {
+    font-family: var(--subtitle-font);
+  }
   #servingUnit {
     display: grid;
     grid-template-columns: 1fr;
@@ -2580,7 +2478,7 @@ li.sortBy {
     width: 40px;
     height: auto;
   }
-  /*STORAGE*/
+  /* storage section */
   #storageUnit {
     grid-template-columns: repeat(4, 1fr);
     font-family: var(--subtitle-font);
@@ -2596,6 +2494,7 @@ li.sortBy {
     justify-items: center;
   }
 }
+/*---------- OTHER MOBILES ---------*/
 /*mobile 325 or smaller*/
 @media screen and (max-width: 325px) {
   .showingMore {
@@ -2609,22 +2508,12 @@ li.sortBy {
     grid-template-columns: 0fr 50px 1fr 0.4fr;
   }
 }
-
-/*hide mobile image for devices bigger than a tablet*/
-@media screen and (min-width: 700px) {
-  .headerDashboard {
-    display: none;
-  }
-}
-
-/*BUBBLES*/
-/* Bubbles */
+/* background bubbles */
 .bubbles {
   position: absolute;
   bottom: 0;
   z-index: 5;
   margin-right: 50px;
-  /* background-image: radial-gradient(circle, yellow, white); */
   background-color: white;
   opacity: 0.5;
   border-radius: 50%;
@@ -2632,46 +2521,38 @@ li.sortBy {
   height: 40px;
   animation: up 4s infinite;
 }
-
 .bubble-2 {
   left: 350px;
   animation: up 2s infinite;
 }
-
 .bubble-3 {
   left: 750px;
   opacity: 0.3;
   animation: up 5s infinite;
 }
-
 .bubble-4 {
   left: 1150px;
   animation: up 6s infinite;
 }
-
 .bubble-5 {
   left: 50px;
   animation: up 5s infinite;
 }
-
 .bubble-6 {
   left: 300px;
   opacity: 0.3;
   animation: up 3s infinite;
 }
-
 .bubble-7 {
   left: 670px;
   animation: up 4s infinite;
 }
-
 .bubble-8 {
   left: 1050px;
   opacity: 0.3;
   animation: up 3s infinite;
 }
-
-/* Bubbles Animation */
+/* bubbles animation */
 @keyframes up {
   100% {
     transform: translateY(-800px);
