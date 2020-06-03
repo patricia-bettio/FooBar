@@ -230,10 +230,11 @@ function updatedTapsUnit(taps) {
       oneTap.querySelector(".glassServed").classList.add("glassServedRotate");
       oneTap.querySelector(".pouringBeer").src = "svg/pouringBeer.svg";
       oneTap.querySelector(".pouringBeer").classList.add("pouringBeerAnimation");
-      } else if (beerPath === "svg/taps/row_tap.svg") {
-      oneTap.querySelector(".pouringBeer").src = "svg/pouringBeerStout.svg";
-      oneTap.querySelector(".pouringBeer").classList.add("pouringBeerAnimation");
-    }
+      if (beerPath.includes("row_tap.svg")) {
+        oneTap.querySelector(".pouringBeer").src = "svg/pouringBeerStout.svg";
+        oneTap.querySelector(".pouringBeer").classList.add("pouringBeerAnimation");
+        }
+      }
   });
 }
 
