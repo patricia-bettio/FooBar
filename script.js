@@ -142,10 +142,15 @@ function bartendersUnit(bartenders) {
 
 function updatedBartendersUnit(bartenders) {
   document.querySelectorAll("#bartendersUnit article").forEach((oneBartender, index) => {
-    oneBartender.querySelector("p.status").textContent = bartenders[index].status;
-    oneBartender.querySelector("p.servingCustomer").textContent = `#${bartenders[index].servingCustomer}`;
-    oneBartender.querySelector("p.usingTap").textContent = `Tap ${bartenders[index].usingTap}`;
-    if (bartenders[index].usingTap == null) {
+
+      oneBartender.querySelector("p.status").textContent = bartenders[index].status;
+      if (bartenders[index].servingCustomer == null) {
+      oneBartender.querySelector("p.servingCustomer").textContent = "N/A";
+      } else {
+        oneBartender.querySelector("p.servingCustomer").textContent = `#${bartenders[index].servingCustomer}`;
+      }
+      oneBartender.querySelector("p.usingTap").textContent = `Tap ${bartenders[index].usingTap}`;
+      if (bartenders[index].usingTap == null){
       oneBartender.querySelector("p.usingTap").textContent = " n/a";
     }
     let formatStatusNow = bartenders[index].statusDetail;
@@ -237,6 +242,11 @@ function updatedTapsUnit(taps) {
       if (beerPath.includes("row_tap.svg")) {
         oneTap.querySelector(".pouringBeer").src = "svg/pouringBeerStout.svg";
         oneTap.querySelector(".pouringBeer").classList.add("pouringBeerAnimation");
+
+        }
+      console.log(beerPath)
+      console.log(beerPath.includes("hollaback" | "mowintime"))
+
       }
     }
   });
