@@ -1912,7 +1912,6 @@ li.sortBy {
     border-bottom: 1px solid lightgrey;
   }
   .reviewTheOrder p.singleAmount {
-    grid-area: amountReview;
     margin-right: 10px;
     grid-row: auto;
     padding-bottom: 10px;
