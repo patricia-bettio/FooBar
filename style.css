@@ -374,7 +374,6 @@ img.logo {
   display: flex;
   align-self: center;
   padding: 5px;
-  margin-top: 20px;
 }
 input#quantity {
   grid-area: buttons;
@@ -2082,6 +2081,7 @@ li.sortBy {
     font-size: 16px;
     padding: 12px;
     border: inherit;
+    border-radius: 10px;
   }
   p.alcohol {
     grid-area: beerAlc;
@@ -2103,7 +2103,6 @@ li.sortBy {
     align-self: center;
     text-align: center;
     padding: 5px;
-    margin-top: 20px;
   }
   input#quantity {
     font-size: 18px;
@@ -2443,7 +2442,7 @@ li.sortBy {
     padding-bottom: 2em;
   }
   .avatar {
-    height: 40px;
+    height: 30px;
     justify-self: center;
   }
   .queueLogo {
