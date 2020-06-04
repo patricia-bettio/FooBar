@@ -232,9 +232,7 @@ function editOptionModal(userLastOption) {
   document.querySelector(".modalContent .reviewTheOrder").innerHTML = "";
   userLastOption.forEach((oneSelection) => {
     if (oneSelection.amount > 0) {
-      document
-        .querySelector(".minimumOrder")
-        .classList.remove("minimumErrorShow");
+      document.querySelector(".minimumOrder").classList.remove("minimumErrorShow");
       const areaReviw = document.querySelector(".modalContent .reviewTheOrder");
       let reviewOrder = document.createElement("p");
       reviewOrder.className = "priceAmount";
@@ -283,6 +281,7 @@ function filterIPA() {
     return IPA.category == "IPA";
   });
   displayBeer(ipaBeers);
+  getPrices();
   document.querySelector(".filterOptions").classList.remove("showFilters");
 }
 
@@ -292,6 +291,7 @@ function filterHefe() {
     return hefe.category == "Hefeweizen";
   });
   displayBeer(hefeBeers);
+  getPrices();
   document.querySelector(".filterOptions").classList.remove("showFilters");
 }
 
@@ -301,6 +301,7 @@ function filterOkt() {
     return okt.category == "Oktoberfest";
   });
   displayBeer(oktBeers);
+  getPrices();
   document.querySelector(".filterOptions").classList.remove("showFilters");
 }
 
@@ -310,6 +311,7 @@ function filterEuro() {
     return euro.category == "European Lager";
   });
   displayBeer(euroBeers);
+  getPrices();
   document.querySelector(".filterOptions").classList.remove("showFilters");
 }
 
@@ -319,6 +321,7 @@ function filterStout() {
     return stout.category == "Stout";
   });
   displayBeer(stoutBeers);
+  getPrices();
   document.querySelector(".filterOptions").classList.remove("showFilters");
 }
 
@@ -328,6 +331,7 @@ function filterBelgian() {
     return belgian.category == "Belgian Specialty Ale";
   });
   displayBeer(belgianBeers);
+  getPrices();
   document.querySelector(".filterOptions").classList.remove("showFilters");
 }
 
@@ -337,6 +341,7 @@ function filterCalif() {
     return calif.category == "California Common";
   });
   displayBeer(califBeers);
+  getPrices();
   document.querySelector(".filterOptions").classList.remove("showFilters");
 }
 
@@ -353,9 +358,11 @@ function sortAlc() {
     document.querySelector(".sortOptions li").classList.remove("arrowDownSort");
     document.querySelector(".sortOptions li").classList.add("arrowUpSort");
     firstAsc(allBeers);
+    getPrices();
   } else {
     //console.log("sort desc");
     firstDesc(allBeers);
+    getPrices();
     event.target.dataset.sortDirection = "asc";
     document.querySelector(".sortOptions li").classList.remove("arrowUpSort");
     document.querySelector(".sortOptions li").classList.add("arrowDownSort");
@@ -399,7 +406,7 @@ const span2 = document.querySelector(".closeModal2");
 
 function setUpModal() {
   modalBtn.addEventListener("click", (e) => {
-    if (userLastOption == "" ) {
+     if (userLastOption == "" ) {
       //console.log("select at least one");
       showErrorAtLeastOne();
     } else {
@@ -458,6 +465,7 @@ function setUpPayment() {
         formElements.forEach((el) => {
           if (!el.checkValidity()) {
             el.classList.add("invalid");
+    
           }
         });
       }
