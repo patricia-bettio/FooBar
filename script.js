@@ -242,11 +242,11 @@ function updatedTapsUnit(taps) {
       if (beerPath.includes("row_tap.svg")) {
         oneTap.querySelector(".pouringBeer").src = "svg/pouringBeerStout.svg";
       } else if (beerPath.includes("hollaback")) {
-        oneTap.querySelector(".pouringBeer").src = "svg/pouringBeerLager.svg";
-      } else if (beerPath.includes("sleighride")){
-        oneTap.querySelector(".pouringBeer").src = "svg/pouringBeerCalifornia.svg";
+        oneTap.querySelector(".pouringBeer").src = "svg/pouringBeerGold.svg";
+      } else if (beerPath.includes("steampunk")){
+        oneTap.querySelector(".pouringBeer").src = "svg/pouringBeerBrown.svg";
       } else if (beerPath.includes("mowintime")){
-        oneTap.querySelector(".pouringBeer").src = "svg/pouringBeerLager.svg";
+        oneTap.querySelector(".pouringBeer").src = "svg/pouringBeerGold.svg";
       } else {
         oneTap.querySelector(".pouringBeer").src = "svg/pouringBeer.svg";
       }
