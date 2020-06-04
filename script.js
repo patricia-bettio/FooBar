@@ -81,15 +81,15 @@ function updatedQueueUnit(queue) {
 
   updatedQueueSize(queue);
   //1.remove old nodes
-  document.querySelectorAll("#queueUnit article").forEach((node)=>{
-    const found = queue.find(item=>item.id == node.dataset.id)
-    if(!found){
+  document.querySelectorAll("#queueUnit article").forEach((node) => {
+    const found = queue.find(item => item.id == node.dataset.id)
+    if (!found) {
       node.remove()
     }
   })
   //2.add new
   queue.forEach((item) => {
-    if(document.querySelector(`#queueUnit article[data-id="${item.id}"]`)){
+    if (document.querySelector(`#queueUnit article[data-id="${item.id}"]`)) {
       //console.log("id is there")
       return
     }
@@ -103,7 +103,7 @@ function updatedQueueUnit(queue) {
     cloneQueue.querySelector("p.startTime").textContent = dateFormatter(item.startTime).slice(0, 5);
 
     //AVATAR
-    let numberImg = Math.floor(Math.random()*randomAvatar.length);
+    let numberImg = Math.floor(Math.random() * randomAvatar.length);
     let displayedAvatar = randomAvatar[numberImg];
     cloneQueue.querySelector(".avatar").src = displayedAvatar;
 
@@ -115,7 +115,7 @@ function updatedQueueUnit(queue) {
       cloneQueue.querySelector(".queueLogo").appendChild(image);
     });
     queueArea.appendChild(cloneQueue);
-  }); 
+  });
 }
 
 //-----------------------------------BARTENDERS--------------------------------------//
@@ -142,6 +142,7 @@ function bartendersUnit(bartenders) {
 
 function updatedBartendersUnit(bartenders) {
   document.querySelectorAll("#bartendersUnit article").forEach((oneBartender, index) => {
+
       oneBartender.querySelector("p.status").textContent = bartenders[index].status;
       if (bartenders[index].servingCustomer == null) {
       oneBartender.querySelector("p.servingCustomer").textContent = "N/A";
@@ -151,24 +152,24 @@ function updatedBartendersUnit(bartenders) {
       oneBartender.querySelector("p.usingTap").textContent = `Tap ${bartenders[index].usingTap}`;
       if (bartenders[index].usingTap == null){
       oneBartender.querySelector("p.usingTap").textContent = " n/a";
-      }
-      let formatStatusNow = bartenders[index].statusDetail;
+    }
+    let formatStatusNow = bartenders[index].statusDetail;
 
-      if (formatStatusNow === "pourBeer") {
-        oneBartender.querySelector("p.statusDetail").textContent = "Pouring beer";
-      } else if (formatStatusNow === "receivePayment") {
-        oneBartender.querySelector("p.statusDetail").textContent = "Receiving payment";
-      } else if (formatStatusNow === "reserveTap") {
-        oneBartender.querySelector("p.statusDetail").textContent = "Reserving tap";
-      } else if (formatStatusNow === "startServing") {
-        oneBartender.querySelector("p.statusDetail").textContent = "Started serving";
-      } else if (formatStatusNow === "replaceKeg") {
-        oneBartender.querySelector("p.statusDetail").textContent = "Replacing keg";
-      } else if (formatStatusNow === "ready") {
-        oneBartender.querySelector(".bartender").classList.add("glowingBartender");
-        oneBartender.querySelector("p.statusDetail").textContent = "READY";
-      }
-    });
+    if (formatStatusNow === "pourBeer") {
+      oneBartender.querySelector("p.statusDetail").textContent = "Pouring beer";
+    } else if (formatStatusNow === "receivePayment") {
+      oneBartender.querySelector("p.statusDetail").textContent = "Receiving payment";
+    } else if (formatStatusNow === "reserveTap") {
+      oneBartender.querySelector("p.statusDetail").textContent = "Reserving tap";
+    } else if (formatStatusNow === "startServing") {
+      oneBartender.querySelector("p.statusDetail").textContent = "Started serving";
+    } else if (formatStatusNow === "replaceKeg") {
+      oneBartender.querySelector("p.statusDetail").textContent = "Replacing keg";
+    } else if (formatStatusNow === "ready") {
+      oneBartender.querySelector(".bartender").classList.add("glowingBartender");
+      oneBartender.querySelector("p.statusDetail").textContent = "READY";
+    }
+  });
 }
 
 //-----------------------------------STORAGE--------------------------------------//
@@ -208,6 +209,7 @@ function tapsUnit(taps) {
 
 function updatedTapsUnit(taps) {
   document.querySelectorAll("#tapsUnit article").forEach((oneTap, index) => {
+    console.log(oneTap)
     oneTap.querySelector("p.id").textContent = taps[index].id;
     oneTap.querySelector("p.level").textContent = taps[index].level;
     //alert
@@ -230,7 +232,7 @@ function updatedTapsUnit(taps) {
       oneTap.querySelector(".glassServed").src = "";
       oneTap.querySelector(".pouringBeer").classList.remove("pouringBeerAnimation");
       oneTap.querySelector(".pouringBeer").src = "";
-      } else if (taps[index].inUse === true) {
+    } else if (taps[index].inUse === true) {
       oneTap.querySelector(".bulletUse").style.background = "green";
       //glass
       oneTap.querySelector(".glassServed").src = `svg/logoGlasses/${tapFormat.toLowerCase().split(" ")[0]}_glass_logo.svg`;
@@ -240,10 +242,13 @@ function updatedTapsUnit(taps) {
       if (beerPath.includes("row_tap.svg")) {
         oneTap.querySelector(".pouringBeer").src = "svg/pouringBeerStout.svg";
         oneTap.querySelector(".pouringBeer").classList.add("pouringBeerAnimation");
+
         }
       console.log(beerPath)
       console.log(beerPath.includes("hollaback" | "mowintime"))
+
       }
+    }
   });
 }
 
@@ -258,34 +263,34 @@ function servingUnit(serving) {
 }
 
 function updatedServingUnit(serving) {
-  
-  document.querySelectorAll("#servingUnit article").forEach((node)=>{
-    const found = serving.find(item=>item.id == node.dataset.id)
-    if(!found){
+
+  document.querySelectorAll("#servingUnit article").forEach((node) => {
+    const found = serving.find(item => item.id == node.dataset.id)
+    if (!found) {
       node.remove();
     }
   })
-  serving.forEach((item)=>{
-    if(document.querySelector(`#servingUnit article[data-id="${item.id}"]`)) {
+  serving.forEach((item) => {
+    if (document.querySelector(`#servingUnit article[data-id="${item.id}"]`)) {
       return
-  }
-  const templateServing = document.querySelector("#servingTemplate").content;
-  const cloneServing = templateServing.cloneNode(true);
-  const servingArea = document.querySelector("#servingUnit");
+    }
+    const templateServing = document.querySelector("#servingTemplate").content;
+    const cloneServing = templateServing.cloneNode(true);
+    const servingArea = document.querySelector("#servingUnit");
 
-  cloneServing.querySelector("article").dataset.id = item.id;
-      //elements
-      cloneServing.querySelector("p.id").textContent = `order #${item.id}`;
-      //build images
-      const orderFormat = item.order;
-      orderFormat.forEach((e) => {
-        let image = new Image();
-        image.src = `svg/logoGlasses/${e.toLowerCase().split(" ")[0]}_glass_logo.svg`;
-        cloneServing.querySelector(".servingBeerGlass").appendChild(image);
-      });
-      servingArea.appendChild(cloneServing);
+    cloneServing.querySelector("article").dataset.id = item.id;
+    //elements
+    cloneServing.querySelector("p.id").textContent = `order #${item.id}`;
+    //build images
+    const orderFormat = item.order;
+    orderFormat.forEach((e) => {
+      let image = new Image();
+      image.src = `svg/logoGlasses/${e.toLowerCase().split(" ")[0]}_glass_logo.svg`;
+      cloneServing.querySelector(".servingBeerGlass").appendChild(image);
     });
-  }
+    servingArea.appendChild(cloneServing);
+  });
+}
 
 //----------------------QUEUE SIZE --------------------------------------//
 function setQueueSize(queueSize) {
