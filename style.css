@@ -2399,9 +2399,7 @@ li.sortBy {
   #bartenders p.name {
     text-transform: uppercase;
   }
-  #bartenders p.servingCustomer {
-    /* display: none; */
-  }
+
   #bartenders p.status {
     text-transform: lowercase;
     font-family: var(--details-font);
