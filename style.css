@@ -1656,6 +1656,7 @@ li.sortBy {
   }
   #storageUnit {
     display: inline-grid;
+    font-size: 14px;
   }
   #storageUnit article {
     align-self: flex-end;
@@ -2422,7 +2423,7 @@ li.sortBy {
     font-family: var(--subtitle-font);
   }
   .tapImage {
-    width: auto;
+    width: fit-content;
   }
   .pouringBeer {
     display: none;
@@ -2551,55 +2552,62 @@ li.sortBy {
   background-color: white;
   opacity: 0.5;
   border-radius: 50%;
-  animation: up 4s infinite;
+  animation: moveIt 4s infinite;
 }
-.bubble-2 {
+.bubble1 {
   left: 350px;
-  animation: up 2s infinite;
+  animation: moveIt 2s infinite;
   width: 20px;
   height: 20px;
 }
-.bubble-3 {
+
+.bubble2 {
+  left: 350px;
+  animation: moveIt 2s infinite;
+  width: 20px;
+  height: 20px;
+}
+.bubble3 {
   left: 750px;
   opacity: 0.3;
-  animation: up 5s infinite;
+  animation: moveIt 5s infinite;
   width: 30px;
   height: 30px;
 }
-.bubble-4 {
+.bubble4 {
   left: 1150px;
-  animation: up 6s infinite;
+  animation: moveIt 6s infinite;
   width: 15px;
   height: 15px;
 }
-.bubble-5 {
+.bubble5 {
   left: 50px;
-  animation: up 5s infinite;
+  animation: moveIt 5s infinite;
   width: 40px;
   height: 40px;
 }
-.bubble-6 {
+.bubble6 {
   left: 300px;
   opacity: 0.3;
-  animation: up 3s infinite;
+  animation: moveIt 3s infinite;
   width: 20px;
   height: 20px;
 }
-.bubble-7 {
+.bubble7 {
   left: 670px;
-  animation: up 4s infinite;
+  animation: moveIt 4s infinite;
   width: 35px;
   height: 35px;
 }
-.bubble-8 {
+.bubble8 {
   left: 1050px;
   opacity: 0.3;
-  animation: up 3s infinite;
+  animation: moveIt 3s infinite;
   width: 40px;
   height: 40px;
 }
 /* bubbles animation */
-@keyframes up {
+@keyframes moveIt {
   100% {
     transform: translateY(-800px);
   }
