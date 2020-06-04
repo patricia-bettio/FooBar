@@ -178,7 +178,7 @@ function postOrder(orderQuantity) {
     orders.push(orderQuantity);
     const postData = JSON.stringify(orders);
     console.log(postData);
-    fetch("https://beer-waffles.herokuapp.com/order", {
+    fetch("https://beer-waffle-again.herokuapp.com/order", {
       method: "post",
       headers: {
         "Content-Type": "application/json; charset=utf-8",

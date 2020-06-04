@@ -209,7 +209,6 @@ function tapsUnit(taps) {
 
 function updatedTapsUnit(taps) {
   document.querySelectorAll("#tapsUnit article").forEach((oneTap, index) => {
-    console.log(oneTap)
     oneTap.querySelector("p.id").textContent = taps[index].id;
     oneTap.querySelector("p.level").textContent = taps[index].level;
     //alert
