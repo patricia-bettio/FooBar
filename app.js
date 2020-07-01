@@ -95,12 +95,15 @@ function displaySingleBeer(beer) {
     objectReview.name = name;
     objectReview.amount = form.elements.quantity.value;
     const getLastInstance = userLastOption.findIndex((beer) => beer.name === name);
+
     if (getLastInstance === -1) {
       userLastOption.push(objectReview);
     } else {
       userLastOption[getLastInstance] = objectReview;
     }
+    
     userLastOption = userLastOption;
+   
     editOptionModal(userLastOption);
     //PRICE
     let oneItemPrice;
@@ -109,8 +112,13 @@ function displaySingleBeer(beer) {
       let filteredResult = allThePrices.find(
         (el) => el.name === singleChoice.name
       );
+      console.log(filteredResult)
       let onePrice = filteredResult.price;
       let oneAmount = singleChoice.amount;
+      
+      //console.log(typeof onePrice)
+      //console.log(typeof oneAmount)
+
       oneItemPrice = parseInt(onePrice) * oneAmount;
       showTotalPrice(oneItemPrice);
       finalTotalPrice += oneItemPrice;
@@ -151,8 +159,12 @@ function displaySingleBeer(beer) {
   beerClone.querySelector(".dropdown .overallImage").src = "icons/overallImpression.png";
   //grab by category
   const formatCategory = beer.category.toLowerCase().split(" ")[0];
+  //console.log(beer.category)
+  //console.log(formatCategory)
+  
   let showMoreGlass = beerClone.querySelector(".showMore");
   showMoreGlass.src = `svg/glasses/${formatCategory}_glass.svg`;
+  
   //SHOW DETAILS
   let selectedBeer = beerClone.querySelector(".dropdown");
   selectedBeer.classList.add("hide");
@@ -353,24 +365,40 @@ function resetFilter() {
 function sortAlc() {
   //console.log(allBeers);
   document.querySelector("#beerApp").classList.add("backgroundAdjust");
+ console.log(event.target.dataset)
   if (event.target.dataset.sortDirection === "asc") {
     event.target.dataset.sortDirection = "desc";
+    
     document.querySelector(".sortOptions li").classList.remove("arrowDownSort");
     document.querySelector(".sortOptions li").classList.add("arrowUpSort");
-    firstAsc(allBeers);
+
+    //let sortTest = allBeers.sort((a , b) => (a.alc > b.alc ? 1 : -1))
+    let sortTest = allBeers.sort(function(a,b){return a.alc - b.alc}); 
+    console.log(sortTest)
+    displayBeer(sortTest)
     getPrices();
+    
   } else {
     //console.log("sort desc");
-    firstDesc(allBeers);
-    getPrices();
+    
     event.target.dataset.sortDirection = "asc";
+
+    //let sortTest = allBeers.sort((a , b) => (a.alc < b.alc ? 1 : -1))
+    let sortTest = allBeers.sort(function(a,b){return b.alc - a.alc}); 
+   
+
     document.querySelector(".sortOptions li").classList.remove("arrowUpSort");
     document.querySelector(".sortOptions li").classList.add("arrowDownSort");
+
+    displayBeer(sortTest)
+    getPrices();
   }
 }
+
 //condition - ascending
-function firstAsc() {
-  console.log(allBeers);
+/* function firstAsc() {
+ 
+ console.log(allBeers);
   function compareAlc(a, b) {
     if (a.alc < b.alc) {
       return -1;
@@ -380,9 +408,9 @@ function firstAsc() {
   }
   allBeers.sort(compareAlc);
   displayBeer(allBeers);
-}
+} */
 //condition - descending
-function firstDesc() {
+/* function firstDesc() {
   console.log(allBeers);
   function compareAlc(a, b) {
     if (a.alc < b.alc) {
@@ -393,7 +421,7 @@ function firstDesc() {
   }
   allBeers.sort(compareAlc);
   displayBeer(allBeers);
-}
+} */
 
 // ------------ modal ---------- //
 const modal = document.querySelector("#modal");
@@ -570,9 +598,14 @@ function getPrices() {
 }
 
 function showPrices(thePrices) {
+  //console.log(thePrices)
+  
   thePrices.forEach((onePrice) => {
     document.querySelectorAll("#beerList").forEach((e) => {
+      //console.log(e)
       let templateNameBeer = e.querySelector(".name").innerHTML;
+      //console.log(templateNameBeer)
+      //console.log(typeof templateNameBeer)
       if (onePrice.name === templateNameBeer) {
         e.querySelector(".price").textContent = `${onePrice.price}kr`;
       }

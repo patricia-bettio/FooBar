@@ -42,7 +42,13 @@ function showData(data) {
   setCurrentTime(data.timestamp);
   queueUnit(data.queue);
   bartendersUnit(data.bartenders);
-  storageUnit(data.storage.sort((a, b) => (a.amount > b.amount ? 1 : -1)));
+  console.log(data.storage.sort())
+  
+  //storageUnit(data.storage.sort((a, b) => (a.amount > b.amount ? 1 : -1)));
+  
+  let testStorage = data.storage.sort(((a, b) => a.amount - b.amount));
+  storageUnit(testStorage)
+  
   tapsUnit(data.taps);
   servingUnit(data.serving);
 }
@@ -61,7 +67,12 @@ function updateData(data) {
   setCurrentTime(data.timestamp);
   updatedQueueUnit(data.queue);
   updatedBartendersUnit(data.bartenders);
-  updatedStorageUnit(data.storage.sort((a, b) => (a.amount > b.amount ? 1 : -1)));
+
+ // updatedStorageUnit(data.storage.sort((a, b) => (a.amount > b.amount ? 1 : -1)));
+
+  let testStorage = data.storage.sort(((a, b) => a.amount - b.amount));
+  updatedStorageUnit(testStorage)
+  
   updatedTapsUnit(data.taps);
   updatedServingUnit(data.serving);
 }
@@ -105,11 +116,15 @@ function updatedQueueUnit(queue) {
     //AVATAR
     let numberImg = Math.floor(Math.random() * randomAvatar.length);
     let displayedAvatar = randomAvatar[numberImg];
+
     cloneQueue.querySelector(".avatar").src = displayedAvatar;
 
     //IMAGES
     const queueFormat = item.order;
+    //console.log(typeof queueFormat)
     queueFormat.forEach((e) => {
+      //console.log(typeof e)
+      //console.log(e)
       let image = new Image();
       image.src = `images/circle_logo/${e.toLowerCase().split(" ")[0]}_circle.png`;
       cloneQueue.querySelector(".queueLogo").appendChild(image);
@@ -126,8 +141,9 @@ function bartendersUnit(bartenders) {
   bartendersArea.innerHTML = "";
   bartenders.forEach((oneBartender) => {
     const cloneBartender = templateBartenders.cloneNode(true);
-
     cloneBartender.querySelector("p.name").textContent = oneBartender.name;
+    //console.log(typeof oneBartender.name)
+    //console.log(oneBartender.name == "Jonas")
     if (oneBartender.name === "Jonas") {
       cloneBartender.querySelector(".bartender").src = "images/jonas.jpeg";
     } else if (oneBartender.name === "Peter") {
@@ -155,6 +171,7 @@ function updatedBartendersUnit(bartenders) {
     }
     let formatStatusNow = bartenders[index].statusDetail;
 
+  // console.log(typeof formatStatusNow)
     if (formatStatusNow === "pourBeer") {
       oneBartender.querySelector("p.statusDetail").textContent = "Pouring beer";
     } else if (formatStatusNow === "receivePayment") {
@@ -189,6 +206,9 @@ function updatedStorageUnit(storage) {
   document.querySelectorAll("#storageUnit article").forEach((oneKeg, index) => {
     oneKeg.querySelector("p.name").textContent = storage[index].name;
     oneKeg.querySelector("p.amount").textContent = `Kegs: ${storage[index].amount}`;
+    //console.log(storage)
+    //console.log(storage[index])
+    //console.log(storage[index].name)
     //IMAGE
     let kegFormat = storage[index].name;
     oneKeg.querySelector(".kegImage").src = `svg/bottles/${kegFormat.toLowerCase().split(" ")[0]}_bottle.svg`;
@@ -224,6 +244,7 @@ function updatedTapsUnit(taps) {
     //stout
     let beerPath = oneTap.querySelector(".tapImage").src;
     //USE
+    //console.log(taps[index].inUse == false)
     if (taps[index].inUse === false) {
       oneTap.querySelector(".bulletUse").style.background = "red";
       //glass
@@ -289,10 +310,17 @@ function updatedServingUnit(serving) {
     cloneServing.querySelector("p.id").textContent = `order #${item.id}`;
     //build images
     const orderFormat = item.order;
+    //console.log(typeof item.order)
     orderFormat.forEach((e) => {
       let image = new Image();
       image.src = `svg/logoGlasses/${e.toLowerCase().split(" ")[0]}_glass_logo.svg`;
       cloneServing.querySelector(".servingBeerGlass").appendChild(image);
+
+      //console.log(item)
+     //console.log(orderFormat.find(item => item.order == item.order))
+     //console.log(orderFormat.find(item => item == e))
+     //console.log(orderFormat)
+     //console.log(e)
     });
     servingArea.appendChild(cloneServing);
   });
