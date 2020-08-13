@@ -453,10 +453,7 @@ function sortAlc() {
 //   displayBeer(allBeers);
 // }
 
-    displayBeer(sortTest)
-    getPrices();
-  }
-}
+
 
 //condition - ascending
 /* function firstAsc() {
