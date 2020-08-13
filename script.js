@@ -42,13 +42,13 @@ function showData(data) {
   setCurrentTime(data.timestamp);
   queueUnit(data.queue);
   bartendersUnit(data.bartenders);
-  console.log(data.storage.sort())
-  
+
   //storageUnit(data.storage.sort((a, b) => (a.amount > b.amount ? 1 : -1)));
-  
+  // console.log(data.storage.sort())
   let testStorage = data.storage.sort(((a, b) => a.amount - b.amount));
   storageUnit(testStorage)
-  
+
+
   tapsUnit(data.taps);
   servingUnit(data.serving);
 }
@@ -68,11 +68,12 @@ function updateData(data) {
   updatedQueueUnit(data.queue);
   updatedBartendersUnit(data.bartenders);
 
- // updatedStorageUnit(data.storage.sort((a, b) => (a.amount > b.amount ? 1 : -1)));
 
+  // updatedStorageUnit(data.storage.sort((a, b) => (a.amount > b.amount ? 1 : -1)));
   let testStorage = data.storage.sort(((a, b) => a.amount - b.amount));
   updatedStorageUnit(testStorage)
-  
+
+
   updatedTapsUnit(data.taps);
   updatedServingUnit(data.serving);
 }
